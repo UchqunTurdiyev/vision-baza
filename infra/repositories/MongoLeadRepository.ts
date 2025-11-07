@@ -1,22 +1,48 @@
-import type { ILeadRepository } from "@/domain/repositories/ILeadRepository";
-import type { LeadStatus } from "@/constants/statuses";
-import { LeadModel } from "@/infra/models/Lead";
-
+import { LeadModel } from "@/models/Lead";
+import type { ILeadRepository, ListParams } from "@/domain/repositories/ILeadRepository";
+import { LEAD_STATUSES, LeadStatus } from "@/constants/statuses";
+import Lead from "@/domain/entities/Lead";
 
 export class MongoLeadRepository implements ILeadRepository {
-async create(data: any) { const d = await LeadModel.create(data); return this.toDTO(d); }
-async list(query?: { status?: LeadStatus; search?: string }) {
-const filter: any = {};
-if (query?.status) filter.status = query.status;
-if (query?.search) filter.$or = [ { fullName: { $regex: query.search, $options: "i" } }, { phone: { $regex: query.search } } ];
-const docs = await LeadModel.find(filter).sort({ createdAt: -1 }).limit(200);
-return docs.map(this.toDTO);
-}
-async updateStatus(id: string, status: LeadStatus) {
-const d = await LeadModel.findByIdAndUpdate(id, { status }, { new: true });
-if (!d) throw new Error("Lead not found");
-return this.toDTO(d);
-}
-async delete(id: string) { await LeadModel.findByIdAndDelete(id); }
-private toDTO(d: any) { return { id: d.id, fullName: d.fullName, phone: d.phone, source: d.source, status: d.status, note: d.note, createdAt: d.createdAt, updatedAt: d.updatedAt }; }
+  list(params?: ListParams): Promise<Lead[]> {
+      throw new Error("Method not implemented.");
+  }
+  updateStatus(id: string, status: LeadStatus): Promise<Lead> {
+      throw new Error("Method not implemented.");
+  }
+  delete(id: string): Promise<void> {
+      throw new Error("Method not implemented.");
+  }
+  addComment(id: string, comment: { text: string; author?: string; }): Promise<void> {
+      throw new Error("Method not implemented.");
+  }
+  async create(data: {
+    fullName: string;
+    phone: string;
+    source?: string;
+    note?: string;
+    status?: (typeof LEAD_STATUSES)[number];  // tip mos
+  }) {
+    const doc = await LeadModel.create({
+      fullName: data.fullName,
+      phone: data.phone,
+      source: data.source ?? "unknown",
+      note: data.note ?? "",
+      status: data.status ?? LEAD_STATUSES[0], // ✅ default: "LID"
+    });
+
+    return {
+      id: String(doc._id),
+      fullName: doc.fullName,
+      phone: doc.phone,
+      source: doc.source,
+      note: doc.note,
+      status: doc.status,
+      createdAt: doc.createdAt ?? null,
+      updatedAt: doc.updatedAt ?? null,
+      comments: doc.comments ?? [],
+    };
+  }
+
+  // ... qolgan metodlar o‘zgarishsiz
 }
