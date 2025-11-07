@@ -7,7 +7,7 @@ const base =
 
 const variants: Record<string, string> = {
 primary:
-"bg-gradient-to-b from-indigo-500 to-indigo-600 text-white shadow-[0_8px_20px_rgba(79,70,229,.35)] hover:from-indigo-400 hover:to-indigo-600 focus:ring-indigo-400",
+"bg-gradient-to-b from-indigo-500 to-indigo-600 py-2 text-white shadow-[0_8px_20px_rgba(79,70,229,.35)] hover:from-indigo-400 hover:to-indigo-600 focus:ring-indigo-400",
 subtle:
 "bg-white/5 border border-white/10 text-white hover:bg-white/10",
 ghost:
