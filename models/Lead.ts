@@ -1,22 +1,105 @@
+// // models/Lead.ts
+// import { Schema, model, models } from "mongoose";
+// import { PIPELINE } from "@/constants/statuses";
+
+// const LeadSchema = new Schema(
+//   {
+//     fullName: { type: String, required: true },
+//     phone:    { type: String, required: true, index: true },
+//     source:   { type: String, default: "unknown" },
+//     status:   {
+//       type: String,
+//       enum: Array.from(PIPELINE) as string[], // ✅ "LID" ham shu yerda bor
+//       default: "LID",
+//       required: true,
+//     },
+//     note:     { type: String },
+//   },
+//   { timestamps: true }
+// );
+
+// // Hot-reloadda model qayta e’lon qilinmasin
+// export const LeadModel = models.Lead || model("Lead", LeadSchema);
+
 // models/Lead.ts
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models, type Model, type Types } from "mongoose";
 import { PIPELINE } from "@/constants/statuses";
 
-const LeadSchema = new Schema(
+export interface IComment {
+  _id: Types.ObjectId;
+  text: string;
+  author?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface ILead {
+  map(arg0: (x: any) => any): unknown;
+  _id: Types.ObjectId;
+  fullName: string;
+  phone: string;
+  source: string;
+  status: (typeof PIPELINE)[number];
+  note?: string;
+  comments: IComment[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+const CommentSchema = new Schema<IComment>(
+  {
+    text:   { type: String, required: true, trim: true },
+    author: { type: String, default: "Operator" },
+  },
+  { _id: true, timestamps: true }
+);
+
+const LeadSchema = new Schema<ILead>(
   {
     fullName: { type: String, required: true },
     phone:    { type: String, required: true, index: true },
     source:   { type: String, default: "unknown" },
-    status:   {
-      type: String,
-      enum: Array.from(PIPELINE) as string[], // ✅ "LID" ham shu yerda bor
-      default: "LID",
-      required: true,
-    },
+    status:   { type: String, enum: Array.from(PIPELINE), default: "LID", required: true },
     note:     { type: String },
+    comments: { type: [CommentSchema], default: [] },
   },
   { timestamps: true }
 );
 
-// Hot-reloadda model qayta e’lon qilinmasin
-export const LeadModel = models.Lead || model("Lead", LeadSchema);
+  // models/Lead.ts (parcha)
+export interface IComment { /* ... */ }
+export interface ILead {
+  _id: Types.ObjectId;
+  fullName: string;
+  phone: string;
+  source: string;
+  status: (typeof PIPELINE)[number];
+  note?: string;
+  comments: IComment[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+export const LeadModel: Model<ILead> =
+  (models.Lead as Model<ILead>) || model<ILead>("Lead", LeadSchema);
+
+
+  export interface IComment {
+    _id: Types.ObjectId;
+    text: string;
+    author?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+  }
+  
+  export interface ILead {
+    _id: Types.ObjectId;
+    fullName: string;
+    phone: string;
+    source: string;
+    status: (typeof PIPELINE)[number];
+    note?: string;
+    comments: IComment[];
+    createdAt?: Date;
+    updatedAt?: Date;
+  }
+  
