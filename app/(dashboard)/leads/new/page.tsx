@@ -22,6 +22,7 @@ type Lead = {
   status: string;
   note?: string;
   lastCommentText?: string; // preview
+  createdAt?: string | null; 
 };
 
 export default function LeadsPage() {
@@ -107,6 +108,24 @@ export default function LeadsPage() {
     });
   }
 
+// 🔒 100% xavfsiz formatter: Intl YO'Q, toLocaleString YO'Q
+function fmtDateTimeSafe(input?: string | Date | number | null) {
+    if (!input) return "";
+    const d = (input instanceof Date) ? input : new Date(input);
+    if (!(d instanceof Date) || Number.isNaN(d.getTime())) return "";
+  
+    const pad = (n: number) => (n < 10 ? `0${n}` : `${n}`);
+  
+    const yyyy = d.getFullYear();
+    const mm   = pad(d.getMonth() + 1);
+    const dd   = pad(d.getDate());
+    const HH   = pad(d.getHours());
+    const MM   = pad(d.getMinutes());
+  
+    // Masalan: 2025-11-07 14:35
+    return `${yyyy}-${mm}-${dd} ${HH}:${MM}`;
+  }
+
   return (
     <div className="p-5">
       <Card className="p-4">
@@ -145,6 +164,10 @@ export default function LeadsPage() {
                         const isOpen = realId ? !!expanded[realId] : false;
                         const preview = (lead.lastCommentText ?? "").trim();
 
+                          function fmtDateTime(createdAt: string): import("react").ReactNode {
+                              throw new Error("Function not implemented.");
+                          }
+
                         return (
                           <Draggable
                             key={draggableKey}
@@ -173,6 +196,14 @@ export default function LeadsPage() {
                                   {lead.phone}
                                 </div>
                                 <Badge>{lead.source}</Badge>
+
+
+
+{lead.createdAt ? (
+  <div className="mt-1 text-[11px] text-white/50">
+    🕒 {fmtDateTimeSafe(lead.createdAt)}
+  </div>
+) : null}
 
                                 {/* 1 qator preview (doim ko‘rinadi) */}
                                 <div className="mt-2 text-xs text-white/70 truncate">

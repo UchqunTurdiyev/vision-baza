@@ -63,7 +63,7 @@ const LeadSchema = new Schema<ILead>(
     note:     { type: String },
     comments: { type: [CommentSchema], default: [] },
   },
-  { timestamps: true }
+  { timestamps: true } 
 );
 
   // models/Lead.ts (parcha)

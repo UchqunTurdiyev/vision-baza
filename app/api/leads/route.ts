@@ -43,6 +43,7 @@ export async function GET(req: NextRequest) {
         source: 1,
         status: 1,
         note: 1,
+        createdAt: 1, 
         comments: { $slice: -1 }, // faqat oxirgi komment
       })
       .lean<ILead>();
