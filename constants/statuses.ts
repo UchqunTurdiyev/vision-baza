@@ -5,10 +5,11 @@ export const LEAD_STATUSES = [
   "LID",
   "KO'TARMADI",
   "O'YLAB KO'RAMAN",
-  "KEYIN TEL QILING",
   "O'QIYMAN",
   "TO'LOV QILDI",
   "KEYINGI OY",
+  "O'QIMAYDI",
+  "ONLINE",
 ] as const;
 
 // ✅ TIP: massiv elementlaridan union type yasaymiz

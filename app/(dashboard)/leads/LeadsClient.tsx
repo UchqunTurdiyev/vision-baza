@@ -1,6 +1,8 @@
 "use client";
 
-import NewLeadPage from "./new/OperatorClient"; // Agar form komponentingiz shu yerda bo‘lsa
+import LeadNewPage from "@/components/lead/LeadNewPage";
+
+// Agar form komponentingiz shu yerda bo‘lsa
 
 export default function LeadsClient() {
   return (
@@ -84,7 +86,28 @@ export default function LeadsClient() {
         <div className="text-center rounded-3xl border border-blue-200 bg-white py-8 px-3 shadow-sm">
           <h4 className="text-2xl font-bold text-gray-900">Boshlashga tayyormisiz?</h4>
           <p className="mt-2 text-gray-600">Birinchi qadam — muloqot. Qo'ng'iroq qiling, barcha savollaringizga javob beramiz.</p>
-          <NewLeadPage />
+          import LeadNewPage from "@/components/leads/LeadNewPage";
+
+// ...
+<section id="royxat" className="px-2 pb-16">
+  <div className="text-center rounded-3xl border border-blue-200 bg-white py-8 px-3 shadow-sm">
+    <h4 className="text-2xl font-bold text-gray-900">Boshlashga tayyormisiz?</h4>
+    <p className="mt-2 text-gray-600">
+      Birinchi qadam — muloqot. Qo‘ng‘iroq qiling, barcha savollaringizga javob beramiz.
+    </p>
+
+    <LeadNewPage
+      className="mt-4"
+      defaultSource=""         // xohlagancha o‘zgartirasiz
+      onSuccess={() => {
+        // xohlasangiz: scroll, snackbar, analytics, va h.k.
+      }}
+    />
+
+    <p className="mt-3 text-xs text-gray-500">Ish vaqti: Du–Yak, 09:00–20:00</p>
+  </div>
+</section>
+
           <p className="mt-3 text-xs text-gray-500">Ish vaqti: Du–Yak, 09:00–20:00</p>
         </div>
       </section>
