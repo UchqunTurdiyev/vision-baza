@@ -4,6 +4,8 @@ import { z } from "zod";
 import { connectToDB } from "@/lib/mongodb";
 import { LeadModel } from "@/models/Lead";
 import { PIPELINE } from "@/constants/statuses";
+import { Types } from "mongoose";
+
 
 const StatusSchema = z.object({ status: z.string().min(1) });
 
@@ -32,17 +34,33 @@ export async function PATCH(req: Request, context: { params: Promise<{ id: strin
   }
 }
 
-export async function DELETE(_req: Request, context: { params: Promise<{ id: string }> }) {
-  try {
-    const { id } = await context.params;
-    if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
+// app/api/leads/[id]/route.ts
+export const dynamic = "force-dynamic";
 
-    await connectToDB();
-    await LeadModel.findByIdAndDelete(id);
+const ADMIN_DELETE_PASSWORD = process.env.ADMIN_DELETE_PASSWORD || "";
 
-    return NextResponse.json({ ok: true }, { status: 200 });
-  } catch (e: any) {
-    console.error("DELETE /api/leads/:id error:", e);
-    return NextResponse.json({ error: e?.message ?? "Internal error" }, { status: 500 });
+export async function DELETE(
+  req: Request,
+  ctx: { params: Promise<{ id: string }> } // Next 16: params = Promise
+) {
+  const { id } = await ctx.params;
+
+  if (!Types.ObjectId.isValid(id)) {
+    return NextResponse.json({ error: "Invalid id" }, { status: 400 });
   }
+  const body = await req.json().catch(() => ({} as any));
+  const password = String(body?.password ?? "");
+
+  if (!ADMIN_DELETE_PASSWORD) {
+    return NextResponse.json({ error: "Server password not set" }, { status: 500 });
+  }
+  if (password !== ADMIN_DELETE_PASSWORD) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  await connectToDB();
+  const removed = await LeadModel.findByIdAndDelete(id);
+  if (!removed) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  return NextResponse.json({ ok: true }, { status: 200, headers: { "Cache-Control": "no-store" } });
 }

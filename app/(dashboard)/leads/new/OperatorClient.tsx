@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { LEAD_STATUSES } from "@/constants/statuses";
 import { DragDropContext, Droppable, Draggable, type DropResult } from "@hello-pangea/dnd";
 import LeadComments from "@/components/comments/LeadComments";
+import { Trash2 } from "lucide-react";
 
 // Sana formatlaydi (client-safe)
 function fmtDateTime(d?: string | Date) {
@@ -94,6 +95,64 @@ export default function OperatorClient() {
     });
   }
 
+  async function handleDeleteSecure(id: string) {
+    const ok = confirm("Ushbu kartani o‘chirishni tasdiqlaysizmi?");
+    if (!ok) return;
+  
+    const password = prompt("Parolni kiriting:");
+    if (!password) return;
+  
+    const r = await fetch(`/api/leads/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+      cache: "no-store",
+    });
+  
+    if (r.status === 200) {
+      setRows((list: any[]) => list.filter((x) => x._id !== id));
+      return;
+    }
+  
+    const msg = await r.text().catch(() => "");
+    if (r.status === 401) alert("Parol noto‘g‘ri.");
+    else if (r.status === 404) alert("Topilmadi (allaqachon o‘chirilgan bo‘lishi mumkin).");
+    else if (r.status === 400) alert("Noto‘g‘ri ID.");
+    else if (r.status === 500) alert("Server paroli sozlanmagan. Admin bilan bog‘laning.");
+    else alert("O‘chirishda xatolik: " + msg);
+  }
+  
+  // DELETE
+  async function handleDeleteSecureLead(leadId: string) {
+    const ok = confirm("Ushbu kartani o‘chirishni tasdiqlaysizmi?");
+    if (!ok) return;
+  
+    const password = prompt("Parolni kiriting:");
+    if (!password) return;
+  
+    const r = await fetch(`/api/leads/${leadId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+      cache: "no-store",
+    });
+  
+    if (r.ok) {
+      alert("Karta o‘chirildi.");
+      window.location.reload(); // shu sahifani yangilaydi
+      return;
+    }
+  
+    const msg = await r.text().catch(() => "");
+    if (r.status === 401) alert("Parol noto‘g‘ri.");
+    else if (r.status === 404) alert("Topilmadi (allaqachon o‘chirilgan bo‘lishi mumkin).");
+    else if (r.status === 400) alert("Noto‘g‘ri ID.");
+    else if (r.status === 500) alert("Server paroli sozlanmagan. Admin bilan bog‘laning.");
+    else alert("O‘chirishda xatolik: " + msg);
+  }
+  
+  
+
   return (
     <div className="p-5">
       <Card className="p-4">
@@ -127,6 +186,8 @@ export default function OperatorClient() {
                                 className="bg-white/10 p-3 rounded-lg mb-2 text-white"
                               >
                                 {/* Drag handle */}
+                                
+                                
                                 <div
                                   {...dragProvided.dragHandleProps}
                                   className="text-xs text-white/50 flex items-center gap-2 mb-2 select-none cursor-grab"
@@ -137,7 +198,19 @@ export default function OperatorClient() {
 
                                 <div className="font-medium">{lead.fullName}</div>
                                 <div className="text-sm text-white/60">{lead.phone}</div>
+                                <div className="flex items-center justify-between">
                                 <div className="text-xs text-white/50">{fmtDateTime(lead.createdAt)}</div>
+
+                                <div className="mb-2 flex justify-end">
+                                   <button
+                                    type="button"
+                                    onClick={() => handleDeleteSecureLead(idStr)}
+                                    className="text-xs px-2 py-1 border rounded-md  cursor-pointer"
+                                    >
+                                 <Trash2 className="w-4 h-4 text-red-500" />
+                                   </button>
+                                  </div>
+                                </div>
                                 <Badge>{lead.source}</Badge>
 
                                 <div className="mt-2 text-xs text-white/70 truncate">
@@ -152,13 +225,12 @@ export default function OperatorClient() {
                                 >
                                   <button
                                     type="button"
-                                    className="text-white/70 text-xs underline"
+                                    className="text-white/70 text-xs underline cursor-pointer"
                                     onClick={() => setExpanded((p) => ({ ...p, [idStr]: !p[idStr] }))}
                                   >
                                     {isOpen ? "▲ Yopish" : "▼ Barchasini ko‘rish"}
                                   </button>
                                 </div>
-
                                 {isOpen ? (
                                   <LeadComments
                                     leadId={idStr}
@@ -183,3 +255,7 @@ export default function OperatorClient() {
     </div>
   );
 }
+function setRows(arg0: (list: any[]) => any[]) {
+  throw new Error("Function not implemented.");
+}
+
