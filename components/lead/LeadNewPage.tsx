@@ -26,6 +26,7 @@ export default function LeadNewPage({
   });
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState<{ type: "ok" | "err"; text: string } | null>(null);
+  
 
   // ✅ Thank-you rejimi holatlari
   const [isThankYou, setIsThankYou] = useState(false);

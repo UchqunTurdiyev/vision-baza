@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Edit2 } from "lucide-react";
 
 type Comment = {
   _id: string;
@@ -22,6 +23,16 @@ export default function LeadComments({ leadId, onAfterAdd }: Props) {
   const [loading, setLoading] = useState(false);
   const [sending, setSending] = useState(false);
   const [text, setText] = useState("");
+
+
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editText, setEditText] = useState("");
+  
+  function isTempId(x: string) {
+    return x?.startsWith("tmp_") || x?.length !== 24;
+  }
+  
+  
 
   async function load() {
     try {
@@ -76,6 +87,36 @@ export default function LeadComments({ leadId, onAfterAdd }: Props) {
     }
   }
 
+
+  function startEdit(id: string, text: string) {
+  if (isTempId(id)) return; // tmp id bo'lsa tahrirlamaymiz
+  setEditingId(id);
+  setEditText(text);
+}
+
+async function saveEdit(id: string) {
+  if (!editText.trim()) return;
+  if (!leadId || isTempId(id)) return;
+
+  const r = await fetch(`/api/leads/${String(leadId)}/comments/${String(id)}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text: editText.trim() }),
+    cache: "no-store",
+  });
+
+  if (!r.ok) {
+    console.error("PATCH fail", r.status, await r.text(), { leadId, id });
+    return;
+  }
+
+  const updated = await r.json();
+  setComments((list) => list.map((c) => (c._id === id ? updated : c)));
+  setEditingId(null);
+}
+
+  
+
   return (
     <div
       className="mt-2 space-y-2"
@@ -88,6 +129,7 @@ export default function LeadComments({ leadId, onAfterAdd }: Props) {
         <Button variant="subtle" onClick={add} disabled={sending || !text.trim()}>
           +
         </Button>
+        
       </div>
 
       {loading ? (
@@ -102,7 +144,45 @@ export default function LeadComments({ leadId, onAfterAdd }: Props) {
                 <span className="font-semibold">{c.author ?? "Operator"}</span>
                 {c.createdAt ? <span className="text-white/50">{new Date(c.createdAt).toLocaleString()}</span> : null}
               </div>
-              <div className="mt-1">{c.text}</div>
+              {editingId === c._id ? (
+  <div>
+    <textarea
+      value={editText}
+      onChange={(e) => setEditText(e.target.value)}
+      className="w-full border rounded-xl p-2"
+    />
+    <div className="flex gap-2 mt-2">
+      <button onClick={() => saveEdit(c._id)} className="btn border px-3 py-1 rounded-xl">
+        Saqlash
+      </button>
+      <button onClick={() => setEditingId(null)} className="btn border px-3 py-1 rounded-xl">
+        Bekor qilish
+      </button>
+    </div>
+  </div>
+) : (
+<div className="relative group bg-gray-800/40 p-3 rounded-lg">
+  {/* Qalamcha tugma */}
+  {!isTempId(c._id) && (
+    <button
+      onClick={() => startEdit(c._id, c.text)}
+      title="Tahrirlash"
+      className="absolute top-1 right-1 text-gray-400 hover:text-white transition cursor-pointer"
+    >
+<Edit2 className="w-4 h-4" />
+    </button>
+  )}
+
+  {/* Matn va meta ma'lumotlar */}
+  <div className="text-sm text-gray-200 whitespace-pre-wrap">
+    <p>{c.text}</p>
+  </div>
+</div>
+)}
+
+
+
+              {/* <div className="mt-1">{c.text}</div> */}
             </div>
           ))}
         </div>
