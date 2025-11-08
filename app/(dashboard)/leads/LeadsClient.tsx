@@ -91,7 +91,8 @@ export default function LeadsClient() {
 
     <LeadNewPage
       className="mt-4"
-      defaultSource=""         // xohlagancha o‘zgartirasiz
+      defaultSource=""   
+      telegramUrl="https://t.me/sotuv_mutaxxasisi"     
       onSuccess={() => {
         // xohlasangiz: scroll, snackbar, analytics, va h.k.
       }}

@@ -86,7 +86,7 @@ export default function LeadComments({ leadId, onAfterAdd }: Props) {
       <div className="flex gap-2">
         <Input placeholder="Komment..." value={text} onChange={(e) => setText(e.target.value)} />
         <Button variant="subtle" onClick={add} disabled={sending || !text.trim()}>
-          Qo‘shish
+          +
         </Button>
       </div>
 
