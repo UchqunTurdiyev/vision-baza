@@ -16,7 +16,7 @@ export default function LeadNewPage({
   className,
   defaultSource = "",
   onSuccess,
-  telegramUrl = "https://t.me/sotuv_mutaxxasisi", // ⬅️ real kanalingiz linkini kiriting
+  telegramUrl = "https://t.me/sotuv_mutaxassisi", // ⬅️ real kanalingiz linkini kiriting
 }: Props) {
   const [form, setForm] = useState({
     fullName: "",
