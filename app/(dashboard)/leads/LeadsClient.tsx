@@ -23,8 +23,8 @@ export default function LeadsClient() {
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <a href="tel:+998952813737" className="inline-flex items-center justify-center h-11 px-6 rounded-xl bg-blue-600 text-white font-semibold shadow-sm hover:bg-blue-700 transition">
-                📞 +998 95 281 3737
+              <a href="tel:+998930835024" className="inline-flex items-center justify-center h-11 px-6 rounded-xl bg-blue-600 text-white font-semibold shadow-sm hover:bg-blue-700 transition">
+                📞 +998 93 083 50 24
               </a>
               <a href="#royxat" className="inline-flex items-center justify-center h-11 px-5 rounded-xl bg-white text-blue-700 font-semibold border border-blue-200 hover:border-blue-300 shadow-sm">
                 🚀 Hozir ro'yxatdan o'ting
@@ -69,8 +69,7 @@ export default function LeadsClient() {
             { t: "Sotuv psixologiyasi", d: "3-savol orqali mijoz turini aniqlash va unga mos yondashuv." },
             { t: "Do'stona muloqot", d: "Tanishuvni to'xtatmasdan ishonch va yaqinlik hosil qilish texnikalari." },
             { t: "Umrbod mijoz tamoyili", d: "Bir martalik savdodan ko'ra, umrbod mijozga aylantirish." },
-            { t: "Rad javobi — boshlanish", d: "Xaqiqiy savdo rad javobidan boshlanadi" },
-            { t: "Tana tili va nutq", d: "Ovoz balandligi, pauza, tempo va body language — ishonch uyg'otish kalitlari." },
+            { t: "Xaqiqiy savdo rad javobidan keyin boshlanadi", d: "" },
             { t: "E'tirozlar bilan ishlash", d: "Eng ko'p uchraydigan e'tirozlarga tayyor javoblar va savol orqali yechim." },
           ].map((c) => (
             <div key={c.t} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
