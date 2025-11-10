@@ -85,6 +85,20 @@ export default function LeadNewPage({
         setMsg({ type: "err", text: t || "Jo‘natishda xatolik. Iltimos, qayta urinib ko‘ring." });
         return;
       }
+      
+      // ✅ Qo‘shimcha: Telegram botga yuborish (UI’ni bloklamaydi)
+      fetch("/api/telegram-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // keepalive: true sahifadan ketayotganda ham jo‘natishni davom ettiradi (brauzer qo‘llab-quvvatlasa)
+        keepalive: true,
+        body: JSON.stringify({
+          fullName,
+          phone,
+          source: form.source || defaultSource,
+          note: form.note || "",
+        }),
+      }).catch(() => { /* jim */ });
 
       // ✅ Muvaffaqiyat: Thank-you rejimiga o‘tamiz
       setForm({ fullName: "", phone: "", source: form.source || defaultSource, note: "" });
@@ -99,6 +113,8 @@ export default function LeadNewPage({
       setLoading(false);
     }
   }
+
+  
 
   // ✅ Thank-you ekran
   if (isThankYou) {
