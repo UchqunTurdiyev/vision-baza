@@ -33,15 +33,49 @@ const CommentSchema = new Schema<IComment>(
 
 const LeadSchema = new Schema<ILead>(
   {
-    fullName: { type: String, required: true },
-    phone:    { type: String, required: true, index: true },
-    source:   { type: String, default: "unknown" },
-    status:   { type: String, enum: Array.from(PIPELINE), default: "LID", required: true },
-    note:     { type: String },
-    comments: { type: [CommentSchema], default: [] },
+    fullName: {
+      type: String,
+      required: true,
+      index: true,          // <— Ism bo‘yicha qidiruv tezlashadi
+    },
+
+    phone: {
+      type: String,
+      required: true,
+      index: true,          // <— Telefon bo‘yicha qidiruv ancha tez bo‘ladi
+    },
+
+    source: {
+      type: String,
+      default: "unknown",
+    },
+
+    status: {
+      type: String,
+      enum: Array.from(PIPELINE),
+      default: "LID",
+      required: true,
+    },
+
+    note: { type: String },
+
+    comments: {
+      type: [CommentSchema],
+      default: [],
+    },
   },
-  { timestamps: true } 
+
+  { timestamps: true }
 );
+
+// 👇 Telefonni normalize qilish (faqat +998…, 90…, 9012… kelsa ham toza ko‘rinishga o‘tadi)
+LeadSchema.pre("save", function (next) {
+  if (this.phone) {
+    this.phone = this.phone.replace(/\D/g, ""); // faqat raqamlar
+  }
+  next();
+});
+
 
   // models/Lead.ts (parcha)
 export interface IComment { /* ... */ }
@@ -81,4 +115,6 @@ export const LeadModel: Model<ILead> =
     createdAt?: Date;
     updatedAt?: Date;
   }
+  
+
   

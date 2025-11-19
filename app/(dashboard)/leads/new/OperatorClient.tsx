@@ -40,6 +40,11 @@ export default function OperatorClient() {
   );
   const [expanded, setExpanded] = useState<Record<string, boolean>>({}); // leadId -> opened/closed
 
+  // 🔍 SEARCH QO‘SHILDI
+  const [search, setSearch] = useState("");
+  const normalizedQuery = search.trim().toLowerCase();
+  const searchDigits = normalizedQuery.replace(/\D/g, "");
+
   async function load() {
     const r = await fetch("/api/leads", { cache: "no-store" });
     if (!r.ok) return;
@@ -151,103 +156,136 @@ export default function OperatorClient() {
     else alert("O‘chirishda xatolik: " + msg);
   }
   
-  
-
   return (
     <div className="p-5">
       <Card className="p-4">
         <CardTitle>Operator panel — Lead statuslari</CardTitle>
+
+        {/* 🔍 SEARCH INPUT — faqat frontda filter qiladi */}
+        <div className="mt-3 mb-4">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Ism yoki telefon raqami bo‘yicha qidirish..."
+            className="w-full rounded-md border border-white/20 bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/40"
+          />
+        </div>
+       
         <CardContent>
           <DragDropContext onDragEnd={onDragEnd}>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
-              {LEAD_STATUSES.map((status) => (
-                <Droppable key={status} droppableId={status}>
-                  {(dropProvided) => (
-                    <div
-                      ref={dropProvided.innerRef}
-                      {...dropProvided.droppableProps}
-                      className="bg-white/5 p-3 rounded-xl min-h-[340px] border border-white/10"
-                    >
-                      <h2 className="text-center font-semibold text-white mb-3">
-                        {status} {(columns[status]?.length ?? 0) > 0 ? `(${columns[status].length})` : ""}
-                      </h2>
+              {LEAD_STATUSES.map((status) => {
+                const list = columns[status] ?? [];
 
-                      {(columns[status] ?? []).map((lead, index) => {
-                        const idStr = String(lead._id ?? lead.id ?? `${lead.phone}-${index}`);
-                        const isOpen = !!expanded[idStr];
-                        const preview = (lead.lastCommentText ?? "").trim();
+                // 🔍 Har bir ustun ichida search bo‘yicha filter qilingan ro‘yxat
+                const visibleLeads = list.filter((lead) => {
+                  if (!normalizedQuery) return true;
 
-                        return (
-                          <Draggable key={idStr} draggableId={idStr} index={index}>
-                            {(dragProvided) => (
-                              <div
-                                ref={dragProvided.innerRef}
-                                {...dragProvided.draggableProps}
-                                className="bg-white/10 p-3 rounded-lg mb-2 text-white"
-                              >
-                                {/* Drag handle */}
-                                
-                                
+                  const name = (lead.fullName || "").toLowerCase();
+                  const phoneDigits = (lead.phone || "").replace(/\D/g, "");
+
+                  const matchName = name.includes(normalizedQuery);
+                  const matchPhone =
+                    searchDigits.length > 0
+                      ? phoneDigits.includes(searchDigits)
+                      : false;
+
+                  return matchName || matchPhone;
+                });
+
+                return (
+                  <Droppable key={status} droppableId={status}>
+                    {(dropProvided) => (
+                      <div
+                        ref={dropProvided.innerRef}
+                        {...dropProvided.droppableProps}
+                        className="bg-white/5 p-3 rounded-xl min-h-[340px] border border-white/10"
+                      >
+                        <h2 className="text-center font-semibold text-white mb-3">
+                          {status}{" "}
+                          {visibleLeads.length > 0 ? `(${visibleLeads.length})` : ""}
+                        </h2>
+
+                        {visibleLeads.map((lead, index) => {
+                          const idStr = String(lead._id ?? lead.id ?? `${lead.phone}-${index}`);
+                          const isOpen = !!expanded[idStr];
+                          const preview = (lead.lastCommentText ?? "").trim();
+
+                          return (
+                            <Draggable key={idStr} draggableId={idStr} index={index}>
+                              {(dragProvided) => (
                                 <div
-                                  {...dragProvided.dragHandleProps}
-                                  className="text-xs text-white/50 flex items-center gap-2 mb-2 select-none cursor-grab"
-                                  title="Ustunlar orasida ko‘chiring"
+                                  ref={dragProvided.innerRef}
+                                  {...dragProvided.draggableProps}
+                                  className="bg-white/10 p-3 rounded-lg mb-2 text-white"
                                 >
-                                  <span>✥</span> Ko‘chirish
-                                </div>
-
-                                <div className="font-medium">{lead.fullName}</div>
-                                <div className="text-sm text-white/60">{lead.phone}</div>
-                                <div className="flex items-center justify-between">
-                                <div className="text-xs text-white/50">{fmtDateTime(lead.createdAt)}</div>
-
-                                <div className="mb-2 flex justify-end">
-                                   <button
-                                    type="button"
-                                    onClick={() => handleDeleteSecureLead(idStr)}
-                                    className="text-xs px-2 py-1 border rounded-md  cursor-pointer"
-                                    >
-                                 <Trash2 className="w-4 h-4 text-red-500" />
-                                   </button>
-                                  </div>
-                                </div>
-                                <Badge>{lead.source}</Badge>
-
-                                <div className="mt-2 text-xs text-white/70 truncate">
-                                  {preview ? preview : "Kommentlar yo‘q."}
-                                </div>
-
-                                <div
-                                  className="mt-1 text-right"
-                                  onMouseDown={(e) => e.stopPropagation()}
-                                  onPointerDown={(e) => e.stopPropagation()}
-                                  onTouchStart={(e) => e.stopPropagation()}
-                                >
-                                  <button
-                                    type="button"
-                                    className="text-white/70 text-xs underline cursor-pointer"
-                                    onClick={() => setExpanded((p) => ({ ...p, [idStr]: !p[idStr] }))}
+                                  {/* Drag handle */}
+                                  <div
+                                    {...dragProvided.dragHandleProps}
+                                    className="text-xs text-white/50 flex items-center gap-2 mb-2 select-none cursor-grab"
+                                    title="Ustunlar orasida ko‘chiring"
                                   >
-                                    {isOpen ? "▲ Yopish" : "▼ Barchasini ko‘rish"}
-                                  </button>
-                                </div>
-                                {isOpen ? (
-                                  <LeadComments
-                                    leadId={idStr}
-                                    onAfterAdd={(last) => updatePreview(idStr, last)}
-                                  />
-                                ) : null}
-                              </div>
-                            )}
-                          </Draggable>
-                        );
-                      })}
+                                    <span>✥</span> Ko‘chirish
+                                  </div>
 
-                      {dropProvided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
+                                  <div className="font-medium">{lead.fullName}</div>
+                                  <div className="text-sm text-white/60">{lead.phone}</div>
+                                  <div className="flex items-center justify-between">
+                                    <div className="text-xs text-white/50">
+                                      {fmtDateTime(lead.createdAt)}
+                                    </div>
+
+                                    <div className="mb-2 flex justify-end">
+                                      <button
+                                        type="button"
+                                        onClick={() => handleDeleteSecureLead(idStr)}
+                                        className="text-xs px-2 py-1 border rounded-md cursor-pointer"
+                                      >
+                                        <Trash2 className="w-4 h-4 text-red-500" />
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <Badge>{lead.source}</Badge>
+
+                                  <div className="mt-2 text-xs text-white/70 truncate">
+                                    {preview ? preview : "Kommentlar yo‘q."}
+                                  </div>
+
+                                  <div
+                                    className="mt-1 text-right"
+                                    onMouseDown={(e) => e.stopPropagation()}
+                                    onPointerDown={(e) => e.stopPropagation()}
+                                    onTouchStart={(e) => e.stopPropagation()}
+                                  >
+                                    <button
+                                      type="button"
+                                      className="text-white/70 text-xs underline cursor-pointer"
+                                      onClick={() =>
+                                        setExpanded((p) => ({ ...p, [idStr]: !p[idStr] }))
+                                      }
+                                    >
+                                      {isOpen ? "▲ Yopish" : "▼ Barchasini ko‘rish"}
+                                    </button>
+                                  </div>
+                                  {isOpen ? (
+                                    <LeadComments
+                                      leadId={idStr}
+                                      onAfterAdd={(last) => updatePreview(idStr, last)}
+                                    />
+                                  ) : null}
+                                </div>
+                              )}
+                            </Draggable>
+                          );
+                        })}
+
+                        {dropProvided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                );
+              })}
             </div>
           </DragDropContext>
         </CardContent>
@@ -255,7 +293,7 @@ export default function OperatorClient() {
     </div>
   );
 }
+
 function setRows(arg0: (list: any[]) => any[]) {
   throw new Error("Function not implemented.");
 }
-
