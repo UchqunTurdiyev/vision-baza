@@ -223,14 +223,14 @@ export default function OperatorClient() {
                                   {/* Drag handle */}
                                   <div
                                     {...dragProvided.dragHandleProps}
-                                    className="text-xs text-white/50 flex items-center gap-2 mb-2 select-none cursor-grab"
+                                    className="text-xs text-white/50 gap-2  mb-2 select-none cursor-grab "
                                     title="Ustunlar orasida ko‘chiring"
                                   >
-                                    <span>✥</span> Ko‘chirish
-                                  </div>
+                               
+                                 
 
-                                  <div className="font-medium">{lead.fullName}</div>
-                                  <div className="text-sm text-white/60">{lead.phone}</div>
+                                  <div className="font-medium text-lg">{lead.fullName}</div>
+                                  <div className="text-lg text-white/60">{lead.phone}</div>
                                   <div className="flex items-center justify-between">
                                     <div className="text-xs text-white/50">
                                       {fmtDateTime(lead.createdAt)}
@@ -274,6 +274,8 @@ export default function OperatorClient() {
                                       onAfterAdd={(last) => updatePreview(idStr, last)}
                                     />
                                   ) : null}
+                                  </div>
+
                                 </div>
                               )}
                             </Draggable>
