@@ -50,8 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Vision Baza",
-    url: "https://vision-group.uz/leads",
-    logo: "https://vision-group.uz/logo.png",
+    url: "https://www.vision-group.uz/leads",
+    logo: "https://www.vision-group.uz/logo.png",
     description:
       "Sotuvchi, sotuv xodimi va sotuv menejerlari uchun ish o‘rinlari va treninglar platformasi.",
     sameAs: [
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang={lang} suppressHydrationWarning>
       <head>
         {/* Brauzer tarjimasini to'xtatish (ixtiyoriy) */}
-        <link rel="icon" href="/logo.png" sizes="48x48" />
+        <link rel="icon" href="https://www.vision-group.uz/logo.png" sizes="48x48" />
         <title>Vision Group — Sotuv mutaxassisi tayyorlash kursi va ish o‘rinlari</title>
         <meta name="google" content="notranslate" />
 <meta name="description" content="Vision Group — sotuv mutaxassisi tayyorlash kursi va sotuv bo‘yicha yuqori daromadli ish o‘rinlari platformasi. Amaliy darslar, kafolatlangan ish takliflari va real natijalar." />
