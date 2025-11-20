@@ -149,7 +149,7 @@ async function saveEdit(id: string) {
     <textarea
       value={editText}
       onChange={(e) => setEditText(e.target.value)}
-      className="w-full border rounded-xl p-2"
+      className="w-full border text-white rounded-xl p-2"
     />
     <div className="flex gap-2 mt-2">
       <button onClick={() => saveEdit(c._id)} className="btn border px-3 py-1 rounded-xl">

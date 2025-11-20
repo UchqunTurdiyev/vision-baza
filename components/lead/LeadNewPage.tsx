@@ -141,49 +141,69 @@ export default function LeadNewPage({
   // 🔹 Asl forma
   return (
     <div className={className}>
-      <form onSubmit={handleSubmit} className="mx-auto max-w-xl grid gap-3 text-left">
-        <Input
-          placeholder="To‘liq ism"
-          value={form.fullName}
-          onChange={(e) => setForm((p) => ({ ...p, fullName: e.target.value }))}
-          disabled={loading}
-          required
-        />
-        <Input
-          placeholder="Telefon (+998...)"
-          value={form.phone}
-          onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
-          disabled={loading}
-          required
-        />
-        <Input
-          placeholder="@telegramuser bo‘lsa (ixtiyoriy)"
-          value={form.source}
-          onChange={(e) => setForm((p) => ({ ...p, source: e.target.value }))}
-          disabled={loading}
-        />
-        {/* Agar izoh kerak bo‘lsa, pastdagini ochasiz:
-        <Input
-          placeholder="Izoh (ixtiyoriy)"
-          value={form.note}
-          onChange={(e) => setForm((p) => ({ ...p, note: e.target.value }))}
-          disabled={loading}
-        /> */}
+      <div className="mx-auto max-w-xl rounded-2xl bg-gradient-to-b from-slate-950 via-slate-800 to-slate-950 border border-indigo-200/40 shadow-2xl p-6 sm:p-8 text-white backdrop-blur-md">
+        <h2 className="text-2xl font-bold mb-4 text-center">
+          Sotuv mutaxassisligi kursiga ro‘yxatdan o‘ting
+        </h2>
 
-        <Button type="submit" className="h-11 rounded-xl" disabled={loading}>
-          {loading ? "Yuborilmoqda..." : "Ro‘yxatdan o‘tish"}
-        </Button>
+        <form onSubmit={handleSubmit} className="grid gap-3 text-left">
+          <Input
+            placeholder="To‘liq ism"
+            value={form.fullName}
+            onChange={(e) => setForm((p) => ({ ...p, fullName: e.target.value }))}
+            disabled={loading}
+            required
+            className="bg-indigo-600/60 border-indigo-200/50 text-white placeholder:text-indigo-100/70 focus-visible:ring-indigo-200 focus-visible:border-indigo-100"
+          />
+          <Input
+            placeholder="Telefon (+998...)"
+            value={form.phone}
+            onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
+            disabled={loading}
+            required
+            className="bg-indigo-600/60 border-indigo-200/50 text-white placeholder:text-indigo-100/70 focus-visible:ring-indigo-200 focus-visible:border-indigo-100"
+          />
+          <Input
+            placeholder="@telegramuser bo‘lsa (ixtiyoriy)"
+            value={form.source}
+            onChange={(e) => setForm((p) => ({ ...p, source: e.target.value }))}
+            disabled={loading}
+            className="bg-indigo-600/60 border-indigo-200/50 text-white placeholder:text-indigo-100/70 focus-visible:ring-indigo-200 focus-visible:border-indigo-100"
+          />
+          {/* Agar izoh kerak bo‘lsa, pastdagini ochasiz:
+          <Input
+            placeholder="Izoh (ixtiyoriy)"
+            value={form.note}
+            onChange={(e) => setForm((p) => ({ ...p, note: e.target.value }))}
+            disabled={loading}
+            className="bg-indigo-600/60 border-indigo-200/50 text-white placeholder:text-indigo-100/70 focus-visible:ring-indigo-200 focus-visible:border-indigo-100"
+          /> */}
 
-        {msg ? (
-          <p className={msg.type === "ok" ? "text-sm text-emerald-700" : "text-sm text-red-600"}>
-            {msg.text}
+          <Button
+            type="submit"
+            className="h-11 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white font-semibold shadow-lg shadow-indigo-900/40"
+            disabled={loading}
+          >
+            {loading ? "Yuborilmoqda..." : "Ro‘yxatdan o‘tish"}
+          </Button>
+
+          {msg ? (
+            <p
+              className={
+                msg.type === "ok"
+                  ? "text-sm text-emerald-200"
+                  : "text-sm text-red-200"
+              }
+            >
+              {msg.text}
+            </p>
+          ) : null}
+
+          <p className="text-[11px] text-indigo-100/70 mt-1">
+            Ma’lumotlaringiz faqat aloqa va qabul jarayonida ishlatiladi.
           </p>
-        ) : null}
-
-        <p className="text-[11px] text-gray-500 mt-1">
-          Ma’lumotlaringiz faqat aloqa va qabul jarayonida ishlatiladi.
-        </p>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
