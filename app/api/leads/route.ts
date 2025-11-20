@@ -43,7 +43,8 @@ export async function GET(req: NextRequest) {
         source: 1,
         status: 1,
         note: 1,
-        createdAt: 1, 
+        createdAt: 1,
+        flagged: 1,          // 🔴 YANGI: flagged maydonini ham olib kelamiz
         comments: { $slice: -1 }, // faqat oxirgi komment
       })
       .lean<ILead>();
@@ -52,6 +53,8 @@ export async function GET(req: NextRequest) {
     const leads = rows.map((x) => ({
       ...x,
       id: String(x._id),
+      // 🔴 Muhim qator: flag bazadan kelsa — shu, kelmasa — false
+      flagged: typeof x.flagged === "boolean" ? x.flagged : false,
       lastCommentText:
         Array.isArray(x.comments) && x.comments.length > 0 ? x.comments[0].text : "",
     }));
@@ -65,6 +68,7 @@ export async function GET(req: NextRequest) {
     );
   }
 }
+
 
 export async function POST(req: NextRequest) {
   try {

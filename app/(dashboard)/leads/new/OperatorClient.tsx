@@ -32,6 +32,7 @@ type Lead = {
   note?: string;
   createdAt?: string | Date;
   lastCommentText?: string;
+  flagged?: boolean; // 🔴 Yangi maydon
 };
 
 export default function OperatorClient() {
@@ -44,6 +45,54 @@ export default function OperatorClient() {
   const [search, setSearch] = useState("");
   const normalizedQuery = search.trim().toLowerCase();
   const searchDigits = normalizedQuery.replace(/\D/g, "");
+
+  const [leads, setLeads] = useState<Lead[]>([]);
+
+  // 🔴 Yangi: qaysi kartada "loading" bo‘layotganini bilish uchun
+  const [flagLoadingId, setFlagLoadingId] = useState<string | null>(null);
+
+  // 🔴 Yangi: aylana knopkani bosganda chaqiriladigan funksiya
+  async function toggleFlag(lead: Lead) {
+    const id = lead._id || lead.id;
+    if (!id) return;
+  
+    try {
+      setFlagLoadingId(id);
+  
+      const res = await fetch(`/api/leads/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          flagged: !lead.flagged, // faqat flag’ni yuboramiz
+        }),
+      });
+  
+      if (!res.ok) {
+        console.error("Failed to update flag");
+        return;
+      }
+  
+      const data = await res.json();
+      const newFlag = data?.lead?.flagged ?? !lead.flagged;
+  
+      // 🔴 Kartalar columns ichida, shuning uchun shu yerda yangilaymiz
+      setColumns((prev) => {
+        const next: typeof prev = {};
+        for (const k of Object.keys(prev)) {
+          next[k] = prev[k].map((l) =>
+            String(l._id ?? l.id) === String(id) ? { ...l, flagged: newFlag } : l
+          );
+        }
+        return next;
+      });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setFlagLoadingId(null);
+    }
+  }
+  
+
 
   async function load() {
     const r = await fetch("/api/leads", { cache: "no-store" });
@@ -173,123 +222,170 @@ export default function OperatorClient() {
         </div>
        
         <CardContent>
-          <DragDropContext onDragEnd={onDragEnd}>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
-              {LEAD_STATUSES.map((status) => {
-                const list = columns[status] ?? [];
+        <DragDropContext onDragEnd={onDragEnd}>
+  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+    {LEAD_STATUSES.map((status) => {
+      const list = columns[status] ?? [];
 
-                // 🔍 Har bir ustun ichida search bo‘yicha filter qilingan ro‘yxat
-                const visibleLeads = list.filter((lead) => {
-                  if (!normalizedQuery) return true;
+      // 🔍 Har bir ustun ichida search bo‘yicha filter qilingan ro‘yxat
+      const visibleLeads = list.filter((lead) => {
+        if (!normalizedQuery) return true;
 
-                  const name = (lead.fullName || "").toLowerCase();
-                  const phoneDigits = (lead.phone || "").replace(/\D/g, "");
+        const name = (lead.fullName || "").toLowerCase();
+        const phoneDigits = (lead.phone || "").replace(/\D/g, "");
 
-                  const matchName = name.includes(normalizedQuery);
-                  const matchPhone =
-                    searchDigits.length > 0
-                      ? phoneDigits.includes(searchDigits)
-                      : false;
+        const matchName = name.includes(normalizedQuery);
+        const matchPhone =
+          searchDigits.length > 0
+            ? phoneDigits.includes(searchDigits)
+            : false;
 
-                  return matchName || matchPhone;
-                });
+        return matchName || matchPhone;
+      });
+
+      return (
+        <Droppable key={status} droppableId={status}>
+          {(dropProvided) => (
+            <div
+              ref={dropProvided.innerRef}
+              {...dropProvided.droppableProps}
+              className="bg-white/5 p-3 rounded-xl min-h-[340px] border border-white/10"
+            >
+              <h2 className="text-center font-semibold text-white mb-3">
+                {status}{" "}
+                {visibleLeads.length > 0 ? `(${visibleLeads.length})` : ""}
+              </h2>
+
+              {visibleLeads.map((lead, index) => {
+                const idStr = String(
+                  lead._id ?? lead.id ?? `${lead.phone}-${index}`
+                );
+                const isOpen = !!expanded[idStr];
+                const preview = (lead.lastCommentText ?? "").trim();
 
                 return (
-                  <Droppable key={status} droppableId={status}>
-                    {(dropProvided) => (
+                  <Draggable key={idStr} draggableId={idStr} index={index}>
+                    {(dragProvided) => (
                       <div
-                        ref={dropProvided.innerRef}
-                        {...dropProvided.droppableProps}
-                        className="bg-white/5 p-3 rounded-xl min-h-[340px] border border-white/10"
+                        ref={dragProvided.innerRef}
+                        {...dragProvided.draggableProps}
+                        className="bg-white/10 p-3 rounded-lg mb-2 text-white relative"
                       >
-                        <h2 className="text-center font-semibold text-white mb-3">
-                          {status}{" "}
-                          {visibleLeads.length > 0 ? `(${visibleLeads.length})` : ""}
-                        </h2>
+                        {/* 🔴 Yangi: kichkina aylana knopka */}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation(); // drag bilan urishmasin
+                            toggleFlag(lead);
+                          }}
+                          disabled={flagLoadingId === idStr}
+                          className={`
+                            absolute top-2 right-2
+                            w-5 h-5 rounded-full border
+                            flex items-center justify-center
+                            transition
+                            ${
+                              lead.flagged
+                                ? "bg-green-500 border-green-500"
+                                : "bg-transparent border-white/40"
+                            }
+                            ${
+                              flagLoadingId === idStr
+                                ? "opacity-50 cursor-not-allowed"
+                                : "cursor-pointer"
+                            }
+                          `}
+                          title={lead.flagged ? "Belgilangan lead" : "Belgilang"}
+                        >
+                          <span
+                            className={`
+                              w-2 h-2 rounded-full
+                              ${
+                                lead.flagged ? "bg-white" : "bg-transparent"
+                              }
+                            `}
+                          />
+                        </button>
 
-                        {visibleLeads.map((lead, index) => {
-                          const idStr = String(lead._id ?? lead.id ?? `${lead.phone}-${index}`);
-                          const isOpen = !!expanded[idStr];
-                          const preview = (lead.lastCommentText ?? "").trim();
+                        {/* Drag handle + karta kontenti */}
+                        <div
+                          {...dragProvided.dragHandleProps}
+                          className="text-xs text-white/50 gap-2  mb-2 select-none cursor-grab "
+                          title="Ustunlar orasida ko‘chiring"
+                        >
+                          <div className="font-medium text-lg">
+                            {lead.fullName}
+                          </div>
+                          <div className="text-lg text-white/60">
+                            {lead.phone}
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div className="text-xs text-white/50">
+                              {fmtDateTime(lead.createdAt)}
+                            </div>
 
-                          return (
-                            <Draggable key={idStr} draggableId={idStr} index={index}>
-                              {(dragProvided) => (
-                                <div
-                                  ref={dragProvided.innerRef}
-                                  {...dragProvided.draggableProps}
-                                  className="bg-white/10 p-3 rounded-lg mb-2 text-white"
-                                >
-                                  {/* Drag handle */}
-                                  <div
-                                    {...dragProvided.dragHandleProps}
-                                    className="text-xs text-white/50 gap-2  mb-2 select-none cursor-grab "
-                                    title="Ustunlar orasida ko‘chiring"
-                                  >
-                               
-                                 
+                            <div className="mb-2 flex justify-end">
+                              <button
+                                type="button"
+                                onClick={() => handleDeleteSecureLead(idStr)}
+                                className="text-xs px-2 py-1 border rounded-md cursor-pointer"
+                              >
+                                <Trash2 className="w-4 h-4 text-red-500" />
+                              </button>
+                            </div>
+                          </div>
+                          <Badge>{lead.source}</Badge>
 
-                                  <div className="font-medium text-lg">{lead.fullName}</div>
-                                  <div className="text-lg text-white/60">{lead.phone}</div>
-                                  <div className="flex items-center justify-between">
-                                    <div className="text-xs text-white/50">
-                                      {fmtDateTime(lead.createdAt)}
-                                    </div>
+                          <div className="mt-2 text-xs text-white/70 truncate">
+                            {preview ? preview : "Kommentlar yo‘q."}
+                          </div>
 
-                                    <div className="mb-2 flex justify-end">
-                                      <button
-                                        type="button"
-                                        onClick={() => handleDeleteSecureLead(idStr)}
-                                        className="text-xs px-2 py-1 border rounded-md cursor-pointer"
-                                      >
-                                        <Trash2 className="w-4 h-4 text-red-500" />
-                                      </button>
-                                    </div>
-                                  </div>
-                                  <Badge>{lead.source}</Badge>
+                          <div
+                            className="mt-1 text-right"
+                            onMouseDown={(e) => e.stopPropagation()}
+                            onPointerDown={(e) => e.stopPropagation()}
+                            onTouchStart={(e) => e.stopPropagation()}
+                          >
+                            <button
+                              type="button"
+                              className="text-white/70 text-xs underline cursor-pointer"
+                              onClick={() =>
+                                setExpanded((p) => ({
+                                  ...p,
+                                  [idStr]: !p[idStr],
+                                }))
+                              }
+                            >
+                              {isOpen
+                                ? "▲ Yopish"
+                                : "▼ Barchasini ko‘rish"}
+                            </button>
+                          </div>
 
-                                  <div className="mt-2 text-xs text-white/70 truncate">
-                                    {preview ? preview : "Kommentlar yo‘q."}
-                                  </div>
-
-                                  <div
-                                    className="mt-1 text-right"
-                                    onMouseDown={(e) => e.stopPropagation()}
-                                    onPointerDown={(e) => e.stopPropagation()}
-                                    onTouchStart={(e) => e.stopPropagation()}
-                                  >
-                                    <button
-                                      type="button"
-                                      className="text-white/70 text-xs underline cursor-pointer"
-                                      onClick={() =>
-                                        setExpanded((p) => ({ ...p, [idStr]: !p[idStr] }))
-                                      }
-                                    >
-                                      {isOpen ? "▲ Yopish" : "▼ Barchasini ko‘rish"}
-                                    </button>
-                                  </div>
-                                  {isOpen ? (
-                                    <LeadComments
-                                      leadId={idStr}
-                                      onAfterAdd={(last) => updatePreview(idStr, last)}
-                                    />
-                                  ) : null}
-                                  </div>
-
-                                </div>
-                              )}
-                            </Draggable>
-                          );
-                        })}
-
-                        {dropProvided.placeholder}
+                          {isOpen ? (
+                            <LeadComments
+                              leadId={idStr}
+                              onAfterAdd={(last) =>
+                                updatePreview(idStr, last)
+                              }
+                            />
+                          ) : null}
+                        </div>
                       </div>
                     )}
-                  </Droppable>
+                  </Draggable>
                 );
               })}
+
+              {dropProvided.placeholder}
             </div>
-          </DragDropContext>
+          )}
+        </Droppable>
+      );
+    })}
+  </div>
+</DragDropContext>
+
         </CardContent>
       </Card>
     </div>

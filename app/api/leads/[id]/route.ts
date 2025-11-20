@@ -7,32 +7,83 @@ import { PIPELINE } from "@/constants/statuses";
 import { Types } from "mongoose";
 
 
-const StatusSchema = z.object({ status: z.string().min(1) });
+// 🔴 Yangi: status ham, flagged ham optional, kamida bittasi bo‘lishi shart
+const StatusSchema = z
+  .object({
+    status: z.string().min(1).optional(),
+    flagged: z.boolean().optional(),
+  })
+  .refine(
+    (data) => data.status !== undefined || data.flagged !== undefined,
+    { message: "Nothing to update" }
+  );
 
-export async function PATCH(req: Request, context: { params: Promise<{ id: string }> }) {
-  try {
-    const { id } = await context.params;
-    if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
-
-    const body = await req.json().catch(() => ({}));
-    const parsed = StatusSchema.safeParse(body);
-    if (!parsed.success) return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
-
-    const next = parsed.data.status;
-    if (!PIPELINE.includes(next as any)) {
-      return NextResponse.json({ error: "Invalid status" }, { status: 400 });
+  export async function PATCH(
+    req: Request,
+    context: { params: Promise<{ id: string }> }
+  ) {
+    try {
+      const { id } = await context.params;
+      if (!id) {
+        return NextResponse.json({ error: "Missing id" }, { status: 400 });
+      }
+  
+      const body = await req.json().catch(() => ({}));
+      const parsed = StatusSchema.safeParse(body);
+      if (!parsed.success) {
+        return NextResponse.json(
+          { error: parsed.error.flatten() },
+          { status: 400 }
+        );
+      }
+  
+      const { status, flagged } = parsed.data;
+  
+      // 🔴 Yangi: update obyektini qo‘lda yig‘amiz
+      const update: Record<string, any> = {};
+  
+      // 🟦 Agar status kelgan bo‘lsa, avvalgidek PIPELINE bo‘yicha tekshiramiz
+      if (typeof status === "string") {
+        if (!PIPELINE.includes(status as any)) {
+          return NextResponse.json(
+            { error: "Invalid status" },
+            { status: 400 }
+          );
+        }
+        update.status = status;
+      }
+  
+      // 🔴 Agar flagged kelgan bo‘lsa, uni ham qo‘shamiz
+      if (typeof flagged === "boolean") {
+        update.flagged = flagged;
+      }
+  
+      await connectToDB();
+      const updated = await LeadModel.findByIdAndUpdate(id, update, {
+        new: true,
+      });
+  
+      if (!updated) {
+        return NextResponse.json(
+          { error: "Lead not found" },
+          { status: 404 }
+        );
+      }
+  
+      return NextResponse.json(
+        { lead: { ...updated.toObject(), id: String(updated._id) } },
+        { status: 200 }
+      );
+    } catch (e: any) {
+      console.error("PATCH /api/leads/:id error:", e);
+      return NextResponse.json(
+        { error: e?.message ?? "Internal error" },
+        { status: 500 }
+      );
     }
-
-    await connectToDB();
-    const updated = await LeadModel.findByIdAndUpdate(id, { status: next }, { new: true });
-    if (!updated) return NextResponse.json({ error: "Lead not found" }, { status: 404 });
-
-    return NextResponse.json({ lead: { ...updated.toObject(), id: String(updated._id) } }, { status: 200 });
-  } catch (e: any) {
-    console.error("PATCH /api/leads/:id error:", e);
-    return NextResponse.json({ error: e?.message ?? "Internal error" }, { status: 500 });
   }
-}
+  
+  
 
 // app/api/leads/[id]/route.ts
 export const dynamic = "force-dynamic";

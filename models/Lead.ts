@@ -58,11 +58,18 @@ const LeadSchema = new Schema<ILead>(
     },
 
     note: { type: String },
-
+  
     comments: {
       type: [CommentSchema],
       default: [],
     },
+
+ // 🔴 Yangi maydon: admin belgilagan lead
+ flagged: {
+  type: Boolean,
+  default: false,
+},
+
   },
 
   { timestamps: true }
@@ -112,6 +119,7 @@ export const LeadModel: Model<ILead> =
     status: (typeof PIPELINE)[number];
     note?: string;
     comments: IComment[];
+    flagged?: boolean;
     createdAt?: Date;
     updatedAt?: Date;
   }
