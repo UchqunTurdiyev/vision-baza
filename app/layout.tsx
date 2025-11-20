@@ -6,25 +6,73 @@ import type { Metadata } from "next";
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
 
-export const metadata: Metadata = {
-  title: 'Sotuv Kursi — Professional Landing',
-  description: 'Sotuv kursi uchun zamonaviy landing sahifa. 1 oyda amaliy ko‘nikmalar, ishga yo‘naltirish, kafolatlangan natija.',
+
+export const metadata = {
+  title: "Vision Group — Sotuv mutaxassisi tayyorlash kursi va ish o‘rinlari",
+  description:
+    "Vision Group — sotuv mutaxassisi tayyorlash kursi va sotuv bo‘yicha yuqori daromadli ish o‘rinlari platformasi. Amaliy darslar, kafolatlangan ish takliflari va real natijalar.",
+  keywords: [
+    "sotuvchi",
+    "sotuv mutaxassisi tayyorlash kursi",
+    "sotuv mutaxassisi",
+    "sotuvchi kursi",
+    "sotuv kursi",
+    "sotuv bo‘yicha ish",
+    "ish kerak sotuvchi",
+    "sotuv xodimi",
+    "sales kurs",
+    "sales manager kursi",
+    "sotuv xodimi",
+    "sotuv menejeri",
+    "ish kerak",
+    "ishchi kerak",
+    "sotuv texnikasi",
+    "sotuv kursi",
+    "sotuv bo‘yicha ish",
+    "hh.uz",
+    "hh.ru",
+    "sales jobs uzbekistan"
+  ],
   openGraph: {
-  title: 'Sotuv Kursi — Professional Landing',
-  description: '1 oyda amaliy ko‘nikmalar. Ishga yo‘naltirish. Ustozlar — 10+ yillik tajriba.',
-  type: 'website'
-  },
-  metadataBase: new URL('https://example.com')
-  };
+    title: "Vision Group — Sotuv mutaxassisi tayyorlash kursi",
+    description:
+      "Amaliyotga asoslangan sotuv mutaxassisi tayyorlash kursi. Real keyslar, mentorlar tajribasi va kafolatlangan ish o‘rinlari Vision Baza platformasida.",
+    url: "https://vision-group.uz/leads",
+    type: "website"
+  }
+};
+
 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const lang = "uz"; // Agar til tanlovi bo'lsa, cookie/headers’dan serverda oling
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Vision Baza",
+    url: "https://vision-group.uz/leads",
+    logo: "https://vision-group.uz/logo.png",
+    description:
+      "Sotuvchi, sotuv xodimi va sotuv menejerlari uchun ish o‘rinlari va treninglar platformasi.",
+    sameAs: [
+      "https://t.me/sotuv_mutaxassisi",
+      "https://www.instagram.com/sotuv_mutaxassisi/",
+    ],
+  };
+
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
         {/* Brauzer tarjimasini to'xtatish (ixtiyoriy) */}
+        <link rel="icon" href="/logo.png" sizes="48x48" />
+        <title>Vision Group — Sotuv mutaxassisi tayyorlash kursi va ish o‘rinlari</title>
         <meta name="google" content="notranslate" />
+<meta name="description" content="Vision Group — sotuv mutaxassisi tayyorlash kursi va sotuv bo‘yicha yuqori daromadli ish o‘rinlari platformasi. Amaliy darslar, kafolatlangan ish takliflari va real natijalar." />
+<meta name="keywords" content="sotuv mutaxassisi tayyorlash kursi, sotuvchi kursi, sotuv kursi, ish kerak sotuvchi, sotuv xodimi, sotuv bo‘yicha ish" />
+
+
+
+        
 
           {/* Meta Pixel base */}
   <Script id="fb-pixel-base" strategy="afterInteractive">
@@ -41,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fbq('track', 'PageView');
           `}
         </Script>
+
       </head>
       <body className="min-h-screen antialiased">
       <noscript>
