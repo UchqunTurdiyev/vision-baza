@@ -49,7 +49,7 @@ export default function LeadsClient() {
               <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   { k: "Yo'nalish", v: "Sotuv" },
-                  { k: "Usul", v: "SPIN + amaliyot" },
+                  { k: "Usul", v: "Amaliy + Nazariy" },
                   { k: "Format", v: "Mentorlik" },
                   { k: "Kafolat", v: "Ishga yo'naltirish" },
                 ].map((i) => (
