@@ -1,6 +1,8 @@
 "use client";
 
-import LeadNewPage from "@/components/lead/LeadNewPage";
+import LeadNewPage from "@/components/sotuv/LeadNewPage";
+
+
 
 // Agar form komponentingiz shu yerda bo‘lsa
 
@@ -25,9 +27,8 @@ export default function LeadsClient() {
                 Sotuv Mutaxassisi Kursi
               </h1>
               <p className="mt-4 text-slate-200/90 md:text-lg leading-relaxed">
-                💼 Alo darajada tahsil olib, so&apos;ngra{" "}
-                <strong className="text-indigo-200">ishga joylashish kafolati</strong>ga ega
-                bo&apos;ling. <strong className="text-indigo-100">Bu imkoniyat aynan siz uchun!</strong>
+              Ishga joylashish kafolati bo&apos;lgan{" "} 
+                <strong className="text-indigo-200">yagona kurs </strong> aynan siz uchun!
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -71,16 +72,36 @@ export default function LeadsClient() {
                 <div className="h-full w-full grid place-items-center text-center">
                   <div>
                     <div className="text-xs uppercase tracking-[0.2em] text-indigo-200/80">
-                      Sizga beradigan qiymat
+                      Bizning jamoamiz ushbu bizneslar bilan ishlab kelmoqda
                     </div>
                     <div className="mt-3 text-2xl font-bold text-white">
-                      Nazariya + Amaliyot + Real skriptlar
+                      Vision Group 
                     </div>
+                    <div className="flex items-center justify-evenly">
+                    <div className="">
                     <p className="mt-3 text-slate-200/90 max-w-sm mx-auto text-sm md:text-base leading-relaxed">
-                      Tanishuvdan sotishgacha: savollar texnikasi, do&apos;stona muloqot,
-                      e&apos;tirozlar bilan ishlash va ta&apos;sirchan nutq. Barchasi real
-                      amaliy misollar bilan.
+                      ISFT instituti
                     </p>
+                    <p className="mt-1 text-slate-200/90 max-w-sm mx-auto text-sm md:text-base leading-relaxed">
+                      Japan school
+                    </p>
+                    <p className="mt-1 text-slate-200/90 max-w-sm mx-auto text-sm md:text-base leading-relaxed">
+                      M Edu school
+                    </p>
+                    </div>
+                  
+                    <div className="">
+                    <p className="mt-1 text-slate-200/90 max-w-sm mx-auto text-sm md:text-base leading-relaxed">
+                      Med Expert
+                    </p>
+                    <p className="mt-1 text-slate-200/90 max-w-sm mx-auto text-sm md:text-base leading-relaxed">
+                      Turon Med
+                    </p>
+                    <p className="mt-1 text-slate-200/90 max-w-sm mx-auto text-sm md:text-base leading-relaxed">
+                      Kansmarket
+                    </p>
+                    </div>
+                    </div>
                   </div>
                 </div>
               </div>
