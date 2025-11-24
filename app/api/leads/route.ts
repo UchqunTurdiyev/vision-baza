@@ -75,7 +75,27 @@ export async function POST(req: NextRequest) {
     await connectToDB();
 
     const body = await req.json().catch(() => ({}));
-    const { fullName, phone, source = "unknown", note = "" } = body ?? {};
+
+    // Eski qismi – tegmaymiz
+    const {
+      fullName,
+      phone,
+      source = "unknown",
+      note = "",
+    } = body ?? {};
+
+    // 🔹 YANGI: target / sotuv ajratish uchun service
+    // sotuv formadan: service: "sotuv"
+    // target formadan: service: "target"
+    const service = body?.service ?? "";
+
+    // 🔹 YANGI: target formasidagi qo‘shimcha maydonlar
+    const businessType = body?.businessType ?? "";            // select "Biznes turi"
+    const socialPage = body?.socialPage ?? body?.page ?? "";  // IG/FB sahifa
+    const budget = body?.budget ?? "";                        // select "Budjet"
+
+    // 🔹 YANGI: agar target formadan "comment" kelsa, note bo‘sh bo‘lsa o‘shani yozamiz
+    const finalNote = note || body?.comment || "";
 
     if (!fullName || !phone) {
       return NextResponse.json(
@@ -89,8 +109,14 @@ export async function POST(req: NextRequest) {
       fullName,
       phone,
       source,
-      note,
+      note: finalNote,
       status: "LID",
+
+      // 🔹 YANGI maydonlar – schema’ga ham qo‘shib qo‘ygan bo‘lishingiz kerak
+      service,       // "sotuv" | "target"
+      businessType,
+      socialPage,
+      budget,
     });
 
     const lead = { ...created.toObject(), id: String(created._id) };
@@ -103,4 +129,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-

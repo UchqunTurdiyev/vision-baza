@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import type { Metadata } from "next";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Topbar from "@/components/topbar";
 
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
@@ -102,7 +103,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             alt=""
           />
         </noscript>
-        {children}
+      
+
+      <div className="min-h-screen bg-[#0b1220] text-white">
+      <Topbar />
+      <div className="flex mx-20 mx-auto">
+        {/* <Sidebar /> */}
+        <main className="flex-1 p-4">{children}</main>
+      </div>
+    </div>
         <SpeedInsights />
         </body>
     </html>
