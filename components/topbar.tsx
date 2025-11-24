@@ -20,7 +20,7 @@ return (
             href="/target"
             className="inline-flex text-lg items-center justify-center  text-indigo-100 hover:text-indigo-400 transition"
           >
-             Target Kursi
+             Target xizmati
           </Link>
 
 
