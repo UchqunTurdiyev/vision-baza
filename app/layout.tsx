@@ -7,6 +7,7 @@ import Topbar from "@/components/topbar";
 
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
+const PIXEL2_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
 
 
 export const metadata = {
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${PIXEL_ID}');
+            fbq('init', '${PIXEL2_ID}');
             fbq('track', 'PageView');
           `}
         </Script>
@@ -117,3 +119,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+
