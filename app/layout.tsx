@@ -12,39 +12,43 @@ const PIXEL2_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350'
 
 
 export const metadata = {
-  title: "Vision Group — Sotuv mutaxassisi tayyorlash kursi va ish o‘rinlari",
+  title: "Vision Group — Marketing, target va sotuv tizimlari",
   description:
-    "Vision Group — sotuv mutaxassisi tayyorlash kursi va sotuv bo‘yicha yuqori daromadli ish o‘rinlari platformasi. Amaliy darslar, kafolatlangan ish takliflari va real natijalar.",
+    "Vision Group — Marketing strategiyasi, target, sotuv tizimi, SMM, web-sayt va Telegram bot yechimlari orqali biznesingiz uchun barqaror lead va sotuv oqimini quradigan agentlik.",
   keywords: [
-    "sotuvchi",
-    "sotuv mutaxassisi tayyorlash kursi",
-    "sotuv mutaxassisi",
-    "sotuvchi kursi",
-    "sotuv kursi",
-    "sotuv bo‘yicha ish",
-    "ish kerak sotuvchi",
-    "sotuv xodimi",
-    "sales kurs",
-    "sales manager kursi",
-    "sotuv xodimi",
-    "sotuv menejeri",
-    "ish kerak",
-    "ishchi kerak",
-    "sotuv texnikasi",
-    "sotuv kursi",
-    "sotuv bo‘yicha ish",
-    "hh.uz",
-    "hh.ru",
-    "sales jobs uzbekistan"
+    "Vision Group",
+    "marketing",
+    "marketolog",
+    "marketing agentligi",
+    "marketing strategiyasi",
+    "target reklama",
+    "target",
+    "targetolog",
+    "Instagram reklama",
+    "Facebook reklama",
+    "Meta Ads",
+    "sotuv tizimi",
+    "sotuv",
+    "ROP",
+    "sotuv bo‘limi",
+    "SMM xizmatlari",
+    "copywriting",
+    "web-sayt yaratish",
+    "Telegram bot",
+    "lead generation",
+    "Samarqand marketing",
+    "business audit",
+    "online reklama"
   ],
   openGraph: {
-    title: "Vision Group — Sotuv mutaxassisi tayyorlash kursi",
+    title: "Vision Group — Marketing Target reklama,  va sotuv tizimlari",
     description:
-      "Amaliyotga asoslangan sotuv mutaxassisi tayyorlash kursi. Real keyslar, mentorlar tajribasi va kafolatlangan ish o‘rinlari Vision Baza platformasida.",
-    url: "https://vision-group.uz/leads",
+      "Biznesingizni to‘liq audit qilamiz, marketing va target strategiyasini ishlab chiqamiz, sotuv veb-sayti va Telegram bot bilan birga barqaror lead va sotuv oqimini quramiz.",
+    url: "https://vision-group.uz",
     type: "website"
   }
 };
+
 
 
 
@@ -69,10 +73,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Brauzer tarjimasini to'xtatish (ixtiyoriy) */}
         <link rel="icon" href="https://www.vision-group.uz/logo.png" sizes="48x48" />
-        <title>Vision Group — Sotuv mutaxassisi tayyorlash kursi va ish o‘rinlari</title>
         <meta name="google" content="notranslate" />
-<meta name="description" content="Vision Group — sotuv mutaxassisi tayyorlash kursi va sotuv bo‘yicha yuqori daromadli ish o‘rinlari platformasi. Amaliy darslar, kafolatlangan ish takliflari va real natijalar." />
-<meta name="keywords" content="sotuv mutaxassisi tayyorlash kursi, sotuvchi kursi, sotuv kursi, ish kerak sotuvchi, sotuv xodimi, sotuv bo‘yicha ish" />
+        <title>Vision Group — Marketing, Target va Sotuv tizimlari</title>
+<meta
+  name="description"
+  content="Vision Group — Marketing target reklama, , sotuv tizimi, SMM va web-sayt yechimlari bilan biznesingiz uchun barqaror lead va sotuv oqimini quradigan agentlik. Biznes auditidan tortib, target, sotuv veb-sayti va Telegram botgacha bir joyda."
+/>
+<meta
+  name="keywords"
+  content="Vision Group, marketing agentligi target reklama, targetolog, Instagram reklama, Facebook reklama, sotuv tizimi, sotuv bo‘limi, SMM xizmatlari, web-sayt yaratish, Telegram bot, lead generation, Samarqand marketing"
+/>
+
 
 
 
