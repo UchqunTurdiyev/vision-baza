@@ -9,18 +9,34 @@ type Props = {
 
 const businessOptions = [
   { value: "", label: "Tanlang" },
-  { value: "school", label: "Xususiy maktab / kurs" },
-  { value: "clinic", label: "Klinika / med markaz" },
+
+  // Ta'lim sohasi
+  { value: "private_school", label: "Xususiy maktab" },
+  { value: "education_center", label: "O‘quv markazi / kurs" },
+  { value: "institute", label: "Institut / oliy ta'lim" },
+
+  // Tibbiyot
+  { value: "clinic", label: "Klinika / tibbiy xizmatlari" },
+
+  // Savdo va mahsulot
+  { value: "big_product_sales", label: "Yirik mahsulot " },
+  { value: "gift_boxes", label: "Sovg‘a to‘plamlari" },
+  { value: "realty_auto", label: "Uy-joy / mashina" },
+
+  // Xizmatlar
+  { value: "gym", label: "Sport zal / fitness" },
   { value: "service", label: "Xizmat ko‘rsatish" },
-  { value: "shop", label: "Magazin / savdo punkti" },
+
+  // Boshqa
   { value: "other", label: "Boshqa" },
 ];
+
 
 const budgetOptions = [
   { value: "", label: "Tanlang" },
   { value: "3-5", label: "3–5 mln so‘mgacha" },
-  { value: "5-10", label: "5–10 mln so‘m" },
-  { value: "10+", label: "10 mln so‘mdan yuqori" },
+  { value: "5-10", label: "5–15 mln so‘m" },
+  { value: "10+", label: "15 mln so‘mdan yuqori" },
 ];
 
 export default function TargetLeadNewPage({ className }: Props) {
@@ -87,7 +103,7 @@ export default function TargetLeadNewPage({ className }: Props) {
           name="fullName"
           required
           className="w-full rounded-xl border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 bg-slate-950/60 text-slate-100 placeholder:text-slate-500"
-          placeholder="Masalan: Aliyev Ilhom"
+          placeholder="Aliyev Ilhom"
         />
       </div>
 
@@ -125,13 +141,13 @@ export default function TargetLeadNewPage({ className }: Props) {
       {/* Instagram / Facebook sahifa */}
       <div className="flex flex-col gap-1">
         <label className="text-xs font-medium text-slate-200">
-          Instagram / Facebook sahifangiz
+          Telegram uzeringiz
         </label>
         <input
           type="text"
           name="socialPage"
           className="w-full rounded-xl border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 bg-slate-950/60 text-slate-100 placeholder:text-slate-500"
-          placeholder="@vision_group_uz yoki havola"
+          placeholder="@vision_g_bot yoki havola"
         />
       </div>
 
@@ -169,7 +185,7 @@ export default function TargetLeadNewPage({ className }: Props) {
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex justify-center items-center px-6 py-3 text-sm font-semibold rounded-full bg-indigo-500 text-white shadow-lg shadow-indigo-900/50 hover:bg-indigo-400 transition disabled:opacity-60"
+          className="inline-flex cursor-pointer justify-center items-center px-6 py-3 text-sm font-semibold rounded-full bg-indigo-500 text-white shadow-lg shadow-indigo-900/50 hover:bg-indigo-400 transition disabled:opacity-60"
         >
           {loading ? "Yuborilmoqda..." : "Ariza yuborish"}
         </button>
