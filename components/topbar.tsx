@@ -8,7 +8,7 @@ return (
   <div className="text-2xl">VISION <span className="text-indigo-400 text-2xl">Group</span></div>
 
 
-<div className="flex gap-4 pl-10">
+<div className="flex gap-4 pl-10 max-md:hidden">
           <Link
             href="/sotuv"
             className="inline-flex items-center text-lg justify-center  text-white font-semibold shadow-lg hover:text-indigo-400 transition"

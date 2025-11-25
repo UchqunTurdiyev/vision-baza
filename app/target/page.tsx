@@ -312,7 +312,7 @@ export default function TargetPage() {
                 yechimlarni taklif qiladi.
               </p>
 
-              /* 👉 Mana bu yerda siz yozgan forma ishlaydi */
+           
               <TargetLeadNewPage className="mt-6" />
             </div>
           </div>
