@@ -314,7 +314,7 @@ export default function TargetPage() {
            hover:from-slate-900 hover:via-indigo-700 hover:to-indigo-500
            transition"
         >
-          Target bo‘yicha konsultatsiya olish
+          Ro'yxatdan o'ting
         </a>
       </div>
     </div>
