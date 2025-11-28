@@ -375,7 +375,11 @@ export default function TargetPage() {
         </p>
       </div>
     </div>
+    <p className="mt-7 text-md font-semibold text-emerald-300">
+      Saytdan chiqib ketmasdan oxirigacha davom eting va bonuslarga ega bo'ling
+ </p>
   </div>
+
 </section>
 
 
@@ -532,7 +536,7 @@ export default function TargetPage() {
             </li>
             <li>
               “Bir oy ishladik, keyin yo‘qoldik” emasmiz,{" "}
-              <strong>biznesingizga sherik sifatida</strong> ishlaymiz.
+              <strong>biznesingizga o'zimiznikidek</strong> ishlaymiz.
             </li>
           </ul>
         </div>
@@ -559,8 +563,12 @@ export default function TargetPage() {
         <ul className="mt-4 space-y-2 text-sm text-slate-200/80 flex-1">
           <li>• Target strategiyasini ishlab chiqamiz.</li>
           <li>• Instagram va Facebook sahifalaringizni professional upakovka qilib beramiz.</li>
-          <li>• Biznesingiz uchun sotuvga yo‘naltirilgan copywriting tayyorlaymiz.</li>
+          <li>• Biznesingiz uchun sotuvga yo‘naltirilgan copywriting post yozamiz.</li>
         </ul>
+        <p className="mt-3 text-xs font-semibold text-slate-300">
+        Chegirma narxi: <span className="text-emerald-300">$250</span>
+        </p>
+
         <a
           href="#form"
           className="mt-4 inline-flex justify-center px-4 py-2 text-sm font-semibold rounded-full border border-emerald-400/60 text-emerald-100 hover:bg-emerald-500/10 transition"
@@ -578,10 +586,14 @@ export default function TargetPage() {
         <ul className="mt-4 space-y-2 text-sm text-slate-200/80 flex-1">
           <li>• Target strategiyasini chuqurroq ishlab chiqamiz.</li>
           <li>• Instagram va Facebook sahifalaringizni professional upakovka qilib, sotuvga tayyorlaymiz.</li>
-          <li>• Reklama va web-saytingiz uchun kuchli copywriting yaratamiz.</li>
-          <li>• Brendingizga mos <strong>sotuv veb-sayti</strong> konsepsiyasini ishlab chiqamiz.</li>
+          <li>• Reklama va web-saytingiz uchun kuchli copywriting sotuv postlari yozamiz.</li>
+          <li>• Brendingizga mos <strong>sotuv veb-sayti</strong> professional dizaynda yasab beramiz.</li>
           <li>• Sotuv xodimlaringiz ishini audit qilib, asosiy kamchiliklarini ko‘rsatib beramiz.</li>
         </ul>
+        <p className="mt-3 text-xs font-semibold text-slate-300">
+        Chegirma narxi: <span className="text-emerald-300">$1000</span>
+        </p>
+
         <a
           href="#form"
           className="mt-4 inline-flex justify-center px-4 py-2 text-sm font-semibold rounded-full bg-indigo-500 text-white hover:bg-indigo-400 transition shadow-lg shadow-emerald-900/50"
@@ -600,10 +612,14 @@ export default function TargetPage() {
           <li>• Target strategiyasi va kampaniyalar tizimini to‘liq ishlab chiqamiz.</li>
           <li>• Instagram va Facebook sahifalaringizni brendingizga mos professional upakovka qilamiz.</li>
           <li>• Reklama, sayt va postlar uchun chuqur copywriting va sotuv matnlarini yozamiz.</li>
-          <li>• Brendingizga mos <strong>sotuv veb-sayti va Telegram bot</strong> yaratish konsepsiyasini ishlab chiqamiz.</li>
+          <li>• Brendingizga mos <strong>sotuv veb-sayti va Telegram bot</strong> professional dizaynda yasab beramiz.</li>
           <li>• Sotuv jamoangiz uchun <strong>skriptlar va muloqot ssenariylari</strong> tayyorlaymiz.</li>
           <li>• Kantentlarni ishlab chiqamiz  <strong>To'liq SMM xizmati</strong> ni qilib beramiz.</li>
         </ul>
+        <p className="mt-3 text-xs font-semibold text-slate-300">
+        Chegirma narxi: <span className="text-emerald-300">$1500</span>
+        </p>
+
         <a
           href="#form"
           className="mt-4 inline-flex justify-center px-4 py-2 text-sm font-semibold rounded-full border border-emerald-400/60 text-emerald-100 hover:bg-emerald-500/10 transition"
