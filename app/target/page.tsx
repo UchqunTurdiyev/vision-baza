@@ -16,7 +16,7 @@ export default function TargetPage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.25),_transparent_55%)]" />
 
  {/* HERO */}
-<section className="relative px-6 pt-16 pb-12">
+<section className="relative md:px-6 px-2 md:pt-16 pt-12 pb-12">
   <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-1 items-start">
     {/* Chap tomondagi matn */}
     <div>
@@ -24,8 +24,8 @@ export default function TargetPage() {
         Vision Group • Target
       </span>
 
-      <h1 className="mt-4 text-3xl md:text-4xl font-bold leading-tight text-white">
-      Target orqali lead oqimini yo‘lga qo‘yib, sotuvingizni 30%+ gacha o‘sishiga yordam beramiz.
+      <h1 className="mt-4 text-2xl md:text-4xl font-bold leading-tight text-white">
+      Target orqali lead oqimini yo‘lga qo‘yib, sotuvingizni +30% o‘sishiga yordam beramiz.
       </h1>
 
       <p className="mt-4 text-slate-200/90 md:text-lg leading-relaxed">
@@ -110,7 +110,7 @@ export default function TargetPage() {
             Taklif
           </p>
           <h3 className="mt-2 text-xl md:text-2xl font-bold text-white">
-            Reklamadan keladigan mijozlarni 30%+ oshiramiz – kafolat bilan
+            Reklamadan keladigan mijozlarni +30% oshiramiz – kafolat bilan
           </h3>
 
           <div className="mt-4 bg-slate-950/70 border border-emerald-400/50 rounded-xl p-4">
@@ -118,7 +118,7 @@ export default function TargetPage() {
               <span className="font-semibold text-emerald-300">Kafolatimiz:</span>{" "}
               <span className="block mt-1">
                 👉 <strong>30 kun ichida</strong> reklama orqali keladigan{" "}
-                <strong>lid va so‘rovlarni kamida 30% ga oshiramiz.</strong>
+                <strong>lid va so‘rovlarni kamida +30% ga oshiramiz.</strong>
               </span>
               <span className="block mt-1">
                 Agar natija bo‘lmasa –{" "}
@@ -217,7 +217,7 @@ export default function TargetPage() {
 </section>
 
 {/* BIZ HAQIMIZDA / NEGA AYNAN BIZ */}
-<section id="about" className="relative px-6 pt-4 pb-10">
+<section id="about" className="relative md:px-6 px-2 pt-4 pb-10">
   <div className="max-w-5xl mx-auto space-y-6 bg-slate-950/50 border border-slate-800/70 rounded-3xl p-6 md:p-8 shadow-[0_18px_60px_rgba(0,0,0,0.7)]">
     <div className="flex flex-wrap items-center justify-between gap-4">
       <div>
@@ -225,7 +225,7 @@ export default function TargetPage() {
           Biz haqimizda
         </p>
         <h2 className="mt-2 text-2xl md:text-3xl font-bold text-white leading-tight">
-          Nega aynan Vision Group va Uchqun Turdiyev?
+          Nega aynan men Uchqun Turdiyev?
         </h2>
       </div>
       <span className="inline-flex items-center gap-2 text-[11px] px-3 py-1 rounded-full border border-emerald-500/50 bg-emerald-500/10 text-emerald-100">
@@ -240,6 +240,9 @@ export default function TargetPage() {
       </h3>
 
       <ul className="mt-3 space-y-1 text-sm md:text-base text-slate-100/90">
+      <li>
+  ✅ <strong>Meta kompaniyasi ekspertlari auditi</strong> – reklama kabinetim Meta xodimlari tomonidan muntazam ko‘rib chiqilib, professional tavsiyalar berib boriladi.
+</li>
         <li>
           ✅ <strong>3 yillik amaliy tajriba</strong> – faqat target va sotuv sohasida.
         </li>
@@ -251,7 +254,7 @@ export default function TargetPage() {
         </li>
       </ul>
 
-      <div className="mt-4 rounded-xl bg-slate-950/80 border border-emerald-400/50 p-4 space-y-2">
+      {/* <div className="mt-4 rounded-xl bg-slate-950/80 border border-emerald-400/50 p-4 space-y-2">
         <p className="text-sm md:text-base text-slate-100 leading-relaxed">
           <strong>Bizning natijalar:</strong>
         </p>
@@ -267,35 +270,39 @@ export default function TargetPage() {
             <strong>milliy ishonchli brend</strong> sifatida tanilgan.
           </li>
         </ul>
+      </div> */}
+
+<div className="mt-4 rounded-xl bg-slate-950/80 border border-emerald-400/50 p-4 space-y-2">
+        <p className="text-sm md:text-base text-slate-100 leading-relaxed">
+          <strong>Bizning natijalar:</strong>
+        </p>
+        <ul className="space-y-1 text-sm md:text-base text-slate-100/90 list-disc list-inside">
+          <li>
+            <strong>Har sarflagan $1 uchun, $82 tushum olib keldi. ROAS ≈ 82x</strong> →{" "}
+            <strong>Bir mijozning LTV si 1$ uchun $328 qaytyapti</strong>.
+          </li>
+          <li>
+            <strong>1$ reklama → $68 tushum. ROAS ≈ 68x </strong> → {" "}
+            <strong>Bir mijozning LTV si 1$ uchun 410$ qaytyapti</strong>.
+          </li>
+        </ul>
       </div>
 
       <div className="mt-4 space-y-2">
         <h4 className="text-sm font-semibold text-emerald-200">
-          Bizning eng katta plusimiz:
+          Bizning eng katta yutug'imiz:
         </h4>
         <ul className="space-y-1 text-sm md:text-base text-slate-100/90 list-disc list-inside">
           <li>
             <strong>Web-saytni real kodda yozib beramiz</strong> – shablon emas, biznesingizga moslashtirilgan maxsus sayt.
           </li>
           <li>
-            Sayt strukturasi, formalar va chaqiriqlar (CTA){" "}
-            <strong>target va sotuv jarayoni bilan uyg‘un</strong> ishlaydi.
+            Web Saytingiz copywriting sotuv postlari bilan
+            <strong>sotuv saytlaridan 10X tez </strong> ishlaydi. Natijada mijoz va pul yo'qotmaysiz, sayt xarajatlarini to'liq biz qilib beramiz
           </li>
         </ul>
 
-        <p className="mt-2 text-sm md:text-base text-slate-200 leading-relaxed">
-          Bu nimani anglatadi?
-        </p>
-        <ul className="space-y-1 text-sm md:text-base text-slate-100/90 list-disc list-inside">
-          <li>Leadlar soni ko‘payadi.</li>
-          <li>Lead narxi tushadi.</li>
-          <li>
-            <strong>Qaynoq mijozlar bazasi</strong> tezroq shakllanadi.
-          </li>
-          <li>
-            Reklamaga sarflagan har bir so‘mingiz natija berish ehtimoli oshadi.
-          </li>
-        </ul>
+      
       </div>
 
       <div className="mt-4 flex flex-wrap gap-3">
@@ -315,7 +322,7 @@ export default function TargetPage() {
 </section>
 
 {/* KIMLAR UCHUN */}
-<section className="relative px-6 py-10">
+<section className="relative md:px-6 px-2 py-10">
   <div className="max-w-5xl mx-auto">
     <h2 className="text-2xl md:text-3xl font-semibold text-emerald-100">
       Target kimlar uchun?
@@ -533,7 +540,7 @@ export default function TargetPage() {
         {/* END BLOCK */}
 
 {/* PAKETLAR */}
-<section className="relative px-6 py-10">
+<section className="relative md:px-6 px-2 py-10">
   <div className="max-w-6xl mx-auto">
     <h2 className="text-2xl md:text-3xl font-semibold text-emerald-100">
       Target xizmat paketlari
@@ -558,13 +565,13 @@ export default function TargetPage() {
           href="#form"
           className="mt-4 inline-flex justify-center px-4 py-2 text-sm font-semibold rounded-full border border-emerald-400/60 text-emerald-100 hover:bg-emerald-500/10 transition"
         >
-          Konsultatsiya so‘rash
+          Konsultatsiya olish
         </a>
       </div>
 
       {/* GROWTH */}
       <div className="rounded-3xl border-2 border-indigo-500 bg-slate-900/90 shadow-xl shadow-black/60 p-6 flex flex-col">
-        <h3 className="text-lg font-semibold text-white">GROWTH</h3>
+        <h3 className="text-lg font-semibold text-white">STANDART</h3>
         <p className="mt-2 text-sm text-slate-200/80">
           Natijani tezroq oshirmoqchi bo‘lgan va tizimli o‘sishni maqsad qilgan bizneslar uchun.
         </p>
@@ -579,7 +586,7 @@ export default function TargetPage() {
           href="#form"
           className="mt-4 inline-flex justify-center px-4 py-2 text-sm font-semibold rounded-full bg-indigo-500 text-white hover:bg-indigo-400 transition shadow-lg shadow-emerald-900/50"
         >
-          GROWTH paketiga ariza qoldirish
+          Konsultatsiya olish
         </a>
       </div>
 
@@ -595,12 +602,13 @@ export default function TargetPage() {
           <li>• Reklama, sayt va postlar uchun chuqur copywriting va sotuv matnlarini yozamiz.</li>
           <li>• Brendingizga mos <strong>sotuv veb-sayti va Telegram bot</strong> yaratish konsepsiyasini ishlab chiqamiz.</li>
           <li>• Sotuv jamoangiz uchun <strong>skriptlar va muloqot ssenariylari</strong> tayyorlaymiz.</li>
+          <li>• Kantentlarni ishlab chiqamiz  <strong>To'liq SMM xizmati</strong> ni qilib beramiz.</li>
         </ul>
         <a
           href="#form"
           className="mt-4 inline-flex justify-center px-4 py-2 text-sm font-semibold rounded-full border border-emerald-400/60 text-emerald-100 hover:bg-emerald-500/10 transition"
         >
-          PRO bo‘yicha gaplashish
+          Konsultatsiya olish
         </a>
       </div>
     </div>
@@ -609,7 +617,7 @@ export default function TargetPage() {
 
 
 {/* BRENDLAR BILAN ISHLAGANIMIZ */}
-<section className="relative px-6 py-8">
+<section className="relative md:px-6 px-2 py-8">
   <div className="max-w-5xl mx-auto">
     <h2 className="text-lg md:text-xl font-semibold text-emerald-100">
       Biz ishongan va bizga ishongan brendlar
@@ -675,7 +683,7 @@ export default function TargetPage() {
 
 
         {/* LID FORMA */}
-        <section id="form" className="relative px-6 pt-4 pb-16">
+        <section id="form" className="relative md:px-6 px-2 pt-4 pb-16">
           <div className="max-w-4xl mx-auto">
             <div className="bg-slate-900/90 backdrop-blur-sm rounded-3xl shadow-xl shadow-black/60 border border-indigo-500/50 p-6 md:p-8">
               <h2 className="text-2xl font-semibold text-white">
