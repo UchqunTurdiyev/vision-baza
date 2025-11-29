@@ -7,8 +7,8 @@ import Topbar from "@/components/topbar";
 import Footer from "@/components/footer";
 
 
-const PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
-const PIXEL2_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
+const PIXEL_ID_SALES = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
+const PIXEL_ID_TARGET = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '4320743631544354';
 
 
 export const metadata = {
@@ -100,8 +100,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${PIXEL_ID}');
-            fbq('init', '${PIXEL2_ID}');
+            fbq('init', '${PIXEL_ID_SALES}');
+            fbq('init', '${PIXEL_ID_TARGET}');
             fbq('track', 'PageView');
           `}
         </Script>
@@ -113,8 +113,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             height="1"
             width="1"
             style={{ display: 'none' }}
-            src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
+            src={`https://www.facebook.com/tr?id=${PIXEL_ID_SALES}&ev=PageView&noscript=1`}
             alt=""
+          />
+
+<img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${PIXEL_ID_TARGET}&ev=PageView&noscript=1`}
           />
         </noscript>
       

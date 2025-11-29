@@ -2,11 +2,21 @@
 
 import LeadNewPage from "@/components/sotuv/LeadNewPage";
 
+  import { useEffect } from "react";
 
+  const PIXEL_ID_SALES = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
 
-// Agar form komponentingiz shu yerda bo‘lsa
 
 export default function LeadsClient() {
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("trackSingle", PIXEL_ID_SALES, "PageView");
+      // kerak bo'lsa:
+      // (window as any).fbq("trackSingle", PIXEL_ID_SALES, "Lead");
+    }
+  }, []);
+
   return (
     <main
       className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white"
