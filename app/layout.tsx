@@ -85,10 +85,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 />
 
 
-
-
-        
-
           {/* Meta Pixel base */}
           <Script id="fb-pixel-base" strategy="afterInteractive">
   {`
@@ -141,5 +137,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+
 
 

@@ -579,7 +579,7 @@ export default function TargetPage() {
           <li>• Biznesingiz uchun sotuvga yo‘naltirilgan copywriting post yozamiz.</li>
         </ul>
         <p className="mt-3 text-xs font-semibold text-slate-300">
-        Chegirma narxi: <span className="text-emerald-300">$250</span>
+        Chegirma narxi: <span className="text-emerald-300">$247</span>
         </p>
 
         <a
@@ -604,7 +604,7 @@ export default function TargetPage() {
           <li>• Sotuv xodimlaringiz ishini audit qilib, asosiy kamchiliklarini ko‘rsatib beramiz.</li>
         </ul>
         <p className="mt-3 text-xs font-semibold text-slate-300">
-        Chegirma narxi: <span className="text-emerald-300">$1000</span>
+        Chegirma narxi: <span className="text-emerald-300">$970</span>
         </p>
 
         <a
@@ -630,7 +630,7 @@ export default function TargetPage() {
           <li>• Kantentlarni ishlab chiqamiz  <strong>To'liq SMM xizmati</strong> ni qilib beramiz.</li>
         </ul>
         <p className="mt-3 text-xs font-semibold text-slate-300">
-        Chegirma narxi: <span className="text-emerald-300">$1500</span>
+        Chegirma narxi: <span className="text-emerald-300">$1470</span>
         </p>
 
         <a
