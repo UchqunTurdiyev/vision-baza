@@ -1,27 +1,17 @@
 "use client";
 
 import LeadNewPage from "@/components/sotuv/LeadNewPage";
-
-  import { useEffect } from "react";
-
-  const PIXEL_ID_SALES = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
+import PixelSotuvPageView from "./PixelSotuvPageView";
 
 
 export default function LeadsClient() {
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("trackSingle", PIXEL_ID_SALES, "PageView");
-      // kerak bo'lsa:
-      // (window as any).fbq("trackSingle", PIXEL_ID_SALES, "Lead");
-    }
-  }, []);
 
   return (
     <main
       className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white"
       id="form"
     >
+      <PixelSotuvPageView />
       {/* Yulduzcha fon + umumiy container */}
       <div className="relative">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.25),_transparent_55%)]" />

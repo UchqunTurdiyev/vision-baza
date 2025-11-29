@@ -1,7 +1,7 @@
 import TargetLeadNewPage from "@/components/target/TargetLeadNewPage";
 import type { Metadata } from "next";
 import jp from "../../public/jp.png"
-import { useEffect } from "react";
+import PixelTargetPageView from "./PixelTargetPageView";
 
 export const metadata: Metadata = {
   title: "Target reklama xizmatlari | Vision Group",
@@ -9,21 +9,14 @@ export const metadata: Metadata = {
     "Instagram va Facebook orqali barqaror lead oqimini yo‘lga qo‘yuvchi professional target reklama xizmatlari. Tahlil, strategiya, test va optimallashtirish Vision Group jamoasi bilan.",
 };
 
-const PIXEL_ID_TARGET = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '2398531020592784';
-
 
 export default function TargetPage() {
 
-  useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("trackSingle", PIXEL_ID_TARGET, "PageView");
-      // masalan, lead bo'lsa:
-      // (window as any).fbq("trackSingle", PIXEL_ID_TARGET, "Lead");
-    }
-  }, []);
+
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+      <PixelTargetPageView />
       <div className="relative">
         {/* /leads dagidek radial fon */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.25),_transparent_55%)]" />
