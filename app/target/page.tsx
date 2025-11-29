@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Instagram va Facebook orqali barqaror lead oqimini yo‘lga qo‘yuvchi professional target reklama xizmatlari. Tahlil, strategiya, test va optimallashtirish Vision Group jamoasi bilan.",
 };
 
-const PIXEL_ID_TARGET = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '4320743631544354';
+const PIXEL_ID_TARGET = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '2398531020592784';
 
 
 export default function TargetPage() {

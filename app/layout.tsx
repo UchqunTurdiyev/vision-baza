@@ -8,7 +8,7 @@ import Footer from "@/components/footer";
 
 
 const PIXEL_ID_SALES = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
-const PIXEL_ID_TARGET = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '4320743631544354';
+const PIXEL_ID_TARGET = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '2398531020592784';
 
 
 export const metadata = {
