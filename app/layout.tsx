@@ -83,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   name="keywords"
   content="Vision Group, marketing agentligi target reklama, targetolog, Instagram reklama, Facebook reklama, sotuv tizimi, sotuv bo‘limi, SMM xizmatlari, web-sayt yaratish, Telegram bot, lead generation, Samarqand marketing"
 />
+<meta name="facebook-domain-verification" content="kf75zkwggn22mu7nyva1eovdldfh7w" />
 
 
           {/* Meta Pixel base */}
