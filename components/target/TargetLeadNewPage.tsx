@@ -31,7 +31,6 @@ const businessOptions = [
   { value: "other", label: "Boshqa" },
 ];
 
-
 const budgetOptions = [
   { value: "", label: "Tanlang" },
   { value: "3-5", label: "3–5 mln so‘mgacha" },
@@ -50,7 +49,6 @@ export default function TargetLeadNewPage({ className }: Props) {
     setSuccessMsg(null);
     setErrorMsg(null);
 
-    // 👉 Eventdan alohida DOM formani olib qo'yamiz
     const form = e.currentTarget;
 
     const formData = new FormData(form);
@@ -77,8 +75,6 @@ export default function TargetLeadNewPage({ className }: Props) {
       }
 
       setSuccessMsg("Ariza muvaffaqiyatli qabul qilindi ✅");
-
-      // 👉 Mana endi event emas, aniq form o'zini reset qilamiz
       form.reset();
     } catch (err: any) {
       setErrorMsg(err?.message || "Ariza yuborishda xatolik");
@@ -86,7 +82,6 @@ export default function TargetLeadNewPage({ className }: Props) {
       setLoading(false);
     }
   }
-
 
   return (
     <form
@@ -102,6 +97,14 @@ export default function TargetLeadNewPage({ className }: Props) {
           type="text"
           name="fullName"
           required
+          onInvalid={(e) =>
+            (e.target as HTMLInputElement).setCustomValidity(
+              "Iltimos, ism familiyangizni kiriting"
+            )
+          }
+          onInput={(e) =>
+            (e.target as HTMLInputElement).setCustomValidity("")
+          }
           className="w-full rounded-xl border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 bg-slate-950/60 text-slate-100 placeholder:text-slate-500"
           placeholder="Aliyev Ilhom"
         />
@@ -116,6 +119,14 @@ export default function TargetLeadNewPage({ className }: Props) {
           type="tel"
           name="phone"
           required
+          onInvalid={(e) =>
+            (e.target as HTMLInputElement).setCustomValidity(
+              "Iltimos, telefon raqamingizni kiriting"
+            )
+          }
+          onInput={(e) =>
+            (e.target as HTMLInputElement).setCustomValidity("")
+          }
           className="w-full rounded-xl border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 bg-slate-950/60 text-slate-100 placeholder:text-slate-500"
           placeholder="+998 90 123 45 67"
         />
@@ -128,6 +139,15 @@ export default function TargetLeadNewPage({ className }: Props) {
         </label>
         <select
           name="businessType"
+          required
+          onInvalid={(e) =>
+            (e.target as HTMLSelectElement).setCustomValidity(
+              "Iltimos, biznes turini tanlang"
+            )
+          }
+          onInput={(e) =>
+            (e.target as HTMLSelectElement).setCustomValidity("")
+          }
           className="w-full rounded-xl border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 bg-slate-950/60 text-slate-100"
         >
           {businessOptions.map((o) => (
@@ -138,7 +158,7 @@ export default function TargetLeadNewPage({ className }: Props) {
         </select>
       </div>
 
-      {/* Instagram / Facebook sahifa */}
+      {/* Telegram uzeringiz */}
       <div className="flex flex-col gap-1">
         <label className="text-xs font-medium text-slate-200">
           Telegram uzeringiz
@@ -146,6 +166,15 @@ export default function TargetLeadNewPage({ className }: Props) {
         <input
           type="text"
           name="socialPage"
+          required
+          onInvalid={(e) =>
+            (e.target as HTMLInputElement).setCustomValidity(
+              "Iltimos, Telegram useringizni kiriting"
+            )
+          }
+          onInput={(e) =>
+            (e.target as HTMLInputElement).setCustomValidity("")
+          }
           className="w-full rounded-xl border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 bg-slate-950/60 text-slate-100 placeholder:text-slate-500"
           placeholder="@vision_g_bot yoki havola"
         />
@@ -158,6 +187,15 @@ export default function TargetLeadNewPage({ className }: Props) {
         </label>
         <select
           name="budget"
+          required
+          onInvalid={(e) =>
+            (e.target as HTMLSelectElement).setCustomValidity(
+              "Iltimos, reklama budjetini tanlang"
+            )
+          }
+          onInput={(e) =>
+            (e.target as HTMLSelectElement).setCustomValidity("")
+          }
           className="w-full rounded-xl border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 bg-slate-950/60 text-slate-100"
         >
           {budgetOptions.map((o) => (
