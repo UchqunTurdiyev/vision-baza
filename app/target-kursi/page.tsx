@@ -168,14 +168,16 @@ export default function TargetKursPage() {
               Target reklama kursi:
               <br />
               <span className="bg-linear-to-r from-emerald-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
-                0 dan natija beradigan kampaniyagacha
+              Reklama yoqish emas — natija beradigan Target tizimini o‘rganing
               </span>
             </h1>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
-              Facebook va Instagram’da reklama yonib turishi, lekin sotuv bo‘lmayotgan bo‘lsa,
-              bu kurs aynan siz uchun. Akkaunt sozlashdan boshlab, strategiya, web-sayt,
-              metrikalar va mijoz topishgacha hammasi bitta tizimli dastur ichida.
+            AI bilan 1 soatda real kodlar bilan web-sahifa yarating, raqamlarni o‘qishni o‘rganing, natijani boshqaring.
+            </p>
+
+            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
+            Meta mutaxassislaridan olgan 3 insaydim — reklamangizni 180° o‘zgartiradigan formulalarni <i>PDF yuklab olish</i>  tugmasini bosib yuklab oling
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -186,11 +188,13 @@ export default function TargetKursPage() {
                 Kursga yozilish
               </Link>
               <a
-                href="tel:+998555187070"
-                className="rounded-xl border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-emerald-400"
-              >
-                Telefon orqali yozilish: +998 55 518 70 70
-              </a>
+  href="/files/Guvoxnoma.pdf"
+  download
+  className="rounded-xl border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-emerald-400"
+>
+  PDF yuklab olish
+</a>
+
             </div>
 
             <p className="mt-3 text-xs text-slate-400">
@@ -204,18 +208,22 @@ export default function TargetKursPage() {
             </h2>
             <ul className="mt-4 space-y-2 text-sm text-slate-200">
               <li>• Biznes uchun to‘liq target tizimini o‘zingiz sozlay olasiz</li>
+              <li>• O&apos;zingiz va biznes uchun web-sayt 2 kunda </li>
               <li>• Pixel, event va auditoriyalarni professional darajada boshqarasiz</li>
               <li>• Web-sayt + reklama + metrika orqali butun voronkani ko‘ra olasiz</li>
               <li>• O‘zingiz uchun ham, mijozlar uchun ham strategiya tuza olasiz</li>
+              <li>• Darslar yozib olinib sizga tashlab beriladi</li>
+              <li>• Kopyrayting sotuv postlarini yozish</li>
+              <li>• Lid magnit tuzish</li>
             </ul>
 
             <dl className="mt-6 grid grid-cols-3 gap-4 text-center text-[11px] sm:text-xs">
               <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/5 px-3 py-3">
                 <dt className="font-semibold text-emerald-300">Format</dt>
                 <dd className="mt-1 text-slate-100">
-                  Amaliy darslar
+                  Ofline 
                   <br />
-                  va proyektlar
+                  Online
                 </dd>
               </div>
               <div className="rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-3">
@@ -253,6 +261,95 @@ export default function TargetKursPage() {
             <PartnersCarousel />
           </div>
         </section>
+
+        {/* BIZ HAQIMIZDA / NEGA AYNAN BIZ */}
+<section id="about" className="relative md:px-6  pt-4 pb-10">
+  <div className="max-w-5xl mx-auto space-y-6 bg-slate-950/50 border border-slate-800/70 rounded-3xl p-6 md:p-8 shadow-[0_18px_60px_rgba(0,0,0,0.7)]">
+    <div className="flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <p className="text-[11px] tracking-widest font-semibold uppercase text-emerald-300">
+          Biz haqimizda
+        </p>
+        <h2 className="mt-2 text-2xl md:text-3xl font-bold text-white leading-tight">
+          Nega aynan men Uchqun Turdiyev?
+        </h2>
+      </div>
+      <span className="inline-flex items-center gap-2 text-[11px] px-3 py-1 rounded-full border border-emerald-500/50 bg-emerald-500/10 text-emerald-100">
+        <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+        3 yillik tajriba • Dasturchi-targetolog
+      </span>
+    </div>
+
+    <div className="bg-slate-900/75 border border-emerald-500/40 rounded-2xl p-5 md:p-7">
+      <h3 className="text-lg md:text-xl font-bold text-white">
+        Natija beradigan tajriba va ustunliklar
+      </h3>
+
+      <ul className="mt-3 space-y-1 text-sm md:text-base text-slate-100/90">
+      <li>
+  ✅ <strong>Meta kompaniyasi ekspertlari auditi</strong> – reklama kabinetim Meta xodimlari tomonidan muntazam ko‘rib chiqilib, professional tavsiyalar berib boriladi.
+</li>
+<li>
+          ✅ <strong>$80k</strong> – pul boshqaruvi.
+        </li>
+        <li>
+          ✅ <strong>3 yillik amaliy tajriba</strong> – faqat target va sotuv sohasida.
+        </li>
+        <li>
+          ✅ <strong>Dasturchi + targetolog kombosi</strong> – reklama, sayt va sotuvni bitta tizimga bog‘laymiz.
+        </li>
+        <li>
+          ✅ <strong>Raqamlar bilan isbotlangan natijalar</strong>.
+        </li>
+      </ul>
+
+<div className="mt-4 rounded-xl bg-slate-950/80 border border-emerald-400/50 p-4 space-y-2">
+        <p className="text-sm md:text-base text-slate-100 leading-relaxed">
+          <strong>Bizning natijalar:</strong>
+        </p>
+        <ul className="space-y-1 text-sm md:text-base text-slate-100/90 list-disc list-inside">
+          <li>
+            <strong>Har sarflagan $1 uchun, $82 tushum olib keldi. ROAS ≈ 82x</strong> →{" "}
+            <strong>Bir mijozning LTV si 1$ uchun $328 qaytyapti</strong>.
+          </li>
+          <li>
+            <strong>1$ reklama → $68 tushum. ROAS ≈ 68x </strong> → {" "}
+            <strong>Bir mijozning LTV si 1$ uchun 410$ qaytyapti</strong>.
+          </li>
+        </ul>
+      </div>
+
+      <div className="mt-4 space-y-2">
+        <h4 className="text-sm font-semibold text-emerald-200">
+          Bizning eng katta yutug&apos;imiz:
+        </h4>
+        <ul className="space-y-1 text-sm md:text-base text-slate-100/90 list-disc list-inside">
+          <li>
+            <strong>Kopyrayting sotuv postlari</strong> – yozishni to&apos;liq o&apos;rganasiz
+          </li>
+          <li>
+            <strong>Sotuv saytlaridan 10X tez </strong> ishlaydigan sayt yasashni 3 kunda o&apos;rganasiz
+          </li>
+        </ul>
+
+      
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-3">
+        <a
+          href="#form"
+          className="inline-flex items-center justify-center h-10 px-5 rounded-xl
+           bg-linear-to-r from-slate-950 via-indigo-800 to-indigo-600
+           text-white text-sm font-semibold shadow-lg shadow-indigo-900/60
+           hover:from-slate-900 hover:via-indigo-700 hover:to-indigo-500
+           transition"
+        >
+          Ro&apos;yxatdan o&apos;ting
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
 
         {/* Kimlar uchun */}
@@ -303,7 +400,7 @@ export default function TargetKursPage() {
           </h2>
           <p className="mt-3 max-w-3xl text-sm sm:text-base text-slate-300">
             Har bir bob ichida mavzular ketma-ketligi sizni 0 darajadan boshlab,
-            mustaqil kampaniya yurita oladigan darajaga olib chiqish uchun tuzilgan.
+            professional darajada chiqishingizni ta&apos;minlaydi.
             Har bir bo‘limda nazariya + amaliy topshiriq + real misollar bo‘ladi.
           </p>
 
@@ -345,41 +442,6 @@ export default function TargetKursPage() {
           </div>
         </section>
 
-        {/* Natijalar */}
-        <section className="mt-16">
-          <h2 className="text-2xl font-semibold sm:text-3xl">
-            Kurs yakunida siz nimalarga erishasiz?
-          </h2>
-          <div className="mt-6 grid gap-6 md:grid-cols-3">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-              <h3 className="text-sm font-semibold text-emerald-300">
-                Texnik jihatdan mustaqil bo‘lasiz
-              </h3>
-              <p className="mt-2 text-xs sm:text-sm text-slate-300">
-                Business Manager, Pixel, Eventlar, domen, Vercel, MongoDB va boshqa
-                texnik sozlamalarni o‘zingiz boshqarishingiz mumkin bo‘ladi.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-              <h3 className="text-sm font-semibold text-sky-300">
-                Strategiya va raqamlar bilan ishlaysiz
-              </h3>
-              <p className="mt-2 text-xs sm:text-sm text-slate-300">
-                Reklamani “yoqib qo‘yish” emas, balki metrikalar, auditoriya va
-                voronka bo‘yicha boshqarishni o‘rganasiz.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-              <h3 className="text-sm font-semibold text-violet-300">
-                Mijozlar va ish imkoniyatlari
-              </h3>
-              <p className="mt-2 text-xs sm:text-sm text-slate-300">
-                Resume, portfolio va lid magnitlar yordamida o‘zingiz uchun real mijoz
-                topish va ishga joylashish bo‘yicha aniq qadamlar ishlab chiqasiz.
-              </p>
-            </div>
-          </div>
-        </section>
 
                 {/* Otziflar */}
                 <section className="mt-16">
@@ -424,7 +486,7 @@ export default function TargetKursPage() {
     {/* Chap tomonda matn */}
     <div>
       <h2 className="text-2xl font-semibold sm:text-3xl">
-        Target reklama kursiga hoziroq ro‘yxatdan o‘ting
+        Pro Target kursiga hoziroq ro‘yxatdan o‘ting
       </h2>
       <p className="mt-3 max-w-2xl text-sm sm:text-base text-slate-100">
         O‘zingizni reklama balansiga qarab emas, natijangizga qarab baholaydigan
@@ -432,14 +494,14 @@ export default function TargetKursPage() {
         o‘tiladi.
       </p>
 
-      <div className="mt-6 flex flex-wrap gap-3">
+      {/* <div className="mt-6 flex flex-wrap gap-3">
         <a
           href="tel:+998555187070"
           className="rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400"
         >
-          Telefon orqali ro‘yxatdan o‘tish: +998 55 518 70 70
+          Telegram kanalimiz
         </a>
-      </div>
+      </div> */}
 
       <p className="mt-3 text-xs text-slate-200">
         Agar loyihangiz yoki biznesingiz bo‘lsa — darslar davomida aynan o‘sha

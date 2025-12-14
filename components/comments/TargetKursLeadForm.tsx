@@ -1,4 +1,3 @@
-// components/target/TargetKursLeadForm.tsx
 "use client";
 
 import { FormEvent, useState } from "react";
@@ -7,6 +6,28 @@ type Props = {
   className?: string;
 };
 
+function extractErrorMessage(data: unknown): string | null {
+  if (typeof data === "string") return data || null;
+
+  if (data && typeof data === "object") {
+    const obj = data as Record<string, unknown>;
+
+    if (typeof obj.error === "string" && obj.error.trim()) return obj.error;
+    if (typeof obj.message === "string" && obj.message.trim()) return obj.message;
+
+    if (Array.isArray(obj.errors) && obj.errors.length > 0) {
+      const first = obj.errors[0];
+      if (typeof first === "string") return first;
+      if (first && typeof first === "object") {
+        const e0 = first as Record<string, unknown>;
+        if (typeof e0.message === "string") return e0.message;
+      }
+    }
+  }
+
+  return null;
+}
+
 export function TargetKursLeadForm({ className }: Props) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
@@ -14,6 +35,8 @@ export function TargetKursLeadForm({ className }: Props) {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (loading) return;
+
     setLoading(true);
     setSuccess(null);
     setError(null);
@@ -21,14 +44,13 @@ export function TargetKursLeadForm({ className }: Props) {
     const formEl = e.currentTarget;
     const formData = new FormData(formEl);
 
-    const firstName = formData.get("firstName")?.toString().trim() || "";
-    const lastName = formData.get("lastName")?.toString().trim() || "";
-    const age = formData.get("age")?.toString().trim() || "";
-    const city = formData.get("city")?.toString().trim() || "";
-    const level = formData.get("level")?.toString().trim() || "";
-    const phone = formData.get("phone")?.toString().trim() || "";
+    const firstName = String(formData.get("firstName") ?? "").trim();
+    const lastName = String(formData.get("lastName") ?? "").trim();
+    const age = String(formData.get("age") ?? "").trim();
+    const city = String(formData.get("city") ?? "").trim();
+    const level = String(formData.get("level") ?? "").trim();
+    const phone = String(formData.get("phone") ?? "").trim();
 
-    // 🔴 JS tarafdan ham tekshiruv – hammasi to‘ldirilgan bo‘lsin
     if (!firstName || !lastName || !age || !city || !level || !phone) {
       setError("Barcha maydonlarni to‘liq to‘ldiring.");
       setLoading(false);
@@ -36,32 +58,37 @@ export function TargetKursLeadForm({ className }: Props) {
     }
 
     const payload = {
-      firstName,
-      lastName,
-      age,
-      city,
-      level,
+      fullName: `${firstName} ${lastName}`.trim(),
       phone,
-      source: "kurs", // kurs leadi ekanini belgilab qo'yamiz
+      source: "target-kursi",
+      note: `Yosh: ${age}; Shahar: ${city}; Daraja: ${level}`,
     };
 
     try {
-      const res = await fetch("https://vision-baza.uz/target/new", {
+      // ✅ MUHIM: endi proxy emas, shu loyihadagi target-leads route'ga uramiz
+      const res = await fetch("/api/target-leads", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
+      const contentType = res.headers.get("content-type") ?? "";
+      const data: unknown = contentType.includes("application/json")
+        ? await res.json().catch(() => null)
+        : await res.text().catch(() => "");
+
       if (!res.ok) {
-        throw new Error("Serverdan xatolik qaytdi");
+        const msg = extractErrorMessage(data) ?? `Server xatosi: ${res.status}`;
+        throw new Error(msg);
       }
 
       setSuccess("Arizangiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog‘lanamiz.");
       formEl.reset();
-    } catch (err) {
-      setError("Yuborishda xatolik yuz berdi. Iltimos, qaytadan urinib ko‘ring.");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Xatolik yuz berdi";
+      setError(msg || "Yuborishda xatolik yuz berdi. Iltimos, qaytadan urinib ko‘ring.");
+       
+      console.error("TargetKursLeadForm submit error:", err);
     } finally {
       setLoading(false);
     }
@@ -81,9 +108,7 @@ export function TargetKursLeadForm({ className }: Props) {
 
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="space-y-1">
-          <label className="text-xs text-slate-300" htmlFor="firstName">
-            Ism
-          </label>
+          <label className="text-xs text-slate-300" htmlFor="firstName">Ism</label>
           <input
             id="firstName"
             name="firstName"
@@ -92,10 +117,9 @@ export function TargetKursLeadForm({ className }: Props) {
             placeholder="Ismingiz"
           />
         </div>
+
         <div className="space-y-1">
-          <label className="text-xs text-slate-300" htmlFor="lastName">
-            Familiya
-          </label>
+          <label className="text-xs text-slate-300" htmlFor="lastName">Familiya</label>
           <input
             id="lastName"
             name="lastName"
@@ -108,9 +132,7 @@ export function TargetKursLeadForm({ className }: Props) {
 
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="space-y-1">
-          <label className="text-xs text-slate-300" htmlFor="age">
-            Yoshi
-          </label>
+          <label className="text-xs text-slate-300" htmlFor="age">Yoshi</label>
           <input
             id="age"
             name="age"
@@ -122,10 +144,9 @@ export function TargetKursLeadForm({ className }: Props) {
             placeholder="Masalan, 24"
           />
         </div>
+
         <div className="space-y-1">
-          <label className="text-xs text-slate-300" htmlFor="city">
-            Yashash joyi
-          </label>
+          <label className="text-xs text-slate-300" htmlFor="city">Yashash joyi</label>
           <input
             id="city"
             name="city"
@@ -137,9 +158,7 @@ export function TargetKursLeadForm({ className }: Props) {
       </div>
 
       <div className="space-y-1">
-        <label className="text-xs text-slate-300" htmlFor="level">
-          Targetdan bilim darajangiz
-        </label>
+        <label className="text-xs text-slate-300" htmlFor="level">Targetdan bilim darajangiz</label>
         <select
           id="level"
           name="level"
@@ -154,9 +173,7 @@ export function TargetKursLeadForm({ className }: Props) {
       </div>
 
       <div className="space-y-1">
-        <label className="text-xs text-slate-300" htmlFor="phone">
-          Telefon raqamingiz
-        </label>
+        <label className="text-xs text-slate-300" htmlFor="phone">Telefon raqamingiz</label>
         <input
           id="phone"
           name="phone"
@@ -167,8 +184,6 @@ export function TargetKursLeadForm({ className }: Props) {
         />
       </div>
 
-      <input type="hidden" name="source" value="kurs" />
-
       <button
         type="submit"
         disabled={loading}
@@ -177,16 +192,8 @@ export function TargetKursLeadForm({ className }: Props) {
         {loading ? "Yuborilmoqda..." : "Arizani yuborish"}
       </button>
 
-      {success && (
-        <p className="text-xs text-emerald-300">
-          {success}
-        </p>
-      )}
-      {error && (
-        <p className="text-xs text-red-400">
-          {error}
-        </p>
-      )}
+      {success && <p className="text-xs text-emerald-300">{success}</p>}
+      {error && <p className="text-xs text-red-400">{error}</p>}
     </form>
   );
 }

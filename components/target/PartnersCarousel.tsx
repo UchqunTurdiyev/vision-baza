@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 // components/target/PartnersCarousel.tsx
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type Partner = {
@@ -10,12 +10,12 @@ type Partner = {
 };
 
 const partners: Partner[] = [
-  { name: "ISFT Institute", logo: "/partners/isft.svg" },
-  { name: "Japan International School", logo: "/partners/japan-school.svg" },
-  { name: "Med Expert Clinic", logo: "/partners/med-expert.svg" },
-  { name: "Vision Group", logo: "/partners/vision-group.svg" },
-  { name: "M-EDU", logo: "/partners/m-edu.svg" },
-  { name: "Industrial Construction Bank", logo: "/partners/icb.svg" },
+  { name: "Vision Group", logo: "/logo.png" },
+  { name: "ISFT Institute", logo: "/isft2.png" },
+  { name: "Japan International School", logo: "/jap.png" },
+  { name: "Med Expert Clinic", logo: "/md.png" },
+  { name: "Turon Med", logo: "/TR.png" },
+  { name: "Raxmatillo Abdullayev", logo: "/ra.png" },
 ];
 
 // 3 tadan qilib slidelarga bo'lib olamiz
@@ -68,11 +68,12 @@ export function PartnersCarousel() {
                 >
                   {/* Logo */}
                   <div className="flex flex-col items-center gap-2">
-                    <div className="flex h-10 w-28 items-center justify-center">
+                    <div className="flex h-14 w-28 items-center justify-center">
+                      {/* // eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={partner.logo}
                         alt={partner.name}
-                        className="max-h-10 max-w-full object-contain"
+                        className="max-h-14 max-w-full object-contain"
                       />
                     </div>
                     <p className="text-[11px] text-center text-slate-300">

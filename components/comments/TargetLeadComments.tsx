@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type Props = {
   leadId: string;
@@ -13,6 +13,12 @@ type LeadComment = {
   createdAt?: string;
 };
 
+function getErrorMessage(err: unknown): string {
+  if (err instanceof Error) return err.message;
+  if (typeof err === "string") return err;
+  return "Xatolik";
+}
+
 export default function TargetLeadComments({ leadId, onAfterAdd }: Props) {
   const [comments, setComments] = useState<LeadComment[]>([]);
   const [loading, setLoading] = useState(false);
@@ -20,45 +26,43 @@ export default function TargetLeadComments({ leadId, onAfterAdd }: Props) {
   const [text, setText] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  async function loadComments() {
+  const loadComments = useCallback(async (): Promise<void> => {
     try {
       setLoading(true);
       setError(null);
-  
+
       const res = await fetch(`/api/target-leads/${leadId}/comments`);
-  
+
       if (!res.ok) {
-        const text = await res.text();
-        console.error(
-          "Target comments API error:",
-          res.status,
-          text
-        );
+        const bodyText = await res.text();
+        console.error("Target comments API error:", res.status, bodyText);
         throw new Error("Kommentlarni olishda xatolik");
       }
-  
-      const data = await res.json();
-      setComments(Array.isArray(data?.comments) ? data.comments : []);
-    } catch (e: any) {
+
+      const data: unknown = await res.json();
+
+      const maybe = data as { comments?: LeadComment[] };
+      setComments(Array.isArray(maybe?.comments) ? maybe.comments : []);
+    } catch (e: unknown) {
       console.error(e);
-      setError(e?.message || "Xatolik");
+      setError(getErrorMessage(e));
     } finally {
       setLoading(false);
     }
-  }
-  
+  }, [leadId]);
 
   useEffect(() => {
     void loadComments();
-  }, [leadId]);
+  }, [loadComments]);
 
-  async function handleAdd() {
+  async function handleAdd(): Promise<void> {
     const trimmed = text.trim();
     if (!trimmed) return;
 
     try {
       setSending(true);
       setError(null);
+
       const res = await fetch(`/api/target-leads/${leadId}/comments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -66,13 +70,16 @@ export default function TargetLeadComments({ leadId, onAfterAdd }: Props) {
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data?.error || "Komment qo‘shishda xatolik");
+        const data: unknown = await res.json().catch(() => ({}));
+        const maybe = data as { error?: string };
+        throw new Error(maybe?.error || "Komment qo‘shishda xatolik");
       }
 
-      const data = await res.json().catch(() => ({}));
+      const data: unknown = await res.json().catch(() => ({}));
+      const maybe = data as { comment?: LeadComment };
+
       const newComment: LeadComment =
-        data?.comment ?? {
+        maybe?.comment ?? {
           text: trimmed,
           createdAt: new Date().toISOString(),
         };
@@ -80,9 +87,9 @@ export default function TargetLeadComments({ leadId, onAfterAdd }: Props) {
       setComments((prev) => [...prev, newComment]);
       setText("");
       if (onAfterAdd) onAfterAdd(trimmed);
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(e);
-      setError(e?.message || "Komment qo‘shishda xatolik");
+      setError(getErrorMessage(e) || "Komment qo‘shishda xatolik");
     } finally {
       setSending(false);
     }
@@ -133,9 +140,7 @@ export default function TargetLeadComments({ leadId, onAfterAdd }: Props) {
         </button>
       </div>
 
-      {error && (
-        <div className="mt-1 text-[10px] text-red-400">{error}</div>
-      )}
+      {error && <div className="mt-1 text-[10px] text-red-400">{error}</div>}
     </div>
   );
 }

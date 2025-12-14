@@ -4,13 +4,25 @@ import { TargetLeadModel } from "@/models/TargetLead";
 
 export const dynamic = "force-dynamic";
 
+type CommentItem = { text: string; createdAt?: Date | string };
+type LeadCommentsLean = { comments?: CommentItem[] };
+
+function getErrorMessage(e: unknown): string {
+  if (e instanceof Error) return e.message;
+  if (typeof e === "string") return e;
+  try {
+    return JSON.stringify(e);
+  } catch {
+    return "Internal error";
+  }
+}
+
 // /api/target-leads/:id/comments — ikkinchi oxirgi segment = id
-function getId(req: NextRequest) {
+function getId(req: NextRequest): string {
   const { pathname } = req.nextUrl;
   const parts = pathname.split("/").filter(Boolean);
   // ... ["api","target-leads",":id","comments"]
-  if (parts.length >= 2) return parts[parts.length - 2];
-  return undefined;
+  return parts.length >= 2 ? (parts[parts.length - 2] ?? "") : "";
 }
 
 // GET /api/target-leads/:id/comments
@@ -20,31 +32,27 @@ export async function GET(req: NextRequest) {
 
     const id = getId(req);
     if (!id) {
+       
       console.error("GET comments => id yo‘q");
       return NextResponse.json({ comments: [] }, { status: 200 });
     }
 
-    const lead = await TargetLeadModel.findById(id)
+    const lead = (await TargetLeadModel.findById(id)
       .select({ comments: 1 })
-      .lean();
+      .lean()) as LeadCommentsLean | null;
 
     if (!lead) {
+       
       console.warn("GET comments => lead topilmadi, id:", id);
       return NextResponse.json({ comments: [] }, { status: 200 });
     }
 
-    const anyLead = lead as any;
-    const comments = Array.isArray(anyLead.comments)
-      ? anyLead.comments
-      : [];
-
+    const comments = Array.isArray(lead.comments) ? lead.comments : [];
     return NextResponse.json({ comments }, { status: 200 });
-  } catch (e: any) {
+  } catch (e: unknown) {
+     
     console.error("GET /api/target-leads/[id]/comments error:", e);
-    return NextResponse.json(
-      { error: e?.message ?? "Internal error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: getErrorMessage(e) }, { status: 500 });
   }
 }
 
@@ -55,14 +63,11 @@ export async function POST(req: NextRequest) {
 
     const id = getId(req);
     if (!id) {
-      return NextResponse.json(
-        { error: "ID berilmagan" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "ID berilmagan" }, { status: 400 });
     }
 
-    const body = await req.json().catch(() => ({}));
-    const text = (body?.text || "").trim();
+    const body = (await req.json().catch(() => ({}))) as Record<string, unknown>;
+    const text = typeof body.text === "string" ? body.text.trim() : "";
 
     if (!text) {
       return NextResponse.json(
@@ -73,28 +78,26 @@ export async function POST(req: NextRequest) {
 
     const lead = await TargetLeadModel.findById(id);
     if (!lead) {
-      return NextResponse.json(
-        { error: "Lead topilmadi" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Lead topilmadi" }, { status: 404 });
     }
 
-    const current = Array.isArray((lead as any).comments)
-      ? (lead as any).comments
+    const existing = Array.isArray((lead as { comments?: unknown }).comments)
+      ? ((lead as { comments: CommentItem[] }).comments ?? [])
       : [];
 
-    const comment = { text, createdAt: new Date() };
+    const comment: CommentItem = { text, createdAt: new Date() };
 
-    (lead as any).comments = [...current, comment];
+    (lead as unknown as { comments: CommentItem[] }).comments = [
+      ...existing,
+      comment,
+    ];
 
     await lead.save();
 
     return NextResponse.json({ comment }, { status: 201 });
-  } catch (e: any) {
+  } catch (e: unknown) {
+     
     console.error("POST /api/target-leads/[id]/comments error:", e);
-    return NextResponse.json(
-      { error: e?.message ?? "Internal error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: getErrorMessage(e) }, { status: 500 });
   }
 }

@@ -3,14 +3,41 @@ import { connectToDB } from "@/lib/mongodb";
 import { TargetLeadModel } from "@/models/TargetLead";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
+type CommentLean = { text?: string };
+
+type LeadLean = {
+  _id: unknown;
+  fullName?: string;
+  phone?: string;
+  source?: string;
+  status?: string;
+  note?: string;
+  createdAt?: string | Date;
+  flagged?: boolean;
+  businessType?: string;
+  socialPage?: string;
+  budget?: string;
+  comments?: CommentLean[];
+};
+
+function getErrorMessage(e: unknown): string {
+  if (e instanceof Error) return e.message;
+  if (typeof e === "string") return e;
+  try {
+    return JSON.stringify(e);
+  } catch {
+    return "Internal error";
+  }
+}
 
 // GET /api/target-leads  — ro‘yxat
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     await connectToDB();
 
-    // xohlasangiz q, status, limit qo‘shib kengaytirasiz
-    const rows = await TargetLeadModel.find({})
+    const rows = (await TargetLeadModel.find({})
       .sort({ createdAt: -1 })
       .select({
         fullName: 1,
@@ -25,45 +52,63 @@ export async function GET(req: NextRequest) {
         budget: 1,
         comments: { $slice: -1 },
       })
-      .lean();
+      .lean()) as LeadLean[];
 
-    const leads = (rows as any[]).map((x) => {
-      const anyX = x as any;
-      return {
-        ...anyX,
-        id: String(anyX._id),
-        flagged:
-          typeof anyX.flagged === "boolean" ? anyX.flagged : false,
-        lastCommentText:
-          Array.isArray(anyX.comments) && anyX.comments.length > 0
-            ? anyX.comments[0].text
-            : "",
-      };
-    });
+    const leads = rows.map((row) => ({
+      ...row,
+      id: String(row._id),
+      flagged: typeof row.flagged === "boolean" ? row.flagged : false,
+      lastCommentText:
+        Array.isArray(row.comments) && row.comments.length > 0
+          ? String(row.comments[0]?.text ?? "")
+          : "",
+    }));
 
     return NextResponse.json({ leads }, { status: 200 });
-  } catch (e: any) {
+  } catch (e: unknown) {
+     
     console.error("GET /api/target-leads error:", e);
-    return NextResponse.json(
-      { error: e?.message ?? "Internal error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: getErrorMessage(e) }, { status: 500 });
   }
 }
 
-// POST /api/target-leads  — forma yuborish (TargetLeadNewPage shu yerga uriladi)
+// POST /api/target-leads  — forma yuborish
 export async function POST(req: NextRequest) {
   try {
     await connectToDB();
 
-    const body = await req.json().catch(() => ({}));
+    const body = (await req.json().catch(() => ({}))) as Record<string, unknown>;
 
-    const fullName = (body?.fullName || "").trim();
-    const phone = (body?.phone || "").trim();
-    const businessType = body?.businessType || "";
-    const socialPage = body?.socialPage || body?.page || "";
-    const budget = body?.budget || "";
-    const comment = body?.comment || "";
+    const fullName =
+      typeof body.fullName === "string" ? body.fullName.trim() : "";
+    const phone = typeof body.phone === "string" ? body.phone.trim() : "";
+
+    const businessType =
+      typeof body.businessType === "string" ? body.businessType.trim() : "";
+
+    const socialPage =
+      typeof body.socialPage === "string"
+        ? body.socialPage.trim()
+        : typeof body.page === "string"
+          ? body.page.trim()
+          : "";
+
+    const budget = typeof body.budget === "string" ? body.budget.trim() : "";
+
+    // ✅ Source: faqat 2 xil qiymat
+    const rawSource = typeof body.source === "string" ? body.source.trim() : "";
+    const source =
+      rawSource === "target-xizmati" || rawSource === "target-kursi"
+        ? rawSource
+        : "target-xizmati"; // default
+
+    // ✅ Note: yangi (body.note) yoki eski (body.comment)
+    const note =
+      typeof body.note === "string" && body.note.trim()
+        ? body.note.trim()
+        : typeof body.comment === "string"
+          ? body.comment.trim()
+          : "";
 
     if (!fullName || !phone) {
       return NextResponse.json(
@@ -75,30 +120,30 @@ export async function POST(req: NextRequest) {
     const created = await TargetLeadModel.create({
       fullName,
       phone,
-      source: "target-landing",
+      source, // ✅ target-xizmati / target-kursi
       status: "LID",
-      note: comment,
+      note,
       businessType,
       socialPage,
       budget,
     });
 
-    const anyCreated = created.toObject() as any;
+    const createdObj = created.toObject() as Record<string, unknown> & {
+      _id: unknown;
+    };
 
     return NextResponse.json(
       {
         lead: {
-          ...anyCreated,
-          id: String(anyCreated._id),
+          ...createdObj,
+          id: String(createdObj._id),
         },
       },
       { status: 201 }
     );
-  } catch (e: any) {
+  } catch (e: unknown) {
+     
     console.error("POST /api/target-leads error:", e);
-    return NextResponse.json(
-      { error: e?.message ?? "Internal error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: getErrorMessage(e) }, { status: 500 });
   }
 }

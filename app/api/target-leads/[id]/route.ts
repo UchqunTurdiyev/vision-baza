@@ -4,51 +4,57 @@ import { TargetLeadModel } from "@/models/TargetLead";
 
 export const dynamic = "force-dynamic";
 
+type LeadLean = {
+  _id: unknown;
+  [key: string]: unknown;
+};
+
+function getErrorMessage(e: unknown): string {
+  if (e instanceof Error) return e.message;
+  if (typeof e === "string") return e;
+  try {
+    return JSON.stringify(e);
+  } catch {
+    return "Internal error";
+  }
+}
+
 // URL dan id ni olish
-function getId(req: NextRequest) {
+function getId(req: NextRequest): string {
   const { pathname } = req.nextUrl;
   const parts = pathname.split("/").filter(Boolean);
   // .../api/target-leads/:id
-  return parts[parts.length - 1];
+  return parts[parts.length - 1] ?? "";
 }
 
 // GET /api/target-leads/:id  (ixtiyoriy, debug uchun foydali)
 export async function GET(req: NextRequest) {
   try {
     await connectToDB();
+
     const id = getId(req);
     if (!id) {
-      return NextResponse.json(
-        { error: "ID berilmagan" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "ID berilmagan" }, { status: 400 });
     }
 
-    const lead = await TargetLeadModel.findById(id).lean();
+    const lead = (await TargetLeadModel.findById(id).lean()) as LeadLean | null;
     if (!lead) {
-      return NextResponse.json(
-        { error: "Lead topilmadi" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Lead topilmadi" }, { status: 404 });
     }
-
-    const anyLead = lead as any;
 
     return NextResponse.json(
       {
         lead: {
-          ...anyLead,
-          id: String(anyLead._id),
+          ...lead,
+          id: String(lead._id),
         },
       },
       { status: 200 }
     );
-  } catch (e: any) {
+  } catch (e: unknown) {
+     
     console.error("GET /api/target-leads/[id] error:", e);
-    return NextResponse.json(
-      { error: e?.message ?? "Internal error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: getErrorMessage(e) }, { status: 500 });
   }
 }
 
@@ -56,16 +62,14 @@ export async function GET(req: NextRequest) {
 export async function PATCH(req: NextRequest) {
   try {
     await connectToDB();
+
     const id = getId(req);
     if (!id) {
-      return NextResponse.json(
-        { error: "ID berilmagan" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "ID berilmagan" }, { status: 400 });
     }
 
-    const body = await req.json().catch(() => ({}));
-    const update: Record<string, any> = {};
+    const body = (await req.json().catch(() => ({}))) as Record<string, unknown>;
+    const update: Record<string, unknown> = {};
 
     if (typeof body.status === "string") update.status = body.status;
     if (typeof body.flagged === "boolean") update.flagged = body.flagged;
@@ -84,61 +88,44 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    const updated = await TargetLeadModel.findByIdAndUpdate(id, update, {
+    const updated = (await TargetLeadModel.findByIdAndUpdate(id, update, {
       new: true,
-    }).lean();
+    }).lean()) as LeadLean | null;
 
     if (!updated) {
-      return NextResponse.json(
-        { error: "Lead topilmadi" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Lead topilmadi" }, { status: 404 });
     }
-
-    const anyUpdated = updated as any;
 
     return NextResponse.json(
       {
         lead: {
-          ...anyUpdated,
-          id: String(anyUpdated._id),
+          ...updated,
+          id: String(updated._id),
         },
       },
       { status: 200 }
     );
-  } catch (e: any) {
+  } catch (e: unknown) {
+     
     console.error("PATCH /api/target-leads/[id] error:", e);
-    return NextResponse.json(
-      { error: e?.message ?? "Internal error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: getErrorMessage(e) }, { status: 500 });
   }
 }
 
-
-
-// ... GET va PATCH allaqachon bor bo‘lishi kerak
-
+// DELETE /api/target-leads/:id  — parol bilan o‘chirish
 export async function DELETE(req: NextRequest) {
   try {
     await connectToDB();
 
-    // URL dan id ni olish: /api/target-leads/:id
-    const { pathname } = req.nextUrl;
-    const parts = pathname.split("/").filter(Boolean);
-    const id = parts[parts.length - 1];
-
+    const id = getId(req);
     if (!id) {
-      return NextResponse.json(
-        { error: "ID berilmagan" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "ID berilmagan" }, { status: 400 });
     }
 
-    const body = await req.json().catch(() => ({}));
-    const password = body?.password;
-    const serverPassword = process.env.TARGET_DELETE_PASSWORD;
+    const body = (await req.json().catch(() => ({}))) as Record<string, unknown>;
+    const password = typeof body.password === "string" ? body.password : "";
 
+    const serverPassword = process.env.TARGET_DELETE_PASSWORD ?? "";
     if (!serverPassword) {
       return NextResponse.json(
         { error: "Server paroli sozlanmagan" },
@@ -147,27 +134,21 @@ export async function DELETE(req: NextRequest) {
     }
 
     if (!password || password !== serverPassword) {
-      return NextResponse.json(
-        { error: "Parol noto‘g‘ri" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Parol noto‘g‘ri" }, { status: 401 });
     }
 
-    const deleted = await TargetLeadModel.findByIdAndDelete(id).lean();
+    const deleted = (await TargetLeadModel.findByIdAndDelete(id).lean()) as
+      | LeadLean
+      | null;
 
     if (!deleted) {
-      return NextResponse.json(
-        { error: "Lead topilmadi" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Lead topilmadi" }, { status: 404 });
     }
 
     return NextResponse.json({ ok: true }, { status: 200 });
-  } catch (e: any) {
+  } catch (e: unknown) {
+     
     console.error("DELETE /api/target-leads/[id] error:", e);
-    return NextResponse.json(
-      { error: e?.message ?? "Internal error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: getErrorMessage(e) }, { status: 500 });
   }
 }

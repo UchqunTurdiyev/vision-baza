@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import TargetLeadNewPage from "@/components/target/TargetLeadNewPage";
 import type { Metadata } from "next";
-import jp from "../../public/jp.png"
 import PixelTargetPageView from "./PixelTargetPageView";
 
 export const metadata: Metadata = {
@@ -15,11 +15,11 @@ export default function TargetPage() {
 
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+    <main className="min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
       <PixelTargetPageView />
       <div className="relative">
         {/* /leads dagidek radial fon */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.25),_transparent_55%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(129,140,248,0.25),transparent_55%)]" />
 
  {/* HERO */}
 <section className="relative md:px-6 px-2 md:pt-16 pt-12 pb-12">
@@ -53,7 +53,7 @@ export default function TargetPage() {
       <a
     href="#form"
     className="inline-flex items-center justify-center h-11 px-6 rounded-xl
-               bg-gradient-to-r from-slate-950 via-indigo-800 to-indigo-600
+               bg-linear-to-r from-slate-950 via-indigo-800 to-indigo-600
                text-white font-semibold shadow-lg shadow-indigo-900/60
                hover:from-slate-900 hover:via-indigo-700 hover:to-indigo-500
                transition"
@@ -296,7 +296,7 @@ export default function TargetPage() {
 
       <div className="mt-4 space-y-2">
         <h4 className="text-sm font-semibold text-emerald-200">
-          Bizning eng katta yutug'imiz:
+          Bizning eng katta yutug&apos;imiz:
         </h4>
         <ul className="space-y-1 text-sm md:text-base text-slate-100/90 list-disc list-inside">
           <li>
@@ -304,7 +304,7 @@ export default function TargetPage() {
           </li>
           <li>
             Web Saytingiz copywriting sotuv postlari bilan
-            <strong>sotuv saytlaridan 10X tez </strong> ishlaydi. Natijada mijoz va pul yo'qotmaysiz, sayt xarajatlarini to'liq biz qilib beramiz
+            <strong>sotuv saytlaridan 10X tez </strong> ishlaydi. Natijada mijoz va pul yo&apos;qotmaysiz, sayt xarajatlarini to&apos;liq biz qilib beramiz
           </li>
         </ul>
 
@@ -315,12 +315,12 @@ export default function TargetPage() {
         <a
           href="#form"
           className="inline-flex items-center justify-center h-10 px-5 rounded-xl
-           bg-gradient-to-r from-slate-950 via-indigo-800 to-indigo-600
+           bg-linear-to-r from-slate-950 via-indigo-800 to-indigo-600
            text-white text-sm font-semibold shadow-lg shadow-indigo-900/60
            hover:from-slate-900 hover:via-indigo-700 hover:to-indigo-500
            transition"
         >
-          Ro'yxatdan o'ting
+          Ro&apos;yxatdan o&apos;ting
         </a>
       </div>
     </div>
@@ -382,7 +382,7 @@ export default function TargetPage() {
       </div>
     </div>
     <p className="mt-7 text-md font-semibold text-emerald-300">
-      Saytdan chiqib ketmasdan oxirigacha davom eting va bonuslarga ega bo'ling
+      Saytdan chiqib ketmasdan oxirigacha davom eting va bonuslarga ega bo&apos;ling
  </p>
   </div>
 
@@ -474,7 +474,7 @@ export default function TargetPage() {
         </li>
         <li>
           Telegram bot orqali
-          <strong>izlanishi qulay va oson ma'lumot</strong> olish imkoniyati.
+          <strong>izlanishi qulay va oson ma&apos;lumot</strong> olish imkoniyati.
         </li>
         <li>
           Tez va qulay sayt natijasida{" "}
@@ -620,7 +620,7 @@ export default function TargetPage() {
           <li>• Reklama, sayt va postlar uchun chuqur copywriting va sotuv matnlarini yozamiz.</li>
           <li>• Brendingizga mos <strong>sotuv veb-sayti va Telegram bot</strong> professional dizaynda yasab beramiz.</li>
           <li>• Sotuv jamoangiz uchun <strong>skriptlar va muloqot ssenariylari</strong> tayyorlaymiz.</li>
-          <li>• Kantentlarni ishlab chiqamiz  <strong>To'liq SMM xizmati</strong> ni qilib beramiz.</li>
+          <li>• Kantentlarni ishlab chiqamiz  <strong>To&apos;liq SMM xizmati</strong> ni qilib beramiz.</li>
         </ul>
         {/* <p className="mt-3 text-xs font-semibold text-slate-300">
         Chegirma narxi: <span className="text-emerald-300">$1470</span>
