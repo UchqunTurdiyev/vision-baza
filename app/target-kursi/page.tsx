@@ -486,7 +486,7 @@ export default function TargetKursPage() {
     {/* Chap tomonda matn */}
     <div>
       <h2 className="text-2xl font-semibold sm:text-3xl">
-        Pro Target kursiga hoziroq ro‘yxatdan o‘ting
+        Pro Target kursiga <br /> hoziroq ro‘yxatdan o‘ting
       </h2>
       <p className="mt-3 max-w-2xl text-sm sm:text-base text-slate-100">
         O‘zingizni reklama balansiga qarab emas, natijangizga qarab baholaydigan
