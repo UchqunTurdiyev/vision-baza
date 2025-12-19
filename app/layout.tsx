@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 // app/layout.tsx  (server component)
 import Script from "next/script";
 import "./globals.css";
-import type { Metadata } from "next";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Topbar from "@/components/topbar";
 import Footer from "@/components/footer";
@@ -9,6 +9,7 @@ import Footer from "@/components/footer";
 
 const PIXEL_ID_SALES = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
 const PIXEL_ID_TARGET = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '2398531020592784';
+const PIXEL_ID_TARGET_KOURSE = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '1499689861130089';
 
 
 export const metadata = {
@@ -54,19 +55,6 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const lang = "uz"; // Agar til tanlovi bo'lsa, cookie/headers’dan serverda oling
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Vision Baza",
-    url: "https://www.vision-group.uz/leads",
-    logo: "https://www.vision-group.uz/logo.png",
-    description:
-      "Sotuvchi, sotuv xodimi va sotuv menejerlari uchun ish o‘rinlari va treninglar platformasi.",
-    sameAs: [
-      "https://t.me/sotuv_mutaxassisi",
-      "https://www.instagram.com/sotuv_mutaxassisi/",
-    ],
-  };
 
   return (
     <html lang={lang} suppressHydrationWarning>
@@ -99,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '${PIXEL_ID_SALES}');
     fbq('init', '${PIXEL_ID_TARGET}');
+    fbq('init', '${PIXEL_ID_TARGET_KOURSE}');
     // bu yerda fbq('track', 'PageView'); NI OLIB TASHLAYMIZ
   `}
 </Script>
@@ -122,12 +111,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     src={`https://www.facebook.com/tr?id=${PIXEL_ID_TARGET}&ev=PageView&noscript=1`}
     alt=""
   />
+
+<img
+    height="1"
+    width="1"
+    style={{ display: "none" }}
+    src={`https://www.facebook.com/tr?id=${PIXEL_ID_TARGET_KOURSE}&ev=PageView&noscript=1`}
+    alt=""
+  />
 </noscript>
       
 
       <div className="min-h-screen bg-[#0b1220] text-white">
       <Topbar />
-      <div className="flex mx-20 mx-auto">
+      <div className="flex mx-20">
         {/* <Sidebar /> */}
         <main className="flex-1 p-4">{children}</main>
       </div>
@@ -138,6 +135,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+// <!-- Meta Pixel Code -->
+// <script>
+// !function(f,b,e,v,n,t,s)
+// {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+// n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+// if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+// n.queue=[];t=b.createElement(e);t.async=!0;
+// t.src=v;s=b.getElementsByTagName(e)[0];
+// s.parentNode.insertBefore(t,s)}(window, document,'script',
+// 'https://connect.facebook.net/en_US/fbevents.js');
+// fbq('init', '1499689861130089');
+// fbq('track', 'PageView');
+// </script>
+// <noscript><img height="1" width="1" style="display:none"
+// src="https://www.facebook.com/tr?id=1499689861130089&ev=PageView&noscript=1"
+// /></noscript>
+// <!-- End Meta Pixel Code -->
 
 
 
