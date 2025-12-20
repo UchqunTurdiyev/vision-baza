@@ -19,18 +19,23 @@ function countDigits(v: string): number {
   return v.replace(/\D/g, "").length;
 }
 
+function extractErrorMessage(raw: string): string {
+  try {
+    const parsed = JSON.parse(raw) as { error?: unknown; message?: unknown };
+    const e = typeof parsed.error === "string" ? parsed.error : "";
+    const m = typeof parsed.message === "string" ? parsed.message : "";
+    return e || m || raw || "Server xatoligi. Qayta urinib ko‘ring.";
+  } catch {
+    return raw || "Server xatoligi. Qayta urinib ko‘ring.";
+  }
+}
+
 type Payload = {
   fullName: string;
   phone: string;
-  source: "lid-magnit";
+  source: string;
   note: string;
 };
-
-function getApiBase(): string {
-  const envBase = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "").replace(/\/+$/, "");
-  // Agar env yo'q bo'lsa, ayni domeningizdan foydalanadi
-  return envBase || window.location.origin;
-}
 
 export default function LidMagnitForm() {
   const router = useRouter();
@@ -68,17 +73,15 @@ export default function LidMagnitForm() {
 
     setLoading(true);
     try {
-      const apiBase = getApiBase();
-      const endpoint = `${apiBase}/target/new`;
-
       const payload: Payload = {
-        fullName,
+        fullName, // ✅ memo'dagi fullName ishlatiladi
         phone: ph,
-        source: "lid-magnit",
+        source: "lid-magnit", // xohlasangiz "lid-magnit" qilib qo'yasiz
         note: s(email) ? `Email: ${s(email)}` : "",
       };
 
-      const res = await fetch(endpoint, {
+      // MUHIM: CORS bo‘lmasligi uchun proxy route ga yuboramiz
+      const res = await fetch("/api/target-leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -86,10 +89,9 @@ export default function LidMagnitForm() {
 
       if (!res.ok) {
         const txt = await res.text().catch(() => "");
-        throw new Error(txt || "Server xatoligi. Qayta urinib ko‘ring.");
+        throw new Error(extractErrorMessage(txt));
       }
 
-      // Sizda sahifa nomi /thanks bo'lsa shu qoladi.
       router.push("/lid-magnit/thanks");
     } catch (error: unknown) {
       const message =

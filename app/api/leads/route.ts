@@ -10,8 +10,32 @@ function escapeRegex(input: string) {
   return input.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+type UnknownRecord = Record<string, unknown>;
 
+function toRecord(v: unknown): UnknownRecord {
+  return v && typeof v === "object" ? (v as UnknownRecord) : {};
+}
 
+function getString(obj: unknown, key: string): string {
+  const rec = toRecord(obj);
+  const val = rec[key];
+  return typeof val === "string" ? val : "";
+}
+
+function getErrorMessage(e: unknown): string {
+  if (e instanceof Error) return e.message;
+  const rec = toRecord(e);
+  const msg = rec["message"];
+  return typeof msg === "string" ? msg : "Internal error";
+}
+
+type LeadFilter = {
+  status?: string;
+  $or?: Array<
+    | { fullName: { $regex: string; $options: "i" } }
+    | { phone: { $regex: string } }
+  >;
+};
 
 export async function GET(req: NextRequest) {
   try {
@@ -23,8 +47,9 @@ export async function GET(req: NextRequest) {
     const limitRaw = req.nextUrl.searchParams.get("limit");
     const limit = Math.min(Math.max(Number(limitRaw ?? 200) || 200, 1), 500); // 1..500
 
-    const filter: Record<string, any> = {};
+    const filter: LeadFilter = {};
     if (status) filter.status = status;
+
     if (q) {
       const safe = escapeRegex(q);
       filter.$or = [
@@ -44,7 +69,7 @@ export async function GET(req: NextRequest) {
         status: 1,
         note: 1,
         createdAt: 1,
-        flagged: 1,          // 🔴 YANGI: flagged maydonini ham olib kelamiz
+        flagged: 1, // 🔴 YANGI: flagged maydonini ham olib kelamiz
         comments: { $slice: -1 }, // faqat oxirgi komment
       })
       .lean<ILead>();
@@ -60,42 +85,37 @@ export async function GET(req: NextRequest) {
     }));
 
     return NextResponse.json({ leads }, { status: 200 });
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("GET /api/leads error:", e);
     return NextResponse.json(
-      { error: e?.message ?? "Internal error" },
+      { error: getErrorMessage(e) },
       { status: 500 }
     );
   }
 }
 
-
 export async function POST(req: NextRequest) {
   try {
     await connectToDB();
 
-    const body = await req.json().catch(() => ({}));
+    const body: unknown = await req.json().catch(() => ({}));
 
     // Eski qismi – tegmaymiz
-    const {
-      fullName,
-      phone,
-      source = "unknown",
-      note = "",
-    } = body ?? {};
+    const fullName = getString(body, "fullName");
+    const phone = getString(body, "phone");
+    const source = getString(body, "source") || "unknown";
+    const note = getString(body, "note") || "";
 
     // 🔹 YANGI: target / sotuv ajratish uchun service
-    // sotuv formadan: service: "sotuv"
-    // target formadan: service: "target"
-    const service = body?.service ?? "";
+    const service = getString(body, "service") || "";
 
     // 🔹 YANGI: target formasidagi qo‘shimcha maydonlar
-    const businessType = body?.businessType ?? "";            // select "Biznes turi"
-    const socialPage = body?.socialPage ?? body?.page ?? "";  // IG/FB sahifa
-    const budget = body?.budget ?? "";                        // select "Budjet"
+    const businessType = getString(body, "businessType") || "";
+    const socialPage = getString(body, "socialPage") || getString(body, "page") || "";
+    const budget = getString(body, "budget") || "";
 
     // 🔹 YANGI: agar target formadan "comment" kelsa, note bo‘sh bo‘lsa o‘shani yozamiz
-    const finalNote = note || body?.comment || "";
+    const finalNote = note || getString(body, "comment") || "";
 
     if (!fullName || !phone) {
       return NextResponse.json(
@@ -113,7 +133,7 @@ export async function POST(req: NextRequest) {
       status: "LID",
 
       // 🔹 YANGI maydonlar – schema’ga ham qo‘shib qo‘ygan bo‘lishingiz kerak
-      service,       // "sotuv" | "target"
+      service, // "sotuv" | "target"
       businessType,
       socialPage,
       budget,
@@ -121,10 +141,10 @@ export async function POST(req: NextRequest) {
 
     const lead = { ...created.toObject(), id: String(created._id) };
     return NextResponse.json({ lead }, { status: 201 });
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("POST /api/leads error:", e);
     return NextResponse.json(
-      { error: e?.message ?? "Internal error" },
+      { error: getErrorMessage(e) },
       { status: 500 }
     );
   }
