@@ -76,7 +76,7 @@ export default function LidMagnitForm() {
       const payload: Payload = {
         fullName, // ✅ memo'dagi fullName ishlatiladi
         phone: ph,
-        source: "lid-magnit", // xohlasangiz "lid-magnit" qilib qo'yasiz
+        source: "course", // xohlasangiz "lid-magnit" qilib qo'yasiz
         note: s(email) ? `Email: ${s(email)}` : "",
       };
 

@@ -10,6 +10,7 @@ import Footer from "@/components/footer";
 const PIXEL_ID_SALES = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '874895024822350';
 const PIXEL_ID_TARGET = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '2398531020592784';
 const PIXEL_ID_TARGET_KOURSE = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '1499689861130089';
+const PIXEL_ID_TARGET_LID_MAGNIT = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ?? '1350142093106140';
 
 
 export const metadata = {
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     fbq('init', '${PIXEL_ID_SALES}');
     fbq('init', '${PIXEL_ID_TARGET}');
     fbq('init', '${PIXEL_ID_TARGET_KOURSE}');
+    fbq('init', '${PIXEL_ID_TARGET_LID_MAGNIT}');
     // bu yerda fbq('track', 'PageView'); NI OLIB TASHLAYMIZ
   `}
 </Script>
@@ -119,6 +121,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     src={`https://www.facebook.com/tr?id=${PIXEL_ID_TARGET_KOURSE}&ev=PageView&noscript=1`}
     alt=""
   />
+  <img
+      height="1"
+      width="1"
+      style={{ display: "none" }}
+      src={`https://www.facebook.com/tr?id=${PIXEL_ID_TARGET_LID_MAGNIT}&ev=PageView&noscript=1`}
+      alt=""
+    />
 </noscript>
       
 
@@ -136,23 +145,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 }
 
-// <!-- Meta Pixel Code -->
-// <script>
-// !function(f,b,e,v,n,t,s)
-// {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-// n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-// if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-// n.queue=[];t=b.createElement(e);t.async=!0;
-// t.src=v;s=b.getElementsByTagName(e)[0];
-// s.parentNode.insertBefore(t,s)}(window, document,'script',
-// 'https://connect.facebook.net/en_US/fbevents.js');
-// fbq('init', '1499689861130089');
-// fbq('track', 'PageView');
-// </script>
-// <noscript><img height="1" width="1" style="display:none"
-// src="https://www.facebook.com/tr?id=1499689861130089&ev=PageView&noscript=1"
-// /></noscript>
-// <!-- End Meta Pixel Code -->
+
 
 
 

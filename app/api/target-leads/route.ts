@@ -98,9 +98,9 @@ export async function POST(req: NextRequest) {
     // ✅ Source: faqat 2 xil qiymat
     const rawSource = typeof body.source === "string" ? body.source.trim() : "";
     const source =
-      rawSource === "target-xizmati" || rawSource === "target-kursi"
+      rawSource === "target-xizmati" || rawSource === "target-kursi" || rawSource === "lid-magnit"
         ? rawSource
-        : "target-xizmati"; // default
+        : "lid-magnit"; // default
 
     // ✅ Note: yangi (body.note) yoki eski (body.comment)
     const note =

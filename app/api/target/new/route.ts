@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
       source, // ✅ doim lid-magnit
       note: incomingSource ? `${note}${note ? " | " : ""}incomingSource:${incomingSource}` : note,
       status: "LID",
-      service: "target",
+      service: "course",
     });
 
     const lead = { ...created.toObject(), id: String(created._id) };
