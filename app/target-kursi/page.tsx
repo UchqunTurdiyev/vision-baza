@@ -188,7 +188,7 @@ export default function TargetKursPage() {
                 Kursga yozilish
               </Link>
               <a
-  href="/files/malumot.pdf"
+  href="/files/target.pdf"
   download
   className="rounded-xl border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-emerald-400"
 >
@@ -335,8 +335,8 @@ export default function TargetKursPage() {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-3">
-        <a
-          href="#form"
+        <Link
+          href="#apply"
           className="inline-flex items-center justify-center h-10 px-5 rounded-xl
            bg-linear-to-r from-slate-950 via-indigo-800 to-indigo-600
            text-white text-sm font-semibold shadow-lg shadow-indigo-900/60
@@ -344,7 +344,7 @@ export default function TargetKursPage() {
            transition"
         >
           Ro&apos;yxatdan o&apos;ting
-        </a>
+        </Link>
       </div>
     </div>
   </div>
@@ -481,7 +481,7 @@ export default function TargetKursPage() {
 
         {/* CTA */}
         <section id="apply" className="mt-16">
-  <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] rounded-2xl border border-emerald-400/40 bg-linear-to-r from-emerald-500/15 via-cyan-500/10 to-sky-500/15 p-6 sm:p-8">
+  <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] rounded-2xl border border-emerald-400/40 bg-linear-to-r from-emerald-500/15 via-cyan-500/10 to-sky-500/15 p-3 sm:p-8">
     {/* Chap tomonda matn */}
     <div>
       <h2 className="text-2xl font-semibold sm:text-3xl">
