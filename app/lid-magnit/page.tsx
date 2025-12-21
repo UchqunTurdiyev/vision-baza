@@ -1,5 +1,6 @@
 // app/lid-magnit/page.tsx
 
+import Link from "next/link";
 import LidMagnitForm from "./_components/LidMagnitForm";
 
 export default function LidMagnitPage() {
@@ -25,6 +26,11 @@ export default function LidMagnitPage() {
           </p>
           <p className="mt-4 text-base leading-relaxed text-white/85">
             Sizgaxam ushbu texnikalar qiziqmi unda ro&apos;yxatdan o&apos;ting bepul qo&apos;llanmaga ega bo&apos;ling
+          </p>
+
+          <p className="mt-4 text-base leading-relaxed text-white/85">
+              Agar siz professional target kursimga qiziqsangiz unda ushbu link orqali malumot oling 
+              <Link rel="stylesheet" href="/target-kursi" className="text-blue-500 italic"> Target kursi</Link>
           </p>
 
           <div className="mt-8">

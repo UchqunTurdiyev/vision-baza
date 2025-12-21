@@ -117,7 +117,7 @@ export default function LidMagnitForm() {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label className="mb-1 block text-sm text-white/80">Familya</label>
           <input
             value={lastName}
@@ -126,7 +126,7 @@ export default function LidMagnitForm() {
             placeholder="Familyangiz"
             autoComplete="family-name"
           />
-        </div>
+        </div> */}
       </div>
 
       <div>
@@ -143,7 +143,7 @@ export default function LidMagnitForm() {
         />
       </div>
 
-      <div>
+      {/* <div>
         <label className="mb-1 block text-sm text-white/80">Email (ixtiyoriy)</label>
         <input
           value={email}
@@ -153,7 +153,7 @@ export default function LidMagnitForm() {
           autoComplete="email"
           type="email"
         />
-      </div>
+      </div> */}
 
       {err ? (
         <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
