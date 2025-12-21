@@ -10,6 +10,7 @@ const NAV = [
   { href: "/sotuv", label: "Sotuv Kursi" },
   { href: "/target-kursi", label: "Target kursi" },
   { href: "/target", label: "Target xizmati" },
+  { href: "/lid-magnit", label: "Lid magnit" },
 ];
 
 export default function Topbar() {
@@ -32,9 +33,9 @@ export default function Topbar() {
       {/* Top row */}
       <div className="h-16 border-b border-white/10 flex items-center justify-between px-4 bg-linear-to-b from-white/5 to-transparent backdrop-blur-sm">
         <div className="flex items-center gap-6 font-extrabold tracking-tight text-white">
-          <div className="text-2xl">
+          <Link className="text-2xl" href={"/"}>
             VISION <span className="text-indigo-400 text-2xl">Group</span>
-          </div>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="flex gap-4 pl-10 max-md:hidden">
@@ -46,7 +47,7 @@ export default function Topbar() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-3 text-sm">
+        <Link className="flex items-center gap-3 text-sm" href={"/"}>
           <Image
             src="/logo.png"
             alt="ISFT logo"
@@ -67,7 +68,7 @@ export default function Topbar() {
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-        </div>
+        </Link>
       </div>
 
       {/* Mobile dropdown */}

@@ -188,7 +188,7 @@ export default function TargetKursPage() {
                 Kursga yozilish
               </Link>
               <a
-  href="/files/Guvoxnoma.pdf"
+  href="/files/malumot.pdf"
   download
   className="rounded-xl border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-emerald-400"
 >
@@ -251,20 +251,19 @@ export default function TargetKursPage() {
           <h2 className="text-2xl font-semibold sm:text-3xl">
             Hamkorlarimiz
           </h2>
-          <p className="mt-3 max-w-3xl text-sm sm:text-base text-slate-300">
+          <p className="mt-3  text-sm sm:text-base text-slate-300">
             Vision Group’ning target reklama kursi real bozor bilan bog‘langan:
             talabalarimiz ishlaydigan yoki amaliyot o‘taydigan hamkor tashkilotlar
             bilan birga ishlaymiz. Quyida ularning bir qismi keltirilgan.
           </p>
-
           <div className="mt-6">
             <PartnersCarousel />
           </div>
         </section>
 
         {/* BIZ HAQIMIZDA / NEGA AYNAN BIZ */}
-<section id="about" className="relative md:px-6  pt-4 pb-10">
-  <div className="max-w-5xl mx-auto space-y-6 bg-slate-950/50 border border-slate-800/70 rounded-3xl p-6 md:p-8 shadow-[0_18px_60px_rgba(0,0,0,0.7)]">
+<section id="about" className="relative md:px-6  pt-2 pb-10">
+  <div className="max-w-5xl mx-auto space-y-6 bg-slate-950/50 border border-slate-800/70 rounded-3xl p-3 md:p-8 shadow-[0_18px_60px_rgba(0,0,0,0.7)]">
     <div className="flex flex-wrap items-center justify-between gap-4">
       <div>
         <p className="text-[11px] tracking-widest font-semibold uppercase text-emerald-300">
@@ -280,7 +279,7 @@ export default function TargetKursPage() {
       </span>
     </div>
 
-    <div className="bg-slate-900/75 border border-emerald-500/40 rounded-2xl p-5 md:p-7">
+    <div className="bg-slate-900/75 border border-emerald-500/40 rounded-2xl p-3 md:p-7">
       <h3 className="text-lg md:text-xl font-bold text-white">
         Natija beradigan tajriba va ustunliklar
       </h3>
@@ -307,13 +306,13 @@ export default function TargetKursPage() {
         <p className="text-sm md:text-base text-slate-100 leading-relaxed">
           <strong>Bizning natijalar:</strong>
         </p>
-        <ul className="space-y-1 text-sm md:text-base text-slate-100/90 list-disc list-inside">
+        <ul className="space-y-1 text-md md:text-base text-slate-100/90 list-disc list-inside">
           <li>
-            <strong>Har sarflagan $1 uchun, $82 tushum olib keldi. ROAS ≈ 82x</strong> →{" "}
+            <strong>Har sarflagan $1 uchun, $82 tushum olib keldi. <br /> ROAS ≈ 82x</strong> →{" "}
             <strong>Bir mijozning LTV si 1$ uchun $328 qaytyapti</strong>.
           </li>
           <li>
-            <strong>1$ reklama → $68 tushum. ROAS ≈ 68x </strong> → {" "}
+            <strong>1$ reklama → $68 tushum. <br /> ROAS ≈ 68x </strong> → {" "}
             <strong>Bir mijozning LTV si 1$ uchun 410$ qaytyapti</strong>.
           </li>
         </ul>

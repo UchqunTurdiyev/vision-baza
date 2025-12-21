@@ -107,8 +107,9 @@ export default function LeadNewPage({
       setIsThankYou(true);
       setCountdown(5);
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch (e: any) {
-      setMsg({ type: "err", text: e?.message || "Kutilmagan xatolik yuz berdi." });
+    } catch (e: unknown) {
+      const text = e instanceof Error ? e.message : "Kutilmagan xatolik yuz berdi.";
+      setMsg({ type: "err", text });
     } finally {
       setLoading(false);
     }
@@ -120,7 +121,7 @@ export default function LeadNewPage({
   if (isThankYou) {
     return (
       <div className={className}>
-        <div className="mx-auto max-w-xl text-center rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
+        <div className="mx-auto md:max-w-xl w-full text-center rounded-2xl border border-emerald-200 bg-emerald-50 p-2">
           <h2 className="text-xl font-bold text-emerald-800">
             Bizga qiziqish bildirganingiz uchun tashakkur!
           </h2>
@@ -129,7 +130,7 @@ export default function LeadNewPage({
           </p>
           <a
             href={telegramUrl}
-            className="inline-flex items-center justify-center mt-4 h-10 px-5 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition"
+            className="inline-flex items-center justify-center mt-4 h-10 px-2 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition"
           >
             Telegram kanalga qo‘lda o‘tish
           </a>
@@ -141,7 +142,7 @@ export default function LeadNewPage({
   // 🔹 Asl forma
   return (
     <div className={className}>
-      <div className="mx-auto max-w-xl rounded-2xl bg-gradient-to-b from-slate-950 via-slate-800 to-slate-950 border border-indigo-200/40 shadow-2xl p-6 sm:p-8 text-white backdrop-blur-md">
+      <div className="mx-auto md:max-w-xl w-full rounded-2xl bg-linear-to-b from-slate-950 via-slate-800 to-slate-950 border border-indigo-200/40 shadow-2xl p-2 sm:p-4 text-white backdrop-blur-md">
         <h2 className="text-2xl font-bold mb-4 text-center">
           Sotuv mutaxassisligi kursiga ro‘yxatdan o‘ting
         </h2>

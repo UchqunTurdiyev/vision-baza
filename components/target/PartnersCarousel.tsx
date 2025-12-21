@@ -42,7 +42,7 @@ export function PartnersCarousel() {
 
   return (
     <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4 shadow-lg">
-      <div className="flex items-center justify-between gap-4 pb-3">
+      <div className="md:flex items-center justify-between gap-4 pb-3">
         <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
           HAMKORLARIMIZ
         </h3>

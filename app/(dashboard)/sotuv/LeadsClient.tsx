@@ -8,17 +8,17 @@ export default function LeadsClient() {
 
   return (
     <main
-      className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white"
+      className="min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950 text-white"
       id="form"
     >
       <PixelSotuvPageView />
       {/* Yulduzcha fon + umumiy container */}
       <div className="relative">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.25),_transparent_55%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(129,140,248,0.25),transparent_55%)]" />
 
         {/* Hero */}
-        <section className="relative px-4 sm:px-6 pt-16 pb-10">
-          <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2 items-center">
+        <section className="relative px-4 sm:px-2 pt-2 pb-10">
+          <div className="lg:max-w-6xl w-full mx-auto grid gap-10 md:grid-cols-2 items-center">
             <div>
               <span className="inline-block text-[11px] tracking-wider uppercase text-indigo-100 bg-indigo-500/20 px-3 py-1 rounded-full border border-indigo-400/40">
                 Amaliy dastur • Mentorlik
@@ -67,8 +67,8 @@ export default function LeadsClient() {
             </div>
 
             <div className="relative">
-              <div className="absolute inset-0 -z-10 blur-3xl bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.45),_transparent_60%)]" />
-              <div className="aspect-[4/3] max-md:aspect-[4/6] rounded-3xl border border-indigo-500/40 bg-gradient-to-br from-indigo-600/40 via-slate-900 to-indigo-900/60 shadow-[0_18px_45px_rgba(15,23,42,0.9)] p-6">
+              <div className="absolute inset-0 -z-10 blur-3xl bg-[radial-gradient(circle_at_top,rgba(129,140,248,0.45),transparent_60%)]" />
+              <div className="aspect-4/3 max-md:aspect-4/6 rounded-3xl border border-indigo-500/40 bg-linear-to-br from-indigo-600/40 via-slate-900 to-indigo-900/60 shadow-[0_18px_45px_rgba(15,23,42,0.9)] p-6">
                 <div className="h-full w-full grid place-items-center text-center">
                   <div>
                     <div className="text-xs uppercase tracking-[0.2em] text-indigo-200/80">
@@ -110,8 +110,8 @@ export default function LeadsClient() {
         </section>
 
         {/* O‘quv dasturi */}
-        <section className="relative px-4 sm:px-6 pb-10">
-          <div className="max-w-6xl mx-auto">
+        <section className="relative px-4 sm:px-2 pb-10">
+          <div className="md:max-w-6xl w-full mx-auto">
             <h3 className="text-xl font-semibold text-indigo-100 mb-4">
               Kursda nimalarni o&apos;rganasiz?
             </h3>
@@ -151,7 +151,7 @@ export default function LeadsClient() {
         </section>
 
         {/* CTA + FORM */}
-        <section id="royxat" className="relative px-4 sm:px-6 pb-16">
+        <section id="royxat" className="relative px-2 sm:px-6 pb-16">
           <div className="max-w-4xl mx-auto">
             <div className="text-center rounded-3xl border border-indigo-500/50 bg-slate-900/90 py-8 px-3 sm:px-8 shadow-xl shadow-black/50">
               <h4 className="text-2xl font-bold text-white">

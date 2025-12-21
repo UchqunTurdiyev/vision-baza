@@ -27,6 +27,7 @@ export default function Sidebar() {
       <nav className="grid gap-1">
         <Item href="/">Umumiy ko‘rinish</Item>
         <Item href="/leads">Leads</Item>
+        <Item href="/lid-magnit">Lid magnit</Item>
       </nav>
       <div className="mt-6 text-xs text-white/50">Sotuv tizimi • ISFT</div>
     </aside>

@@ -206,7 +206,7 @@ export default function OperatorClient() {
   }
   
   return (
-    <div className="p-5">
+    <div className="p-4">
       <Card className="p-4">
         <CardTitle>Operator panel — Lead statuslari</CardTitle>
 

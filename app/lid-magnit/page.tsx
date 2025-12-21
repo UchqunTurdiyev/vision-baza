@@ -9,7 +9,7 @@ export default function LidMagnitPage() {
       {/* Vision-group uslubiga yaqin fon (xohlasangiz global fon class’ingizga almashtiring) */}
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(900px_circle_at_20%_10%,rgba(99,102,241,0.18),transparent_55%),radial-gradient(900px_circle_at_80%_0%,rgba(168,85,247,0.14),transparent_50%),radial-gradient(900px_circle_at_50%_90%,rgba(16,185,129,0.10),transparent_55%)]" />
 
-      <div className="mx-auto w-full max-w-2xl px-4 py-12">
+      <div className="mx-auto w-full lg:max-w-2xl px-4 py-6">
         <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur">
           <h1 className="text-2xl font-bold leading-tight">
             Meta kompaniyasi xodimlari tomonidan target reklamalarimni audit qildirdim!
