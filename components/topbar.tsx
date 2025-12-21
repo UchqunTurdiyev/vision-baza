@@ -56,7 +56,7 @@ export default function Topbar() {
             priority
             className="rounded-lg"
           />
-
+  </Link>
           {/* Mobile menu button */}
           <button
             type="button"
@@ -68,7 +68,7 @@ export default function Topbar() {
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-        </Link>
+      
       </div>
 
       {/* Mobile dropdown */}
