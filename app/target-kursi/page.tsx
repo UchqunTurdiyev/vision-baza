@@ -443,7 +443,7 @@ export default function TargetKursPage() {
 
 
                 {/* Otziflar */}
-                <section className="mt-16">
+               {/*  <section className="mt-16">
           <h2 className="text-2xl font-semibold sm:text-3xl">
             O‘quvchilar otziflari
           </h2>
@@ -477,7 +477,7 @@ export default function TargetKursPage() {
             ))}
           </div>
         </section>
-
+*/}
 
         {/* CTA */}
         <section id="apply" className="mt-16">
@@ -521,31 +521,31 @@ export default function TargetKursPage() {
 
 
 
-type Testimonial = {
-    name: string;
-    role: string;
-    text: string;
-    result?: string;
-  };
+// type Testimonial = {
+//     name: string;
+//     role: string;
+//     text: string;
+//     result?: string;
+//   };
   
-  const testimonials: Testimonial[] = [
-    {
-      name: "Azizbek Q.",
-      role: "Mahalliy o‘quv markazi egasi",
-      text: "Oldin reklama budjetini faqat ‘sezgi’ bilan belgilardim. Kursdan keyin metrikalar orqali qaror qila boshladim, natijada bir oyda leadlar soni 2 baravar oshdi.",
-      result: "+120% lead, barqaror kampaniya",
-    },
-    {
-      name: "Madina S.",
-      role: "Yangi boshlovchi targetolog",
-      text: "Kursda nazariya emas, real akkauntlar bilan ishladik. Pixel, event, auditoriya, strategiya – hammasi bitta sistemaga tushib qoldi.",
-      result: "3 ta doimiy mijoz topdim",
-    },
-    {
-      name: "Javohir R.",
-      role: "Klinika marketing menejeri",
-      text: "Tibbiyot sohasida reklama berish qiyinroq deb o‘ylardim. Lekin to‘g‘ri voronka va copywriting bilan klinikaga keluvchilar soni sezilarli oshdi.",
-      result: "Sovuq auditoriyadan issiq mijozlargacha tizim",
-    },
-  ];
+//   const testimonials: Testimonial[] = [
+//     {
+//       name: "Azizbek Q.",
+//       role: "Mahalliy o‘quv markazi egasi",
+//       text: "Oldin reklama budjetini faqat ‘sezgi’ bilan belgilardim. Kursdan keyin metrikalar orqali qaror qila boshladim, natijada bir oyda leadlar soni 2 baravar oshdi.",
+//       result: "+120% lead, barqaror kampaniya",
+//     },
+//     {
+//       name: "Madina S.",
+//       role: "Yangi boshlovchi targetolog",
+//       text: "Kursda nazariya emas, real akkauntlar bilan ishladik. Pixel, event, auditoriya, strategiya – hammasi bitta sistemaga tushib qoldi.",
+//       result: "3 ta doimiy mijoz topdim",
+//     },
+//     {
+//       name: "Javohir R.",
+//       role: "Klinika marketing menejeri",
+//       text: "Tibbiyot sohasida reklama berish qiyinroq deb o‘ylardim. Lekin to‘g‘ri voronka va copywriting bilan klinikaga keluvchilar soni sezilarli oshdi.",
+//       result: "Sovuq auditoriyadan issiq mijozlargacha tizim",
+//     },
+//   ];
   
