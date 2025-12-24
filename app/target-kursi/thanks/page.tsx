@@ -40,7 +40,7 @@ export default function ThanksPage() {
           initial={{ opacity: 0, y: 12, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="w-full rounded-3xl border border-slate-800 bg-slate-950/70 p-6 shadow-xl backdrop-blur"
+          className="w-full rounded-3xl border border-slate-800  bg-slate-950/70 p-6 shadow-x background-blur"
         >
           {/* ✅ Linear progress bar */}
           <div className="mb-5">
