@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, ArrowLeft, Send } from "lucide-react";
 
 export default function ThanksPage() {
-  const TOTAL = 10; // ⬅️ necha soniyada Telegramga o‘tsin
+  const TOTAL = 5; // ⬅️ necha soniyada Telegramga o‘tsin
   const TELEGRAM_URL = "https://t.me/Uchqun_Turdiev";
 
   const [seconds, setSeconds] = useState(TOTAL);
