@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Target reklama kursi | Vision Group",
+  title: "Target kursi | Vision Group",
   description:
     "Facebook & Instagram target reklamani 0 dan professional darajagacha o‘rgatuvchi amaliy kurs. Akkaunt sozlash, auditoriya, strategiya, web-sayt, metrikalar va mijoz topish.",
 };
@@ -161,11 +161,11 @@ export default function TargetKursPage() {
         <section className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <div>
             <span className="inline-flex items-center rounded-full border border-emerald-400/40 bg-emerald-400/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300">
-              Vision Group • Target reklama kursi
+              Vision Group • Target kursi
             </span>
 
             <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Target reklama kursi:
+              Target kursi:
               <br />
               <span className="bg-linear-to-r from-emerald-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
               Reklama yoqish emas — natija beradigan Target tizimini o‘rganing
@@ -173,7 +173,7 @@ export default function TargetKursPage() {
             </h1>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
-            AI bilan 1 soatda real kodlar bilan web-sahifa yarating, raqamlarni o‘qishni o‘rganing, natijani boshqaring.
+            AI bilan 1 soatda real kodlar bilan sotuv veb-sahifasini yasang, raqamlarni o‘qishni o‘rganing, natijani boshqaring.
             </p>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
@@ -275,7 +275,7 @@ export default function TargetKursPage() {
       </div>
       <span className="inline-flex items-center gap-2 text-[11px] px-3 py-1 rounded-full border border-emerald-500/50 bg-emerald-500/10 text-emerald-100">
         <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-        3 yillik tajriba • Dasturchi-targetolog
+        Marketolog • Dasturchi-targetolog
       </span>
     </div>
 
@@ -292,7 +292,7 @@ export default function TargetKursPage() {
           ✅ <strong>$80k</strong> – pul boshqaruvi.
         </li>
         <li>
-          ✅ <strong>3 yillik amaliy tajriba</strong> – faqat target va sotuv sohasida.
+          ✅ <strong>Amaliy tajriba</strong> – Marketing target va sotuv sohasida.
         </li>
         <li>
           ✅ <strong>Dasturchi + targetolog kombosi</strong> – reklama, sayt va sotuvni bitta tizimga bog‘laymiz.
