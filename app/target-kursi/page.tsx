@@ -165,8 +165,6 @@ export default function TargetKursPage() {
             </span>
 
             <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Target kursi:
-              <br />
               <span className="bg-linear-to-r from-emerald-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
               Reklama yoqish emas — natija beradigan Target tizimini o‘rganing
               </span>
