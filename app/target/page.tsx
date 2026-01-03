@@ -424,9 +424,9 @@ export default function TargetPage() {
           <strong>0 soliqlarsiz target yoqasiz</strong>.
         </li>
       </ul>
-      {/* <p className="mt-3 text-xs font-semibold text-slate-300">
+       <p className="mt-3 text-xs font-semibold text-slate-300">
         Bozor narxi: <span className="text-emerald-300">$500</span>
-      </p> */}
+      </p> 
     </div>
 
     {/* 2. Copywriting va sotuv postlari */}
@@ -450,9 +450,9 @@ export default function TargetPage() {
           mijozlarni jalb qilamiz.
         </li>
       </ul>
-      {/* <p className="mt-3 text-xs font-semibold text-slate-300">
+       <p className="mt-3 text-xs font-semibold text-slate-300">
         Bozor narxi: <span className="text-emerald-300">$500</span>
-      </p> */}
+      </p> 
     </div>
   </div>
 
@@ -481,9 +481,9 @@ export default function TargetPage() {
           <strong>leadlar arzonroq va sifatliroq</strong> bo‘ladi.
         </li>
       </ul>
-      {/* <p className="mt-3 text-xs font-semibold text-slate-300">
+      <p className="mt-3 text-xs font-semibold text-slate-300">
         Bozor narxi: <span className="text-emerald-300">$1000</span>
-      </p> */}
+      </p> 
     </div>
 
     {/* 4. Sotuv xodimlari va skriptlar */}
@@ -509,14 +509,14 @@ export default function TargetPage() {
           <strong>aniq muloqot ssenariysi</strong>ni ishlab chiqamiz.
         </li>
       </ul>
-      {/* <p className="mt-3 text-xs font-semibold text-slate-300">
+       <p className="mt-3 text-xs font-semibold text-slate-300">
         Bozor narxi: <span className="text-emerald-300">$1000</span>
-      </p> */}
+      </p> 
     </div>
   </div>
 </div>
 
-        {/* <div className="bg-slate-900/70 border border-emerald-500/35 rounded-2xl mt-10 p-5 md:p-7">
+         <div className="bg-slate-900/70 border border-emerald-500/35 rounded-2xl mt-10 p-5 md:p-7">
           <h3 className="text-lg md:text-xl font-bold text-white">
             Umumiy bozor qiymati va bizning taklif
           </h3>
@@ -545,7 +545,7 @@ export default function TargetPage() {
               <strong>biznesingizga o'zimiznikidek</strong> ishlaymiz.
             </li>
           </ul>
-        </div> */}
+        </div> 
         </div>
         {/* END BLOCK */}
 
@@ -571,9 +571,9 @@ export default function TargetPage() {
           <li>• Instagram va Facebook sahifalaringizni professional upakovka qilib beramiz.</li>
           <li>• Biznesingiz uchun sotuvga yo‘naltirilgan copywriting post yozamiz.</li>
         </ul>
-        {/* <p className="mt-3 text-xs font-semibold text-slate-300">
+         <p className="mt-3 text-xs font-semibold text-slate-300">
         Chegirma narxi: <span className="text-emerald-300">$247</span>
-        </p> */}
+        </p> 
 
         <a
           href="#form"
@@ -596,9 +596,9 @@ export default function TargetPage() {
           <li>• Brendingizga mos <strong>sotuv veb-sayti</strong> professional dizaynda yasab beramiz.</li>
           <li>• Sotuv xodimlaringiz ishini audit qilib, asosiy kamchiliklarini ko‘rsatib beramiz.</li>
         </ul>
-        {/* <p className="mt-3 text-xs font-semibold text-slate-300">
+         <p className="mt-3 text-xs font-semibold text-slate-300">
         Chegirma narxi: <span className="text-emerald-300">$970</span>
-        </p> */}
+        </p> 
 
         <a
           href="#form"
@@ -622,9 +622,9 @@ export default function TargetPage() {
           <li>• Sotuv jamoangiz uchun <strong>skriptlar va muloqot ssenariylari</strong> tayyorlaymiz.</li>
           <li>• Kantentlarni ishlab chiqamiz  <strong>To&apos;liq SMM xizmati</strong> ni qilib beramiz.</li>
         </ul>
-        {/* <p className="mt-3 text-xs font-semibold text-slate-300">
+         <p className="mt-3 text-xs font-semibold text-slate-300">
         Chegirma narxi: <span className="text-emerald-300">$1470</span>
-        </p> */}
+        </p> 
 
         <a
           href="#form"
