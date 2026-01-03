@@ -171,7 +171,7 @@ export default function TargetKursPage() {
             </h1>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
-            AI bilan 1 soatda real kodlar bilan sotuv veb-sahifasini yasang, raqamlarni o‘qishni o‘rganing, natijani boshqaring.
+            Kafolat: O'qishdan oldin menga karta raqamingizni berasiz agar siz darsni shunchaki o'qishni toxtatib qoysangizxam to'lovingizni qaytaraman. Natija olmasangizxam to'lovingizni qaytaraman!
             </p>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
@@ -215,7 +215,7 @@ export default function TargetKursPage() {
               <li>• Lid magnit tuzish</li>
             </ul>
 
-            <dl className="mt-6 grid grid-cols-3 gap-4 text-center text-[11px] sm:text-xs">
+            {/* <dl className="mt-6 grid grid-cols-3 gap-4 text-center text-[11px] sm:text-xs">
               <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/5 px-3 py-3">
                 <dt className="font-semibold text-emerald-300">Format</dt>
                 <dd className="mt-1 text-slate-100">
@@ -240,7 +240,7 @@ export default function TargetKursPage() {
                   + Web-sayt
                 </dd>
               </div>
-            </dl>
+            </dl> */}
           </div>
         </section>
 
