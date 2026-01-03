@@ -161,7 +161,7 @@ export default function TargetKursPage() {
         <section className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <div>
             <span className="inline-flex items-center rounded-full border border-emerald-400/40 bg-emerald-400/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300">
-              Vision Group • Target kursi
+              Vision Group • Target kursi • Performance Marketing
             </span>
 
             <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
@@ -171,7 +171,7 @@ export default function TargetKursPage() {
             </h1>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
-            Kafolat: O'qishdan oldin menga karta raqamingizni berasiz agar siz darsni shunchaki o'qishni toxtatib qoysangizxam to'lovingizni qaytaraman. Natija olmasangizxam to'lovingizni qaytaraman!
+            Kafolat: O'qishdan oldin menga karta raqamingizni berasiz agar siz darsni shunchaki o'qishni to'xtatib qo'ysangizxam to'lovingizni qaytaraman. Natija olmasangizxam to'lovingizni qaytaraman!
             </p>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
