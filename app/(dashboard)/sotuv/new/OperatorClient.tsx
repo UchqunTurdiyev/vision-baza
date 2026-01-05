@@ -333,7 +333,7 @@ export default function OperatorClient() {
                               onChange={() => toggleMany(visibleIds)}
                               className="cursor-pointer"
                             />
-                            <span>hammasi</span>
+                            <span>All</span>
                           </label>
                         </div>
 

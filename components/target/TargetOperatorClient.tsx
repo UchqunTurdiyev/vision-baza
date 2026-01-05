@@ -375,7 +375,7 @@ export default function TargetOperatorClient() {
                               onChange={() => toggleMany(visibleIds)}
                               className="cursor-pointer"
                             />
-                            <span>hammasi</span>
+                            <span>All</span>
                           </label>
                         </div>
 
