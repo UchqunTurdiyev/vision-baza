@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { LEAD_STATUSES } from "@/constants/statuses";
@@ -57,6 +57,85 @@ export default function TargetOperatorClient() {
   const [search, setSearch] = useState("");
   const normalizedQuery = search.trim().toLowerCase();
   const searchDigits = normalizedQuery.replace(/\D/g, "");
+
+  // ✅ NEW: Tanlash (checkbox) state
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const selectedIds = useMemo(() => Array.from(selected), [selected]);
+
+  function toggleSelected(id: string) {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  function clearSelected() {
+    setSelected(new Set());
+  }
+
+  function toggleMany(ids: string[]) {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      const allHave = ids.length > 0 && ids.every((id) => next.has(id));
+      if (allHave) ids.forEach((id) => next.delete(id));
+      else ids.forEach((id) => next.add(id));
+      return next;
+    });
+  }
+
+  // ✅ NEW: Bulk delete (parol bilan)
+  async function bulkDeleteSelectedTarget() {
+    if (selectedIds.length === 0) return;
+
+    const ok = confirm(`Rostdan ham ${selectedIds.length} ta leadni o‘chirasizmi?`);
+    if (!ok) return;
+
+    const password = prompt("Parolni kiriting:");
+    if (!password) return;
+
+    // faqat ObjectId bo‘lganlarini yuboramiz (24 hex)
+    const validIds = selectedIds.filter((id) => /^[a-f\d]{24}$/i.test(id));
+
+    if (validIds.length === 0) {
+      alert("Tanlanganlar orasida valid ID topilmadi.");
+      return;
+    }
+
+    const r = await fetch("/api/target-leads/bulk-delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids: validIds, password }),
+      cache: "no-store",
+    });
+
+    const data = await r.json().catch(() => ({}));
+
+    if (!r.ok) {
+      if (r.status === 401) alert("Parol noto‘g‘ri.");
+      else if (r.status === 500) alert("Server paroli sozlanmagan.");
+      else alert(data?.error || "O‘chirishda xatolik");
+      return;
+    }
+
+    // Front tarafdan ham o‘chirib yuboramiz (reload shart emas)
+    const delSet = new Set(validIds);
+
+    setColumns((prev) => {
+      const next: typeof prev = {};
+      for (const status of Object.keys(prev)) {
+        next[status] = (prev[status] ?? []).filter((l) => {
+          const sid = String(l._id ?? l.id ?? "");
+          return !delSet.has(sid);
+        });
+      }
+      return next;
+    });
+
+    clearSelected();
+    alert(`O‘chirildi: ${data?.deletedCount ?? 0} ta`);
+  }
 
   // 🔴 qaysi kartada flag update bo‘layotganini bilish uchun
   const [flagLoadingId, setFlagLoadingId] = useState<string | null>(null);
@@ -149,9 +228,8 @@ export default function TargetOperatorClient() {
 
       const data = await res.json().catch(() => ({}));
       const newFlag =
-        data?.lead?.flagged ?? (typeof lead.flagged === "boolean"
-          ? !lead.flagged
-          : true);
+        data?.lead?.flagged ??
+        (typeof lead.flagged === "boolean" ? !lead.flagged : true);
 
       setColumns((prev) => {
         const next: typeof prev = {};
@@ -200,47 +278,6 @@ export default function TargetOperatorClient() {
     else alert("O‘chirishda xatolik: " + msg);
   }
 
-  async function handleDeleteTargetLead(leadId: string) {
-    const ok = confirm("Ushbu kartani o‘chirishni tasdiqlaysizmi?");
-    if (!ok) return;
-  
-    const password = prompt("Parolni kiriting:");
-    if (!password) return;
-  
-    try {
-      const res = await fetch(`/api/target-leads/${leadId}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
-        cache: "no-store",
-      });
-  
-      if (!res.ok) {
-        const msg = await res.text().catch(() => "");
-        if (res.status === 401) alert("Parol noto‘g‘ri.");
-        else if (res.status === 404) alert("Lead topilmadi (allaqachon o‘chirilgan bo‘lishi mumkin).");
-        else alert("O‘chirishda xatolik: " + msg);
-        return;
-      }
-  
-      // Front tarafdan ham kartani olib tashlaymiz
-      setColumns((prev) => {
-        const next: typeof prev = {};
-        for (const status of Object.keys(prev)) {
-          next[status] = prev[status].filter(
-            (l) => String(l._id ?? l.id) !== leadId
-          );
-        }
-        return next;
-      });
-  
-      alert("Karta muvaffaqiyatli o‘chirildi.");
-    } catch (e) {
-      console.error("Target leadni o‘chirishda xatolik:", e);
-      alert("Server xatosi. Keyinroq urinib ko‘ring.");
-    }
-  }
-  
 
   return (
     <div className="p-5">
@@ -253,9 +290,30 @@ export default function TargetOperatorClient() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Ism yoki telefon raqami bo‘yicha qidirish..."
+            placeholder="Ism yoki telefon raqimi bo‘yicha qidirish..."
             className="w-full rounded-md border border-white/20 bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/40"
           />
+        </div>
+
+        {/* ✅ NEW: Bulk action bar */}
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={bulkDeleteSelectedTarget}
+            disabled={selectedIds.length === 0}
+            className="text-xs px-3 py-2 rounded-md border border-white/20 disabled:opacity-40"
+          >
+            Tanlanganlarni o‘chirish ({selectedIds.length})
+          </button>
+
+          <button
+            type="button"
+            onClick={clearSelected}
+            disabled={selectedIds.length === 0}
+            className="text-xs px-3 py-2 rounded-md border border-white/20 disabled:opacity-40"
+          >
+            Tanlovni tozalash
+          </button>
         </div>
 
         <CardContent>
@@ -280,6 +338,14 @@ export default function TargetOperatorClient() {
                   return matchName || matchPhone;
                 });
 
+                // ✅ NEW: shu ustundagi ko‘rinayotgan server idlar (select all uchun)
+                const visibleIds = visibleLeads
+                  .map((l) => String(l._id ?? l.id ?? ""))
+                  .filter(Boolean);
+
+                const allVisibleSelected =
+                  visibleIds.length > 0 && visibleIds.every((id) => selected.has(id));
+
                 return (
                   <Droppable key={status} droppableId={status}>
                     {(dropProvided) => (
@@ -288,12 +354,30 @@ export default function TargetOperatorClient() {
                         {...dropProvided.droppableProps}
                         className="bg-white/5 p-3 rounded-xl min-h-[340px] border border-white/10"
                       >
-                        <h2 className="text-center font-semibold text-white mb-3 text-sm">
-                          {status}{" "}
-                          {visibleLeads.length > 0
-                            ? `(${visibleLeads.length})`
-                            : ""}
-                        </h2>
+                        {/* ✅ NEW: header + select all */}
+                        <div className="flex items-center justify-between mb-3">
+                          <h2 className="text-center font-semibold text-white text-sm">
+                            {status}{" "}
+                            {visibleLeads.length > 0
+                              ? `(${visibleLeads.length})`
+                              : ""}
+                          </h2>
+
+                          <label
+                            className="flex items-center gap-2 text-xs text-white/70 select-none"
+                            onMouseDown={(e) => e.stopPropagation()}
+                            onPointerDown={(e) => e.stopPropagation()}
+                            onTouchStart={(e) => e.stopPropagation()}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={allVisibleSelected}
+                              onChange={() => toggleMany(visibleIds)}
+                              className="cursor-pointer"
+                            />
+                            <span>hammasi</span>
+                          </label>
+                        </div>
 
                         {visibleLeads.map((lead, index) => {
                           const idStr = String(
@@ -301,6 +385,9 @@ export default function TargetOperatorClient() {
                           );
                           const isOpen = !!expanded[idStr];
                           const preview = (lead.lastCommentText ?? "").trim();
+
+                          // ✅ NEW: selection uchun server id
+                          const serverId = String(lead._id ?? lead.id ?? "");
 
                           return (
                             <Draggable
@@ -314,15 +401,35 @@ export default function TargetOperatorClient() {
                                   {...dragProvided.draggableProps}
                                   className="bg-white/10 p-3 rounded-lg mb-2 text-white relative"
                                 >
+                                  {/* ✅ NEW: checkbox (kartani tanlash) */}
+                                  <label
+                                    className="absolute top-2 left-2"
+                                    onMouseDown={(e) => e.stopPropagation()}
+                                    onPointerDown={(e) => e.stopPropagation()}
+                                    onTouchStart={(e) => e.stopPropagation()}
+                                    title="Belgilash"
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      checked={serverId ? selected.has(serverId) : false}
+                                      onChange={() => {
+                                        if (!serverId) return;
+                                        toggleSelected(serverId);
+                                      }}
+                                      className="cursor-pointer mb-2"
+                                      disabled={!serverId}
+                                    />
+                                  </label>
+
                                   {/* 🔴 Yashil chiroqcha tugmasi */}
                                   <button
-                                   type="button"
-                                   onClick={(e) => {
-                                     e.stopPropagation(); // drag bilan urishmasin
-                                     toggleFlag(lead);
-                                   }}
-                                   disabled={flagLoadingId === idStr}
-                                   className={`
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation(); // drag bilan urishmasin
+                                      toggleFlag(lead);
+                                    }}
+                                    disabled={flagLoadingId === idStr}
+                                    className={`
                                      absolute top-2 right-2
                                      w-5 h-5 rounded-full border
                                      flex items-center justify-center
@@ -338,12 +445,11 @@ export default function TargetOperatorClient() {
                                          : "cursor-pointer"
                                      }
                                    `}
-                                   title={lead.flagged ? "Belgilangan lead" : "Belgilang"}>
+                                    title={lead.flagged ? "Belgilangan lead" : "Belgilang"}
+                                  >
                                     <span
                                       className={`w-2 h-2 rounded-full ${
-                                        lead.flagged
-                                          ? "bg-white"
-                                          : "bg-transparent"
+                                        lead.flagged ? "bg-white" : "bg-transparent"
                                       }`}
                                     />
                                   </button>
@@ -351,7 +457,7 @@ export default function TargetOperatorClient() {
                                   {/* Drag handle + karta kontenti */}
                                   <div
                                     {...dragProvided.dragHandleProps}
-                                    className="text-xs text-white/50 gap-2 mb-2 select-none cursor-grab"
+                                    className="text-xs text-white/50 gap-2 mb-2 mt-4 select-none cursor-grab"
                                     title="Ustunlar orasida ko‘chiring"
                                   >
                                     <div className="font-medium text-lg">
@@ -361,17 +467,17 @@ export default function TargetOperatorClient() {
                                       {lead.phone}
                                     </div>
                                     <div className="text-lg text-white/60">
-                                    Biznes: {lead.businessType}
+                                      Biznes: {lead.businessType}
                                     </div>
                                     <div className="text-lg text-white/60">
-                                    budjeti: {lead.budget}
+                                      budjeti: {lead.budget}
                                     </div>
-                                   
+
                                     tg: {lead.socialPage}
                                     <div className="text-lg text-white/60">
-                                    komment: {lead.note}
+                                      komment: {lead.note}
                                     </div>
-                                 
+
                                     <div className="flex items-center justify-between">
                                       <div className="text-[11px] text-white/50">
                                         {fmtDateTime(lead.createdAt)}
@@ -380,9 +486,7 @@ export default function TargetOperatorClient() {
                                       <div className="mb-2 flex justify-end">
                                         <button
                                           type="button"
-                                          onClick={() =>
-                                            handleDeleteSecureLead(idStr)
-                                          }
+                                          onClick={() => handleDeleteSecureLead(idStr)}
                                           className="text-xs px-2 py-1 border rounded-md cursor-pointer border-white/30 hover:bg-white/10"
                                         >
                                           <Trash2 className="w-4 h-4 text-red-400" />
@@ -390,28 +494,18 @@ export default function TargetOperatorClient() {
                                       </div>
                                     </div>
 
-                                    <Badge>
-                                      {lead.source}
-                                    </Badge>
+                                    <Badge>{lead.source}</Badge>
 
                                     <div className="mt-2 text-xs text-white/70 truncate">
-                                      {preview
-                                        ? preview
-                                        : "Kommentlar yo‘q."}
+                                      {preview ? preview : "Kommentlar yo‘q."}
                                     </div>
 
                                     {/* Kommentlar bo‘limini ochish/yopish */}
                                     <div
                                       className="mt-1 text-right"
-                                      onMouseDown={(e) =>
-                                        e.stopPropagation()
-                                      }
-                                      onPointerDown={(e) =>
-                                        e.stopPropagation()
-                                      }
-                                      onTouchStart={(e) =>
-                                        e.stopPropagation()
-                                      }
+                                      onMouseDown={(e) => e.stopPropagation()}
+                                      onPointerDown={(e) => e.stopPropagation()}
+                                      onTouchStart={(e) => e.stopPropagation()}
                                     >
                                       <button
                                         type="button"
@@ -423,18 +517,14 @@ export default function TargetOperatorClient() {
                                           }))
                                         }
                                       >
-                                        {isOpen
-                                          ? "▲ Yopish"
-                                          : "▼ Barchasini ko‘rish"}
+                                        {isOpen ? "▲ Yopish" : "▼ Barchasini ko‘rish"}
                                       </button>
                                     </div>
 
                                     {isOpen ? (
                                       <TargetLeadComments
                                         leadId={idStr}
-                                        onAfterAdd={(last) =>
-                                          updatePreview(idStr, last)
-                                        }
+                                        onAfterAdd={(last) => updatePreview(idStr, last)}
                                       />
                                     ) : null}
                                   </div>

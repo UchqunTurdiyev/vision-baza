@@ -171,7 +171,7 @@ export default function TargetKursPage() {
             </h1>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
-            Kafolat: O'qishdan oldin menga karta raqamingizni berasiz agar siz darsni shunchaki o'qishni to'xtatib qo'ysangizxam to'lovingizni qaytaraman. Natija olmasangizxam to'lovingizni qaytaraman!
+            Kafolat: O&apos;qishdan oldin menga karta raqamingizni berasiz agar siz darsni shunchaki o&apos;qishni to&apos;xtatib qo&apos;ysangizxam to&apos;lovingizni qaytaraman. Natija olmasangizxam to&apos;lovingizni qaytaraman!
             </p>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
