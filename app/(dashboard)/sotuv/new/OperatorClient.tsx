@@ -279,6 +279,14 @@ export default function OperatorClient() {
           >
             Tanlanganlarni o‘chirish ({selectedIds.length})
           </button>
+          <button
+            type="button"
+            onClick={clearSelected}
+            disabled={selectedIds.length === 0}
+            className="text-xs px-3 py-2 rounded-md border border-white/20 disabled:opacity-40"
+          >
+            Tanlovni tozalash
+          </button>
         </div>
 
         <CardContent>
