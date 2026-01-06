@@ -171,6 +171,7 @@ export default function TargetKursPage() {
             </h1>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
+            O‘rganish qiyin emas, o‘rgatishdan charchamayman.
             Kafolat: O&apos;qishdan oldin menga karta raqamingizni berasiz agar siz darsni shunchaki o&apos;qishni to&apos;xtatib qo&apos;ysangizxam to&apos;lovingizni qaytaraman. Natija olmasangizxam to&apos;lovingizni qaytaraman!
             </p>
 
@@ -254,9 +255,7 @@ export default function TargetKursPage() {
             Hamkorlarimiz
           </h2>
           <p className="mt-3  text-sm sm:text-base text-slate-300">
-            Vision Group’ning target reklama kursi real bozor bilan bog‘langan:
-            talabalarimiz ishlaydigan yoki amaliyot o‘taydigan hamkor tashkilotlar
-            bilan birga ishlaymiz. Quyida ularning bir qismi keltirilgan.
+            Vision Group hamkorlari. Quyida ularning bir qismi keltirilgan.
           </p>
           <div className="mt-6">
             <PartnersCarousel />
@@ -277,7 +276,7 @@ export default function TargetKursPage() {
       </div>
       <span className="inline-flex items-center gap-2 text-[11px] px-3 py-1 rounded-full border border-emerald-500/50 bg-emerald-500/10 text-emerald-100">
         <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-        Marketolog • Dasturchi-targetolog
+        Marketolog • Targetolog • Dasturchi 
       </span>
     </div>
 
