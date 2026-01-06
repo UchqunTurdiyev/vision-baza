@@ -205,14 +205,18 @@ export default function TargetKursPage() {
               Kurs yakunida nimalarga ega bo‘lasiz?
             </h2>
             <ul className="mt-4 space-y-2 text-sm text-slate-200">
-              <li>• Biznes uchun to‘liq target tizimini o‘zingiz sozlay olasiz</li>
-              <li>• O&apos;zingiz va biznes uchun web-sayt 2 kunda </li>
-              <li>• Pixel, event va auditoriyalarni professional darajada boshqarasiz</li>
-              <li>• Web-sayt + reklama + metrika orqali butun voronkani ko‘ra olasiz</li>
-              <li>• O‘zingiz uchun ham, mijozlar uchun ham strategiya tuza olasiz</li>
-              <li>• Darslar yozib olinib sizga tashlab beriladi</li>
-              <li>• Kopyrayting sotuv postlarini yozish</li>
-              <li>• Lid magnit tuzish</li>
+              <li>• Zamonaviy kasb bo‘lgan Performance Marketign mutaxassisi.</li>
+              <li>• Ijtimoiy tarmoqlarni sozlash, abloshka qilish.</li>
+              <li>• Targetni 0 dan o‘rganasiz (soliqlarsiz target). </li>
+              <li>• Performance marketing bo‘yicha amaliy ko‘nikmalarga ega bo‘lasiz.</li>
+              <li>• Biznes uchun to‘liq target tizimini o‘zingiz sozlay olasiz.</li>
+              <li>• Mahsulot yoki xizmatlar uchun target strategiyalari.</li>
+              <li>• Lid-magnitlar yaratishni, lidlar oqimi.</li>
+              <li>• Voronka va raqamlar bilan ishlash.</li>
+              <li>• Kuchli taklif ishlab chiqish va formulalari.</li>
+              <li>• Kopirayting: sotuv postlarini yozishni o‘rganasiz.</li>
+              <li>• O‘zingiz va tadbirkorlar uchun sotuv veb-saytlarini 2 kunda yasashni o‘rganasiz.</li>
+              <li>• Darslar yozib olinadi va sizga tashlab beriladi.</li>
             </ul>
 
             {/* <dl className="mt-6 grid grid-cols-3 gap-4 text-center text-[11px] sm:text-xs">
