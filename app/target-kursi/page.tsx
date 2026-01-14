@@ -164,13 +164,16 @@ export default function TargetKursPage() {
               Vision Group • Target kursi • Performance Marketing
             </span>
 
-            <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+            <h1 className="mt-4 text-2xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               <span className="bg-linear-to-r from-emerald-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
-              Reklama yoqish emas — natija beradigan Target tizimini o‘rganing
+              Men savdoingizni oshirib beraman. Natijadan sof foydadan ulush olaman. Bu taklifni o&apos;z bilimiga ishonganlar ayta oladi
               </span>
             </h1>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
+            Yoki mijozga shunday deyishni: <br />
+            Siz “target yoqib beraman” deyadigan targetolog bo‘lib qolishni xohlaysizmi? <br /><br />
+
             O‘rganish qiyin emas, o‘rgatishdan charchamayman.
             Kafolat: O&apos;qishdan oldin menga karta raqamingizni berasiz agar siz darsni shunchaki o&apos;qishni to&apos;xtatib qo&apos;ysangizxam to&apos;lovingizni qaytaraman. Natija olmasangizxam to&apos;lovingizni qaytaraman!
             </p>
@@ -285,7 +288,11 @@ export default function TargetKursPage() {
         Natija beradigan tajriba va ustunliklar
       </h3>
 
-      <ul className="mt-3 space-y-1 text-sm md:text-base text-slate-100/90">
+
+      <ul className="mt-3 space-y-1 text-sm md:text-base text-slate-100/90">  <li>
+  ✅ <strong>O‘zbekistondagi marketolog “qirolichasi” Mehriniso Nurullayevna ,</strong> – “Shogirtlar 4.0”kursida,
+  * “Biznesni 0 dan boshlash” va marketing kurslarida tahsil olganman
+</li>
       <li>
   ✅ <strong>Meta kompaniyasi ekspertlari auditi</strong> – reklama kabinetim Meta xodimlari tomonidan muntazam ko‘rib chiqilib, professional tavsiyalar berib boriladi.
 </li>
