@@ -174,8 +174,10 @@ export default function TargetKursPage() {
             Yoki mijozga shunday deyishni: <br />
             Siz “target yoqib beraman” deyadigan targetolog bo‘lib qolishni xohlaysizmi? <br /><br />
 
-            O‘rganish qiyin emas, o‘rgatishdan charchamayman.
-            Kafolat: O&apos;qishdan oldin menga karta raqamingizni berasiz agar siz darsni shunchaki o&apos;qishni to&apos;xtatib qo&apos;ysangizxam to&apos;lovingizni qaytaraman. Natija olmasangizxam to&apos;lovingizni qaytaraman!
+            100% KAFOLAT
+
+Agar kurs siz kutgandek bo‘lmasa va tark etsangiz —
+💯 to‘lovingiz 100% qaytariladi.
             </p>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
