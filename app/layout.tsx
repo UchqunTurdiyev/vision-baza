@@ -14,6 +14,8 @@ const PIXEL_ID_TARGET_KOURSE =
   process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_TARGET_KOURSE ?? "1499689861130089";
 const PIXEL_ID_TARGET_LID_MAGNIT =
   process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_TARGET_LID_MAGNIT ?? "1350142093106140";
+const PIXEL_ID_TARGET_VISION =
+  process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_TARGET_LID_MAGNIT ?? "1780132279307506";
 
 // ✅ xohlasangiz false qiling (PageView yubormaydi)
 // ⚠️ Pixel Helper WARNING qolishi mumkin
@@ -98,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fbq('init', '${PIXEL_ID_TARGET}');
             fbq('init', '${PIXEL_ID_TARGET_KOURSE}');
             fbq('init', '${PIXEL_ID_TARGET_LID_MAGNIT}');
+            fbq('init', '${PIXEL_ID_TARGET_VISION}');
             ${TRACK_PAGEVIEW ? "fbq('track','PageView');" : ""}
           `}
         </Script>
@@ -112,6 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${PIXEL_ID_TARGET}&ev=PageView&noscript=1" alt="" />
               <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${PIXEL_ID_TARGET_KOURSE}&ev=PageView&noscript=1" alt="" />
               <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${PIXEL_ID_TARGET_LID_MAGNIT}&ev=PageView&noscript=1" alt="" />
+              <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${PIXEL_ID_TARGET_VISION}&ev=PageView&noscript=1" alt="" />
             `,
           }}
         />
@@ -129,3 +133,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+
