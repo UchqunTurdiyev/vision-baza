@@ -166,18 +166,11 @@ export default function TargetKursPage() {
 
             <h1 className="mt-4 text-2xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               <span className="bg-linear-to-r from-emerald-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
-              Men savdoingizni oshirib beraman. Natijadan sof foydadan ulush olaman. Bu taklifni o&apos;z bilimiga ishonganlar ayta oladi
+              Qanday qilib foydali reklama kampaniyalarini ishga tushirish va ko&apos;proq daromad ko&apos;rish mumkin
               </span>
             </h1>
 
-            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
-            Yoki mijozga shunday deyishni: <br />
-            Siz “target yoqib beraman” deyadigan targetolog bo‘lib qolishni xohlaysizmi? <br /><br />
-
-            100% KAFOLAT
-
-Agar kurs siz kutgandek bo‘lmasa va tark etsangiz —
-💯 to‘lovingiz 100% qaytariladi.
+            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">Agentligimizda ishlatiladigan aniq tizimni o‘rganing — bu tizim mijozlarimiz uchun oyiga millionlab dollar byudjeti bilan barqaror natijalar olib keladi.
             </p>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
@@ -212,17 +205,14 @@ Agar kurs siz kutgandek bo‘lmasa va tark etsangiz —
             </h2>
             <ul className="mt-4 space-y-2 text-sm text-slate-200">
               <li>• Zamonaviy kasb bo‘lgan Performance Marketign mutaxassisi.</li>
-              <li>• Ijtimoiy tarmoqlarni sozlash, abloshka qilish.</li>
               <li>• Targetni 0 dan o‘rganasiz (soliqlarsiz target). </li>
-              <li>• Performance marketing bo‘yicha amaliy ko‘nikmalarga ega bo‘lasiz.</li>
-              <li>• Biznes uchun to‘liq target tizimini o‘zingiz sozlay olasiz.</li>
               <li>• Mahsulot yoki xizmatlar uchun target strategiyalari.</li>
               <li>• Lid-magnitlar yaratishni, lidlar oqimi.</li>
               <li>• Voronka va raqamlar bilan ishlash.</li>
-              <li>• Kuchli taklif ishlab chiqish va formulalari.</li>
-              <li>• Kopirayting: sotuv postlarini yozishni o‘rganasiz.</li>
-              <li>• O‘zingiz va tadbirkorlar uchun sotuv veb-saytlarini 2 kunda yasashni o‘rganasiz.</li>
-              <li>• Darslar yozib olinadi va sizga tashlab beriladi.</li>
+              <li>• Kuchli taklif ishlab chiqish.</li>
+              <li>• Kopirayting: sotuv postlarini</li>
+              <li>• O‘zingiz va tadbirkorlar uchun sotuv veb-saytlarini yasashni o‘rganasiz.</li>
+              <li>• Vebinarlar uchun sahifali veb saytlar</li>
             </ul>
 
             {/* <dl className="mt-6 grid grid-cols-3 gap-4 text-center text-[11px] sm:text-xs">
@@ -287,7 +277,8 @@ Agar kurs siz kutgandek bo‘lmasa va tark etsangiz —
 
     <div className="bg-slate-900/75 border border-emerald-500/40 rounded-2xl p-3 md:p-7">
       <h3 className="text-lg md:text-xl font-bold text-white">
-        Natija beradigan tajriba va ustunliklar
+      Bozordagi ko‘pchilik “faqat target yoqib beraman” deydigan mutaxassislardan farqli ravishda, men marketingni to‘liq tizim sifatida quraman:
+reklama → sayt → sotuv → raqam → foyda.
       </h3>
 
 
@@ -303,6 +294,9 @@ Agar kurs siz kutgandek bo‘lmasa va tark etsangiz —
         </li>
         <li>
           ✅ <strong>Amaliy tajriba</strong> – Marketing target va sotuv sohasida.
+        </li>
+        <li>
+          ✅ <strong>Reklamani faqat yoqmayman</strong> — natija uchun javob beraman
         </li>
         <li>
           ✅ <strong>Dasturchi + targetolog kombosi</strong> – reklama, sayt va sotuvni bitta tizimga bog‘laymiz.
