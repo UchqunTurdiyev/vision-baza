@@ -68,14 +68,12 @@ type Testimonial = {
           </div>
         </div>
   
-        <div className="mt-5 grid gap-4
-          grid-cols-1
-          md:grid-cols-1
-          lg:grid-cols-4">
+        <div className="mt-5 flex justify-between flex-wrap gap-4
+          ">
           {items.map((t) => (
             <article
               key={t.id}
-              className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur"
+              className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur flex-1 min-w-[280px]"
             >
               {/* Header: avatar + name */}
               <div className="flex items-center gap-3">
