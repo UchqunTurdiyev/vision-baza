@@ -1,5 +1,6 @@
 // app/target-kursi/page.tsx
 import { TargetKursLeadForm } from "@/components/comments/TargetKursLeadForm";
+import Otzif from "@/components/Otziflar/otzif";
 import { PartnersCarousel } from "@/components/target/PartnersCarousel";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -482,6 +483,8 @@ reklama → sayt → sotuv → raqam → foyda.
           </div>
         </section>
 */}
+
+<Otzif />
 
         {/* CTA */}
         <section id="apply" className="mt-16">
