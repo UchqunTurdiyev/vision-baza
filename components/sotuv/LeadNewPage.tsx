@@ -144,7 +144,7 @@ export default function LeadNewPage({
     <div className={className}>
       <div className="mx-auto md:max-w-xl w-full rounded-2xl bg-linear-to-b from-slate-950 via-slate-800 to-slate-950 border border-indigo-200/40 shadow-2xl p-2 sm:p-4 text-white backdrop-blur-md">
         <h2 className="text-2xl font-bold mb-4 text-center">
-          Sotuv mutaxassisligi kursiga ro‘yxatdan o‘ting
+          Malumotlaringizni kiriting
         </h2>
 
         <form onSubmit={handleSubmit} className="grid gap-3 text-left">

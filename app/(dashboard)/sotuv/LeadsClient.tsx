@@ -2,6 +2,7 @@
 
 import LeadNewPage from "@/components/sotuv/LeadNewPage";
 import PixelSotuvPageView from "./PixelSotuvPageView";
+import { PartnersCarousel } from "@/components/target/PartnersCarousel";
 
 
 export default function LeadsClient() {
@@ -21,15 +22,15 @@ export default function LeadsClient() {
           <div className="lg:max-w-6xl w-full mx-auto grid gap-10 md:grid-cols-2 items-center">
             <div>
               <span className="inline-block text-[11px] tracking-wider uppercase text-indigo-100 bg-indigo-500/20 px-3 py-1 rounded-full border border-indigo-400/40">
-                Amaliy dastur • Mentorlik
+                Sotuvni amaliyotda o&apos;rgatamiz
               </span>
               <h1 className="mt-4 text-3xl md:text-5xl font-bold leading-tight text-white drop-shadow-sm">
-                Sotuv Mutaxassisi Kursi
+                Sotuvingizni keyingi darajaga olib chiqishga tayyormisiz
               </h1>
-              <p className="mt-4 text-slate-200/90 md:text-lg leading-relaxed">
-              Ishga joylashish kafolati bo&apos;lgan{" "} 
+              {/* <p className="mt-4 text-slate-200/90 md:text-lg leading-relaxed">
+              
                 <strong className="text-indigo-200">yagona kurs </strong> aynan siz uchun!
-              </p>
+              </p> */}
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <a
@@ -51,7 +52,7 @@ export default function LeadsClient() {
                   { k: "Yo'nalish", v: "Sotuv" },
                   { k: "Usul", v: "Amaliy + Nazariy" },
                   { k: "Format", v: "Mentorlik" },
-                  { k: "Kafolat", v: "Ishga yo'naltirish" },
+                  { k: "Audit", v: "Sotuv auditi" },
                 ].map((i) => (
                   <div
                     key={i.k}
@@ -66,7 +67,9 @@ export default function LeadsClient() {
               </div>
             </div>
 
-            <div className="relative">
+<PartnersCarousel />
+
+            {/* <div className="relative">
               <div className="absolute inset-0 -z-10 blur-3xl bg-[radial-gradient(circle_at_top,rgba(129,140,248,0.45),transparent_60%)]" />
               <div className="aspect-4/3 max-md:aspect-4/6 rounded-3xl border border-indigo-500/40 bg-linear-to-br from-indigo-600/40 via-slate-900 to-indigo-900/60 shadow-[0_18px_45px_rgba(15,23,42,0.9)] p-6">
                 <div className="h-full w-full grid place-items-center text-center">
@@ -86,7 +89,7 @@ export default function LeadsClient() {
                       Japan school
                     </p>
                     <p className="mt-1 text-slate-200/90 max-w-sm mx-auto text-sm md:text-base leading-relaxed">
-                      M Edu school
+                      Uzbekistan Fruits
                     </p>
                     </div>
                   
@@ -105,12 +108,12 @@ export default function LeadsClient() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
 
         {/* O‘quv dasturi */}
-        <section className="relative px-4 sm:px-2 pb-10">
+        {/* <section className="relative px-4 sm:px-2 pb-10">
           <div className="md:max-w-6xl w-full mx-auto">
             <h3 className="text-xl font-semibold text-indigo-100 mb-4">
               Kursda nimalarni o&apos;rganasiz?
@@ -148,7 +151,7 @@ export default function LeadsClient() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA + FORM */}
         <section id="royxat" className="relative px-2 sm:px-6 pb-16">
