@@ -14,7 +14,7 @@ type Testimonial = {
   const DEFAULT_TESTIMONIALS: Testimonial[] = [
     {
       id: "t1",
-      name: "Azizbek M.",
+      name: "Sardor M",
       role: "Biznes egasi",
       avatarUrl: "/sardor.jpeg",
       text: "Kursda bunaqa ma'lumotlar berilishini kutmagan edim, lidlar sifati sezilarli oshdi. Eng yoqqani — hammasi tizimli.",
@@ -23,7 +23,7 @@ type Testimonial = {
     },
     {
       id: "t2",
-      name: "Mannonbek Y.",
+      name: "Bek Marketing",
       role: "SMM mutaxassisi",
       avatarUrl: "/otzif.jpeg",
       text: "Ustoz darslar zo'r bo'lyapti. Man to'g'ri joyda ekanligimni borgan sari yanada aniqroq his qilib boryapman, sababi bizaga darsni shunchaki target mutaxassisi emas balki butun marketing tizimini qura oladigan, kontentdan tortib mijoz sotib olishigacha bo'lgan tizimni boshqara oladigan mutaxassisdan dars olyapmiz deb hisoblayapman. Katta rahmat ustoz bundan buyog'i yanada qiziqarliroq bo'lib ketadi xudo xoxlasa👍👍",
