@@ -542,7 +542,7 @@ export default function TargetPage() {
             </li>
             <li>
               “Bir oy ishladik, keyin yo‘qoldik” emasmiz,{" "}
-              <strong>biznesingizga o'zimiznikidek</strong> ishlaymiz.
+              <strong>biznesingizga o&apos;zimiznikidek</strong> ishlaymiz.
             </li>
           </ul>
         </div> 

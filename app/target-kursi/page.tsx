@@ -167,14 +167,14 @@ export default function TargetKursPage() {
 
             <h1 className="mt-4 text-2xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               <span className="bg-linear-to-r from-emerald-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
-              Qanday qilib foydali reklama kampaniyalarini ishga tushirish va ko&apos;proq daromad ko&apos;rish mumkin
+              Qanday qilib foydali reklama kampaniyalarini ishga tushirish va ko&apos;proq daromad ko&apos;rish mumkin?
               </span>
             </h1>
 
-            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">Agentligimizda ishlatiladigan aniq tizimni o‘rganing — bu tizim mijozlarimiz uchun oyiga millionlab dollar byudjeti bilan barqaror natijalar olib keladi.
+            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">Agentligimizda ishlatiladigan aniq tizimni o‘rganing — bu tizim mijozlarimiz uchun oyiga millionlab dollar byudjeti bilan barqaror natijalar olib keldi.
             </p>
 
-            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
+            {/* <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
             Meta mutaxassislaridan olgan 3 insaydim — reklamangizni 180° o‘zgartiradigan formulalarni <i>PDF yuklab olish</i>  tugmasini bosib yuklab oling
             </p>
 
@@ -193,7 +193,7 @@ export default function TargetKursPage() {
   PDF yuklab olish
 </a>
 
-            </div>
+            </div> */}
 
             <p className="mt-3 text-xs text-slate-400">
               Amaliy darslar • Real proyekt ustida ishlash • Har bir bob bo‘yicha topshiriqlar
