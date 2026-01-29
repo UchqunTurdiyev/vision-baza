@@ -171,11 +171,11 @@ export default function TargetKursPage() {
               </span>
             </h1>
 
-            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">Agentligimizda ishlatiladigan aniq tizimni o‘rganing — bu tizim mijozlarimiz uchun oyiga millionlab dollar byudjeti bilan barqaror natijalar olib keldi.
+            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">Meta mutaxassislari tomonidan o&apos;rgangan sevimli tizimimni o‘rganing — bu tizim mijozlarimiz uchun oyiga millionlab dollar byudjeti bilan barqaror natijalar olib keldi.
             </p>
 
-            {/* <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
-            Meta mutaxassislaridan olgan 3 insaydim — reklamangizni 180° o‘zgartiradigan formulalarni <i>PDF yuklab olish</i>  tugmasini bosib yuklab oling
+            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
+            Lidlar ko&apos;p lekin sifatsizmi unda ushbu &quot;PDF yuklab olish&quot; ni bosib yuklab olishingiz mumkin
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -186,14 +186,14 @@ export default function TargetKursPage() {
                 Kursga yozilish
               </Link>
               <a
-  href="/files/target.pdf"
+  href="/files/lid.pdf"
   download
   className="rounded-xl border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-emerald-400"
 >
   PDF yuklab olish
 </a>
 
-            </div> */}
+            </div>
 
             <p className="mt-3 text-xs text-slate-400">
               Amaliy darslar • Real proyekt ustida ishlash • Har bir bob bo‘yicha topshiriqlar
