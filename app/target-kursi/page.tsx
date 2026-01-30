@@ -179,12 +179,12 @@ export default function TargetKursPage() {
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link
+              {/* <Link
                 href="#apply"
                 className="rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400"
               >
                 Kursga yozilish
-              </Link>
+              </Link> */}
               <a
   href="/files/lid.pdf"
   download
@@ -194,6 +194,8 @@ export default function TargetKursPage() {
 </a>
 
             </div>
+
+    
 
             <p className="mt-3 text-xs text-slate-400">
               Amaliy darslar • Real proyekt ustida ishlash • Har bir bob bo‘yicha topshiriqlar
@@ -244,6 +246,39 @@ export default function TargetKursPage() {
             </dl> */}
           </div>
         </section>
+
+        <section id="apply" className="mt-16">
+  <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] rounded-2xl border border-emerald-400/40 bg-linear-to-r from-emerald-500/15 via-cyan-500/10 to-sky-500/15 p-3 sm:p-8">
+    {/* Chap tomonda matn */}
+    <div>
+      <h2 className="text-2xl font-semibold sm:text-3xl">
+        Pro Target kursiga <br /> hoziroq ro‘yxatdan o‘ting
+      </h2>
+      <p className="mt-3 max-w-2xl text-sm sm:text-base text-slate-100">
+        O‘zingizni reklama balansiga qarab emas, natijangizga qarab baholaydigan
+        darajaga olib chiqing. Joylar cheklangan, darslar esa amaliy formatda
+        o‘tiladi.
+      </p>
+
+      {/* <div className="mt-6 flex flex-wrap gap-3">
+        <a
+          href="tel:+998555187070"
+          className="rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400"
+        >
+          Telegram kanalimiz
+        </a>
+      </div> */}
+
+      <p className="mt-3 text-xs text-slate-200">
+        Agar loyihangiz yoki biznesingiz bo‘lsa — darslar davomida aynan o‘sha
+        loyiha ustida ishlash imkoniyati beriladi.
+      </p>
+    </div>
+
+    {/* O‘ng tomonda forma */}
+    <TargetKursLeadForm />
+  </div>
+</section>
 
         {/* Hamkorlar */}
                 <section className="mt-16">
@@ -486,39 +521,19 @@ reklama → sayt → sotuv → raqam → foyda.
 
 <Otzif />
 
-        {/* CTA */}
-        <section id="apply" className="mt-16">
-  <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] rounded-2xl border border-emerald-400/40 bg-linear-to-r from-emerald-500/15 via-cyan-500/10 to-sky-500/15 p-3 sm:p-8">
-    {/* Chap tomonda matn */}
-    <div>
-      <h2 className="text-2xl font-semibold sm:text-3xl">
-        Pro Target kursiga <br /> hoziroq ro‘yxatdan o‘ting
-      </h2>
-      <p className="mt-3 max-w-2xl text-sm sm:text-base text-slate-100">
-        O‘zingizni reklama balansiga qarab emas, natijangizga qarab baholaydigan
-        darajaga olib chiqing. Joylar cheklangan, darslar esa amaliy formatda
-        o‘tiladi.
-      </p>
-
-      {/* <div className="mt-6 flex flex-wrap gap-3">
-        <a
-          href="tel:+998555187070"
-          className="rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400"
+<div className="mt-4 flex flex-wrap gap-3">
+        <Link
+          href="#apply"
+          className="inline-flex items-center justify-center h-10 px-5 rounded-xl
+           bg-linear-to-r from-slate-950 via-indigo-800 to-indigo-600
+           text-white text-sm font-semibold shadow-lg shadow-indigo-900/60
+           hover:from-slate-900 hover:via-indigo-700 hover:to-indigo-500
+           transition"
         >
-          Telegram kanalimiz
-        </a>
-      </div> */}
-
-      <p className="mt-3 text-xs text-slate-200">
-        Agar loyihangiz yoki biznesingiz bo‘lsa — darslar davomida aynan o‘sha
-        loyiha ustida ishlash imkoniyati beriladi.
-      </p>
-    </div>
-
-    {/* O‘ng tomonda forma */}
-    <TargetKursLeadForm />
-  </div>
-</section>
+          Ro&apos;yxatdan o&apos;ting
+        </Link>
+      </div>
+   
 
       </div>
     </main>
