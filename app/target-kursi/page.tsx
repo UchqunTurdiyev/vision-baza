@@ -167,7 +167,7 @@ export default function TargetKursPage() {
 
             <h1 className="mt-4 text-2xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               <span className="bg-linear-to-r from-emerald-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
-              Qanday qilib foydali reklama kampaniyalarini ishga tushirish va ko&apos;proq daromad ko&apos;rish mumkin?
+              Katta va kichik bizneslar uchun sotuvlarini oshirib bera oladigan darajada professional targetolog bo‘lish — bu faqat reklama bosish emas.
               </span>
             </h1>
 
@@ -254,20 +254,7 @@ export default function TargetKursPage() {
       <h2 className="text-2xl font-semibold sm:text-3xl">
         Pro Target kursiga <br /> hoziroq ro‘yxatdan o‘ting
       </h2>
-      <p className="mt-3 max-w-2xl text-sm sm:text-base text-slate-100">
-        O‘zingizni reklama balansiga qarab emas, natijangizga qarab baholaydigan
-        darajaga olib chiqing. Joylar cheklangan, darslar esa amaliy formatda
-        o‘tiladi.
-      </p>
 
-      {/* <div className="mt-6 flex flex-wrap gap-3">
-        <a
-          href="tel:+998555187070"
-          className="rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400"
-        >
-          Telegram kanalimiz
-        </a>
-      </div> */}
 
       <p className="mt-3 text-xs text-slate-200">
         Agar loyihangiz yoki biznesingiz bo‘lsa — darslar davomida aynan o‘sha
