@@ -167,43 +167,19 @@ export default function TargetKursPage() {
 
             <h1 className="mt-4 text-2xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               <span className="bg-linear-to-r from-emerald-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
-              Katta va kichik bizneslar uchun sotuvlarini oshirib bera oladigan darajada professional targetolog bo‘lish — bu faqat reklama bosish emas.
+              Qanday qilib foydali reklama kampaniyalarini ishga tushirish va ko&apos;proq daromad ko&apos;rish mumkin?
               </span>
             </h1>
 
             <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">Meta mutaxassislari tomonidan o&apos;rgangan sevimli tizimimni o‘rganing — bu tizim mijozlarimiz uchun oyiga millionlab dollar byudjeti bilan barqaror natijalar olib keldi.
             </p>
 
-            <p className="mt-4 max-w-xl text-sm sm:text-base text-slate-300">
-            Lidlar ko&apos;p lekin sifatsizmi unda ushbu &quot;PDF yuklab olish&quot; ni bosib yuklab olishingiz mumkin
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              {/* <Link
-                href="#apply"
-                className="rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400"
-              >
-                Kursga yozilish
-              </Link> */}
-              <a
-  href="/files/lid.pdf"
-  download
-  className="rounded-xl border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-emerald-400"
->
-  PDF yuklab olish
-</a>
-
-            </div>
-
-    
-
-            <p className="mt-3 text-xs text-slate-400">
-              Amaliy darslar • Real proyekt ustida ishlash • Har bir bob bo‘yicha topshiriqlar
-            </p>
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur">
-            <h2 className="text-lg font-semibold">
+    <TargetKursLeadForm />
+
+            {/* <h2 className="text-lg font-semibold">
               Kurs yakunida nimalarga ega bo‘lasiz?
             </h2>
             <ul className="mt-4 space-y-2 text-sm text-slate-200">
@@ -216,7 +192,7 @@ export default function TargetKursPage() {
               <li>• Kopirayting: sotuv postlarini</li>
               <li>• O‘zingiz va tadbirkorlar uchun sotuv veb-saytlarini yasashni o‘rganasiz.</li>
               <li>• Vebinarlar uchun sahifali veb saytlar</li>
-            </ul>
+            </ul> */}
 
             {/* <dl className="mt-6 grid grid-cols-3 gap-4 text-center text-[11px] sm:text-xs">
               <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/5 px-3 py-3">
@@ -247,14 +223,20 @@ export default function TargetKursPage() {
           </div>
         </section>
 
-        <section id="apply" className="mt-16">
+        {/* <section id="apply" className="mt-16">
   <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] rounded-2xl border border-emerald-400/40 bg-linear-to-r from-emerald-500/15 via-cyan-500/10 to-sky-500/15 p-3 sm:p-8">
-    {/* Chap tomonda matn */}
+
     <div>
       <h2 className="text-2xl font-semibold sm:text-3xl">
         Pro Target kursiga <br /> hoziroq ro‘yxatdan o‘ting
       </h2>
+      <p className="mt-3 max-w-2xl text-sm sm:text-base text-slate-100">
+        O‘zingizni reklama balansiga qarab emas, natijangizga qarab baholaydigan
+        darajaga olib chiqing. Joylar cheklangan, darslar esa amaliy formatda
+        o‘tiladi.
+      </p>
 
+ 
 
       <p className="mt-3 text-xs text-slate-200">
         Agar loyihangiz yoki biznesingiz bo‘lsa — darslar davomida aynan o‘sha
@@ -262,10 +244,20 @@ export default function TargetKursPage() {
       </p>
     </div>
 
-    {/* O‘ng tomonda forma */}
-    <TargetKursLeadForm />
   </div>
-</section>
+</section> */}  
+   
+
+            <p className="my-4 max-w-xl text-sm sm:text-base text-slate-300">
+            Lidlar ko&apos;p lekin sifatsizmi unda ushbu &quot;PDF yuklab olish&quot; ni bosib yuklab olishingiz mumkin
+            </p>
+  <a
+  href="/files/lid.pdf"
+  download
+  className="rounded-xl border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-emerald-400"
+>
+  PDF yuklab olish
+</a>
 
         {/* Hamkorlar */}
                 <section className="mt-16">
