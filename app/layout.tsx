@@ -27,6 +27,7 @@ export const metadata = {
     "Vision Group — Marketing strategiyasi, target, sotuv tizimi, SMM, web-sayt va Telegram bot yechimlari orqali biznesingiz uchun barqaror lead va sotuv oqimini quradigan agentlik.",
   keywords: [
     "Vision Group",
+    "Uchqun Turdiyev",
     "marketing",
     "marketolog",
     "marketing agentligi",
@@ -65,6 +66,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
+                {/* ✅ PRECONNECT (YouTube Lite uchun tezroq) */}
+                <link rel="preconnect" href="https://i.ytimg.com" crossOrigin="" />
+        <link rel="preconnect" href="https://www.youtube-nocookie.com" crossOrigin="" />
+        {/* ixtiyoriy (bosilganda fbevents ham tezroq ochiladi) */}
+
         <link rel="icon" href="https://www.vision-group.uz/logo.png" sizes="48x48" />
         <meta name="google" content="notranslate" />
 

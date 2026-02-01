@@ -1,8 +1,10 @@
 // app/lid-magnit/_components/LidMagnitForm.tsx
 "use client";
 
+import * as React from "react";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import VideoModal from "./VideoModal";
 
 function s(v: string): string {
   return (v ?? "").trim();
@@ -41,12 +43,15 @@ export default function LidMagnitForm() {
   const router = useRouter();
 
   const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
+  const [lastName] = useState<string>(""); // hozir ishlatilmayapti (kommentda)
   const [phone, setPhone] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [email] = useState<string>(""); // hozir ishlatilmayapti (kommentda)
 
   const [loading, setLoading] = useState<boolean>(false);
   const [err, setErr] = useState<string | null>(null);
+
+  // ✅ VideoModal state
+  const [videoOpen, setVideoOpen] = useState(false);
 
   const fullName = useMemo(() => {
     const fn = s(firstName);
@@ -74,13 +79,12 @@ export default function LidMagnitForm() {
     setLoading(true);
     try {
       const payload: Payload = {
-        fullName, // ✅ memo'dagi fullName ishlatiladi
+        fullName,
         phone: ph,
-        source: "course", // xohlasangiz "lid-magnit" qilib qo'yasiz
+        source: "lid-magnit",
         note: s(email) ? `Email: ${s(email)}` : "",
       };
 
-      // MUHIM: CORS bo‘lmasligi uchun proxy route ga yuboramiz
       const res = await fetch("/api/target-leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -95,7 +99,9 @@ export default function LidMagnitForm() {
       router.push("/lid-magnit/thanks");
     } catch (error: unknown) {
       const message =
-        error instanceof Error ? error.message : "Xatolik yuz berdi. Qayta urinib ko‘ring.";
+        error instanceof Error
+          ? error.message
+          : "Xatolik yuz berdi. Qayta urinib ko‘ring.";
       setErr(message);
     } finally {
       setLoading(false);
@@ -103,71 +109,72 @@ export default function LidMagnitForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-3">
-      <div className="grid gap-3 sm:grid-cols-2">
+    <>
+      <form onSubmit={onSubmit} className="space-y-3">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm text-white/80">Ism *</label>
+            <input
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-white/40 focus:border-emerald-400/60"
+              placeholder="Ismingiz"
+              autoComplete="given-name"
+              required
+            />
+          </div>
+        </div>
+
         <div>
-          <label className="mb-1 block text-sm text-white/80">Ism *</label>
+          <label className="mb-1 block text-sm text-white/80">Telefon raqam *</label>
           <input
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={phone}
+            onChange={(e) => setPhone(normalizePhone(e.target.value))}
             className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-white/40 focus:border-emerald-400/60"
-            placeholder="Ismingiz"
-            autoComplete="given-name"
+            placeholder="+998 90 123 45 67"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
             required
           />
         </div>
 
-        {/* <div>
-          <label className="mb-1 block text-sm text-white/80">Familya</label>
-          <input
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-white/40 focus:border-emerald-400/60"
-            placeholder="Familyangiz"
-            autoComplete="family-name"
-          />
-        </div> */}
-      </div>
+        {err ? (
+          <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+            {err}
+          </div>
+        ) : null}
 
-      <div>
-        <label className="mb-1 block text-sm text-white/80">Telefon raqam *</label>
-        <input
-          value={phone}
-          onChange={(e) => setPhone(normalizePhone(e.target.value))}
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-white/40 focus:border-emerald-400/60"
-          placeholder="+998 90 123 45 67"
-          type="tel"
-          inputMode="tel"
-          autoComplete="tel"
-          required
-        />
-      </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full cursor-pointer rounded-xl border border-white/10 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {loading ? "Yuborilmoqda..." : "Yuborish"}
+        </button>
 
-      {/* <div>
-        <label className="mb-1 block text-sm text-white/80">Email (ixtiyoriy)</label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-white/40 focus:border-emerald-400/60"
-          placeholder="example@gmail.com"
-          autoComplete="email"
-          type="email"
-        />
-      </div> */}
-
-      {err ? (
-        <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
-          {err}
+        {/* ✅ Tezlikka ta’sir qilmaydigan video tugma (iframe faqat bosilganda yuklanadi) */}
+        <div className="pt-2">
+          <button
+            type="button"
+            onClick={() => setVideoOpen(true)}
+            className="w-full rounded-xl border border-white/10 bg-black/30 px-5 py-3 text-sm font-semibold text-white/90 hover:bg-black/40"
+          >
+            ▶ 1 daqiqalik videoni ko‘rish
+          </button>
+          <p className="mt-1 text-xs text-white/60">
+            Video bosilganda ochiladi — sahifa tezligiga ta’sir qilmaydi.
+          </p>
         </div>
-      ) : null}
+      </form>
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full cursor-pointer rounded-xl border border-white/10 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-60"
-      >
-        {loading ? "Yuborilmoqda..." : "Yuborish"}
-      </button>
-    </form>
+      {/* ✅ Modal */}
+      <VideoModal
+        open={videoOpen}
+        onClose={() => setVideoOpen(false)}
+        videoId="4Boc8FjHzGM"
+        title="Lid Magnit — 1 daqiqalik video"
+      />
+    </>
   );
 }
