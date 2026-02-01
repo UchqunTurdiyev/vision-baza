@@ -192,7 +192,7 @@ export function TargetKursLeadForm({ className }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="inline-flex h-10 items-center justify-center rounded-xl cursor-pointer bg-yellow-300 px-5 text-sm font-bold text-[#07122a] transition hover:bg-yellow-200"
+        className="inline-flex w-full h-10 items-center justify-center rounded-xl cursor-pointer bg-yellow-300 px-5 text-sm font-bold text-[#07122a] transition hover:bg-yellow-200"
       >
         {loading ? "Yuborilmoqda..." : "Yuborish"}
       </button>
