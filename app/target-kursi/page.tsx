@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { TargetKursLeadForm } from "@/components/comments/TargetKursLeadForm";
 import Otzif from "@/components/Otziflar/otzif";
+import { HeroPhoto } from "@/components/comments/HeroPhoto";
 
 export const metadata: Metadata = {
   title: "Target kursi | Vision Group",
@@ -69,14 +70,8 @@ export default function TargetKursPage() {
           {/* Right: Photo + Form */}
           <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur shadow-[0_18px_60px_rgba(0,0,0,0.55)]">
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-              <Image
-                src="/im.jpeg"
-                alt="Uchqun Turdiyev"
-                width={900}
-                height={900}
-                className="h-[260px] w-full object-cover sm:h-[300px]"
-                priority
-              />
+            <HeroPhoto />
+
             </div>
 
             <div id="lead" className="mt-4 rounded-2xl border border-white/10 bg-[#061028]/60 ">
