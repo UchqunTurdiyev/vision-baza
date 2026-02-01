@@ -21,7 +21,7 @@ export function HeroPhoto() {
       </div>
 
       <Image
-        src="/im.jpeg"
+        src="/img2.jpeg"
         alt="Uchqun Turdiyev"
         width={900}
         height={900}
