@@ -17,7 +17,7 @@ function MetaMark({
 }) {
   return (
     <Image
-      src="/meta.png"
+      src="/meta2.png"
       alt=""
       width={520}
       height={520}
