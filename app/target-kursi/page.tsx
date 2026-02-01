@@ -70,7 +70,7 @@ export default function TargetKursPage() {
           <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur shadow-[0_18px_60px_rgba(0,0,0,0.55)]">
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
               <Image
-                src="/ut.jpeg"
+                src="/im.jpeg"
                 alt="Uchqun Turdiyev"
                 width={900}
                 height={900}
