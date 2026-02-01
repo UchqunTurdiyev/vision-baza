@@ -105,7 +105,7 @@ export function TargetKursLeadForm({ className }: Props) {
       className={`space-y-3 rounded-2xl border border-slate-800 bg-slate-950/70 p-3 shadow-lg ${className ?? ""}`}
     >
       <h3 className="text-base font-semibold text-slate-50">
-        Kursga yozilish uchun ariza
+        Kurs haqida ma&apos;lumotlarni olish uchun
       </h3>
       <p className="text-xs text-slate-400">
         Kontaktlaringizni qoldiring, administratorimiz batafsil ma’lumot beradi.
@@ -192,9 +192,9 @@ export function TargetKursLeadForm({ className }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="flex cursor-pointer w-full items-center justify-center rounded-lg bg-emerald-500 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-70"
+        className="inline-flex h-10 items-center justify-center rounded-xl cursor-pointer bg-yellow-300 px-5 text-sm font-bold text-[#07122a] transition hover:bg-yellow-200"
       >
-        {loading ? "Yuborilmoqda..." : "Arizani yuborish"}
+        {loading ? "Yuborilmoqda..." : "Yuborish"}
       </button>
 
       {success && <p className="text-xs text-emerald-300">{success}</p>}
