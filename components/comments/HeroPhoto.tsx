@@ -21,13 +21,13 @@ export function HeroPhoto() {
       </div>
 
       <Image
-        src="/utm.avif"
+        src="/001.avif"
         alt="Uchqun Turdiyev"
         width={900}
         height={900}
         priority
         className={[
-          "h-[260px] w-full object-cover sm:h-[300px]",
+          "h-[280px] w-full object-cover sm:h-[350px]",
           "transition-opacity duration-300",
           loaded ? "opacity-100" : "opacity-0",
         ].join(" ")}
