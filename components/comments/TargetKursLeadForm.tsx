@@ -39,65 +39,109 @@ export function TargetKursLeadForm({ className }: Props) {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (loading) return;
-
+  
     setLoading(true);
     setSuccess(null);
     setError(null);
-
+  
     const formEl = e.currentTarget;
     const formData = new FormData(formEl);
-
+  
     const firstName = String(formData.get("firstName") ?? "").trim();
     const lastName = String(formData.get("lastName") ?? "").trim();
     const age = String(formData.get("age") ?? "").trim();
     const city = String(formData.get("city") ?? "").trim();
     const level = String(formData.get("level") ?? "").trim();
-    const phone = String(formData.get("phone") ?? "").trim();
-
-    if (!firstName || !lastName || !age || !city || !level || !phone) {
-      setError("Barcha maydonlarni to‘liq to‘ldiring.");
+    const phoneRaw = String(formData.get("phone") ?? "").trim();
+  
+    // ✅ Faqat shularni majburiy tekshiramiz:
+    if (!firstName || !lastName || !phoneRaw) {
+      setError("Ism, familiya va telefon raqamni to‘liq kiriting.");
       setLoading(false);
       return;
     }
-
+  
+    // ✅ Ism/Familiya: faqat harf va bo‘shliq, kamida 2 ta harf
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\u0400-\u04FF\u0100-\u017Fʻʼ’`' -]{2,}$/u;
+    if (!nameRegex.test(firstName)) {
+      setError("Ism noto‘g‘ri. Faqat harflardan iborat bo‘lsin (kamida 2 ta).");
+      setLoading(false);
+      return;
+    }
+    if (!nameRegex.test(lastName)) {
+      setError("Familiya noto‘g‘ri. Faqat harflardan iborat bo‘lsin (kamida 2 ta).");
+      setLoading(false);
+      return;
+    }
+  
+    // ✅ Telefon: +998XXXXXXXXX (9 ta raqam) yoki 998XXXXXXXXX yoki 9 ta raqam
+    const digits = phoneRaw.replace(/\D/g, "");
+    const normalized =
+      digits.startsWith("998") && digits.length === 12
+        ? `+${digits}`
+        : digits.length === 9
+        ? `+998${digits}`
+        : phoneRaw;
+  
+    const uzPhoneRegex = /^\+998\d{9}$/;
+    if (!uzPhoneRegex.test(normalized)) {
+      setError("Telefon raqam noto‘g‘ri. Namuna: +998901234567");
+      setLoading(false);
+      return;
+    }
+  
     const payload = {
       fullName: `${firstName} ${lastName}`.trim(),
-      phone,
+      phone: normalized, // ✅ normalizatsiya qilingan telefon
       source: "target-kursi",
       note: `Yosh: ${age}; Shahar: ${city}; Daraja: ${level}`,
     };
+    // ✅ Yosh: 18–40 oralig‘ida bo‘lishi shart
+const ageNum = Number(age);
 
+if (!Number.isFinite(ageNum) || !Number.isInteger(ageNum)) {
+  setError("Yosh noto‘g‘ri. Faqat butun son kiriting.");
+  setLoading(false);
+  return;
+}
+
+if (ageNum < 18 || ageNum > 40) {
+  setError("Kurs faqat 18–40 yosh oralig‘i uchun.");
+  setLoading(false);
+  return;
+}
+
+  
     try {
-      // ✅ MUHIM: endi proxy emas, shu loyihadagi target-leads route'ga uramiz
       const res = await fetch("/api/target-leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
+  
       const contentType = res.headers.get("content-type") ?? "";
       const data: unknown = contentType.includes("application/json")
         ? await res.json().catch(() => null)
         : await res.text().catch(() => "");
-
+  
       if (!res.ok) {
         const msg = extractErrorMessage(data) ?? `Server xatosi: ${res.status}`;
         throw new Error(msg);
       }
-
+  
       setSuccess("Arizangiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog‘lanamiz.");
       formEl.reset();
-
-      router.push("/target-kursi/thanks"); // ✅ faqat shu qo‘shildi
+  
+      router.push("/target-kursi/thanks");
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Xatolik yuz berdi";
       setError(msg || "Yuborishda xatolik yuz berdi. Iltimos, qaytadan urinib ko‘ring.");
-
       console.error("TargetKursLeadForm submit error:", err);
     } finally {
       setLoading(false);
     }
   }
+  
 
   return (
     <form

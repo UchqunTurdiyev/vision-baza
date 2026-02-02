@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
 
         {/* ✅ Meta Pixel base (xatolar tuzatildi) */}
-        <Script id="fb-pixel-base" strategy="afterInteractive">
+        <Script id="fb-pixel-base" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s){
               if(f.fbq)return;
