@@ -469,7 +469,7 @@ export default function TargetOperatorClient() {
   <button
     type="button"
     onClick={() => navigator.clipboard.writeText(String(lead.phone))}
-    className="rounded-md border border-white/15 bg-white/5 px-3 py-1 text-sm text-white/80 hover:bg-white/10 active:bg-green-300"
+    className="rounded-md border cursor-pointer border-white/15 bg-white/5 px-3 py-1 text-sm text-white/80 hover:bg-white/10 active:bg-green-300"
   >
     Copy
   </button>
