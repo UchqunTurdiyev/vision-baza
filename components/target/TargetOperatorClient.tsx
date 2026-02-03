@@ -463,9 +463,18 @@ export default function TargetOperatorClient() {
                                     <div className="font-medium text-lg">
                                       {lead.fullName}
                                     </div>
-                                    <div className="text-lg text-white/60">
-                                      {lead.phone}
-                                    </div>
+                                    <div className="flex items-center gap-2">
+  <div className="text-lg text-white/60">{lead.phone}</div>
+
+  <button
+    type="button"
+    onClick={() => navigator.clipboard.writeText(String(lead.phone))}
+    className="rounded-md border border-white/15 bg-white/5 px-3 py-1 text-sm text-white/80 hover:bg-white/10 active:bg-green-300"
+  >
+    Copy
+  </button>
+</div>
+
                                     <div className="text-lg text-white/60">
                                       Biznes: {lead.businessType}
                                     </div>
