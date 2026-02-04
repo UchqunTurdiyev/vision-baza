@@ -3,6 +3,7 @@ import { HeroPhoto } from "../comments/HeroPhoto";
 import { TargetKursLeadForm } from "../comments/TargetKursLeadForm";
 import Otzif from "../Otziflar/otzif";
 import MetaImageZoom from "../comments/ImageZoom";
+import { PartnersCarousel } from "./PartnersCarousel";
 
 export const metadata = {
   title: "Target Kursi — Vision Group",
@@ -189,6 +190,8 @@ export default function TargetKursiPage() {
     </div>
   </div>
 </section>
+
+<PartnersCarousel />
 
 
 <section className="mx-auto max-w-[620px] ">
