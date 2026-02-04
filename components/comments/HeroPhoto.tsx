@@ -21,18 +21,20 @@ export function HeroPhoto() {
       </div>
 
       <Image
-        src="/002.avif"
-        alt="Uchqun Turdiyev"
-        width={900}
-        height={900}
-        priority
-        className={[
-          "h-[280px] w-full object-cover sm:h-[350px]",
-          "transition-opacity duration-300",
-          loaded ? "opacity-100" : "opacity-0",
-        ].join(" ")}
-        onLoadingComplete={() => setLoaded(true)}
-      />
+  src="/002.avif"
+  alt="Uchqun Turdiyev"
+  width={900}
+  height={900}
+  priority
+  className={[
+    "h-[280px] w-full object-cover sm:h-[350px] md:h-[420px]",
+    "object-center md:object-[50%_40%]", // 50% x, 20% y (tepaga yaqin)
+    "transition-opacity duration-300",
+    loaded ? "opacity-100" : "opacity-0",
+  ].join(" ")}
+  onLoadingComplete={() => setLoaded(true)}
+/>
+
     </div>
   );
 }

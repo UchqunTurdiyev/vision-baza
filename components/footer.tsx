@@ -20,10 +20,10 @@ export default function Footer() {
     <div className="flex flex-col items-center md:items-end gap-2">
       <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 text-xs text-slate-300">
         <a
-          href="tel:+998913137727"
+          href="tel:+998996277727"
           className="hover:text-emerald-300 transition"
         >
-          +998 91 313 77 27
+          +998 99 627 77 27
         </a>
      
       </div>

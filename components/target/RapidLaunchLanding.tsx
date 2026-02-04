@@ -18,7 +18,7 @@ export default function TargetKursiPage() {
       <BackgroundAccents />
 
       {/* HERO: siz yuborganiga o‘xshash, lekin premium minimal */}
-      <section className="mx-auto max-w-[560px]">
+      <section className="mx-auto max-w-[620px]">
         <div className="rounded-[28px] border border-white/10 bg-white/5 p-4">
           {/* small top row */}
           <div className="flex items-center justify-between">
@@ -56,7 +56,7 @@ export default function TargetKursiPage() {
       </section>
 
       {/* DASTUR */}
-      <section id="dastur" className="mx-auto max-w-6xl px-4 pt-12">
+      <section id="dastur" className="mx-auto max-w-[620px] px-4 pt-12">
   <h2 className="text-2xl font-extrabold md:text-3xl">
     Kursda siz quyidagi bilimlarni o‘rganasiz:
   </h2>
@@ -89,7 +89,7 @@ export default function TargetKursiPage() {
 
 
       {/* MEN HAQIMDA */}
-  <section id="men" className="mx-auto max-w-6xl px-4 pt-12">
+  <section id="men" className="mx-auto max-w-[620px] px-4 pt-12">
   <div className="flex items-end justify-between gap-6">
     <div>
       <h2 className="text-2xl font-extrabold md:text-3xl">Nega menga ishonishingiz kerak</h2>
@@ -191,14 +191,16 @@ export default function TargetKursiPage() {
 </section>
 
 
-
-
+<section className="mx-auto max-w-[620px] ">
 <Otzif />
 
 <div className="my-3" id="register">
 
             <TargetKursLeadForm />
 </div>
+
+
+</section>
 
 
   
