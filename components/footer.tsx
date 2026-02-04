@@ -30,7 +30,7 @@ export default function Footer() {
 
       <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 text-xs text-slate-300">
         <a
-          href="https://t.me/vision_g_bot"
+          href="https://t.me/Uchqun_Turdiev"
           target="_blank"
           rel="noreferrer"
           className="hover:text-emerald-300 transition"
@@ -38,7 +38,7 @@ export default function Footer() {
           Telegram
         </a>
         <a
-          href="https://www.instagram.com/vision_group_uz"
+          href="https://www.instagram.com/vision.group.target"
           target="_blank"
           rel="noreferrer"
           className="hover:text-emerald-300 transition"
@@ -46,7 +46,7 @@ export default function Footer() {
           Instagram
         </a>
         <a
-          href="https://youtube.com"
+          href="https://www.youtube.com/@uchqunturdiev6271"
           target="_blank"
           rel="noreferrer"
           className="hover:text-emerald-300 transition"
