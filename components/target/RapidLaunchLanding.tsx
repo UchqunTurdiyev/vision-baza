@@ -29,9 +29,9 @@ export default function TargetKursiPage() {
           </div>
 
           {/* image */}
-          <div className="mt-4 overflow-hidden rounded-[22px] border border-white/10 bg-[#07113a]">
+          {/* <div className="mt-4 overflow-hidden rounded-[22px] border border-white/10 bg-[#07113a]">
               <HeroPhoto />
-          </div>
+          </div> */}
 
           {/* headline */}
           <h1 className="mt-5 text-[26px] font-extrabold leading-tight">
