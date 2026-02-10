@@ -73,6 +73,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
+
+            {/* Google Analytics (GA4) */}
+            <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-SWBHX63YJH"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-SWBHX63YJH', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+        
                 {/* ✅ PRECONNECT (YouTube Lite uchun tezroq) */}
                 <link rel="preconnect" href="https://i.ytimg.com" crossOrigin="" />
         <link rel="preconnect" href="https://www.youtube-nocookie.com" crossOrigin="" />
