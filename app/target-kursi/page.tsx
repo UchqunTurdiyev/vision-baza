@@ -13,9 +13,9 @@ const URL = `${SITE}/target-kursi`;
 export const metadata: Metadata = {
 
   // Asosiy so'rov: "target kursi samarqand"
-  title: "Target kursi Samarqandda — Meta Ads o‘rganish va Facebook reklama | Vision Group",
+  title: "Performance Marketing va Target kursi. Mijozlaringizga real sotuv olib kelib, natijadan ulush oladigan darajada professional o‘rganing.",
   description:
-    "Samarqandda Target kursi: Meta Ads o‘rganish, Facebook reklama qanday yoqiladi va real amaliy кейslar. Xususiy maktab uchun target reklama strategiyalari + natijaga yo‘naltirilgan darslar.",
+    "Samarqandda Target kursi: Ushbu kursda siz kuchli offer va sotuv postlari, performance marketing va target (Meta Ads), veb-sayt va voronka tizimi, kichik biznes uchun CRM, lid magnit hamda ish topish ko‘nikmalarini amaliy кейslar orqali chuqur o‘zlashtirasiz.",
   keywords: [
     "target kursi samarqand",
     "Uchqun Turdiyev",
