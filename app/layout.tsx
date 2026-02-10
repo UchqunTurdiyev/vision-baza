@@ -22,6 +22,13 @@ const PIXEL_ID_TARGET_VISION =
 const TRACK_PAGEVIEW = true;
 
 export const metadata = {
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
+  },
   title: "Vision Group — Marketing, target va sotuv tizimlari",
   description:
     "Vision Group — Marketing strategiyasi, target, sotuv tizimi, SMM, web-sayt va Telegram bot yechimlari orqali biznesingiz uchun barqaror lead va sotuv oqimini quradigan agentlik.",
