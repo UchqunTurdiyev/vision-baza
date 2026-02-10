@@ -1,9 +1,10 @@
 
 import { HeroPhoto } from "../comments/HeroPhoto";
 import { TargetKursLeadForm } from "../comments/TargetKursLeadForm";
-import Otzif from "../Otziflar/otzif";
+// import Otzif from "../Otziflar/otzif";
 import MetaImageZoom from "../comments/ImageZoom";
 import { PartnersCarousel } from "./PartnersCarousel";
+import Link from "next/link";
 
 export const metadata = {
   title: "Target Kursi — Vision Group",
@@ -29,9 +30,9 @@ export default function TargetKursiPage() {
           </div>
 
           {/* image */}
-          {/* <div className="mt-4 overflow-hidden rounded-[22px] border border-white/10 bg-[#07113a]">
+          <div className="mt-4 overflow-hidden lg:hidden rounded-[22px] border border-white/10 bg-[#07113a]">
               <HeroPhoto />
-          </div> */}
+          </div>
 
           {/* headline */}
           <h1 className="mt-5 text-[26px] font-extrabold leading-tight">
@@ -191,7 +192,12 @@ export default function TargetKursiPage() {
   </div>
 </section>
 
-<section className="mx-auto max-w-[920px]">
+<section className="mx-auto my-3 max-w-[920px] text-blue-500 italic">
+   <Link href={'/otzif'}>Biz bilan ishlagan va bizda o&apos;qigan o&apos;quvchilarimiz shaxsiy fikirlari</Link>
+</section>
+
+
+<section className="mx-auto my-3 max-w-[920px]">
 <PartnersCarousel />
 </section>
 

@@ -11,6 +11,7 @@ const NAV = [
   { href: "/target-kursi", label: "Target kursi" },
   { href: "/target", label: "Target xizmati" },
   { href: "/lid-magnit", label: "Lid magnit" },
+  { href: "/otzif", label: "Otzif" },
 ];
 
 export default function Topbar() {
@@ -75,7 +76,7 @@ export default function Topbar() {
       <div
         id="mobile-nav"
         className={`md:hidden overflow-hidden border-b border-white/10 bg-black/20 backdrop-blur-sm transition-[max-height,opacity] duration-300 ${
-          open ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <nav className="px-4 py-3 flex flex-col gap-2">
