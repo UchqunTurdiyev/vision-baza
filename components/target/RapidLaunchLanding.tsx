@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function TargetKursiPage() {
   return (
-    <main className=" bg-[#050B2B] text-white">
+    <main className=" bg-[#050B2B] text-white p-3">
       <GlobalMarqueeStyles />
       <BackgroundAccents />
 

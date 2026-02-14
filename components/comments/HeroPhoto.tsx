@@ -27,8 +27,8 @@ export function HeroPhoto() {
   height={900}
   priority 
   className={[
-    "h-[280px] w-full object-cover sm:h-[150px] md:h-40",
-    "object-center md:object-[50%_35%]", // 50% x, 20% y (tepaga yaqin)
+    "h-[280px] w-full object-cover sm:h-[200px] md:h-40",
+    "object-[50%_40%] md:object-[50%_95%]", // 50% x, 20% y (tepaga yaqin)
     "transition-opacity duration-300",
     loaded ? "opacity-100" : "opacity-0",
   ].join(" ")}
