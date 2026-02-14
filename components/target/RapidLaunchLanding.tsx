@@ -38,8 +38,8 @@ export default function TargetKursiPage() {
           <h1 className="mt-5 text-[26px] font-extrabold leading-tight">
           Qanday qilib men sevimli usulim orqali  <span className="text-yellow-300">mijozlarimga yuqori daromad olib keladigan natijalar bilan ta’minladim</span>.
           </h1>
-          <p className="mt-2 text-sm leading-relaxed text-white/75">
-          Meta mutaxassislaridan o&apos;rgangan real tizimimni o‘rganing.
+          <p className="mt-2 text-md leading-relaxed text-white/75">
+          Meta mutaxassislaridan o&apos;rgangan real tizimni o‘rganing.
           </p>
 
           {/* CTA */}
@@ -63,7 +63,7 @@ export default function TargetKursiPage() {
     Kursda siz quyidagi bilimlarni o‘rganasiz:
   </h2>
 
-  <ul className="mt-6 space-y-3 text-sm text-white/80">
+  <ul className="mt-6 space-y-3 text-lg text-white/80">
     <li>• Targetni 0 dan boshlab <b className="text-white">professional darajada</b> yoqish</li>
     <li>• Target ishlash algoritmlari <span className="text-white/70">(Meta qanday o‘ylaydi va reklama kimga chiqadi)</span></li>
     <li>• Kodlar orqali <b className="text-white">sun’iy intellekt</b> yordamida tezkor web-saytlar yaratish</li>
@@ -81,10 +81,10 @@ export default function TargetKursiPage() {
     <p className="text-base font-extrabold text-yellow-300">
       🔥 SIZ 3 OY DAVOMIDA USHBU BILIMLARNI TO‘LIQ O‘ZLASHTIRASIZ
     </p>
-    <p className="mt-2 text-sm text-white/80">
+    <p className="mt-2 text-lg text-white/80">
       Va shunchaki <b>“target yoqishni”</b> emas, balki{" "}
-      <b className="text-white">natija beradigan reklama va sotuv tizimini</b>{" "}
-      qurishni o‘rganasiz.
+      <b className="text-white">Mijozingiz sotuvlarini oshirib ulardan boshlang&apos;ich daromadingiz</b>{" "}
+      $700 bilan boshlanadigan doimiy daromadga ega bo&apos;lasiz
     </p>
   </div>
 </section>
@@ -108,39 +108,39 @@ export default function TargetKursiPage() {
   <div className="mt-6 grid gap-4 md:grid-cols-2 md:items-start">
     {/* TEXT */}
     <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-      <h3 className="text-lg font-extrabold leading-snug">
-        Men <span className="text-yellow-300">Uchqun Turdiyev</span> — Dasturchi, Marketolog, Targetolog.
+      <h3 className="text-2xl font-extrabold leading-snug">
+        Men <span className="text-yellow-300">Uchqun Turdiyev</span> — Marketolog, Targetolog, Dasturchi.
       </h3>
 
-      <p className="mt-3 text-sm leading-relaxed text-white/75">
-        Dasturlash bo‘yicha <b className="text-white">5 yillik</b> tajribaga egaman.
+      <p className="mt-3 text-lg leading-relaxed text-white/75">
+        Target bo‘yicha <b className="text-white">bilimlarimni Xayot Sharapov va Meta mutaxassislarini o&apos;zidan</b> bilim olganman.
         So‘nggi <b className="text-white">3 yildan beri</b> marketing va target yo‘nalishida faol ishlayman.
       </p>
 
-      <p className="mt-3 text-sm leading-relaxed text-white/75">
+      <p className="mt-3 text-lg leading-relaxed text-white/75">
         Mehriniso Nurullayevnadan <span className="text-yellow-300 font-semibold">“Shogirtlar 4.0”</span> va{" "}
         <span className="text-yellow-300 font-semibold">Marketing</span> kursini bitirganman.
         Ushbu 3 yil davomida <b className="text-white">yirik loyihalar</b> va <b className="text-white">bizneslar</b> bilan ishladim.
       </p>
 
-      <p className="mt-3 text-sm leading-relaxed text-white/75">
+      <p className="mt-3 text-lg leading-relaxed text-white/75">
         <span className="text-yellow-300 font-semibold">2025-yilda</span> umumiy{" "}
         <span className="text-yellow-300 font-extrabold">$80 000</span> reklama byudjetini boshqardim.
-        Maktab uchun <b className="text-white">250 ta</b> o‘quvchi, institut uchun esa{" "}
+        Maktab uchun <b className="text-white">$460 ga 250 ta</b> o‘quvchi, institut uchun esa{" "}
         <b className="text-white">3500 ta</b> o‘quvchi jalb qildik.
       </p>
 
-      <p className="mt-3 text-sm leading-relaxed text-white/75">
+      <p className="mt-3 text-lg leading-relaxed text-white/75">
         Shuningdek, Meta mutaxassislari tomonidan targetimga{" "}
-        <span className="text-yellow-300 font-semibold">oyiga 3 martagacha</span> audit o‘tkazilgan.
+        <span className="text-yellow-300 font-semibold">oyiga 3 martagacha</span> audit o&apos;tkazib keldim.
       </p>
 
       <div className="mt-5 rounded-2xl border border-white/10 bg-[#06103a] p-4">
-        <div className="text-sm font-semibold">
+        <div className="text-md font-semibold">
           Natijalar: <span className="text-yellow-300">ROAS</span>
         </div>
 
-        <ul className="mt-3 space-y-2 text-sm text-white/80">
+        <ul className="mt-3 space-y-2 text-md text-white/80">
           <li className="flex gap-2">
             <span className="text-yellow-300">•</span>
             <span>
@@ -161,7 +161,7 @@ export default function TargetKursiPage() {
         </ul>
       </div>
 
-      <p className="mt-4 text-sm leading-relaxed text-white/75">
+      <p className="mt-4 text-lg leading-relaxed text-white/75">
       <span className="text-yellow-300 font-semibold"> Mutaxassislik darajasiga erishish uchun Meta kompaniyasi
       mutaxassislaridan</span>  bilim oldim va hozir ham ular bilan hamkorlikda faoliyat yuritib kelmoqdaman.
       </p>
@@ -169,7 +169,7 @@ export default function TargetKursiPage() {
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
         <a
           href="#register"
-          className="flex h-11 w-full items-center justify-center rounded-2xl bg-yellow-300 text-sm font-semibold text-black hover:bg-yellow-200 sm:w-auto sm:px-6"
+          className="flex h-11 w-full items-center justify-center rounded-2xl bg-yellow-300 text-lg font-semibold text-black hover:bg-yellow-200 sm:w-auto sm:px-6"
         >
           Kursga yozilish
         </a>
@@ -185,14 +185,14 @@ export default function TargetKursiPage() {
       <div className="border-t border-white/10 bg-[#050B2B]/50 px-5 py-4">
         <div className="text-sm font-semibold">Uchqun Turdiyev</div>
         <div className="mt-1 text-xs text-white/70">
-          Dasturchi • Marketolog • Targetolog
+           Targetolog •  Marketolog • Dasturchi 
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section className="mx-auto my-3 max-w-[920px] text-blue-500 italic">
+<section className="mx-auto my-3 max-w-[920px] text-blue-500 italic text-lg">
    <Link href={'/otzif'}>Biz bilan ishlagan va bizda o&apos;qigan o&apos;quvchilarimiz shaxsiy fikirlari</Link>
 </section>
 
@@ -222,7 +222,7 @@ export default function TargetKursiPage() {
           <div className="text-xs text-white/70">
             Target Kursi • <span className="text-white">malumot uchun</span>
           </div>
-          <a href="#register" className="rounded-xl bg-yellow-300 px-4 py-2 text-sm font-semibold text-black">
+          <a href="#register" className="rounded-xl bg-yellow-300 px-4 py-2 text-md font-semibold text-black">
             Kursga yozilish
           </a>
         </div>

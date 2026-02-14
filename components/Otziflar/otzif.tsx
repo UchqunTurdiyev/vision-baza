@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 // app/lid-magnit/_components/otzif.tsx
 
+import Link from "next/link";
+
 type Testimonial = {
     id: string;
     name: string;
@@ -60,6 +62,9 @@ type Testimonial = {
   }) {
     return (
       <section className="mt-10">
+        <section className="mx-auto my-3 max-w-[920px] text-blue-500 italic text-lg">
+        <Link href="/target-kursi">Kursga qaytish</Link>
+        </section>
         <div>
           <div>
             <h2 className="text-xl font-bold">{title}</h2>
@@ -116,6 +121,10 @@ type Testimonial = {
             </article>
           ))}
         </div>
+        <section className="mx-auto my-3 max-w-[920px] text-blue-500 italic text-lg">
+        <Link href="/target-kursi">Kursga qaytish</Link>
+        </section>
+
       </section>
     );
   }

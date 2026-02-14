@@ -14,7 +14,7 @@ const partners: Partner[] = [
   { name: "ISFT Institute", logo: "/isft2.png" },
   { name: "Japan International School", logo: "/jap.png" },
   { name: "Med Expert Clinic", logo: "/md.png" },
-  { name: "Turon Med", logo: "/TR.png" },
+  { name: "Turon Med", logo: "/TR.jpg" },
   { name: "Raxmatillo Abdullayev", logo: "/ra.png" },
 ];
 
