@@ -5,6 +5,7 @@ import { TargetKursLeadForm } from "../comments/TargetKursLeadForm";
 import MetaImageZoom from "../comments/ImageZoom";
 import { PartnersCarousel } from "./PartnersCarousel";
 import Link from "next/link";
+import TargetKursiAudienceSwitch from "./TargetKursiAudienceSwitch";
 
 export const metadata = {
   title: "Target Kursi — Vision Group",
@@ -16,8 +17,8 @@ export const metadata = {
 export default function TargetKursiPage() {
   return (
     <main className=" bg-[#050B2B] text-white p-3">
-      <GlobalMarqueeStyles />
-      <BackgroundAccents />
+      {/* <GlobalMarqueeStyles /> */}
+      {/* <BackgroundAccents /> */}
 
       {/* HERO: siz yuborganiga o‘xshash, lekin premium minimal */}
       <section className="mx-auto max-w-[920px]">
@@ -46,7 +47,7 @@ export default function TargetKursiPage() {
           <div className="mt-5">
             <a
               href="#register"
-              className="flex h-12 w-full items-center justify-center rounded-2xl bg-yellow-300 text-sm font-semibold text-black hover:bg-yellow-200 active:scale-[0.99]"
+              className="rounded-2xl italic  text-sm font-semibold text-blue-500"
             >
               MALUMOT UCHUN
             </a>
@@ -56,6 +57,12 @@ export default function TargetKursiPage() {
 
     
       </section>
+
+      <section id="dastur" className="mx-auto max-w-[920px] px-4 pt-12">
+
+      <TargetKursiAudienceSwitch />
+
+</section>
 
       {/* DASTUR */}
       <section id="dastur" className="mx-auto max-w-[920px] px-4 pt-12">
@@ -233,36 +240,36 @@ export default function TargetKursiPage() {
 
 /* ---------- Helpers / UI ---------- */
 
-function BackgroundAccents() {
-  return (
-    <div className="pointer-events-none fixed inset-0 opacity-35">
-      <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl" />
-      <div className="absolute -bottom-52 -right-40 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl" />
-    </div>
-  );
-}
+// function BackgroundAccents() {
+//   return (
+//     <div className="pointer-events-none fixed inset-0 opacity-35">
+//       <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl" />
+//       <div className="absolute -bottom-52 -right-40 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl" />
+//     </div>
+//   );
+// }
 
 
-/* Marquee CSS: autoplay logo carousel */
-function GlobalMarqueeStyles() {
-  return (
-    <style>{`
-      .marquee{
-        animation: marquee 22s linear infinite;
-        will-change: transform;
-      }
-      @keyframes marquee {
-        0%   { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-      }
-      @media (hover:hover){
-        .marquee:hover{ animation-play-state: paused; }
-      }
-      @media (prefers-reduced-motion: reduce){
-        .marquee{ animation: none; }
-      }
-    `}</style>
-  );
-}
+// /* Marquee CSS: autoplay logo carousel */
+// function GlobalMarqueeStyles() {
+//   return (
+//     <style>{`
+//       .marquee{
+//         animation: marquee 22s linear infinite;
+//         will-change: transform;
+//       }
+//       @keyframes marquee {
+//         0%   { transform: translateX(0); }
+//         100% { transform: translateX(-50%); }
+//       }
+//       @media (hover:hover){
+//         .marquee:hover{ animation-play-state: paused; }
+//       }
+//       @media (prefers-reduced-motion: reduce){
+//         .marquee{ animation: none; }
+//       }
+//     `}</style>
+//   );
+// }
 
 

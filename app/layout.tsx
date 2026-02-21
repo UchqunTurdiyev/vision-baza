@@ -153,7 +153,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="min-h-screen bg-[#0b1220] text-white">
           <Topbar />
           <div className="flex">
-            <main className="flex-1 p-4">{children}</main>
+            <main className="flex-1 ">{children}</main>
           </div>
           <Footer />
         </div>
