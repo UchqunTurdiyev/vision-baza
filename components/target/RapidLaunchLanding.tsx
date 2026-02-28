@@ -36,21 +36,25 @@ export default function TargetKursiPage() {
           </div>
 
           {/* headline */}
-          <h1 className="mt-5 text-[26px] font-extrabold leading-tight">
+          <h1 className="my-5 text-[26px] font-extrabold leading-tight">
           Qanday qilib men sevimli usulim orqali  <span className="text-yellow-300">mijozlarimga yuqori daromad olib keladigan natijalar bilan ta’minladim</span>.
           </h1>
-          <p className="mt-2 text-md leading-relaxed text-white/75">
+          <a
+              href="#register"
+              className="rounded-2xl italic  text-sm font-semibold text-blue-500 "
+            >
+              <button className="border border-blue-300 w-full md:w-56 rounded-xl cursor-pointer hover:text-amber-200 hover:border-amber-300 h-10">
+              Mutaxassis maslaxatini olish
+              </button>
+            </a>
+          <p className="mt-4 text-md leading-relaxed text-white/75">
           Meta mutaxassislaridan o&apos;rgangan real tizimni o‘rganing.
           </p>
 
           {/* CTA */}
           <div className="mt-5">
-            <a
-              href="#register"
-              className="rounded-2xl italic  text-sm font-semibold text-blue-500"
-            >
-              MALUMOT UCHUN
-            </a>
+            
+            
          
           </div>
         </div>
@@ -108,7 +112,7 @@ export default function TargetKursiPage() {
       href="#register"
       className="hidden rounded-2xl bg-yellow-300 px-5 py-3 text-sm font-semibold text-black hover:bg-yellow-200 md:inline-flex"
     >
-      Ro‘yxatdan o‘tish
+      Kursni hoziroq boshlash
     </a>
   </div>
 
@@ -178,7 +182,7 @@ export default function TargetKursiPage() {
           href="#register"
           className="flex h-11 w-full items-center justify-center rounded-2xl bg-yellow-300 text-lg font-semibold text-black hover:bg-yellow-200 sm:w-auto sm:px-6"
         >
-          Kursga yozilish
+          Mening joyimni band qilish
         </a>
 
       </div>
@@ -227,10 +231,10 @@ export default function TargetKursiPage() {
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#050B2B]/90 backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
           <div className="text-xs text-white/70">
-            Target Kursi • <span className="text-white">malumot uchun</span>
+            Target Kursi •
           </div>
           <a href="#register" className="rounded-xl bg-yellow-300 px-4 py-2 text-md font-semibold text-black">
-            Kursga yozilish
+          Mening joyimni band qilish
           </a>
         </div>
       </div>
