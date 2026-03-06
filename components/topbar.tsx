@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const NAV = [
-  { href: "/sotuv", label: "Sotuv Kursi" },
+  // { href: "/sotuv", label: "Sotuv Kursi" },
   { href: "/target-kursi", label: "Target kursi" },
   { href: "/target", label: "Target xizmati" },
   { href: "/lid-magnit", label: "Lid magnit" },
