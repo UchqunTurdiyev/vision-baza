@@ -1,21 +1,27 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ faqat shu qo‘shildi
+import { useRouter } from "next/navigation"; 
 
 type Props = {
   className?: string;
 };
 
+// --- QO'SHILGAN FUNKSIYA: COOKIELARNI OLISH ---
+function getCookie(name: string) {
+  if (typeof document === "undefined") return null;
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
+  return null;
+}
+
 function extractErrorMessage(data: unknown): string | null {
   if (typeof data === "string") return data || null;
-
   if (data && typeof data === "object") {
     const obj = data as Record<string, unknown>;
-
     if (typeof obj.error === "string" && obj.error.trim()) return obj.error;
     if (typeof obj.message === "string" && obj.message.trim()) return obj.message;
-
     if (Array.isArray(obj.errors) && obj.errors.length > 0) {
       const first = obj.errors[0];
       if (typeof first === "string") return first;
@@ -25,12 +31,11 @@ function extractErrorMessage(data: unknown): string | null {
       }
     }
   }
-
   return null;
 }
 
 export function TargetKursLeadForm({ className }: Props) {
-  const router = useRouter(); // ✅ faqat shu qo‘shildi
+  const router = useRouter(); 
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
@@ -54,14 +59,12 @@ export function TargetKursLeadForm({ className }: Props) {
     const level = String(formData.get("level") ?? "").trim();
     const phoneRaw = String(formData.get("phone") ?? "").trim();
   
-    // ✅ Faqat shularni majburiy tekshiramiz:
     if (!firstName || !lastName || !phoneRaw) {
       setError("Ism, familiya va telefon raqamni to‘liq kiriting.");
       setLoading(false);
       return;
     }
   
-    // ✅ Ism/Familiya: faqat harf va bo‘shliq, kamida 2 ta harf
     const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\u0400-\u04FF\u0100-\u017Fʻʼ’`' -]{2,}$/u;
     if (!nameRegex.test(firstName)) {
       setError("Ism noto‘g‘ri. Faqat harflardan iborat bo‘lsin (kamida 2 ta).");
@@ -74,7 +77,6 @@ export function TargetKursLeadForm({ className }: Props) {
       return;
     }
   
-    // ✅ Telefon: +998XXXXXXXXX (9 ta raqam) yoki 998XXXXXXXXX yoki 9 ta raqam
     const digits = phoneRaw.replace(/\D/g, "");
     const normalized =
       digits.startsWith("998") && digits.length === 12
@@ -90,27 +92,28 @@ export function TargetKursLeadForm({ className }: Props) {
       return;
     }
   
+    const ageNum = Number(age);
+    if (!Number.isFinite(ageNum) || !Number.isInteger(ageNum)) {
+      setError("Yosh noto‘g‘ri. Faqat butun son kiriting.");
+      setLoading(false);
+      return;
+    }
+
+    if (ageNum < 18 || ageNum > 40) {
+      setError("Kurs faqat 18–40 yosh oralig‘i uchun.");
+      setLoading(false);
+      return;
+    }
+
+    // --- PAYLOAD YANGILANDI: FBP VA FBC QO'SHILDI ---
     const payload = {
       fullName: `${firstName} ${lastName}`.trim(),
-      phone: normalized, // ✅ normalizatsiya qilingan telefon
+      phone: normalized,
       source: "target-kursi",
       note: `Yosh: ${age}; Shahar: ${city}; Daraja: ${level}`,
+      fbp: getCookie("_fbp"), // Facebook Pixel Browser ID
+      fbc: getCookie("_fbc"), // Facebook Click ID
     };
-    // ✅ Yosh: 18–40 oralig‘ida bo‘lishi shart
-const ageNum = Number(age);
-
-if (!Number.isFinite(ageNum) || !Number.isInteger(ageNum)) {
-  setError("Yosh noto‘g‘ri. Faqat butun son kiriting.");
-  setLoading(false);
-  return;
-}
-
-if (ageNum < 18 || ageNum > 40) {
-  setError("Kurs faqat 18–40 yosh oralig‘i uchun.");
-  setLoading(false);
-  return;
-}
-
   
     try {
       const res = await fetch("/api/target-leads", {
