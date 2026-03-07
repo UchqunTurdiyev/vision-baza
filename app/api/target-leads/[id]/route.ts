@@ -67,8 +67,10 @@ export async function PATCH(req: NextRequest) {
             user_data: {
               ph: [hashData(updated.phone ? String(updated.phone).replace(/\D/g, "") : "")],
               em: [hashData(updated.email || "no-email@vision.uz")],
+              // JANOB, MANA BU IKKI QATOR BOG'LIQLIKNI TA'MINLAYDI:
               fbp: updated.fbp || undefined,
               fbc: updated.fbc || undefined,
+              external_id: [hashData(String(updated._id))] // Bazadagi ID ni ham shifrlab yuboramiz
             },
             custom_data: {
               currency: "UZS",
