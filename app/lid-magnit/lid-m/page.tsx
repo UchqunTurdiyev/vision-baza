@@ -16,12 +16,12 @@ export default function LidMagnitPage() {
       <div className="mx-auto w-full lg:max-w-2xl px-4 py-6">
         <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur">
           
-          <h1 className="m-3 text-xl md:text-2xl font-extrabold leading-tight text-center">
+          <h1 className="m-3 text-2xl md:text-2xl font-extrabold leading-tight text-center">
           Sizda ham reklamadan kelayotganlar faqat &quot;narx so&apos;rab&quot; yo&apos;q bo&apos;lib ketyaptimi? Unda algoritmni to&apos;g&apos;irlash vaqti keldi.
           </h1>
 
 
-          <h1 className="m-3 text-lg md:text-xl font-bold leading-tight text-indigo-400">
+          <h1 className="m-3 text-xl md:text-xl font-bold leading-tight text-indigo-400">
             Nega reklamangizga faqat &quot;qiziquvchilar&quot; yozyapti? 👇
           </h1>
 
@@ -37,15 +37,15 @@ export default function LidMagnitPage() {
           <div className="mt-8 space-y-6">
             <div className="rounded-xl border-l-4 border-red-500 bg-white/5 p-4">
               <h3 className="font-bold text-red-400">Xato: Harakat (Engagement) tuzog&apos;i</h3>
-              <p className="text-sm text-white/80">
+              <p className="text-md text-white/80">
                 Agar siz faqat Direct&apos;ga yozish uchun reklama yoqsangiz, algoritm zerikkanidan negativ yozadigan yoki puli yo&apos;q bo&apos;lsa ham &quot;narxi necha?&quot; deb so&apos;raydiganlarni topib keladi. Meta ularning hamyonini ajratmaydi.
               </p>
-              <p className="text-sm text-blue-500 py-3">Bu orqali sotuv qilishimiz mumkin albatta lekin juda ko&apos;p nazorat qilishiniz kerak bo&apos;ladi va bu usul arzon maxsulot va arzon target uchun.</p>
+              <p className="text-md text-blue-500 py-3">Bu orqali sotuv qilishimiz mumkin albatta lekin juda ko&apos;p nazorat qilishiniz kerak bo&apos;ladi va bu usul arzon maxsulot va arzon target uchun.</p>
             </div>
 
             <div className="rounded-xl border-l-4 border-yellow-500 bg-white/5 p-4">
               <h3 className="font-bold text-yellow-400">Xato: Lid-forma — bu hali pul emas!</h3>
-              <p className="text-sm text-white/80">
+              <p className="text-md text-white/80">
                 Lid qoldirgan har bir kishi xaridor emas. Meta uchun sizga lid olib kelish — vazifa bajarilganini anglatadi. Ularning sotib olish-olmasligi Meta uchun qiziq emas.
               </p>
               <p className="text-sm text-blue-500">Bu orqali sotuv qilishimiz konversiyasi yuqori lekin bu xam ideal emas sababi 100 lid 10 ta sotuv bu degani biz 90 lid uchun bekorga pul to&apos;ladik degani. Albatta bu xam ishlaydi lekin ideal emas.</p>
@@ -85,16 +85,17 @@ export default function LidMagnitPage() {
           <p className="mt-8 text-lg font-semibold text-center text-indigo-300">
             Siz ham reklamangizni &ldquo;harajat&ldquo;dan &ldquo;investitsiya&ldquo;ga aylantirmoqchimisiz? Unda ro&apos;yxatdan o&apos;ting:
           </p>
+          <div className="mt-8">
+            <LidMagnitForm />
+          </div>
 
           {/* ✅ Otziflar component */}
           <Otzif />
 
           {/* ✅ 3) Forma */}
-          <div className="mt-8">
-            <LidMagnitForm />
-          </div>
+         
 
-          <p className="mt-6 text-center text-sm text-white/70">
+          <p className="mt-6 text-center text-md text-white/70">
             Agar siz professional target kursimga qiziqsangiz:{" "}
             <Link href="/target-kursi" className="text-blue-400 underline hover:text-blue-300 transition-colors">
               Target kursi haqida batafsil
