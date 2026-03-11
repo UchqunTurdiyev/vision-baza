@@ -6,8 +6,7 @@ import LidMagnitForm from "../_components/LidMagnitForm";
 
 export default function LidMagnitPage() {
   // 🔁 Shu yerga YouTube videongiz ID sini yozing:
-  // Masalan: https://www.youtube.com/watch?v=VIDEO_ID  => VIDEO_ID
-  const YOUTUBE_ID = "VBalNSIVsK0";
+
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -16,124 +15,97 @@ export default function LidMagnitPage() {
    
       <div className="mx-auto w-full lg:max-w-2xl px-4 py-6">
         <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur">
-        <h1 className="m-3 text-xl md:text-2xl font-extrabold leading-tight">
-  Siz istagan darslik 
-</h1>
-          {/* ✅ 1) Yuqorida YouTube video */}
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-            <div className="aspect-video w-full">
-              <iframe
-                className="h-full w-full"
-                src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?rel=0&modestbranding=1`}
-                title="YouTube video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
+          
+          <h1 className="m-3 text-xl md:text-2xl font-extrabold leading-tight text-center">
+          Sizda ham reklamadan kelayotganlar faqat &quot;narx so&apos;rab&quot; yo&apos;q bo&apos;lib ketyaptimi? Unda algoritmni to&apos;g&apos;irlash vaqti keldi.
+          </h1>
+
+
+          <h1 className="m-3 text-lg md:text-xl font-bold leading-tight text-indigo-400">
+            Nega reklamangizga faqat &quot;qiziquvchilar&quot; yozyapti? 👇
+          </h1>
+
+          {/* ✅ 2) Professional Landing Copy */}
+          <h1 className="mt-6 text-3xl md:text-4xl font-extrabold leading-tight">
+            $100 tikib, kamida $200 foyda ko&apos;rmayotgan bo&apos;lsangiz — sizda Meta bilan &quot;aloqa&quot; yo&apos;q!
+          </h1>
+
+          <p className="mt-4 text-base leading-relaxed text-white/85">
+            Ko&apos;pchilik target yoqadi va faqat &quot;Lidlar soni&quot;ga qaraydi. Lekin lidlar arzon bo&apos;lsa-da, sotuv bo&apos;lmasa, bu tizim xato ishlayotganini bildiradi. Meta algoritmi sizga shunchaki yozadigan odamlarni emas, **&quot;sotib oladigan&quot;** mijozlarni topishi kerak.
+          </p>
+
+          <div className="mt-8 space-y-6">
+            <div className="rounded-xl border-l-4 border-red-500 bg-white/5 p-4">
+              <h3 className="font-bold text-red-400">Xato: Harakat (Engagement) tuzog&apos;i</h3>
+              <p className="text-sm text-white/80">
+                Agar siz faqat Direct&apos;ga yozish uchun reklama yoqsangiz, algoritm zerikkanidan negativ yozadigan yoki puli yo&apos;q bo&apos;lsa ham &quot;narxi necha?&quot; deb so&apos;raydiganlarni topib keladi. Meta ularning hamyonini ajratmaydi.
+              </p>
+              <p className="text-sm text-blue-500 py-3">Bu orqali sotuv qilishimiz mumkin albatta lekin juda ko&apos;p nazorat qilishiniz kerak bo&apos;ladi va bu usul arzon maxsulot va arzon target uchun.</p>
+            </div>
+
+            <div className="rounded-xl border-l-4 border-yellow-500 bg-white/5 p-4">
+              <h3 className="font-bold text-yellow-400">Xato: Lid-forma — bu hali pul emas!</h3>
+              <p className="text-sm text-white/80">
+                Lid qoldirgan har bir kishi xaridor emas. Meta uchun sizga lid olib kelish — vazifa bajarilganini anglatadi. Ularning sotib olish-olmasligi Meta uchun qiziq emas.
+              </p>
+              <p className="text-sm text-blue-500">Bu orqali sotuv qilishimiz konversiyasi yuqori lekin bu xam ideal emas sababi 100 lid 10 ta sotuv bu degani biz 90 lid uchun bekorga pul to&apos;ladik degani. Albatta bu xam ishlaydi lekin ideal emas.</p>
+
             </div>
           </div>
-          <h1 className="m-3 text-xl md:text-2xl font-extrabold leading-tight">
-  Agar sizga qiziq bo&apos;lsa! 👇
-</h1>
-       {/* ✅ 2) Video ostidan keyin sotuv sarlavhasi + matn (IDEAL LANDING COPY) */}
-<h1 className="mt-6 text-3xl md:text-4xl font-extrabold leading-tight">
-  HAQIQATAN ham ishlaydigan Facebook Ads tizimi!
-</h1>
 
-<p className="mt-4 text-base leading-relaxed text-white/85">
-  Keling, rostini aytaylik: so‘nggi 12–24 oy ichida Facebook reklamasi tubdan o‘zgardi.
-  O‘tgan yili ishlagan usullar bugun ishlamaydi. Hatto 6 oy oldingi “ishlayotgan” yondashuvlar ham
-  ko‘pchilikda natija bermay qo‘ydi.
-</p>
+          <h2 className="mt-8 text-2xl font-bold text-green-400">
+            Yechim: Signal va ROAS nazorati
+          </h2>
 
-<p className="mt-4 text-base leading-relaxed text-white/85">
-  Eng yomoni — eskicha-targeting, 20–30ta content,
-  lid arzon tushdi lekin sotuv yoq muammo sotuvchidami? sotuvchi almashdi! baribir shu xol qaytarilmoqdami buni echimi faqat sotuvchida emas target tizimi noto&apos;g&apos;ri qurilganida. 
-</p>
+          <p className="mt-3 text-base leading-relaxed text-white/85">
+            Haqiqiy foyda uchun biz Metaga **&quot;Sotib olgan mijoz&quot;** signalini yuborishimiz kerak. Buning uchun:
+          </p>
 
-<h2 className="mt-8 text-xl font-bold">
-  Bu muammoni echimi oddiy bo‘lishi mumkin bo‘lsa-chi?
-</h2>
+          <ul className="mt-4 space-y-3 text-base text-white/85">
+            <li className="flex items-start gap-2">
+              <span className="text-green-500">✔</span>
+              <span><b>CRM, Veb-sayt orqali target yoqadigan bo&apos;lsangiz:</b> Sotuvchi mijozga sotganida &ldquo;SOTIB OLDI&ldquo; bo&apos;limiga o&apos;tkazsa , Metaga ushbu inson sotib oldi signal boradi.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-green-500">✔</span>
+              <span><b>Algoritmning &ldquo;Ko&apos;zi&quot; ochiladi:</b> Meta o&apos;sha soniyada aynan pul to&apos;lagan odamga o&apos;xshash auditoriyani qidirishni boshlaydi.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-green-500">✔</span>
+              <span><b>ROAS nazorati:</b> Tikilgan $1 pul qancha sof foyda keltirganini aniq raqamlarda ko&apos;rasiz.</span>
+            </li>
+          </ul>
 
-<p className="mt-3 text-base leading-relaxed text-white/85">
-  Muammo qayerda ekanligini siz kreativingizdan tortib sotuv bo&apos;lguniga qadar raqamlar bilan boshqara olsangizchi?
-  Va bu Facebook’ning yangi AI tizimi to&apos;g&apos;ri qo&apos;llash orqali real sotuvga olib keladigan tizim bo&apos;lsachi?
-</p>
+          <div className="mt-8 rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-5 italic">
+            <p className="text-base leading-relaxed text-white/90">
+              Men Turdiyev Uchqun, Performance Marketing orqali kontentni to&apos;g&apos;ri sozlashdan tortib, sotuv bo&apos;lgungacha bo&apos;lgan har bir qadamni raqamlar bilan boshqarishni o&apos;rgataman.
+            </p>
+          </div>
 
-<div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
+          <p className="mt-8 text-lg font-semibold text-center text-indigo-300">
+            Siz ham reklamangizni &ldquo;harajat&ldquo;dan &ldquo;investitsiya&ldquo;ga aylantirmoqchimisiz? Unda ro&apos;yxatdan o&apos;ting:
+          </p>
 
-  <p className="mt-2 text-base leading-relaxed text-white/85">
-    Men reklamalarimni Meta kompaniyasi xodimlari orqali audit qildirdim.
-    Natijada kampaniyalar 180° o‘zgardi: lidlar sifati oshdi, lidlar 2 baravar arzonlashdi va
-    juda ko‘p insaydlarga ega bo‘ldim.
-  </p>
+          {/* ✅ Otziflar component */}
+          <Otzif />
 
-  <p className="mt-3 text-base leading-relaxed text-white/85">
-    Sababi oddiy: kuniga $1500 gacha reklamaga sarflayman. Shu sababli oyiga 3 marta audit qildirib turaman.
-    Chunki katta byudjetda “xato” — eng qimmat narsa.
-  </p>
-
-  <p className="mt-3 text-base leading-relaxed text-white/85">
-   Men Turdiyev Uchqun Performance Marketing orqali contentni to&apos;g&apos;ri sozlash, Targetni to&apos;g&apos;ri yo&apos;naltirish, sotuvni to&apos;g&apos;ri tizimlash, umumiy aytganda sotuv bo&apos;lgungacha bo&apos;lgan qadamlarni raqamlar orqali ko&apos;rib sozlashni o&apos;rgataman
-  </p>
-</div>
-
-<h2 className="mt-8 text-xl font-bold">
-  Facebook Ads’dagi asosiy muammo nimada?
-</h2>
-
-<p className="mt-3 text-base leading-relaxed text-white/85">
-  Eski usul lidlar qimmat tushdi yomon kompaniya lidlar arzon tushdi yaxshi kompaniya. Bu kabi fikirlash bizning sotuvimiz marjamiz 0 hali deganini bildiradi
-</p>
-
-<p className="mt-4 text-base leading-relaxed text-white/85">
-  To‘g‘ri savol endi bu emas: <span className="font-semibold text-white">“Hamma ayb sotuvchida sotuvchim sota olmayaptimi?”</span>
-  To‘g‘ri savol endi bu emas: <span className="font-semibold text-white">“Mukammal auditoriyani qanday topsam bo‘ladi?”</span>
-  To‘g‘ri savol: <span className="font-semibold text-white">“Men haqiqiy foydadan Targetolog Marketolog va Sotuvchiga KPI berishim kerakmi?”</span>
-  To‘g‘ri savol: <span className="font-semibold text-white">“Qanday reklama yaratsam, u keng bozordan menga kerakli auditoriyani o‘zi tortadi?”</span>
-</p>
-
-<h2 className="mt-8 text-xl font-bold">
-  Endi yangicha ishlaydigan yondashuv: Performance Marketing
-</h2>
-
-<ul className="mt-4 space-y-2 text-base text-white/85">
-  <li>✅ Har bir qadam RAQAMLAR bilan o‘lchanadi CTR, CPC, CPL, CPA, ROAS.</li>
-  <li>✅ Byudjet ustidan to‘liq nazorat. Bu yondashuv pulni kuydirmaydi, balki ko‘paytiradi.</li>
-  <li>✅ Tez test → tez natija. Bozor nimani xohlayotganini tez bilib olasiz.</li>
-  <li>✅ Ishlayotgan kampaniyani masshtablash bo‘yicha aniq yo‘l xarita beradi</li>
-  <li>✅ Mutaxassis foydadan ulush oladigan darajaga chiqadi</li>
-</ul>
-
-<p className="mt-6 text-base leading-relaxed text-white/85">
-  Sizga ham ushbu texnikalar qiziqmi? Unda ro&apos;yxatdan o&apos;ting
-</p>
-
-<p className="mt-4 text-base leading-relaxed text-white/85">
-  Agar siz professional target kursimga qiziqsangiz, ushbu link orqali ma&apos;lumot oling:{" "}
-  <Link href="/target-kursi" className="text-blue-400 italic hover:text-blue-300">
-    Target kursi
-  </Link>
-</p>
-
-
-   {/* ✅ Otziflar component */}
-   <Otzif />
-          {/* ✅ 3) Forma o‘z holicha qoladi */}
+          {/* ✅ 3) Forma */}
           <div className="mt-8">
             <LidMagnitForm />
           </div>
 
-          <p className="mt-4 text-xs text-white/60">
-            Tugmani bosganingizdan so‘ng “Raxmat” sahifasiga o‘tasiz va
-            5 sekunddan keyin Telegram kanalga yo‘naltirilasiz.
+          <p className="mt-6 text-center text-sm text-white/70">
+            Agar siz professional target kursimga qiziqsangiz:{" "}
+            <Link href="/target-kursi" className="text-blue-400 underline hover:text-blue-300 transition-colors">
+              Target kursi haqida batafsil
+            </Link>
+          </p>
+
+          <p className="mt-4 text-center text-[10px] text-white/40 uppercase tracking-widest">
+            Tugmani bosgach 5 sekunddan keyin Telegram kanalga yo‘naltirilasiz.
           </p>
         </div>
       </div>
     </main>
   );
 }
-
-
-
-
-

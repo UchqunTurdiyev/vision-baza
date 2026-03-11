@@ -154,27 +154,11 @@ export default function LidMagnitForm() {
         </button>
 
         {/* ✅ Tezlikka ta’sir qilmaydigan video tugma (iframe faqat bosilganda yuklanadi) */}
-        <div className="pt-2">
-          <button
-            type="button"
-            onClick={() => setVideoOpen(true)}
-            className="w-full rounded-xl border border-white/10 bg-black/30 px-5 py-3 text-sm font-semibold text-white/90 hover:bg-black/40"
-          >
-            ▶ 1 daqiqalik videoni ko‘rish
-          </button>
-          <p className="mt-1 text-xs text-white/60">
-            Video bosilganda ochiladi — sahifa tezligiga ta’sir qilmaydi.
-          </p>
-        </div>
+     
       </form>
 
       {/* ✅ Modal */}
-      <VideoModal
-        open={videoOpen}
-        onClose={() => setVideoOpen(false)}
-        videoId="4Boc8FjHzGM"
-        title="Lid Magnit — 1 daqiqalik video"
-      />
+
     </>
   );
 }
