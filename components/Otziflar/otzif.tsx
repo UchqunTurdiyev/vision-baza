@@ -20,7 +20,7 @@ type Testimonial = {
       role: "Biznes egasi",
       avatarUrl: "/sardor.jpeg",
       text: "Kursda bunaqa ma'lumotlar berilishini kutmagan edim, lidlar sifati sezilarli oshdi. Eng yoqqani — hammasi tizimli.",
-      youtubeId: "4Boc8FjHzGM",
+      youtubeId: "Ihir2cTL_F8",
       date: "2026-01-10",
     },
     {
@@ -31,16 +31,9 @@ type Testimonial = {
       text: "Ustoz darslar zo'r bo'lyapti. Man to'g'ri joyda ekanligimni borgan sari yanada aniqroq his qilib boryapman, sababi bizaga darsni shunchaki target mutaxassisi emas balki butun marketing tizimini qura oladigan, kontentdan tortib mijoz sotib olishigacha bo'lgan tizimni boshqara oladigan mutaxassisdan dars olyapmiz deb hisoblayapman. Katta rahmat ustoz bundan buyog'i yanada qiziqarliroq bo'lib ketadi xudo xoxlasa👍👍",
       date: "2026-01-18",
     },
+  
     {
-      id: "t3",
-      name: "Shahzod K.",
-      role: "SMM / Marketing",
-      avatarUrl: "/otzif2.jpeg",
-      youtubeId: "Ihir2cTL_F8",
-      date: "2026-01-21",
-    },
-    {
-        id: "t4",
+        id: "t3",
         name: "G'anisher",
         role: "Targetolog",
         avatarUrl: "/g.jpeg",
