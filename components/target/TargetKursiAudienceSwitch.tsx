@@ -1,327 +1,153 @@
 "use client";
 
 import { useState } from "react";
+import { CheckCircle, PlayCircle, ShieldCheck, Zap } from "lucide-react"; // lucide-react o'rniga oddiy SVG ishlatsangiz ham bo'ladi
 
 export default function TargetKursiAudienceSwitch() {
   const [active, setActive] = useState<"new" | "biz" | "pro">("new");
 
+  const tabs = [
+    { id: "new", label: "Noldan boshlovchi" },
+    { id: "biz", label: "Tadbirkor" },
+    { id: "pro", label: "Targetolog (Pro)" },
+  ] as const;
+
   return (
-    <div className="mt-5">
-      {/* Buttons */}
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <button
-          type="button"
-          onClick={() => setActive("new")}
-          className={[
-            "flex h-12 w-full items-center justify-center rounded-2xl text-sm font-semibold transition",
-            active === "new"
-              ? "bg-yellow-300 text-black"
-              : "bg-white/10 text-white hover:bg-white/15 active:scale-[0.99]",
-          ].join(" ")}
-        >
-          Targetni endi o‘rganmoqchiman
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActive("biz")}
-          className={[
-            "flex h-12 w-full items-center justify-center rounded-2xl text-sm font-semibold transition",
-            active === "biz"
-              ? "bg-yellow-300 text-black"
-              : "bg-white/10 text-white hover:bg-white/15 active:scale-[0.99]",
-          ].join(" ")}
-        >
-          O‘z biznesim bor
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActive("pro")}
-          className={[
-            "flex h-12 w-full items-center justify-center rounded-2xl text-sm font-semibold transition",
-            active === "pro"
-              ? "bg-yellow-300 text-black"
-              : "bg-white/10 text-white hover:bg-white/15 active:scale-[0.99]",
-          ].join(" ")}
-        >
-          Targetologman
-        </button>
+    <div className="mt-10 max-w-[920px] mx-auto">
+      {/* 1. Segment Tanlash - Modern Tab style */}
+      <div className="flex p-1 bg-white/5 rounded-2xl border border-white/10 mb-8">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActive(tab.id)}
+            className={`flex-1 py-3 px-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 ${
+              active === tab.id
+                ? "bg-yellow-300 text-black shadow-lg shadow-yellow-300/20 scale-[1.02]"
+                : "text-white/60 hover:text-white hover:bg-white/5"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
-      {/* Content */}
-      <div className="mt-4 rounded-2xl bg-white/5 p-4">
+      {/* 2. Content Area with Animation Look */}
+      <div className="relative overflow-hidden rounded-4xl border border-white/10 bg-linear-to-b from-white/10 to-transparent p-6 md:p-10">
+        
+        {/* BG Accent */}
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-yellow-300/10 blur-[100px] rounded-full"></div>
+
         {active === "new" && (
-       <>
-       <h2 className="text-2xl font-bold leading-tight">
-         Targetni o‘rganib{" "}
-         <span className="text-yellow-300">yuqori daromadli kasb</span>ga ega bo‘lmoqchimisiz?
-       </h2>
-     
-       <p className="mt-3 text-lg leading-relaxed text-white/75">
-         Kursga to‘lov qilib, uni tugatgandan keyin
-         </p>
-       <p className="mt-3 text-lg leading-relaxed text-white/75">
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 className="text-3xl md:text-4xl font-black leading-tight italic">
+              Targetni o‘rganib <span className="text-yellow-300">Daromadli Kasb</span> egasi bo‘ling
+            </h2>
+            
+            <div className="mt-8 grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <p className="text-lg text-white/80 leading-relaxed">
+                  Ko&apos;pchilik kursni tugatib <span className="text-white font-bold underline decoration-yellow-300">&quot;Mijozni qayerdan topaman?&quot;</span> deb qo&apos;rqadi. 
+                </p>
+                <div className="space-y-3">
+                  <BenefitItem text="200 minglik 'knopka bosishni' emas, strategiyani o'rganasiz" />
+                  <BenefitItem text="Mijozga natija (pul) olib kelish tizimi" />
+                  <BenefitItem text="Real loyihalarda portfolio yig'ish" />
+                </div>
+              </div>
 
-         “To‘liq o‘rgana olamanmi?”
-         </p>
-       <p className="mt-3 text-lg leading-relaxed text-white/75">
-
-         “Ish topa olamanmi?”
-         </p>
-       <p className="mt-3 text-lg font-semibold leading-relaxed text-white/75">
-
-         “Real tajribasiz qanday ish topaman?”
-         {" "}
-         deb o‘ylayotgan bo‘lsangiz — men sizga yordam bera olaman.
-       </p>
-     
-       <p className="mt-3 font-semibold text-lg leading-relaxed text-white/75">
-         Men sizga “200 mingga target yoqib beraman” degan yondashuvni emas,
-         <br />
-         <span className="text-yellow-300">
-           mijozlaringiz savdosini oshirib, natijadan ulush yoki mo‘may daromad oladigan
-         </span>
-         <br />
-         targetolog bo‘lishni o&apos;rgataman.
-       </p>
-     
-       <p className="mt-3 text-lg leading-relaxed text-white/75">
-         Buning uchun siz faqat target yoqishni emas,
-         <br />
-         <span className="text-yellow-300">
-           kassaga pul tushgungacha bo‘lgan barcha qadamlarni ko‘ra oladigan
-         </span>
-         va to‘liq strategiya tuza oladigan Performance Marketing mutaxassisi bo‘lasiz.
-       </p>
-     
-       <div className="mt-4 rounded-2xl bg-white/5 p-2">
-         <h3 className="text-lg font-bold text-white">Kafolat (100% xotirjamlik):</h3>
-     
-         <p className="mt-2 text-lg font-semibold  leading-relaxed text-white/75">
-           Kursning 1-oyi uchun to‘lovning yarmini qilasiz.
-           </p>
-         <p className="mt-2 text-lg font-semibold  leading-relaxed text-white/75">
-
-           Karta raqamingizni menga yuborasiz.
-           </p>
-           <p className="mt-2 text-lg leading-relaxed text-white/75 font-semibold">
-
-           Agar kurs davomida sizga ma’qul kelmasa — shunchaki guruhni tark etasiz.
-           
-         <span className="text-yellow-300">
-           {" "}Men esa to‘lovingizni 100% qaytaraman.
-           </span>
-        </p>
-       </div>
-     
-       <div className="mt-3 rounded-2xl bg-white/5 p-4">
-         <h3 className="text-lg font-bold text-white">Darslar qanday o‘tadi?</h3>
-     
-         <ul className="mt-2 space-y-2 font-semibold  text-lg text-white/80">
-           <li>
-             • Darslar platformada tayyor yozuv emas —
-             <br />
-             kelishilgan vaqtda Zoom orqali jonli o‘tadi.
-           </li>
-           <li>
-             • Har bir dars yozib olinadi
-             <br />
-             va sizga tashlab beriladi.
-           </li>
-           <li>
-             • Qila olmagan joyingizda siz uchun alohida Zoom qilaman
-             <br />
-             va muammoingizni hal qilib beraman.
-           </li>
-         </ul>
-       </div>
-     </>
+              <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <h3 className="flex items-center gap-2 text-yellow-300 font-bold mb-4">
+                  <ShieldCheck className="w-5 h-5" /> 100% Pulni Qaytarish Kafolati
+                </h3>
+                <p className="text-sm text-white/70 leading-relaxed">
+                  Agar 1-oy davomida darslar sifatiga shubha qilsangiz, hech qanday savollarsiz to‘lovingizni <b>to‘liq qaytarib beraman</b>. Men natijaga javob beraman.
+                </p>
+              </div>
+            </div>
+          </div>
         )}
 
         {active === "biz" && (
-      <>
-      <h2 className="text-2xl font-bold leading-tight">
-        Tadbirkorlik bilan shug‘ullanib kelyapsiz, lekin{" "}
-        <span className="text-yellow-300">savdo o‘smayaptimi?</span>
-      </h2>
-    
-      <p className="mt-3 text-lg font-semibold leading-relaxed text-white/75">
-        SMM va targetologlarga sarflagan pulingizga yarasha natija bo‘lmadi?
-      </p>
-      <p className="mt-3 text-lg font-semibold leading-relaxed text-white/75">
-        O‘zingiz target yoqyapsiz, lekin savdoda o‘sish yo‘qmi?
-      </p>
-    
-      <p className="mt-3 text-lg font-semibold leading-relaxed text-white/75">
-        Muammo targetda emas.
-        </p>
-      <p className="mt-3 text-lg font-semibold leading-relaxed text-white/75">
-
-        Muammo — siz faqat oxirgi qadamni qilyapsiz.
-        </p>
-      <p className="mt-3 text-lg font-semibold leading-relaxed text-white/75">
-       
-        Target esa jarayonning <span className="text-yellow-300">eng oxirgi bosqichi</span>.
-     
-    </p>
-      <p className="mt-3 text-lg leading-relaxed font-semibold text-white/75">
-        Kursimda siz faqat knopkalar bosishni yoki reklama yoqishni emas,
-        <br />
-        <span className="text-yellow-300">kuchli taklif (offer) yaratishni</span>,
-        <br />
-        qaysi video va kreativlar sotishini analiz qilishni,
-        <br />
-        to‘g‘ri strategiya bilan tizimli target yoqishni o‘rganasiz.
-      </p>
-    
-      <p className="mt-3 text-lg font-semibold leading-relaxed text-white/75">
-        Natijada siz targetga tikkan summangizni shunchaki “reklama xarajati” sifatida emas,
-        <br />
-        <span className="text-yellow-300">
-          foyda bilan qaytarib oladigan tizim
-        </span>{" "}
-        qurasiz.
-      </p>
-      <div className="mt-4 rounded-2xl bg-white/5 p-2">
-         <h3 className="text-lg font-bold text-white">Kafolat (100% xotirjamlik):</h3>
-     
-         <p className="mt-2 text-lg font-semibold leading-relaxed text-white/75">
-           Kursning 1-oyi uchun to‘lovning yarmini qilasiz.
-           </p>
-         <p className="mt-2 text-lg leading-relaxed font-semibold  text-white/75">
-
-           Karta raqamingizni menga yuborasiz.
-           </p>
-           <p className="mt-2 text-lg  leading-relaxed text-white/75 font-semibold">
-
-           Agar kurs davomida sizga ma’qul kelmasa — shunchaki guruhni tark etasiz.
-           
-         <span className="text-yellow-300">
-           {" "}Men esa to‘lovingizni 100% qaytaraman.
-           </span>
-        </p>
-       </div>
-     
-       <div className="mt-3 rounded-2xl bg-white/5 p-4">
-         <h3 className="text-lg font-bold text-white">Darslar qanday o‘tadi?</h3>
-     
-         <ul className="mt-2 space-y-2 text-lg font-semibold text-white/80">
-           <li>
-             • Darslar platformada tayyor yozuv emas —
-             <br />
-             kelishilgan vaqtda Zoom orqali jonli o‘tadi.
-           </li>
-           <li>
-             • Har bir dars yozib olinadi
-             <br />
-             va sizga tashlab beriladi.
-           </li>
-           <li>
-             • Qila olmagan joyingizda siz uchun alohida Zoom qilaman
-             <br />
-             va muammoingizni hal qilib beraman.
-           </li>
-         </ul>
-       </div>
-    </>
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 className="text-3xl md:text-4xl font-black leading-tight italic">
+              Reklamaga pul <span className="text-yellow-300">Sarflamang</span>, Uni <span className="text-yellow-300">Tikib Foyda Oling</span>
+            </h2>
+            <div className="mt-8 grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <p className="text-lg text-white/80">
+                  Target — bu jarayonning oxiri. Ungacha bo&apos;lgan <span className="font-bold text-white italic">&quot;Marketing Voronkasi&quot;</span> xato bo&apos;lsa, reklama yordam bermaydi.
+                </p>
+                <div className="space-y-3">
+                  <BenefitItem text="Kuchli 'Offer' va sotuvchi kreativlar siri" />
+                  <BenefitItem text="Targetni reklama xarajati emas, investitsiyaga aylantirish" />
+                  <BenefitItem text="Agentliklarni nazorat qilishni o'rganish" />
+                </div>
+              </div>
+              
+              <div className="bg-[#0a154d] rounded-2xl p-6 border border-yellow-300/30 relative overflow-hidden">
+                 <Zap className="absolute -right-4 -bottom-4 w-24 h-24 text-yellow-300/10" />
+                 <h3 className="font-bold text-white mb-2 italic">Natija:</h3>
+                 <p className="text-sm text-white/80">Tizimli savdo o&apos;sishi va har bir sarflangan $1 uchun maksimal daromad (ROAS) olishni boshlaysiz.</p>
+              </div>
+            </div>
+          </div>
         )}
 
         {active === "pro" && (
-     <>
-     <h2 className="text-2xl font-bold leading-tight">
-       Target va SMM sohasida ishlayapsiz, lekin{" "}
-       <span className="text-yellow-300">daromadingiz o‘smayaptimi?</span>
-     </h2>
-   
-     <p className="mt-3 text-lg font-semibold leading-relaxed text-white/75">
-       Bir necha yildan beri ishlaysiz.
-       </p>
-     <p className="mt-3 text-lg leading-relaxed text-white/75">
-
-       Lekin bitta joyda 3 oydan ko‘p ushlanib qola olmayapsiz.
-       </p>
-       <p className="mt-3 text-lg leading-relaxed text-white/75">
-
-       Daromadingizni ko‘paytira olmayapsiz.
-       </p>
-       <p className="mt-3 text-lg leading-relaxed text-white/75">
-
-       Qancha ishlasangiz ham, hali ham kutgan maoshingizga chiqa olmadingiz.
-     </p>
-   
-     <p className="mt-3 text-lg leading-relaxed text-white/75">
-       Sizga oddiy “yana ko‘proq reklama yoqish” emas,
-       <br />
-       kamida <span className="text-yellow-300">2x o‘sish</span> va yangi daraja kerak.
-     </p>
-   
-     <p className="mt-3 text-lg font-semibold  leading-relaxed text-white/75">
-       Men sizga buning uchun aniq va amaliy yechimlar bilan yordam bera olaman.
-       <br />
-       Siz “$200 ga target yoqib beraman” deydigan mutaxassis emas,
-       <br />
-       <span className="text-yellow-300">
-         “Savdoyingizni oshiraman va sof foydadan ulush olaman”
-       </span>
-       <br />
-       yoki eng kamida <span className="text-yellow-300">$500+ maosh</span> talab qila oladigan
-       mutaxassis darajasiga chiqasiz.
-     </p>
-   
-     <p className="mt-3 text-lg leading-relaxed text-white/75">
-       Qanday qilib katta bizneslarni olish,
-       <br />
-       ularni to‘g‘ri strategiya bilan yuritish,
-       <br />
-       KPI qo‘yish va natija bilan ishlashgacha —
-       <br />
-       hammasini to‘liq o‘rgataman.
-     </p>
-     <div className="mt-4 rounded-2xl bg-white/5 p-2">
-         <h3 className="text-lg font-bold text-white">Kafolat (100% xotirjamlik):</h3>
-     
-         <p className="mt-2 text-lg leading-relaxed text-white/75">
-           Kursning 1-oyi uchun to‘lovning yarmini qilasiz.
-           </p>
-         <p className="mt-2 text-lg leading-relaxed text-white/75">
-
-           Karta raqamingizni menga yuborasiz.
-           </p>
-           <p className="mt-2 text-lg leading-relaxed text-white/75 font-semibold">
-
-           Agar kurs davomida sizga ma’qul kelmasa — shunchaki guruhni tark etasiz.
-           
-         <span className="text-yellow-300">
-           {" "}Men esa to‘lovingizni 100% qaytaraman.
-           </span>
-        </p>
-       </div>
-     
-       <div className="mt-3 rounded-2xl bg-white/5 p-4">
-         <h3 className="text-lg font-bold text-white">Darslar qanday o‘tadi?</h3>
-     
-         <ul className="mt-2 space-y-2 text-lg font-semibold text-white/80">
-           <li>
-             • Darslar platformada tayyor yozuv emas —
-             <br />
-             kelishilgan vaqtda Zoom orqali jonli o‘tadi.
-           </li>
-           <li>
-             • Har bir dars yozib olinadi
-             <br />
-             va sizga tashlab beriladi.
-           </li>
-           <li>
-             • Qila olmagan joyingizda siz uchun alohida Zoom qilaman
-             <br />
-             va muammoingizni hal qilib beraman.
-           </li>
-         </ul>
-       </div>
-   </>
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 className="text-3xl md:text-4xl font-black leading-tight italic text-yellow-300">
+              $200 dan $1000+ gacha O&apos;sish Vaqti Keldi
+            </h2>
+            <div className="mt-8 space-y-6">
+              <p className="text-xl text-white/90 font-medium">
+                Oddiy targetolog bo&apos;lishni bas qiling. <span className="underline decoration-yellow-300">Performance Marketologga</span> aylaning.
+              </p>
+              <div className="grid md:grid-cols-3 gap-4">
+                 <ProCard title="Katta Loyihalar" desc="Yirik bizneslar bilan ishlash va KPI qo'yish" />
+                 <ProCard title="Natijadan Ulush" desc="Faqat oylikka emas, foydaga sherik bo'lish" />
+                 <ProCard title="Meta Audit" desc="Meta mutaxassislari darajasida analiz" />
+              </div>
+            </div>
+          </div>
         )}
+
+        {/* 3. Common Footer: How it works */}
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-6">
+           <div className="flex items-start gap-4">
+              <div className="bg-yellow-300 text-black p-2 rounded-lg"><PlayCircle className="w-6 h-6" /></div>
+              <div>
+                <h4 className="font-bold">Jonli Zoom Darslar</h4>
+                <p className="text-xs text-white/50">Yozuv emas, interaktiv muloqot va shaxsiy tahlil</p>
+              </div>
+           </div>
+           <div className="flex items-start gap-4">
+              <div className="bg-yellow-300 text-black p-2 rounded-lg"><CheckCircle className="w-6 h-6" /></div>
+              <div>
+                <h4 className="font-bold">24/7 Support</h4>
+                <p className="text-xs text-white/50">Qila olmagan joyingizda individual yordam</p>
+              </div>
+           </div>
+        </div>
       </div>
+    </div>
+  );
+}
+
+// Yordamchi komponentlar
+function BenefitItem({ text }: { text: string }) {
+  return (
+    <div className="flex items-center gap-3 text-white/90">
+      <div className="h-1.5 w-1.5 rounded-full bg-yellow-300 shrink-0" />
+      <span className="text-md font-medium">{text}</span>
+    </div>
+  );
+}
+
+function ProCard({ title, desc }: { title: string, desc: string }) {
+  return (
+    <div className="bg-white/5 border border-white/10 p-5 rounded-2xl hover:border-yellow-300/50 transition-colors">
+      <h4 className="text-yellow-300 font-bold mb-2">{title}</h4>
+      <p className="text-xs text-white/60 leading-relaxed">{desc}</p>
     </div>
   );
 }

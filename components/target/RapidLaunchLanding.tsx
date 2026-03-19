@@ -6,6 +6,7 @@ import MetaImageZoom from "../comments/ImageZoom";
 import { PartnersCarousel } from "./PartnersCarousel";
 import Link from "next/link";
 import TargetKursiAudienceSwitch from "./TargetKursiAudienceSwitch";
+import Otzif from "../Otziflar/otzif";
 
 export const metadata = {
   title: "Target Kursi — Vision Group",
@@ -22,44 +23,83 @@ export default function TargetKursiPage() {
 
       {/* HERO: siz yuborganiga o‘xshash, lekin premium minimal */}
       <section className="mx-auto max-w-[920px]">
-        <div className="rounded-[28px] border border-white/10 bg-white/5 p-4">
-          {/* small top row */}
-          <div className="flex items-center justify-between">
-          <p className="text-[11px] sm:text-xs font-semibold tracking-[0.14em] uppercase text-white/65">
-    Vision Group • Target kursi • Performance Marketing
-  </p>
-          </div>
+  <div className="rounded-4xl border border-white/10 bg-linear-to-br from-white/10 to-transparent p-6 md:p-12 relative overflow-hidden">
+    
+    {/* Orqa fondagi yengil effekt */}
+    <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl"></div>
 
-          {/* image */}
-          <div className="mt-4 overflow-hidden lg:hidden rounded-[22px] border border-white/10 bg-[#07113a]">
-              <HeroPhoto />
-          </div>
+    {/* 1. STATUS ROW */}
+    <div className="flex items-center gap-3">
+      <div className="flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-yellow-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+      </div>
+      <p className="text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-white/50">
+        Vision Group • $80,000+ Ad Spend Experience
+      </p>
+    </div>
 
-          {/* headline */}
-          <h1 className="my-5 text-[26px] font-extrabold leading-tight">
-          Qanday qilib men sevimli usulim orqali  <span className="text-yellow-300">mijozlarimga yuqori daromad olib keladigan natijalar bilan ta’minladim</span>.
-          </h1>
-          <a
-              href="#register"
-              className="rounded-2xl italic  text-sm font-semibold text-blue-500 "
-            >
-              <button className="border border-blue-300 w-full md:w-56 rounded-xl cursor-pointer hover:text-amber-200 hover:border-amber-300 h-10">
-              Mutaxassis maslaxatini olish
-              </button>
-            </a>
-          <p className="mt-4 text-md leading-relaxed text-white/75">
-          Meta mutaxassislaridan o&apos;rgangan real tizimni o‘rganing.
+    {/* 2. TEXT CONTENT - Desktopda markazlashgan yoki chapda chiroyli turishi uchun */}
+    <div className="mt-8 max-w-3xl">
+    <h1 className="text-3xl md:text-5xl font-black leading-[1.15] text-white italic">
+  Meta Mutaxassislaridan O‘rgangan <span className="text-yellow-300">Tizimim</span> bilan Performance Marketolog darajasiga chiqing
+</h1>
+
+      <p className="mt-6 text-lg md:text-xl leading-relaxed text-white/70">
+        3 yillik real keyslar va Meta ekspertlari auditi asosida shakllangan <b className="text-white">Performance tizim</b>. Shunchaki reklama yoqishni emas, natija qilishni o&apos;rgataman.
+      </p>
+
+      {/* 3. MOBIL RASM (Faqat telefonda chiqadi: hidden lg:hidden bo'lishi shart emas, lg:hidden o'zi yetadi) */}
+      <div className="mt-8 lg:hidden overflow-hidden rounded-[28px] border border-white/10 bg-[#07113a] shadow-2xl">
+          <HeroPhoto />
+      </div>
+
+      {/* 4. ACTION BUTTONS */}
+      <div className="mt-10 flex flex-col sm:flex-row items-center gap-6">
+        <a
+          href="#register"
+          className="w-full sm:w-auto flex items-center justify-center rounded-2xl bg-yellow-300 px-10 py-5 text-lg font-black text-[#050B2B] transition-all hover:bg-yellow-200 hover:scale-105 active:scale-95 shadow-xl shadow-yellow-300/25"
+        >
+          Bepul maslahat olish
+        </a>
+        
+        <div className="flex items-center gap-4">
+          <div className="flex -space-x-3">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-10 w-10 rounded-full border-2 border-[#050B2B] bg-white/10 backdrop-blur-md flex items-center justify-center text-[10px] font-bold">
+                U{i}
+              </div>
+            ))}
+          </div>
+          <p className="text-xs font-medium text-white/50 leading-tight italic">
+            Yaqinda 12 kishi <br /> kursga yozildi
           </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-          {/* CTA */}
-          <div className="mt-5">
-            
-            
-         
+      {/* 2. AUDIENCE SECTION (YANGI QO'SHILDI) */}
+      <section className="mx-auto max-w-[920px] px-4 pt-12">
+        <h2 className="text-2xl font-extrabold text-center mb-8">Bu kurs kimlar uchun?</h2>
+        <div className="grid md:grid-cols-3 gap-4">
+          <div className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+            <div className="text-2xl mb-2">🚀</div>
+            <h4 className="text-yellow-300 font-bold italic mb-2">Tadbirkorlar</h4>
+            <p className="text-sm text-white/70">O&apos;z biznesingizga arzon va sifatli lidlar oqimini mustaqil yo&apos;lga qo&apos;ying.</p>
+          </div>
+          <div className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+            <div className="text-2xl mb-2">💼</div>
+            <h4 className="text-yellow-300 font-bold italic mb-2">Frilanserlar</h4>
+            <p className="text-sm text-white/70">Yangi darajaga chiqing va xizmat haqingizni $500+ ga ko&apos;taring.</p>
+          </div>
+          <div className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+            <div className="text-2xl mb-2">🎓</div>
+            <h4 className="text-yellow-300 font-bold italic mb-2">Talabalar</h4>
+            <p className="text-sm text-white/70">Hech qanday tajribasiz eng talabgir zamonaviy kasbni noldan egallang.</p>
           </div>
         </div>
-
-    
       </section>
 
       <section id="dastur" className="mx-auto max-w-[920px] px-4 pt-12">
@@ -204,9 +244,121 @@ export default function TargetKursiPage() {
 </section>
 
 <section className="mx-auto my-3 max-w-[920px] text-blue-500 italic text-lg">
-   <Link href={'/otzif'}>Biz bilan ishlagan va bizda o&apos;qigan o&apos;quvchilarimiz shaxsiy fikirlari</Link>
+   <Otzif />
 </section>
 
+{/* 4. PRICING SECTION */}
+<section className="mx-auto max-w-[980px] px-4 pt-20 text-center">
+  <h2 className="text-3xl md:text-5xl font-black mb-4 italic">Ishtirok etish tariflari</h2>
+  <p className="text-white/60 mb-12 max-w-xl mx-auto italic">
+    Maqsadingiz va tajribangizga mos tarifni tanlang. Har bir tarif natijaga yo&apos;naltirilgan.
+  </p>
+  
+  <div className="grid md:grid-cols-3 gap-6 items-stretch">
+    
+    {/* 1. START TARIF */}
+    <div className="p-6 bg-white/5 border border-white/10 rounded-4xl flex flex-col justify-between hover:border-white/20 transition-all">
+      <div>
+        <h3 className="text-lg font-bold italic text-white/80">Start</h3>
+        <div className="text-3xl font-black my-6 text-white">
+          970 000 <span className="text-xs font-normal text-white/40 uppercase tracking-tighter text-nowrap">so&apos;m</span>
+        </div>
+        <ul className="text-left space-y-4 mb-8 text-white/70 text-[13px]">
+          <li className="flex items-center gap-2">
+            <span className="text-yellow-300">✓</span> 
+            <span>Targetni to&apos;g&apos;ri yoqishgacha bo&apos;lgan barcha darslar</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-yellow-300">✓</span> 
+            <span>Algoritmlar va texnik sozlamalar</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-yellow-300">✓</span> 
+            <span>Umumiy guruhda savol-javob</span>
+          </li>
+          <li className="opacity-20 flex items-center gap-2"><span>✕</span> <span>$80,000 lik keyslar tahlili</span></li>
+          <li className="opacity-20 flex items-center gap-2"><span>✕</span> <span>Portfolio va ishga joylashish</span></li>
+        </ul>
+      </div>
+      <a href="#register" className="block w-full py-3 bg-white/10 rounded-xl hover:bg-white/20 font-bold transition-all text-sm">
+        Tanlash
+      </a>
+    </div>
+
+    {/* 2. STANDART - ENG OPTIMAL (MARKAZDA) */}
+    <div className="p-8 bg-[#0a154d] border-2 border-yellow-400 rounded-4xl relative shadow-2xl shadow-yellow-400/10 flex flex-col justify-between transform md:scale-105 z-10">
+      <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-black px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
+        Eng ommabop
+      </div>
+      <div>
+        <h3 className="text-xl font-bold italic text-white">Standart</h3>
+        <div className="text-4xl font-black my-6 text-yellow-400">
+          1 470 000 <span className="text-sm font-normal text-white/50 uppercase tracking-tighter">so&apos;m</span>
+        </div>
+        <ul className="text-left space-y-4 mb-8 text-sm">
+          <li className="flex items-center gap-3">
+            <span className="text-yellow-300 font-bold text-lg">✓</span> 
+            <span className="font-bold">Jonli Zoom darslar (Yozib olinadi)</span>
+          </li>
+          <li className="flex items-center gap-3">
+            <span className="text-yellow-300 font-bold text-lg">✓</span> 
+            <span className="font-bold underline decoration-yellow-300/30">24/7 Shaxsiy Support</span>
+          </li>
+          <li className="flex items-center gap-3">
+            <span className="text-yellow-300 font-bold text-lg">✓</span> 
+            <span className="text-yellow-300">$80,000 lik real keyslar tahlili</span>
+          </li>
+          <li className="flex items-center gap-3">
+            <span className="text-yellow-300 font-bold text-lg">✓</span> 
+            <span><b>Ishga joylashish va Portfolio</b> bo&apos;yicha ko&apos;mak</span>
+          </li>
+          <li className="flex items-center gap-3">
+            <span className="text-yellow-300 font-bold text-lg">✓</span> 
+            <span>Sotuvchi sayt yasash va Copywriting</span>
+          </li>
+        </ul>
+      </div>
+      <a href="#register" className="block w-full py-4 bg-yellow-400 text-black rounded-2xl font-black hover:bg-yellow-300 transition-all shadow-lg shadow-yellow-400/20 uppercase text-xs tracking-widest">
+        Kursga yozilish
+      </a>
+    </div>
+
+    {/* 3. PREMIUM / VIP */}
+    <div className="p-6 bg-white/5 border border-white/10 rounded-4xl flex flex-col justify-between hover:border-white/20 transition-all">
+      <div>
+        <h3 className="text-lg font-bold italic text-white/80">Premium</h3>
+        <div className="text-3xl font-black my-6 text-white text-nowrap">
+          3 470 000 <span className="text-xs font-normal text-white/40 uppercase tracking-tighter">so&apos;m</span>
+        </div>
+        <ul className="text-left space-y-4 mb-8 text-white/70 text-[13px]">
+          <li className="flex items-center gap-2">
+            <span className="text-yellow-300">★</span> 
+            <span>Standart tarifdagi barcha imkoniyatlar</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-yellow-300 font-bold">★</span> 
+            <span className="text-white font-bold italic underline decoration-yellow-300/30">Shaxsiy Mentorlik (3 oy davomida)</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-yellow-300">★</span> 
+            <span>Loyihalaringiz uchun shaxsiy audit</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-yellow-300">★</span> 
+            <span>Meta mutaxassislar tizimiga kirish</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-yellow-300">★</span> 
+            <span>Mijoz bilan muzokara o&apos;tkazish darslari</span>
+          </li>
+        </ul>
+      </div>
+      <a href="#register" className="block w-full py-3 bg-white/10 rounded-xl hover:bg-white/20 font-bold transition-all text-sm">
+        Hoziroq band qilish
+      </a>
+    </div>
+  </div>
+</section>
 
 <section className="mx-auto my-3 max-w-[920px]">
 <PartnersCarousel />
@@ -241,39 +393,4 @@ export default function TargetKursiPage() {
     </main>
   );
 }
-
-/* ---------- Helpers / UI ---------- */
-
-// function BackgroundAccents() {
-//   return (
-//     <div className="pointer-events-none fixed inset-0 opacity-35">
-//       <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl" />
-//       <div className="absolute -bottom-52 -right-40 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl" />
-//     </div>
-//   );
-// }
-
-
-// /* Marquee CSS: autoplay logo carousel */
-// function GlobalMarqueeStyles() {
-//   return (
-//     <style>{`
-//       .marquee{
-//         animation: marquee 22s linear infinite;
-//         will-change: transform;
-//       }
-//       @keyframes marquee {
-//         0%   { transform: translateX(0); }
-//         100% { transform: translateX(-50%); }
-//       }
-//       @media (hover:hover){
-//         .marquee:hover{ animation-play-state: paused; }
-//       }
-//       @media (prefers-reduced-motion: reduce){
-//         .marquee{ animation: none; }
-//       }
-//     `}</style>
-//   );
-// }
-
 
