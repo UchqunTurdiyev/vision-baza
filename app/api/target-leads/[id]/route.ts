@@ -74,7 +74,7 @@ export async function PATCH(req: NextRequest) {
             },
             custom_data: {
               currency: "UZS",
-              value: parseFloat(updated.budget) || 500000,
+              value: parseFloat(updated.budget) || 1470000,
             },
           }],
    
