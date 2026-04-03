@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 
 const ACCESS_TOKEN = process.env.INSTAGRAM_PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.INSTAGRAM_VERIFY_TOKEN;
+// Telegram sozlamalari (Bularni Vercel-ga qo'shishni unutmang)
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN; 
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -19,12 +22,9 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Faqat Instagram'dan kelgan xabarlarni qayta ishlash
     if (body.object === 'instagram' && body.entry && body.entry[0].messaging) {
       const messaging = body.entry[0].messaging[0];
       const senderId = messaging.sender?.id;
-      
-      // Matn yoki Quick Reply orqali kelgan xabarni olish
       const messageText = messaging.message?.text || messaging.message?.quick_reply?.payload || "";
 
       if (senderId && messageText) {
@@ -34,14 +34,14 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ status: 'ok' }, { status: 200 });
   } catch (error) {
-    console.error('Webhook Error:', error);
+    console.error('Webhook Asosiy Xato:', error);
     return NextResponse.json({ error: 'Internal Error' }, { status: 500 });
   }
 }
 
 async function sendVaronka(recipientId: string, text: string) {
   if (!ACCESS_TOKEN) {
-    console.error("ACCESS_TOKEN topilmadi!");
+    console.error("DIQQAT: ACCESS_TOKEN topilmadi!");
     return;
   }
 
@@ -49,7 +49,7 @@ async function sendVaronka(recipientId: string, text: string) {
   const input = text.toLowerCase().trim();
   let messageData: any = null;
 
-  // UKOLOVA VARONKASI MANTIQI
+  // 1. ASOSIY TRIGGERLAR
   if (input.includes('salom') || input.includes('assalomu alaykum') || input === 'target' || input === 'start') {
     messageData = {
       recipient: { id: recipientId },
@@ -61,7 +61,9 @@ async function sendVaronka(recipientId: string, text: string) {
         ]
       }
     };
-  } else if (input.includes('ha, yuboring') || input === 'send_book') {
+  } 
+  // 2. SOVG'A YUBORISH
+  else if (input.includes('ha, yuboring') || input === 'send_book') {
     messageData = {
       recipient: { id: recipientId },
       message: {
@@ -72,33 +74,62 @@ async function sendVaronka(recipientId: string, text: string) {
         ]
       }
     };
-  } else if (input.includes('target kursi') || input === 'course') {
+  } 
+  // 3. KURS HAQIDA
+  else if (input.includes('target kursi') || input === 'course') {
     messageData = {
       recipient: { id: recipientId },
       message: {
-        text: "Performance Marketing kursimiz haqida bu yerda: vision-group.uz/target-kursi",
+        text: "Performance Marketing kursimiz haqida bu yerda: vision-group.uz/target-kursi\n\nSavollaringiz bormi?",
         quick_replies: [
           { content_type: "text", title: "Hamkorlik 🤝", payload: "PARTNER" },
           { content_type: "text", title: "Boshiga qaytish", payload: "START" }
         ]
       }
     };
-  } else if (input.includes('hamkorlik') || input === 'partner') {
+  } 
+  // 4. HAMKORLIK VA LID OLISH
+  else if (input.includes('hamkorlik') || input === 'partner') {
     messageData = {
       recipient: { id: recipientId },
       message: { text: "Ajoyib! Loyihangiz haqida yozing yoki tel. raqamingizni qoldiring, o'zim bog'lanaman. 👇" }
     };
+  } 
+  // 5. AGAR MIJOZ RAQAM YOKI LOYIHA HAQIDA YOZSA (Telegramga yuborish)
+  else {
+    const logMessage = `📩 Yangi xabar (Lid bo'lishi mumkin):\n\nID: ${recipientId}\nXabar: ${text}`;
+    await sendToTelegram(logMessage);
   }
 
+  // META-GA XABAR YUBORISH
   if (messageData) {
     try {
-      await fetch(url, {
+      const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(messageData),
       });
+      
+      const resData = await response.json();
+      console.log("META JAVOBI:", JSON.stringify(resData)); // Logs-da ko'rinadi
     } catch (e) {
-      console.error("Xabar yuborishda xatolik:", e);
+      console.error("Meta-ga yuborishda xatolik:", e);
     }
+  }
+}
+
+// TELEGRAMGA YUBORISH FUNKSIYASI
+async function sendToTelegram(message: string) {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
+  
+  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message }),
+    });
+  } catch (e) {
+    console.error("Telegramga yuborishda xatolik:", e);
   }
 }
