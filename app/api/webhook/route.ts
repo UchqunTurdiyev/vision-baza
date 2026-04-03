@@ -19,72 +19,71 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    if (body.object === 'instagram') {
+    // Faqat Instagram'dan kelgan xabarlarni qayta ishlash
+    if (body.object === 'instagram' && body.entry && body.entry[0].messaging) {
       const messaging = body.entry[0].messaging[0];
-      const senderId = messaging.sender.id;
+      const senderId = messaging.sender?.id;
       
-      // Xabar matni yoki tugma bosilishi (Quick Reply)
+      // Matn yoki Quick Reply orqali kelgan xabarni olish
       const messageText = messaging.message?.text || messaging.message?.quick_reply?.payload || "";
 
-      if (messageText) {
+      if (senderId && messageText) {
         await sendVaronka(senderId, messageText);
       }
     }
-    return NextResponse.json({ status: 'ok' });
+
+    return NextResponse.json({ status: 'ok' }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Error' }, { status: 500 });
+    console.error('Webhook Error:', error);
+    return NextResponse.json({ error: 'Internal Error' }, { status: 500 });
   }
 }
 
 async function sendVaronka(recipientId: string, text: string) {
+  if (!ACCESS_TOKEN) {
+    console.error("ACCESS_TOKEN topilmadi!");
+    return;
+  }
+
   const url = `https://graph.facebook.com/v19.0/me/messages?access_token=${ACCESS_TOKEN}`;
   const input = text.toLowerCase().trim();
   let messageData: any = null;
 
-  // 1. ASOSIY TRIGGER (Mijoz 'target' yoki 'salom' deb yozsa)
-  if (input === 'target' || input === 'salom' || input === 'start') {
+  // UKOLOVA VARONKASI MANTIQI
+  if (input.includes('salom') || input.includes('assalomu alaykum') || input === 'target' || input === 'start') {
     messageData = {
       recipient: { id: recipientId },
       message: {
-        text: "Salom! Menga obuna bo'lganingiz uchun tashakkur! 😊\n\nSizga va'da qilingan 'Targeting sirlari' kitobini yubormoqchiman. Qabul qilasizmi?",
+        text: "Salom! Menga obuna bo'lganingiz uchun tashakkur! 😊\n\nSizga sovg'a sifatida 'Marketing strategiyalari' kitobimni yubormoqchiman. Qabul qilasizmi?",
         quick_replies: [
           { content_type: "text", title: "Ha, yuboring ✅", payload: "SEND_BOOK" },
           { content_type: "text", title: "Yo'q, rahmat", payload: "NO" }
         ]
       }
     };
-  }
-
-  // 2. SOVG'ANI YUBORISH
-  else if (input.includes('ha, yuboring') || input === 'send_book') {
+  } else if (input.includes('ha, yuboring') || input === 'send_book') {
     messageData = {
       recipient: { id: recipientId },
       message: {
         text: "Marhamat! 📚 https://vision-group.uz/kitob.pdf\n\nSizga yana qanday yordam bera olaman?",
         quick_replies: [
-          { content_type: "text", title: "Kurs haqida 🎓", payload: "COURSE" },
+          { content_type: "text", title: "Target kursi 🎓", payload: "COURSE" },
           { content_type: "text", title: "Hamkorlik 🤝", payload: "PARTNER" }
         ]
       }
     };
-  }
-
-  // 3. KURS HAQIDA
-  else if (input.includes('kurs haqida') || input === 'course') {
+  } else if (input.includes('target kursi') || input === 'course') {
     messageData = {
       recipient: { id: recipientId },
       message: {
-        text: "Performance Marketing kursimizda 2025-yildagi $80,000 budjet tajribamni o'rgataman. To'liq ma'lumot: vision-group.uz/target-kursi",
+        text: "Performance Marketing kursimiz haqida bu yerda: vision-group.uz/target-kursi",
         quick_replies: [
           { content_type: "text", title: "Hamkorlik 🤝", payload: "PARTNER" },
-          { content_type: "text", title: "Menyu", payload: "START" }
+          { content_type: "text", title: "Boshiga qaytish", payload: "START" }
         ]
       }
     };
-  }
-
-  // 4. HAMKORLIK (Lid olish)
-  else if (input.includes('hamkorlik') || input === 'partner') {
+  } else if (input.includes('hamkorlik') || input === 'partner') {
     messageData = {
       recipient: { id: recipientId },
       message: { text: "Ajoyib! Loyihangiz haqida yozing yoki tel. raqamingizni qoldiring, o'zim bog'lanaman. 👇" }
@@ -92,10 +91,14 @@ async function sendVaronka(recipientId: string, text: string) {
   }
 
   if (messageData) {
-    await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(messageData),
-    });
+    try {
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(messageData),
+      });
+    } catch (e) {
+      console.error("Xabar yuborishda xatolik:", e);
+    }
   }
 }
