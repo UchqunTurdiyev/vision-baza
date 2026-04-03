@@ -3,10 +3,8 @@ import { NextResponse } from 'next/server';
 const ACCESS_TOKEN = process.env.INSTAGRAM_PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.INSTAGRAM_VERIFY_TOKEN;
 
-// 1. Meta Webhook'ni tasdiqlash (GET)
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  
   const mode = searchParams.get('hub.mode');
   const token = searchParams.get('hub.verify_token');
   const challenge = searchParams.get('hub.challenge');
@@ -14,114 +12,90 @@ export async function GET(request: Request) {
   if (mode === 'subscribe' && token === VERIFY_TOKEN) {
     return new NextResponse(challenge, { status: 200 });
   }
-  
   return new NextResponse('Forbidden', { status: 403 });
 }
 
-// 2. Xabar kelganda javob qaytarish (POST)
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
     if (body.object === 'instagram') {
-      const entry = body.entry[0];
-      const messaging = entry.messaging[0];
+      const messaging = body.entry[0].messaging[0];
+      const senderId = messaging.sender.id;
+      
+      // Xabar matni yoki tugma bosilishi (Quick Reply)
+      const messageText = messaging.message?.text || messaging.message?.quick_reply?.payload || "";
 
-      if (messaging && (messaging.message || messaging.postback)) {
-        const senderId = messaging.sender.id;
-        // Xabar matni yoki tugma bosilgandagi qiymatni olamiz
-        const messageText = messaging.message?.text || messaging.postback?.title || "";
-
-        if (messageText) {
-          await sendInstagramMessage(senderId, messageText);
-        }
+      if (messageText) {
+        await sendVaronka(senderId, messageText);
       }
     }
-
-    return NextResponse.json({ status: 'ok' }, { status: 200 });
+    return NextResponse.json({ status: 'ok' });
   } catch (error) {
-    console.error('Webhook Error:', error);
-    return NextResponse.json({ error: 'Internal Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Error' }, { status: 500 });
   }
 }
 
-// 3. Instagram'ga javob yozish funksiyasi (Ukolova Varonkasi)
-async function sendInstagramMessage(recipientId: string, text: string) {
+async function sendVaronka(recipientId: string, text: string) {
   const url = `https://graph.facebook.com/v19.0/me/messages?access_token=${ACCESS_TOKEN}`;
-  let messageData: any = {};
-  const input = text.toLowerCase();
+  const input = text.toLowerCase().trim();
+  let messageData: any = null;
 
-  // BOSQICH 1: Salomlashish va Obuna uchun rahmat
-  if (input.includes('salom') || input.includes('assalomu alaykum') || input === 'start') {
+  // 1. ASOSIY TRIGGER (Mijoz 'target' yoki 'salom' deb yozsa)
+  if (input === 'target' || input === 'salom' || input === 'start') {
     messageData = {
       recipient: { id: recipientId },
       message: {
-        text: "Salom! Menga obuna bo'lganingiz uchun tashakkur. 😊\n\nSizga sovg'a sifatida o'zimning 'Marketing strategiyalari' kitobimni yubormoqchiman. Qabul qilasizmi?",
+        text: "Salom! Menga obuna bo'lganingiz uchun tashakkur! 😊\n\nSizga va'da qilingan 'Targeting sirlari' kitobini yubormoqchiman. Qabul qilasizmi?",
         quick_replies: [
-          { content_type: "text", title: "Ha, yuboring ✅", payload: "SEND_PDF" },
-          { content_type: "text", title: "Yo'q, rahmat", payload: "NO_THANKS" }
-        ]
-      }
-    };
-  } 
-  
-  // BOSQICH 2: PDF yuborish va Asosiy takliflar
-  else if (input.includes('ha, yuboring') || input.includes('✅')) {
-    messageData = {
-      recipient: { id: recipientId },
-      message: {
-        text: "Marhamat, kitobingizni yuklab oling: 📚 https://vision-group.uz/kitob.pdf\n\nSizga yana qanday yordam bera olaman?",
-        quick_replies: [
-          { content_type: "text", title: "Target kursi 🎓", payload: "COURSE_INFO" },
-          { content_type: "text", title: "Hamkorlik 🤝", payload: "COOPERATION" }
+          { content_type: "text", title: "Ha, yuboring ✅", payload: "SEND_BOOK" },
+          { content_type: "text", title: "Yo'q, rahmat", payload: "NO" }
         ]
       }
     };
   }
 
-  // BOSQICH 3: Kurs haqida ma'lumot
-  else if (input.includes('target kursi') || input.includes('🎓')) {
+  // 2. SOVG'ANI YUBORISH
+  else if (input.includes('ha, yuboring') || input === 'send_book') {
     messageData = {
       recipient: { id: recipientId },
       message: {
-        text: "Performance Marketing kursimizda 2025-yildagi tajribalarimni o'rgataman. To'liq ma'lumot bu yerda: vision-group.uz/target-kursi\n\nSavollaringiz bormi?",
+        text: "Marhamat! 📚 https://vision-group.uz/kitob.pdf\n\nSizga yana qanday yordam bera olaman?",
         quick_replies: [
-          { content_type: "text", title: "Hamkorlik 🤝", payload: "COOPERATION" },
-          { content_type: "text", title: "Boshiga qaytish", payload: "START" }
+          { content_type: "text", title: "Kurs haqida 🎓", payload: "COURSE" },
+          { content_type: "text", title: "Hamkorlik 🤝", payload: "PARTNER" }
         ]
       }
     };
   }
 
-  // BOSQICH 4: Hamkorlik (Lid yig'ish)
-  else if (input.includes('hamkorlik') || input.includes('🤝')) {
+  // 3. KURS HAQIDA
+  else if (input.includes('kurs haqida') || input === 'course') {
     messageData = {
       recipient: { id: recipientId },
       message: {
-        text: "Siz bilan hamkorlik qilishdan xursandman! 🤝\n\nLoyihangiz haqida qisqacha yozing yoki telefon raqamingizni qoldiring, o'zim siz bilan bog'lanaman.",
+        text: "Performance Marketing kursimizda 2025-yildagi $80,000 budjet tajribamni o'rgataman. To'liq ma'lumot: vision-group.uz/target-kursi",
+        quick_replies: [
+          { content_type: "text", title: "Hamkorlik 🤝", payload: "PARTNER" },
+          { content_type: "text", title: "Menyu", payload: "START" }
+        ]
       }
     };
   }
 
-  // Standart javob (agar mantiqqa tushmasa)
-  else {
-    // Agar raqam yuborsa, uni konsolda ko'ramiz
-    if (/\d+/.test(input)) {
-        console.log(`LID QABUL QILINDI (Tel: ${input}) Kimdan: ${recipientId}`);
-    }
-    
+  // 4. HAMKORLIK (Lid olish)
+  else if (input.includes('hamkorlik') || input === 'partner') {
     messageData = {
       recipient: { id: recipientId },
-      message: { text: "Xabaringizni qabul qildim! Tez orada javob beraman. Ungacha 'start' deb yozib sovg'ani olishingiz mumkin." }
+      message: { text: "Ajoyib! Loyihangiz haqida yozing yoki tel. raqamingizni qoldiring, o'zim bog'lanaman. 👇" }
     };
   }
 
-  // So'rovni Meta'ga yuboramiz
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(messageData),
-  });
-
-  return res.json();
+  if (messageData) {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(messageData),
+    });
+  }
 }
