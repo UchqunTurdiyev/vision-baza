@@ -19,7 +19,9 @@
  * ============================================================
  */
 
+import { TargetKLidForm } from "@/components/comments/TargetKLidForm";
 import type { Metadata } from "next";
+
 
 export const metadata: Metadata = {
   title: "Performance Marketing 4.0 — Vision Group | Uchqun Turdiyev",
@@ -109,8 +111,8 @@ const months = [
 
 const credentials = [
   { yr: "2022", text: 'Mehriniso Nurullayevna — "Shogirdlar 4.0" va Marketing kursi bitiruvchisi' },
-  { yr: "2023", text: "Xayot Sharapovdan target bo'yicha mentorship" },
-  { yr: "2024", text: "Xalqaro Meta mutaxassislari bilan to'g'ridan-to'g'ri hamkorlik" },
+  { yr: "2024", text: "Xayot Sharapovdan target bo'yicha mentorship" },
+  { yr: "2025", text: "Xalqaro Meta mutaxassislari bilan to'g'ridan-to'g'ri hamkorlik" },
   { yr: "2025", text: "$80,000+ ad spend, ROAS 82×, 3,500+ o'quvchi jalb qilindi" },
   { yr: "2026", text: "Vision Group Performance Marketing Akademiyasi — IV oqim" },
 ];
@@ -199,8 +201,8 @@ const tiers = [
   {
     name: "Boshlovchi",
     tagline: "Guruhda o'rganib, mustaqil ishga kirishish",
-    oldPrice: "1,970,000 so'm",
-    price: "1,470,000",
+    oldPrice: "1,470,000 so'm",
+    price: "970,000",
     currency: "SO'M / TO'LIQ KURS",
     featured: false,
     features: [
@@ -215,8 +217,8 @@ const tiers = [
   {
     name: "Standart",
     tagline: "Eng yaxshi narx-sifat nisbati. Target o'zini o'rganishni istaganlar.",
-    oldPrice: "2,470,000 so'm",
-    price: "1,970,000",
+    oldPrice: "1,970,000 so'm",
+    price: "1 470,000",
     currency: "SO'M / TO'LIQ KURS",
     featured: true,
     features: [
@@ -681,7 +683,22 @@ export default function TargetKursiPage() {
                   <div className="vg-ph"></div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                  {/* eslint-disable-next-line @next/next/no-img-element */}
-<img src="/uchqun.jpg" alt="Uchqun Turdiyev" />
+<div className="vg-instructor-photo">
+  <img
+    src="/001.avif"
+    alt="Uchqun Turdiyev"
+    style={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block",
+    }}
+  />
+  <div className="vg-badge">
+    $80,000+
+    <strong>Boshqarilgan reklama byudjeti</strong>
+  </div>
+</div>
                   <div className="vg-badge">
                     $100,000+
                     <strong>Boshqarilgan reklama byudjeti</strong>
@@ -870,7 +887,7 @@ export default function TargetKursiPage() {
               <div className="vg-guarantee-inner">
                 <div className="vg-guarantee-seal">
                   <div>
-                    <strong>30</strong>
+                    <strong>15</strong>
                     <span>Kunlik kafolat</span>
                   </div>
                 </div>
@@ -927,43 +944,8 @@ export default function TargetKursiPage() {
                   ))}
                 </div>
 
-                <div className="vg-cta-buttons">
-                  <a
-                    href="https://www.vision-group.uz/target-kursi"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="vg-btn-primary"
-                  >
-                    Batafsil ma&apos;lumot va yozilish
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path
-                        d="M1 7H13M13 7L7 1M13 7L7 13"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://t.me/Uchqun_Turdiev"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="vg-btn-secondary"
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.643.135-.953l11.566-4.458c.538-.196 1.006.128.832.939z" />
-                    </svg>
-                    Telegramda yozish
-                  </a>
-                </div>
-
-                <div className="vg-cta-fineprint">
-                  ↑ &nbsp; Konsultatsiya mutlaqo tekin · Spam yo&apos;q &nbsp; ↑
-                </div>
+           
+              <TargetKLidForm />
               </div>
             </div>
           </section>
