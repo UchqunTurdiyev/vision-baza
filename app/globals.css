@@ -35,3 +35,17 @@ body {
     transform: translateX(100%);
   }
 }
+
+
+.vg-page {
+  /* ↓ MANA SHU 4 QATOR YANGI — parent'dan chiqib ketadi */
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+
+  /* eski o'zgaruvchilar saqlanib qoladi */
+  --vg-bg: #F2EDE3;
+  --vg-bg-2: #EAE3D5;
+  /* ... qolgani o'sha-o'sha ... */
+}
