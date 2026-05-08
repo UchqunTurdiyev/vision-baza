@@ -37,30 +37,44 @@ const SERIF = "'Fraunces', Georgia, serif";
 const MONO = "'Geist Mono', ui-monospace, monospace";
 const SANS = "'Geist', -apple-system, BlinkMacSystemFont, sans-serif";
 
-// Border FAQAT shorthand emas — alohida propertylar
+// ============ DARK BLUE + YELLOW THEME ============
+const COLORS = {
+  bg: "#050B2B",          // Asosiy dark blue
+  bgCard: "#07113a",      // Karta foni (input ichi)
+  bgCard2: "#0A1547",     // Card variant
+  ink: "#FFFFFF",         // Asosiy oq matn
+  ink2: "rgba(255,255,255,0.75)",  // Ikkilamchi matn
+  muted: "rgba(255,255,255,0.5)",  // Xira matn
+  line: "rgba(255,255,255,0.15)",  // Border line
+  accent: "#FCD34D",      // Sariq aksent
+  accent2: "#FBBF24",     // Hover sariq
+};
+
+// Border alohida propertylar (shorthand emas)
 const BASE_INPUT: React.CSSProperties = {
   display: "block",
   width: "100%",
   boxSizing: "border-box",
   borderWidth: "1px",
   borderStyle: "solid",
-  borderColor: "#C9BFA9",   // <-- alohida, shorthand emas
+  borderColor: COLORS.line,
   borderRadius: "8px",
-  background: "#ffffff",
+  background: COLORS.bgCard2,
   padding: "12px 16px",
   fontSize: "15px",
   fontFamily: SANS,
-  color: "#161513",
+  color: COLORS.ink,
   outline: "none",
-  transition: "border-color 0.2s, box-shadow 0.2s",
+  transition: "border-color 0.2s, box-shadow 0.2s, background 0.2s",
   textAlign: "left",
   boxShadow: "none",
 };
 
 const FOCUS_INPUT: React.CSSProperties = {
   ...BASE_INPUT,
-  borderColor: "#B8431C",   // faqat shu o'zgaradi
-  boxShadow: "0 0 0 3px rgba(184,67,28,0.12)",
+  borderColor: COLORS.accent,
+  background: COLORS.bg,
+  boxShadow: `0 0 0 3px rgba(252,211,77,0.15)`,
 };
 
 const LABEL: React.CSSProperties = {
@@ -70,7 +84,7 @@ const LABEL: React.CSSProperties = {
   fontFamily: MONO,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
-  color: "#6B6359",
+  color: COLORS.muted,
   textAlign: "left",
 };
 
@@ -193,39 +207,40 @@ export function TargetKLidForm({ className }: Props) {
         margin: "0 auto",
         boxSizing: "border-box",
         textAlign: "left",
-        background: "#FAF6EC",
+        background: COLORS.bgCard,
         borderWidth: "1px",
         borderStyle: "solid",
-        borderColor: "#C9BFA9",
+        borderColor: COLORS.line,
         borderRadius: "16px",
         padding: "32px",
         fontFamily: SANS,
-        color: "#161513",
+        color: COLORS.ink,
+        boxShadow: "0 20px 50px -20px rgba(0,0,0,0.5)",
       }}
     >
       {/* Eyebrow */}
       <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
-        <span style={{ display: "block", height: "1px", width: "32px", background: "#161513" }} />
-        <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#B8431C" }}>
+        <span style={{ display: "block", height: "1px", width: "32px", background: COLORS.accent }} />
+        <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: COLORS.accent }}>
           Ariza · Yozilish
         </span>
       </div>
 
       {/* Title */}
-      <h3 style={{ margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: "30px", lineHeight: 1.1, letterSpacing: "-0.02em", color: "#161513" }}>
+      <h3 style={{ margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: "30px", lineHeight: 1.1, letterSpacing: "-0.02em", color: COLORS.ink }}>
         Bepul{" "}
-        <span style={{ fontStyle: "italic", fontWeight: 500, color: "#B8431C" }}>maslahat</span>
+        <span style={{ fontStyle: "italic", fontWeight: 500, color: COLORS.accent }}>maslahat</span>
         {" "}olish
       </h3>
 
-      <p style={{ margin: "10px 0 0", fontSize: "14px", lineHeight: 1.6, color: "#6B6359" }}>
+      <p style={{ margin: "10px 0 0", fontSize: "14px", lineHeight: 1.6, color: COLORS.ink2 }}>
         Ma&apos;lumotlaringizni qoldiring — administrator{" "}
-        <strong style={{ color: "#161513", fontWeight: 600 }}>24 soat ichida</strong>{" "}
+        <strong style={{ color: COLORS.ink, fontWeight: 600 }}>24 soat ichida</strong>{" "}
         bog&apos;lanadi.
       </p>
 
       {/* Divider */}
-      <div style={{ height: "1px", background: "#C9BFA9", margin: "24px 0" }} />
+      <div style={{ height: "1px", background: COLORS.line, margin: "24px 0" }} />
 
       {/* Fields */}
       <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
@@ -287,10 +302,10 @@ export function TargetKLidForm({ className }: Props) {
             onFocus={() => setFocused("level")}
             onBlur={() => setFocused(null)}
           >
-            <option value="" disabled>Tanlang</option>
-            <option value="boshlovchi">Boshlovchi (hech ishlamaganman)</option>
-            <option value="ozgina tajriba">Ozroq tajribam bor</option>
-            <option value="tajribali">Tajribali (reklama yoqib kelaman)</option>
+            <option value="" disabled style={{ background: COLORS.bgCard, color: COLORS.muted }}>Tanlang</option>
+            <option value="boshlovchi" style={{ background: COLORS.bgCard, color: COLORS.ink }}>Boshlovchi (hech ishlamaganman)</option>
+            <option value="ozgina tajriba" style={{ background: COLORS.bgCard, color: COLORS.ink }}>Ozroq tajribam bor</option>
+            <option value="tajribali" style={{ background: COLORS.bgCard, color: COLORS.ink }}>Tajribali (reklama yoqib kelaman)</option>
           </select>
         </div>
 
@@ -319,52 +334,87 @@ export function TargetKLidForm({ className }: Props) {
           alignItems: "center",
           justifyContent: "center",
           gap: "10px",
-          background: "#161513",
-          color: "#FAF6EC",
+          background: COLORS.accent,
+          color: COLORS.bg,
           borderWidth: "0",
           borderStyle: "solid",
           borderColor: "transparent",
           borderRadius: "8px",
           fontFamily: SANS,
           fontSize: "14px",
-          fontWeight: 600,
+          fontWeight: 700,
           letterSpacing: "0.02em",
           cursor: loading ? "not-allowed" : "pointer",
           opacity: loading ? 0.6 : 1,
-          transition: "background 0.2s",
+          transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
+          boxShadow: "0 10px 25px -10px rgba(252,211,77,0.4)",
         }}
-        onMouseEnter={(e) => { if (!loading) e.currentTarget.style.background = "#B8431C"; }}
-        onMouseLeave={(e) => { if (!loading) e.currentTarget.style.background = "#161513"; }}
+        onMouseEnter={(e) => {
+          if (!loading) {
+            e.currentTarget.style.background = COLORS.accent2;
+            e.currentTarget.style.transform = "translateY(-1px)";
+            e.currentTarget.style.boxShadow = "0 15px 30px -10px rgba(252,211,77,0.5)";
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (!loading) {
+            e.currentTarget.style.background = COLORS.accent;
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 10px 25px -10px rgba(252,211,77,0.4)";
+          }
+        }}
       >
         {loading ? (
           <>
             <style>{`@keyframes vgspin{to{transform:rotate(360deg)}}`}</style>
-            <span style={{ width: 16, height: 16, borderRadius: "50%", borderWidth: 2, borderStyle: "solid", borderColor: "rgba(250,246,236,0.3)", borderTopColor: "#FAF6EC", animation: "vgspin 0.8s linear infinite", display: "inline-block" }} />
+            <span style={{ width: 16, height: 16, borderRadius: "50%", borderWidth: 2, borderStyle: "solid", borderColor: "rgba(5,11,43,0.3)", borderTopColor: COLORS.bg, animation: "vgspin 0.8s linear infinite", display: "inline-block" }} />
             Yuborilmoqda...
           </>
         ) : (
           <>
             Arizani yuborish
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </>
         )}
       </button>
 
       {/* Fineprint */}
-      <p style={{ margin: "14px 0 0", textAlign: "center", fontFamily: MONO, fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#6B6359" }}>
+      <p style={{ margin: "14px 0 0", textAlign: "center", fontFamily: MONO, fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: COLORS.muted }}>
         Konsultatsiya tekin · Spam yo&apos;q
       </p>
 
       {/* Messages */}
       {success && (
-        <div style={{ marginTop: "18px", padding: "12px 16px", background: "#ECFAEC", borderLeftWidth: "2px", borderLeftStyle: "solid", borderLeftColor: "#059669", borderRadius: "6px", fontSize: "13px", lineHeight: 1.5, color: "#065F46" }}>
+        <div style={{
+          marginTop: "18px",
+          padding: "12px 16px",
+          background: "rgba(16,185,129,0.15)",
+          borderLeftWidth: "2px",
+          borderLeftStyle: "solid",
+          borderLeftColor: "#10B981",
+          borderRadius: "6px",
+          fontSize: "13px",
+          lineHeight: 1.5,
+          color: "#6EE7B7"
+        }}>
           {success}
         </div>
       )}
       {error && (
-        <div style={{ marginTop: "18px", padding: "12px 16px", background: "#FAE8DF", borderLeftWidth: "2px", borderLeftStyle: "solid", borderLeftColor: "#B8431C", borderRadius: "6px", fontSize: "13px", lineHeight: 1.5, color: "#8A2F12" }}>
+        <div style={{
+          marginTop: "18px",
+          padding: "12px 16px",
+          background: "rgba(239,68,68,0.15)",
+          borderLeftWidth: "2px",
+          borderLeftStyle: "solid",
+          borderLeftColor: "#EF4444",
+          borderRadius: "6px",
+          fontSize: "13px",
+          lineHeight: 1.5,
+          color: "#FCA5A5"
+        }}>
           {error}
         </div>
       )}
