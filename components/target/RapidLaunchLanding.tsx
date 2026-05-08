@@ -153,7 +153,7 @@ const includedItems = [
   { num: "v.", title: "Ish topish", desc: "Ish olish texnikalari." },
   { num: "vi.", title: "Yopiq community", desc: "Bitiruvchilar networking tarmog'i." },
   { num: "vii.", title: "Abadiy materiallar", desc: "Barcha video va shablonlar umrbod." },
-  { num: "viii.", title: "30 kunlik kafolat", desc: "Pulni 100% qaytarish imkoniyati." },
+  { num: "viii.", title: "15 kunlik kafolat", desc: "Pulni 100% qaytarish imkoniyati." },
 ];
 
 const tiers = [
