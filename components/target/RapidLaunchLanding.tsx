@@ -54,7 +54,8 @@ const months = [
       "Sotadigan kontent va kreativlar",
       "Copywriting texnikasi",
       "AI orqali sayt yasash",
-      "Piksel, CAPI to'liq sozlash",
+      "Piksel, CAPI to'liq sozlash web sitega ulash",
+      "Web site lidlarni, telegram bot va CRM ga yo'naltirish"
     ],
   },
   {
@@ -149,7 +150,7 @@ const includedItems = [
   { num: "ii.", title: "24/7 individual support", desc: "Telegram orqali ustozning shaxsiy yordami." },
   { num: "iii.", title: "AI Integration", desc: "Samaradorlikni 3-5 baravar oshirasiz." },
   { num: "iv.", title: "Real portfolio", desc: "Haqiqiy biznes uchun reklama yoqasiz." },
-  { num: "v.", title: "Sertifikat", desc: "Vision Group rasmiy sertifikati." },
+  { num: "v.", title: "Ish topish", desc: "Ish olish texnikalari." },
   { num: "vi.", title: "Yopiq community", desc: "Bitiruvchilar networking tarmog'i." },
   { num: "vii.", title: "Abadiy materiallar", desc: "Barcha video va shablonlar umrbod." },
   { num: "viii.", title: "30 kunlik kafolat", desc: "Pulni 100% qaytarish imkoniyati." },
