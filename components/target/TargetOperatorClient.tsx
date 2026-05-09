@@ -463,7 +463,7 @@ export default function TargetOperatorClient() {
                                     <div className="font-medium text-lg">
                                       {lead.fullName}
                                     </div>
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex flex-col items-center gap-2">
   <div className="text-lg text-white/60">{lead.phone}</div>
 
   <button

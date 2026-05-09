@@ -122,7 +122,7 @@ export default function TargetLeadComments({ leadId, onAfterAdd }: Props) {
         ))}
       </div>
 
-      <div className="flex gap-1">
+      <div className="flex flex-col gap-1">
         <input
           type="text"
           value={text}
