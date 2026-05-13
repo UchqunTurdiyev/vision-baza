@@ -473,7 +473,7 @@ export default function TargetKursiPage() {
 
               <p className="vg-hero-sub">
                 <strong>$100,000+ reklama byudjetini boshqargan</strong> va Meta mutaxassislari auditidan o&apos;tgan tizim asosida{" "}
-                <strong>3 oylik intensiv Zoom-kursi</strong>. Yuqori daromadli{" "}
+                 Yuqori daromadli{" "}
                 <strong>strategik mutaxassisga</strong> aylanasiz.
               </p>
 
