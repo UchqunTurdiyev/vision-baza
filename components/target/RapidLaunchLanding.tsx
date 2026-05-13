@@ -157,22 +157,22 @@ const includedItems = [
 ];
 
 const tiers = [
-  {
-    name: "Boshlovchi",
-    tagline: "Guruhda o'rganib, mustaqil ishga kirishish",
-    oldPrice: "1,470,000 so'm",
-    price: "970,000",
-    currency: "SO'M / TO'LIQ KURS",
-    featured: false,
-    features: [
-      { text: "16 jonli Zoom darsi", included: true },
-      { text: "Guruhda support", included: true },
-      { text: "Materiallar abadiy", included: true },
-      { text: "Sertifikat", included: true },
-      { text: "15 kunlik kafolat", included: true },
-      { text: "Individual mentoring", included: false },
-    ],
-  },
+  // {
+  //   name: "Boshlovchi",
+  //   tagline: "Guruhda o'rganib, mustaqil ishga kirishish",
+  //   oldPrice: "1,470,000 so'm",
+  //   price: "970,000",
+  //   currency: "SO'M / TO'LIQ KURS",
+  //   featured: false,
+  //   features: [
+  //     { text: "16 jonli Zoom darsi", included: true },
+  //     { text: "Guruhda support", included: true },
+  //     { text: "Materiallar abadiy", included: true },
+  //     { text: "Sertifikat", included: true },
+  //     { text: "15 kunlik kafolat", included: true },
+  //     { text: "Individual mentoring", included: false },
+  //   ],
+  // },
   {
     name: "Standart",
     tagline: "Eng yaxshi narx-sifat. Target o'zlashtirish.",
@@ -467,7 +467,7 @@ export default function TargetKursiPage() {
               </div>
 
               <h1 className="vg-hero-headline">
-                Reklama <span className="vg-strike">yoqishni</span> emas,{" "}
+                Reklama {" "}<span className="vg-strike">yoqishni{" "} </span> emas,{" "}
                 <em>natija qilishni</em> o&apos;rganasiz.
               </h1>
 
