@@ -8,7 +8,7 @@ import { TargetKLidForm } from "@/components/comments/TargetKLidForm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Performance Marketing 4.0 — Vision Group | Uchqun Turdiyev",
+  title: "Performance Marketing 5.0 — Vision Group | Uchqun Turdiyev",
   description:
     "Meta mutaxassislari auditidan o'tgan tizim. $80,000+ reklama byudjetini boshqargan ustozdan 3 oylik Performance Marketing intensivi. 100% pulni qaytarish kafolati.",
 };
@@ -208,8 +208,8 @@ const tiers = [
 ];
 
 const cohort = [
-  { lbl: "Oqim", val: "IV · 2026", urgent: false },
-  { lbl: "Boshlanishi", val: "15-may", urgent: false },
+  { lbl: "Oqim", val: "5.0 · 2026", urgent: false },
+  { lbl: "Boshlanishi", val: "15-iyun", urgent: false },
   { lbl: "Format", val: "Online / Zoom", urgent: false },
   { lbl: "Qoldi", val: "7 / 15 joy", urgent: true },
 ];
@@ -463,7 +463,7 @@ export default function TargetKursiPage() {
                 <span style={{ opacity: 0.4 }}>/</span>
                 <span>PERFORMANCE MARKETING </span>
                 <span style={{ opacity: 0.4 }}>/</span>
-                <span>2026 — IV oqim</span>
+                <span>2026 — 5.0 oqim</span>
               </div>
 
               <h1 className="vg-hero-headline">
@@ -479,7 +479,7 @@ export default function TargetKursiPage() {
 
               <div className="vg-hero-cta-row">
                 <a href="#yozilish" className="vg-btn-primary">
-                  IV oqimga yozilish
+                  5.0 oqimga yozilish
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
@@ -512,7 +512,7 @@ export default function TargetKursiPage() {
           </div>
 
           {/* ============ CURRICULUM ============ */}
-          <section className="vg-section" id="dastur">
+          {/* <section className="vg-section" id="dastur">
             <div className="vg-container">
               <div className="vg-section-eyebrow">01 / Dastur</div>
               <h2 className="vg-section-title">
@@ -539,7 +539,7 @@ export default function TargetKursiPage() {
                 ))}
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* ============ INSTRUCTOR ============ */}
           <section className="vg-section" id="ustoz">
@@ -656,7 +656,7 @@ export default function TargetKursiPage() {
           </section>
 
           {/* ============ PRICING ============ */}
-          <section className="vg-section" id="narx">
+          {/* <section className="vg-section" id="narx">
             <div className="vg-container">
               <div className="vg-section-eyebrow">06 / Narxlar</div>
               <h2 className="vg-section-title">
@@ -689,7 +689,7 @@ export default function TargetKursiPage() {
                 ))}
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* ============ GUARANTEE ============ */}
           <section className="vg-guarantee">
@@ -726,7 +726,7 @@ export default function TargetKursiPage() {
                   Joyingizni <em>band qiling.</em>
                 </h2>
                 <p>
-                  IV oqim cheklangan — har oqimga 15 tadan ko&apos;p o&apos;quvchi olmaymiz. Konsultatsiya tekin.
+                  5.0 oqim cheklangan — har oqimga 15 tadan ko&apos;p o&apos;quvchi olmaymiz. Konsultatsiya tekin.
                 </p>
 
                 <div className="vg-cohort-info">
