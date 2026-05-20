@@ -7,12 +7,14 @@ type Props = {
   className?: string;
 };
 
-function getCookie(name: string) {
-  if (typeof document === "undefined") return null;
+// ============ HELPERS ============
+
+function getCookie(name: string): string {
+  if (typeof document === "undefined") return "";
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
-  return null;
+  if (parts.length === 2) return parts.pop()?.split(";").shift() || "";
+  return "";
 }
 
 function extractErrorMessage(data: unknown): string | null {
@@ -33,24 +35,60 @@ function extractErrorMessage(data: unknown): string | null {
   return null;
 }
 
+// Unique event ID — Pixel va CAPI deduplikatsiyasi uchun
+function generateEventId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  // Fallback eski brauzerlar uchun
+  return `lead_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
+}
+
+// Facebook Pixel mavjud yoki yo'qligini tekshirish
+type FbqFn = (
+  command: string,
+  event: string,
+  params?: Record<string, unknown>,
+  options?: { eventID?: string }
+) => void;
+
+function getFbq(): FbqFn | null {
+  if (typeof window === "undefined") return null;
+  const fbq = (window as unknown as { fbq?: FbqFn }).fbq;
+  return typeof fbq === "function" ? fbq : null;
+}
+
+// Bilim darajasidan budget value chiqarish (CAPI uchun)
+function levelToValue(level: string): number {
+  switch (level) {
+    case "tajribali":
+      return 4470000; // VIP/Pro tarifi narxi
+    case "ozgina tajriba":
+      return 1470000; // Standart tarif
+    case "boshlovchi":
+    default:
+      return 1470000;
+  }
+}
+
+// ============ STYLES ============
+
 const SERIF = "'Fraunces', Georgia, serif";
 const MONO = "'Geist Mono', ui-monospace, monospace";
 const SANS = "'Geist', -apple-system, BlinkMacSystemFont, sans-serif";
 
-// ============ DARK BLUE + YELLOW THEME ============
 const COLORS = {
-  bg: "#050B2B",          // Asosiy dark blue
-  bgCard: "#07113a",      // Karta foni (input ichi)
-  bgCard2: "#0A1547",     // Card variant
-  ink: "#FFFFFF",         // Asosiy oq matn
-  ink2: "rgba(255,255,255,0.75)",  // Ikkilamchi matn
-  muted: "rgba(255,255,255,0.5)",  // Xira matn
-  line: "rgba(255,255,255,0.15)",  // Border line
-  accent: "#FCD34D",      // Sariq aksent
-  accent2: "#FBBF24",     // Hover sariq
+  bg: "#050B2B",
+  bgCard: "#07113a",
+  bgCard2: "#0A1547",
+  ink: "#FFFFFF",
+  ink2: "rgba(255,255,255,0.75)",
+  muted: "rgba(255,255,255,0.5)",
+  line: "rgba(255,255,255,0.15)",
+  accent: "#FCD34D",
+  accent2: "#FBBF24",
 };
 
-// Border alohida propertylar (shorthand emas)
 const BASE_INPUT: React.CSSProperties = {
   display: "block",
   width: "100%",
@@ -88,6 +126,8 @@ const LABEL: React.CSSProperties = {
   textAlign: "left",
 };
 
+// ============ COMPONENT ============
+
 export function TargetKLidForm({ className }: Props) {
   const router = useRouter();
 
@@ -110,12 +150,13 @@ export function TargetKLidForm({ className }: Props) {
     const formData = new FormData(formEl);
 
     const firstName = String(formData.get("firstName") ?? "").trim();
-    const lastName  = String(formData.get("lastName")  ?? "").trim();
-    const age       = String(formData.get("age")        ?? "").trim();
-    const city      = String(formData.get("city")       ?? "").trim();
-    const level     = String(formData.get("level")      ?? "").trim();
-    const phoneRaw  = String(formData.get("phone")      ?? "").trim();
+    const lastName = String(formData.get("lastName") ?? "").trim();
+    const age = String(formData.get("age") ?? "").trim();
+    const city = String(formData.get("city") ?? "").trim();
+    const level = String(formData.get("level") ?? "").trim();
+    const phoneRaw = String(formData.get("phone") ?? "").trim();
 
+    // ===== VALIDATSIYA =====
     if (!firstName || !lastName || !phoneRaw) {
       setError("Ism, familiya va telefon raqamni to'liq kiriting.");
       setLoading(false);
@@ -160,13 +201,45 @@ export function TargetKLidForm({ className }: Props) {
       return;
     }
 
+    // ===== META PIXEL + CAPI DEDUP =====
+    const eventId = generateEventId();
+    const value = levelToValue(level);
+    const fbp = getCookie("_fbp");
+    const fbc = getCookie("_fbc");
+
+    // 1. Browser tomonida Pixel orqali Lead event
+    const fbq = getFbq();
+    if (fbq) {
+      try {
+        fbq(
+          "track",
+          "Lead",
+          {
+            value: value,
+            currency: "UZS",
+            content_name: "Target Kursi 5.0",
+            content_category: "course",
+          },
+          { eventID: eventId } // ✅ CAPI bilan dedup uchun bir xil ID
+        );
+      } catch (pixelErr) {
+        console.warn("Pixel Lead event yuborishda xatolik:", pixelErr);
+      }
+    }
+
+    // ===== PAYLOAD =====
     const payload = {
       fullName: `${firstName} ${lastName}`.trim(),
       phone: normalized,
       source: "target-kursi-v2",
       note: `Yosh: ${age}; Shahar: ${city}; Daraja: ${level}`,
-      fbp: getCookie("_fbp"),
-      fbc: getCookie("_fbc"),
+      // ✅ CAPI uchun
+      fbp: fbp || undefined,
+      fbc: fbc || undefined,
+      eventId: eventId,
+      // ✅ Budget va businessType — CAPI value/category uchun
+      budget: String(value),
+      businessType: level || "course",
     };
 
     try {
@@ -244,7 +317,6 @@ export function TargetKLidForm({ className }: Props) {
 
       {/* Fields */}
       <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-
         {/* Ism + Familiya */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
           <div>
