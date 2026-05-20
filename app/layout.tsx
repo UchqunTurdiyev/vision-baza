@@ -75,7 +75,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
 
             {/* Google Analytics (GA4) */}
-            <Script
+       {/* Google Analytics (GA4) + Google Ads */}
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-SWBHX63YJH"
           strategy="afterInteractive"
         />
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-SWBHX63YJH', {
               page_path: window.location.pathname,
             });
+            gtag('config', 'AW-18037719903');
           `}
         </Script>
         
