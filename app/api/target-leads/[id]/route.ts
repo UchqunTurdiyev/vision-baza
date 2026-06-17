@@ -58,26 +58,46 @@ export async function PATCH(req: NextRequest) {
       const ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN;
 
       if (PIXEL_ID && ACCESS_TOKEN) {
+        // ✅ user_data ni dinamik quramiz — faqat mavjud (bo'sh bo'lmagan) maydonlar yuboriladi
+        const user_data: Record<string, unknown> = {
+          // external_id — har doim mavjud (bazadagi lead id, hashlangan)
+          external_id: [hashData(String(updated._id))],
+        };
+
+        // Telefon (hashlangan)
+        const phoneDigits = updated.phone ? String(updated.phone).replace(/\D/g, "") : "";
+        if (phoneDigits) user_data.ph = [hashData(phoneDigits)];
+
+        // Email (hashlangan) — faqat haqiqiy email bo'lsa
+        if (updated.email && String(updated.email).includes("@")) {
+          user_data.em = [hashData(String(updated.email))];
+        }
+
+        // Browser cookie identifikatorlari (hashlanmaydi)
+        if (updated.fbp) user_data.fbp = updated.fbp;
+        if (updated.fbc) user_data.fbc = updated.fbc;
+
+        // ✅ Instagram / Facebook id lari (hashlanmaydi)
+        if (updated.fbLoginId) user_data.fb_login_id = String(updated.fbLoginId);
+        const pageScopedUserId = updated.pageScopedUserId || "";
+        const pageId = updated.pageId || process.env.FB_PAGE_ID || "";
+        if (pageScopedUserId) {
+          user_data.page_scoped_user_id = String(pageScopedUserId);
+          if (pageId) user_data.page_id = String(pageId);
+        }
+
         const payload = {
           data: [{
             event_name: "Purchase",
             event_time: Math.floor(Date.now() / 1000),
             action_source: "system_generated",
-            // test_event_code BU YERDAN O'CHIRILDI
-            user_data: {
-              ph: [hashData(updated.phone ? String(updated.phone).replace(/\D/g, "") : "")],
-              em: [hashData(updated.email || "no-email@vision.uz")],
-              // JANOB, MANA BU IKKI QATOR BOG'LIQLIKNI TA'MINLAYDI:
-              fbp: updated.fbp || undefined,
-              fbc: updated.fbc || undefined,
-              external_id: [hashData(String(updated._id))] // Bazadagi ID ni ham shifrlab yuboramiz
-            },
+            event_id: `purchase_${String(updated._id)}`, // dedup uchun barqaror id
+            user_data,
             custom_data: {
               currency: "UZS",
               value: parseFloat(updated.budget) || 1470000,
             },
           }],
-   
         };
 
         try {

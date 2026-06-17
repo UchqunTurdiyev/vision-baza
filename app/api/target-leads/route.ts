@@ -95,6 +95,18 @@ export async function POST(req: NextRequest) {
 
     const budget = typeof body.budget === "string" ? body.budget.trim() : "";
 
+    // ✅ Meta (Facebook/Instagram) match maydonlari — CAPI uchun saqlaymiz
+    const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+    const fbp = str(body.fbp);
+    const fbc = str(body.fbc);
+    const email = str(body.email);
+    // aliaslar: fbId -> fbLoginId, igId/psid/instagramId -> pageScopedUserId
+    const fbLoginId = str(body.fbLoginId) || str(body.fbId);
+    const pageScopedUserId =
+      str(body.pageScopedUserId) || str(body.psid) || str(body.igId) || str(body.instagramId);
+    const pageId = str(body.pageId) || str(process.env.FB_PAGE_ID);
+    const igUsername = str(body.igUsername) || str(body.instagram);
+
     // ✅ Source: faqat 2 xil qiymat
     const rawSource = typeof body.source === "string" ? body.source.trim() : "";
     const source =
@@ -126,6 +138,14 @@ export async function POST(req: NextRequest) {
       businessType,
       socialPage,
       budget,
+      // ✅ Meta match maydonlari (TO'LOV QILDI bo'lganda CAPI orqali yuboriladi)
+      email,
+      fbp,
+      fbc,
+      fbLoginId,
+      pageId,
+      pageScopedUserId,
+      igUsername,
     });
 
     const createdObj = created.toObject() as Record<string, unknown> & {

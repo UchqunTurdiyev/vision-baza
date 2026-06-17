@@ -89,7 +89,7 @@ export default function TargetKursPage() {
   };
 
   return (
-    <main className="relative  bg-[#07122a] text-white overflow-hidden">
+    <main className="relative  bg-[#071035] text-white overflow-hidden">
        <Script
         id="ld-course"
         type="application/ld+json"

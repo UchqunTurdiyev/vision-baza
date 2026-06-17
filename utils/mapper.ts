@@ -1,1 +1,0 @@
-export function safe<T>(p: Promise<T>) { return p.then<[T, null]>((v)=>[v,null]).catch<[null, any]>((e)=>[null,e]); }

@@ -208,7 +208,7 @@ export default function TargetLeadNewPage({ className }: Props) {
           {loading ? "Yuborilmoqda..." : "Ariza yuborish"}
         </button>
 
-        {successMsg && <p className="text-[11px] text-emerald-400 max-w-md">{successMsg}</p>}
+        {successMsg && <p className="text-[11px] text-indigo-300 max-w-md">{successMsg}</p>}
         {errorMsg && <p className="text-[11px] text-red-400 max-w-md">{errorMsg}</p>}
       </div>
     </form>

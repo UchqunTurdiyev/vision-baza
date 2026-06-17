@@ -7,6 +7,12 @@ type Props = {
   className?: string;
   /** Lead qiymati (CAPI value). Default: Standart tarif narxi. */
   leadValue?: number;
+  /** "course" — kursga yozilish; "magnit" — bepul lid magnit. */
+  variant?: "course" | "magnit";
+  /** Sarlavha / tugma matnini majburlab almashtirish (ixtiyoriy). */
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  ctaText?: string;
 };
 
 // ============ HELPERS ============
@@ -65,15 +71,15 @@ const MONO = "'Geist Mono', ui-monospace, monospace";
 const SANS = "'Geist', -apple-system, BlinkMacSystemFont, sans-serif";
 
 const COLORS = {
-  bg: "#06100B",
-  bgCard: "#0A1711",
-  bgCard2: "#0E2018",
+  bg: "#071035",
+  bgCard: "#0C1A4D",
+  bgCard2: "#122563",
   ink: "#FFFFFF",
-  ink2: "rgba(255,255,255,0.75)",
-  muted: "rgba(255,255,255,0.5)",
-  line: "rgba(255,255,255,0.14)",
-  accent: "#25E085",
-  accent2: "#12C46F",
+  ink2: "rgba(255,255,255,0.78)",
+  muted: "rgba(255,255,255,0.55)",
+  line: "rgba(130,160,235,0.24)",
+  accent: "#818CF8",
+  accent2: "#6366F1",
 };
 
 // Tashqi wrapper uchun base — border/shadow qayta ishlatiladi
@@ -86,7 +92,7 @@ const BASE_FIELD_WRAP = (focused: boolean): React.CSSProperties => ({
   borderColor: focused ? COLORS.accent : COLORS.line,
   borderRadius: "8px",
   background: focused ? COLORS.bg : COLORS.bgCard2,
-  boxShadow: focused ? `0 0 0 3px rgba(37,224,133,0.18)` : "none",
+  boxShadow: focused ? `0 0 0 3px rgba(129,140,248,0.18)` : "none",
   transition: "border-color 0.2s, box-shadow 0.2s, background 0.2s",
   overflow: "hidden",
 });
@@ -113,7 +119,7 @@ const BASE_PLAIN_WRAP = (focused: boolean): React.CSSProperties => ({
   borderColor: focused ? COLORS.accent : COLORS.line,
   borderRadius: "8px",
   background: focused ? COLORS.bg : COLORS.bgCard2,
-  boxShadow: focused ? `0 0 0 3px rgba(37,224,133,0.18)` : "none",
+  boxShadow: focused ? `0 0 0 3px rgba(129,140,248,0.18)` : "none",
   transition: "border-color 0.2s, box-shadow 0.2s, background 0.2s",
   overflow: "hidden",
 });
@@ -144,8 +150,16 @@ const LABEL: React.CSSProperties = {
 
 // ============ COMPONENT ============
 
-export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
+export function TargetKLidForm({
+  className,
+  leadValue = 3200000,
+  variant = "course",
+  title,
+  subtitle,
+  ctaText,
+}: Props) {
   const router = useRouter();
+  const isMagnit = variant === "magnit";
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
@@ -173,7 +187,6 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
     const formData = new FormData(formEl);
 
     const name = String(formData.get("name") ?? "").trim();
-    const manzil = String(formData.get("manzil") ?? "").trim();
 
     // ===== VALIDATSIYA =====
     if (!name) {
@@ -197,12 +210,6 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
 
     const normalized = `+998${phoneDigits}`;
 
-    if (!manzil || manzil.length < 2) {
-      setError("Manzilingizni kiriting (shahar yoki tuman).");
-      setLoading(false);
-      return;
-    }
-
     // ===== META PIXEL + CAPI DEDUP (Lead) =====
     const eventId = generateEventId();
     const fbp = getCookie("_fbp");
@@ -218,8 +225,8 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
           {
             value: leadValue,
             currency: "UZS",
-            content_name: "Performance Marketing 5.0",
-            content_category: "course",
+            content_name: isMagnit ? "Lid Magnit — Target audit" : "Performance Marketing 5.0",
+            content_category: isMagnit ? "lead-magnet" : "course",
           },
           { eventID: eventId }
         );
@@ -233,14 +240,13 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
     const payload = {
       fullName: name,
       phone: normalized,
-      address: manzil,
-      source: "performance-5.0",
+      source: isMagnit ? "lid-magnit" : "target-kursi",
       stage: "lid",           // ← CRM Kanban: birinchi ustun
       fbp: fbp || undefined,
       fbc: fbc || undefined,
       eventId,
       budget: String(leadValue),
-      businessType: "course",
+      businessType: isMagnit ? "lead-magnet" : "course",
     };
 
     try {
@@ -260,10 +266,14 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
         throw new Error(msg);
       }
 
-      setSuccess("Arizangiz qabul qilindi! Administrator tez orada bog'lanadi.");
+      setSuccess(
+        isMagnit
+          ? "Qabul qilindi! Materialni yuboryapmiz..."
+          : "Arizangiz qabul qilindi! Administrator tez orada bog'lanadi."
+      );
       formEl.reset();
       setPhoneDigits(""); // controlled input ham tozalanadi
-      router.push("/target-kursi/thanks");
+      router.push(isMagnit ? "/lid-magnit/thanks" : "/target-kursi/thanks");
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Xatolik yuz berdi";
       setError(msg || "Yuborishda xatolik. Iltimos, qaytadan urinib ko'ring.");
@@ -297,20 +307,42 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
       <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
         <span style={{ display: "block", height: "1px", width: "32px", background: COLORS.accent }} />
         <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: COLORS.accent }}>
-          Ariza · Yozilish
+          {isMagnit ? "Bepul · Hoziroq" : "Ariza · Yozilish"}
         </span>
       </div>
 
       {/* Title */}
       <h3 style={{ margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: "30px", lineHeight: 1.1, letterSpacing: "-0.02em", color: COLORS.ink }}>
-        Joyingizni{" "}
-        <span style={{ fontStyle: "italic", fontWeight: 500, color: COLORS.accent }}>band qiling</span>
+        {title ?? (
+          isMagnit ? (
+            <>
+              Bepul strategiyani{" "}
+              <span style={{ fontStyle: "italic", fontWeight: 500, color: COLORS.accent }}>oling</span>
+            </>
+          ) : (
+            <>
+              Joyingizni{" "}
+              <span style={{ fontStyle: "italic", fontWeight: 500, color: COLORS.accent }}>band qiling</span>
+            </>
+          )
+        )}
       </h3>
 
       <p style={{ margin: "10px 0 0", fontSize: "14px", lineHeight: 1.6, color: COLORS.ink2 }}>
-        Ma&apos;lumotlaringizni qoldiring — administrator{" "}
-        <strong style={{ color: COLORS.ink, fontWeight: 600 }}>24 soat ichida</strong>{" "}
-        bog&apos;lanadi va barcha savollaringizga javob beradi.
+        {subtitle ?? (
+          isMagnit ? (
+            <>
+              Telefon raqamingizni qoldiring — &laquo;$1000 byudjetni boshqarish strategiyasi&raquo; PDF&apos;ini{" "}
+              <strong style={{ color: COLORS.ink, fontWeight: 600 }}>darhol</strong> yuboramiz. Hech narsaga majbur emassiz.
+            </>
+          ) : (
+            <>
+              Ism va telefon — boshqa hech narsa kerak emas. Administrator{" "}
+              <strong style={{ color: COLORS.ink, fontWeight: 600 }}>24 soat ichida</strong>{" "}
+              bog&apos;lanadi.
+            </>
+          )
+        )}
       </p>
 
       {/* Divider */}
@@ -389,23 +421,6 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
           </div>
         </div>
 
-        {/* 3. Manzil */}
-        <div>
-          <label htmlFor="manzil" style={LABEL}>Manzilingiz</label>
-          <div style={BASE_PLAIN_WRAP(focused === "manzil")}>
-            <input
-              id="manzil"
-              name="manzil"
-              required
-              autoComplete="address-level2"
-              placeholder="Shahar yoki tuman (masalan: Samarqand)"
-              style={PLAIN_INPUT}
-              onFocus={() => setFocused("manzil")}
-              onBlur={() => setFocused(null)}
-            />
-          </div>
-        </div>
-
       </div>
 
       {/* Button */}
@@ -433,20 +448,20 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
           cursor: loading ? "not-allowed" : "pointer",
           opacity: loading ? 0.6 : 1,
           transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
-          boxShadow: "0 12px 30px -10px rgba(37,224,133,0.45)",
+          boxShadow: "0 12px 30px -10px rgba(129,140,248,0.45)",
         }}
         onMouseEnter={(e) => {
           if (!loading) {
             e.currentTarget.style.background = COLORS.accent2;
             e.currentTarget.style.transform = "translateY(-1px)";
-            e.currentTarget.style.boxShadow = "0 16px 34px -10px rgba(37,224,133,0.55)";
+            e.currentTarget.style.boxShadow = "0 16px 34px -10px rgba(129,140,248,0.55)";
           }
         }}
         onMouseLeave={(e) => {
           if (!loading) {
             e.currentTarget.style.background = COLORS.accent;
             e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.boxShadow = "0 12px 30px -10px rgba(37,224,133,0.45)";
+            e.currentTarget.style.boxShadow = "0 12px 30px -10px rgba(129,140,248,0.45)";
           }
         }}
       >
@@ -470,7 +485,7 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
           </>
         ) : (
           <>
-            Joyni band qilish
+            {ctaText ?? (isMagnit ? "Bepul PDF'ni olish" : "Joyimni band qilaman")}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
@@ -480,7 +495,7 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
 
       {/* Fineprint */}
       <p style={{ margin: "14px 0 0", textAlign: "center", fontFamily: MONO, fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.muted }}>
-        Ma&apos;lumotlaringiz himoyalangan · Spam yo&apos;q
+        {isMagnit ? "30 soniya · Spam yo'q" : "Majburiyatsiz · Spam yo'q · 30 soniya"}
       </p>
 
       {/* Messages */}
@@ -489,14 +504,14 @@ export function TargetKLidForm({ className, leadValue = 3200000 }: Props) {
           style={{
             marginTop: "18px",
             padding: "12px 16px",
-            background: "rgba(37,224,133,0.14)",
+            background: "rgba(129,140,248,0.14)",
             borderLeftWidth: "2px",
             borderLeftStyle: "solid",
             borderLeftColor: COLORS.accent,
             borderRadius: "6px",
             fontSize: "13px",
             lineHeight: 1.5,
-            color: "#9DF3C8",
+            color: "#C7CDFF",
           }}
         >
           {success}

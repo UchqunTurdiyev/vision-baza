@@ -70,19 +70,19 @@ const whyUs = [
 
 export default function TargetPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+    <main className="min-h-screen bg-gradient-to-b from-[#071035] via-[#0A1640] to-[#060D2A] text-white">
       <PixelTargetPageView />
 
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16 space-y-16">
 
         {/* ── HERO ── */}
         <section className="space-y-5">
-          <span className="inline-block text-[11px] tracking-widest uppercase text-emerald-300 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30">
+          <span className="inline-block text-[11px] tracking-widest uppercase text-indigo-300 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/30">
             Vision Group · Target
           </span>
           <h1 className="text-2xl md:text-4xl font-bold leading-snug">
-           Meta mutaxassislaridan o'rgangan texnikalarimdan foydalanib maxsulot yoki xizmatingiz uchun
-            <span className="text-emerald-400">Professiobal Target yoqib beraman</span>
+            Meta mutaxassislaridan o&apos;rgangan texnikalarimdan foydalanib maxsulot yoki xizmatingiz uchun{" "}
+            <span className="text-indigo-400">professional Target yoqib beraman</span>
           </h1>
           <p className="text-slate-300 md:text-lg leading-relaxed max-w-2xl">
             Sotuv bo'lmasa -  keyingi oy xizmatim 
@@ -91,13 +91,13 @@ export default function TargetPage() {
           <div className="flex flex-wrap gap-3">
             <a
               href="#form"
-              className="inline-flex items-center h-11 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-semibold transition"
+              className="inline-flex items-center h-11 px-6 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white font-semibold transition"
             >
               Ariza qoldirish
             </a>
             <a
               href="#form"
-              className="inline-flex items-center h-11 px-6 rounded-xl border border-slate-600 text-slate-200 hover:border-emerald-500 hover:text-white transition"
+              className="inline-flex items-center h-11 px-6 rounded-xl border border-slate-600 text-slate-200 hover:border-indigo-500 hover:text-white transition"
             >
               Bepul konsultatsiya
             </a>
@@ -114,7 +114,7 @@ export default function TargetPage() {
               key={m.value}
               className="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 text-center"
             >
-              <div className="text-xl md:text-2xl font-bold text-emerald-400">
+              <div className="text-xl md:text-2xl font-bold text-indigo-400">
                 {m.value}
               </div>
               <div className="mt-1 text-xs text-slate-400">{m.label}</div>
@@ -128,7 +128,7 @@ export default function TargetPage() {
           <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-3">
             {whyUs.map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <span className="text-emerald-400 mt-0.5 shrink-0">✓</span>
+                <span className="text-indigo-400 mt-0.5 shrink-0">✓</span>
                 <span className="text-sm md:text-base text-slate-200">
                   {item}
                 </span>
@@ -167,7 +167,7 @@ export default function TargetPage() {
                 <ul className="space-y-1.5 flex-1">
                   {pkg.features.map((f) => (
                     <li key={f} className="flex items-center gap-2 text-sm text-slate-300">
-                      <span className="text-emerald-400 shrink-0">✓</span>
+                      <span className="text-indigo-400 shrink-0">✓</span>
                       {f}
                     </li>
                   ))}
@@ -176,7 +176,7 @@ export default function TargetPage() {
                   <div className="text-xs text-slate-500 line-through">
                     {pkg.old}
                   </div>
-                  <div className="text-2xl font-bold text-emerald-400">
+                  <div className="text-2xl font-bold text-indigo-400">
                     {pkg.price}
                   </div>
                 </div>
@@ -185,7 +185,7 @@ export default function TargetPage() {
                   className={`inline-flex justify-center items-center h-10 rounded-xl text-sm font-semibold transition ${
                     pkg.featured
                       ? "bg-indigo-500 hover:bg-indigo-400 text-white"
-                      : "border border-slate-600 hover:border-emerald-500 text-slate-200 hover:text-white"
+                      : "border border-slate-600 hover:border-indigo-500 text-slate-200 hover:text-white"
                   }`}
                 >
                   Konsultatsiya olish
@@ -218,8 +218,8 @@ export default function TargetPage() {
         </section>
 
         {/* ── GUARANTEE ── */}
-        <section className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 space-y-2">
-          <h2 className="text-lg md:text-xl font-bold text-emerald-300">
+        <section className="bg-indigo-500/10 border border-indigo-500/30 rounded-2xl p-6 space-y-2">
+          <h2 className="text-lg md:text-xl font-bold text-indigo-300">
             Kafolat
           </h2>
           <p className="text-slate-200 leading-relaxed">

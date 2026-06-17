@@ -8,6 +8,7 @@
 import { TargetKLidForm } from "@/components/comments/TargetKLidForm";
 import { CountdownTimer } from "@/components/comments/Countdowntimer";
 import { SocialProofToast } from "@/components/comments/Socialprooftoast";
+import LeadModal from "@/components/target/LeadModal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 const heroStats = [
   { num: "$100K+", lbl: "Boshqarilgan byudjet" },
   { num: "82×", lbl: "O'rtacha ROAS" },
-  { num: "3,500+", lbl: "Jalb qilingan mijoz" },
+  { num: "12+", lbl: "Bizneslar" },
   { num: "4 yil", lbl: "Amaliy tajriba" },
 ];
 
@@ -110,28 +111,34 @@ const format = [
 const months = [
   {
     num: "1-OY",
-    title: "Texnik fundament + Kontent",
-    desc: "Meta Ads tizimini noldan o'zlashtirasiz va birinchi sotadigan kampaniyangizni yoqasiz.",
+    title: "Texnik Targetolog",
+    desc: "Meta Ads, AI va kontent asoslari. Haftada 4 ta dars Zaps orqali + 2 ta jonli Zoom dars.",
     skills: [
-      "Meta Ads kabineti, piksel va CAPI sozlash",
-      "AI yordamida tezkor sayt yasash",
-      "Auditoriya, algoritm va birinchi kampaniya",
-      "Hook & Offer — rad etib bo'lmas taklif",
-      "Sotadigan kreativ va copywriting",
-      "Mijoz auditi va qizil chiziqlar",
+      "Meta Ads Pro: algoritm va auditoriya",
+      "AI Integration: samaradorlik 3x",
+      "Birinchi reklama kampaniyasi",
+      "Mijoz auditi va qizil chiziq",
+      "Meta mutaxassislari tavsiyasidagi texnikalar",
+      "$1000 byudjet boshqarish strategiyasi",
+      "Hook & Offer yaratish",
+      "CPM ni to'g'ri texnikalar bilan bir necha barobar arzonlashtirish",
+      "Sotadigan kontent va kreativlar",
     ],
   },
   {
     num: "2-OY",
-    title: "Performance + Strategiya",
-    desc: "0 dan to'lovgacha bo'lgan to'liq voronkani qurasiz va natijani kattalashtirasiz.",
+    title: "Kontent + Strategik Targetolog",
+    desc: "CAPI, funnel va to'liq Performance Marketing tizimi. Haftada 4 ta dars Zaps orqali + 2 ta jonli Zoom dars.",
     skills: [
-      "To'liq funnel qurish (lid → to'lov)",
-      "CRM + Telegram bot integratsiyasi",
-      "Deep analytics va diagnostika",
-      "Test → Optimizatsiya → Scaling",
-      "ROAS optimizatsiyasi va byudjet strategiyasi",
-      "Real portfolio + mijoz/ish topish",
+      "Copywriting texnikasi",
+      "AI orqali sayt yasash",
+      "Piksel + CAPI to'liq sozlash",
+      "Web sayt → Telegram bot → CRM integratsiya",
+      "Sotib olgan mijozlarni Meta'ga CAPI orqali yuborish",
+      "Performance Marketing tizimi + to'liq funnel",
+      "Deep Analytics + Attribution",
+      "Test → Optim → Scaling",
+      "Lead magnit strategiyasi",
     ],
   },
 ];
@@ -208,53 +215,25 @@ const testimonials = [
 ];
 
 const includedItems = [
-  { num: "i.", title: "2 oylik video kurs", desc: "Platformaga joylangan, bosqichma-bosqich amaliy darslar." },
-  { num: "ii.", title: "Haftalik jonli Zoom", desc: "Savol-javob, real kabinet tahlili, ochiq dars." },
-  { num: "iii.", title: "1 yillik dostup", desc: "Barcha darslar va yangilanishlar 1 yil davomida." },
-  { num: "iv.", title: "CRM + CAPI tizimi", desc: "Real ishlab beruvchi tizimni qurib o'rganasiz." },
-  { num: "v.", title: "24/7 Telegram support", desc: "Savollaringizga tez va aniq javob." },
-  { num: "vi.", title: "AI Integration", desc: "Samaradorlikni 3–5 baravar oshiruvchi ish jarayoni." },
-  { num: "vii.", title: "Real portfolio", desc: "Haqiqiy biznes uchun reklama yoqasiz." },
-  { num: "viii.", title: "Yopiq community", desc: "Bitiruvchilar networking tarmog'i." },
-  { num: "ix.", title: "Sertifikat", desc: "Kursni yakunlaganlik hujjati." },
-  { num: "x.", title: "15 kunlik kafolat", desc: "Pulni 100% qaytarish imkoniyati." },
+  { num: "i.", title: "Haftada 4 Zaps + 2 jonli Zoom", desc: "Har hafta 4 ta yozma dars Zaps orqali va 2 ta jonli Zoom dars." },
+  { num: "ii.", title: "1 yillik guruh dostup", desc: "Guruh va platformaga 1 yil davomida to'liq kirish." },
+  { num: "iii.", title: "24/7 Telegram support", desc: "Savollaringizga kun-tun tez va aniq javob." },
+  { num: "iv.", title: "AI Integration darslari", desc: "Samaradorlikni 3 baravar oshiruvchi AI ish jarayoni." },
+  { num: "v.", title: "Real portfolio", desc: "Haqiqiy biznes uchun reklama yoqib, portfolio yig'asiz." },
+  { num: "vi.", title: "Birinchi mijoz topishga yordam", desc: "Birinchi mijozingizni topishda amaliy ko'mak." },
+  { num: "vii.", title: "1 yillik video materiallar", desc: "Barcha video darslar 1 yil davomida qo'lingizda." },
+  { num: "viii.", title: "15 kunlik pul qaytarish kafolati", desc: "Mos kelmasa — to'lov 100% qaytariladi." },
 ];
 
-const tiers = [
-  {
-    name: "Standart",
-    tagline: "Performance marketingni to'liq o'zlashtirish.",
-    oldPrice: "4,200,000 so'm",
-    price: "3,200,000",
-    currency: "SO'M / 2 OYLIK KURS",
-    featured: true,
-    features: [
-      { text: "2 oylik video kurs (platformada)", included: true },
-      { text: "Haftalik jonli Zoom darslari", included: true },
-      { text: "1 yillik platforma dostupi", included: true },
-      { text: "CRM + CAPI amaliyoti", included: true },
-      { text: "Yopiq community + sertifikat", included: true },
-      { text: "15 kunlik pulni qaytarish kafolati", included: true },
-      { text: "Individual 1-on-1 mentoring", included: false },
-    ],
-  },
-  {
-    name: "VIP / Pro",
-    tagline: "Tez natija. Shaxsiy mentor va mijoz topishga yordam.",
-    oldPrice: "8,000,000 so'm",
-    price: "6,400,000",
-    currency: "SO'M / 2 OYLIK KURS",
-    featured: false,
-    features: [
-      { text: "Standart tarifdagi hammasi", included: true },
-      { text: "Haftada 1-on-1 shaxsiy mentoring", included: true },
-      { text: "Reklama kabineti chuqur audit", included: true },
-      { text: "3 mijoz topishga amaliy yordam", included: true },
-      { text: "Ustoz bilan to'g'ridan-to'g'ri aloqa", included: true },
-      { text: "VIP Telegram chat", included: true },
-      { text: "Prioritet support", included: true },
-    ],
-  },
+const priceFeatures = [
+  "Haftada 4 Zaps + 2 jonli Zoom dars",
+  "1 yillik guruh dostup",
+  "24/7 Telegram support",
+  "AI Integration darslari",
+  "Real portfolio (haqiqiy biznes)",
+  "Birinchi mijoz topishga yordam",
+  "1 yillik video materiallar",
+  "15 kunlik pul qaytarish kafolati",
 ];
 
 const faqs = [
@@ -286,8 +265,8 @@ const faqs = [
 
 const cohort = [
   { lbl: "Oqim", val: "5.0 · 2026", urgent: false },
-  { lbl: "Boshlanishi", val: "15-iyun", urgent: false },
-  { lbl: "Format", val: "Video + Zoom", urgent: false },
+  { lbl: "Boshlanishi", val: "30-iyun", urgent: false },
+  { lbl: "Format", val: "Zaps + Zoom", urgent: false },
   { lbl: "Qoldi", val: "7 / 15 joy", urgent: true },
 ];
 
@@ -295,15 +274,16 @@ const cohort = [
 
 const styles = `
 .vg-page {
-  --vg-bg: #06100B;
-  --vg-bg-2: #0A1711;
-  --vg-bg-3: #0E2018;
+  --vg-bg: #071035;
+  --vg-bg-2: #0C1A4D;
+  --vg-bg-3: #122563;
   --vg-ink: #FFFFFF;
-  --vg-ink-2: rgba(255,255,255,0.75);
-  --vg-muted: rgba(255,255,255,0.5);
-  --vg-line: rgba(255,255,255,0.12);
-  --vg-accent: #25E085;
-  --vg-accent-2: #12C46F;
+  --vg-ink-2: rgba(255,255,255,0.78);
+  --vg-muted: rgba(255,255,255,0.55);
+  --vg-line: rgba(130,160,235,0.2);
+  --vg-accent: #818CF8;
+  --vg-accent-2: #6366F1;
+  --vg-accent-ink: #FFFFFF;
 
   --vg-serif: 'Fraunces', Georgia, serif;
   --vg-sans: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -316,8 +296,13 @@ const styles = `
   font-size: 16px;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
-  background-size: 24px 24px;
+  background-image:
+    radial-gradient(1000px 560px at 50% -10%, rgba(99,102,241,0.28), transparent 62%),
+    radial-gradient(820px 500px at 88% 8%, rgba(129,140,248,0.12), transparent 60%),
+    radial-gradient(circle at 1px 1px, rgba(150,180,255,0.05) 1px, transparent 0);
+  background-size: 100% 100%, 100% 100%, 24px 24px;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-attachment: fixed, fixed, scroll;
   scroll-behavior: smooth;
 }
 .vg-page *, .vg-page *::before, .vg-page *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -327,7 +312,7 @@ const styles = `
 
 /* HERO */
 .vg-page .vg-hero { padding: 60px 0 70px; border-bottom: 1px solid var(--vg-line); position: relative; overflow: hidden; }
-.vg-hero-glow { position: absolute; top: -120px; right: -120px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(37,224,133,0.14), rgba(37,224,133,0) 70%); pointer-events: none; animation: vg-glow 6s ease-in-out infinite; }
+.vg-hero-glow { position: absolute; top: -120px; right: -120px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(129,140,248,0.14), rgba(129,140,248,0) 70%); pointer-events: none; animation: vg-glow 6s ease-in-out infinite; }
 .vg-hero-inner { position: relative; z-index: 1; }
 .vg-hero-pre { font-family: var(--vg-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--vg-accent); margin-bottom: 14px; }
 .vg-hero-eyebrow { display: flex; align-items: center; gap: 12px; font-family: var(--vg-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--vg-muted); margin-bottom: 28px; flex-wrap: wrap; }
@@ -340,14 +325,25 @@ const styles = `
 .vg-hero-sub strong { font-weight: 600; color: var(--vg-ink); }
 .vg-hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
 
-.vg-btn-primary { background: var(--vg-accent); color: var(--vg-bg); padding: 16px 28px; border-radius: 6px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all .2s; font-family: var(--vg-sans); box-shadow: 0 12px 30px -12px rgba(37,224,133,0.5); }
-.vg-btn-primary:hover { background: var(--vg-accent-2); transform: translateY(-1px); box-shadow: 0 16px 34px -12px rgba(37,224,133,0.6); }
+.vg-btn-primary { background: var(--vg-accent); color: var(--vg-bg); padding: 16px 28px; border-radius: 6px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all .2s; font-family: var(--vg-sans); box-shadow: 0 12px 30px -12px rgba(129,140,248,0.5); }
+.vg-btn-primary:hover { background: var(--vg-accent-2); transform: translateY(-1px); box-shadow: 0 16px 34px -12px rgba(129,140,248,0.6); }
 .vg-btn-primary svg { transition: transform .2s; animation: vg-arrow 1.7s ease-in-out infinite; }
 .vg-btn-primary:hover svg { transform: translateX(4px); animation: none; }
 .vg-btn-secondary { padding: 16px 28px; border: 1px solid var(--vg-line); border-radius: 6px; font-size: 15px; font-weight: 500; background: transparent; color: var(--vg-ink); cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; gap: 8px; font-family: var(--vg-sans); }
 .vg-btn-secondary:hover { background: var(--vg-bg-2); border-color: var(--vg-accent); }
 
 .vg-trustline { font-family: var(--vg-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--vg-muted); margin-bottom: 40px; }
+
+/* HERO META CREDENTIAL LINE */
+.vg-hero-meta { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 26px; padding: 10px 16px 10px 10px; border: 1px solid var(--vg-line); border-radius: 999px; background: rgba(129,140,248,0.05); font-size: 14px; color: var(--vg-ink-2); max-width: 620px; line-height: 1.4; }
+.vg-hero-meta strong { color: var(--vg-accent); font-weight: 600; }
+.vg-hero-meta-badge { flex-shrink: 0; font-family: var(--vg-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--vg-bg); background: var(--vg-accent); padding: 5px 10px; border-radius: 999px; }
+
+/* CTA REASSURANCE + SCARCITY NOTE */
+.vg-cta-note { display: flex; align-items: center; gap: 9px; font-family: var(--vg-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--vg-ink-2); margin-bottom: 34px; }
+.vg-cta-note strong { color: var(--vg-accent); }
+.vg-cta-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--vg-accent); box-shadow: 0 0 0 0 rgba(129,140,248,0.6); animation: vg-pulse 1.8s ease-out infinite; flex-shrink: 0; }
+@keyframes vg-pulse { 0% { box-shadow: 0 0 0 0 rgba(129,140,248,0.55); } 70% { box-shadow: 0 0 0 8px rgba(129,140,248,0); } 100% { box-shadow: 0 0 0 0 rgba(129,140,248,0); } }
 
 .vg-hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--vg-line); border-bottom: 1px solid var(--vg-line); }
 .vg-hero-stats > div { padding: 22px 22px 22px 0; border-right: 1px solid var(--vg-line); }
@@ -385,6 +381,15 @@ const styles = `
 .vg-problem-bridge { margin-top: 36px; font-family: var(--vg-serif); font-size: clamp(20px, 2.6vw, 28px); line-height: 1.3; letter-spacing: -0.01em; max-width: 760px; }
 .vg-problem-bridge em { font-style: italic; color: var(--vg-accent); }
 @media (max-width: 800px) { .vg-page .vg-problem-grid { grid-template-columns: 1fr; } }
+
+/* AGITATION */
+.vg-page .vg-agitate { background: linear-gradient(180deg, var(--vg-bg) 0%, var(--vg-bg-2) 100%); }
+.vg-agitate-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.vg-agitate-card { background: var(--vg-bg); border: 1px solid rgba(239,68,68,0.28); border-radius: 8px; padding: 28px 24px; position: relative; overflow: hidden; }
+.vg-agitate-card::before { content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: #EF4444; opacity: 0.7; }
+.vg-agitate-num { font-family: var(--vg-serif); font-size: 30px; font-weight: 500; letter-spacing: -0.03em; color: #F87171; margin-bottom: 14px; line-height: 1; }
+.vg-agitate-card p { font-size: 14px; color: var(--vg-ink-2); line-height: 1.6; }
+@media (max-width: 800px) { .vg-page .vg-agitate-grid { grid-template-columns: 1fr; } }
 
 /* MECHANISM */
 .vg-mech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid var(--vg-line); border-radius: 8px; overflow: hidden; }
@@ -446,7 +451,7 @@ const styles = `
 .vg-instructor { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
 .vg-instructor-photo { position: relative; background: var(--vg-bg-2); aspect-ratio: 4/5; overflow: hidden; border: 1px solid var(--vg-line); border-radius: 8px; }
 .vg-instructor-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.vg-instructor-photo .vg-badge { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(6,16,11,0.92); backdrop-filter: blur(8px); color: var(--vg-ink); padding: 14px 18px; font-family: var(--vg-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; z-index: 2; border: 1px solid var(--vg-line); border-radius: 4px; }
+.vg-instructor-photo .vg-badge { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(7,16,53,0.92); backdrop-filter: blur(8px); color: var(--vg-ink); padding: 14px 18px; font-family: var(--vg-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; z-index: 2; border: 1px solid var(--vg-line); border-radius: 4px; }
 .vg-instructor-photo .vg-badge strong { display: block; font-family: var(--vg-serif); font-size: 22px; font-weight: 500; letter-spacing: -0.02em; text-transform: none; margin-top: 4px; color: var(--vg-accent); }
 .vg-instructor h2 { font-family: var(--vg-serif); font-weight: 400; font-size: clamp(28px, 3.5vw, 42px); line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 22px; }
 .vg-instructor h2 em { font-style: italic; color: var(--vg-accent); }
@@ -529,6 +534,29 @@ const styles = `
   .vg-page .vg-tier:last-child { border-bottom: none; }
 }
 
+/* LEAD MAGNET */
+.vg-page .vg-magnet { background: var(--vg-bg-2); }
+.vg-magnet-card { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; background: linear-gradient(135deg, var(--vg-bg-3) 0%, var(--vg-bg-2) 100%); border: 1px solid var(--vg-line); border-radius: 14px; padding: 44px; position: relative; overflow: hidden; }
+.vg-magnet-card::before { content: ""; position: absolute; top: -80px; left: -80px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(129,140,248,0.12), transparent 70%); pointer-events: none; }
+.vg-magnet-title { font-family: var(--vg-serif); font-weight: 400; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 16px; }
+.vg-magnet-title em { font-style: italic; color: var(--vg-accent); }
+.vg-magnet-desc { font-size: 15px; color: var(--vg-ink-2); line-height: 1.6; margin-bottom: 20px; max-width: 520px; }
+.vg-magnet-list { list-style: none; margin-bottom: 26px; }
+.vg-magnet-list li { font-size: 14px; color: var(--vg-ink-2); padding: 6px 0; display: flex; align-items: flex-start; gap: 10px; }
+.vg-magnet-list li::before { content: "✓"; color: var(--vg-accent); font-weight: 700; flex-shrink: 0; }
+.vg-magnet-note { margin-top: 14px; font-family: var(--vg-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--vg-muted); }
+.vg-magnet-visual { display: grid; place-items: center; }
+.vg-magnet-pdf { width: 200px; aspect-ratio: 3/4; background: linear-gradient(160deg, #122563, #071035); border: 1px solid var(--vg-accent); border-radius: 10px; box-shadow: 0 30px 60px -25px rgba(129,140,248,0.5); display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 22px; transform: rotate(-4deg); transition: transform .3s; }
+.vg-magnet-pdf:hover { transform: rotate(0deg) translateY(-4px); }
+.vg-magnet-pdf-tag { align-self: flex-start; position: absolute; top: 18px; left: 18px; font-family: var(--vg-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--vg-bg); background: var(--vg-accent); padding: 4px 9px; border-radius: 4px; }
+.vg-magnet-pdf { position: relative; }
+.vg-magnet-pdf-title { font-family: var(--vg-serif); font-size: 20px; font-weight: 500; line-height: 1.15; color: var(--vg-ink); letter-spacing: -0.01em; }
+.vg-magnet-pdf-sub { font-family: var(--vg-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--vg-muted); }
+@media (max-width: 800px) {
+  .vg-page .vg-magnet-card { grid-template-columns: 1fr; gap: 32px; padding: 30px 22px; }
+  .vg-page .vg-magnet-visual { order: -1; }
+}
+
 /* GUARANTEE */
 .vg-page .vg-guarantee { background: linear-gradient(180deg, var(--vg-bg-2) 0%, var(--vg-bg) 100%); padding: 70px 0; border: none; position: relative; overflow: hidden; border-top: 1px solid var(--vg-line); border-bottom: 1px solid var(--vg-line); }
 .vg-guarantee-inner { display: grid; grid-template-columns: 180px 1fr; gap: 50px; align-items: center; position: relative; }
@@ -588,7 +616,7 @@ const styles = `
   .vg-page .vg-sticky {
     display: flex; align-items: center; justify-content: space-between; gap: 14px;
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-    background: rgba(6,16,11,0.96); backdrop-filter: blur(12px);
+    background: rgba(7,16,53,0.96); backdrop-filter: blur(12px);
     border-top: 1px solid var(--vg-line); padding: 12px 18px;
   }
   .vg-page .vg-sticky-info { display: flex; flex-direction: column; }
@@ -610,6 +638,41 @@ const styles = `
 .vg-page .vg-hero-cta-row { animation-delay: .44s; }
 .vg-page .vg-trustline { animation-delay: .54s; }
 .vg-page .vg-hero-stats { animation-delay: .64s; }
+
+/* PRICING — SOLO CARD */
+.vg-page .vg-price-solo { position: relative; max-width: 640px; background: linear-gradient(180deg, var(--vg-bg-3) 0%, var(--vg-bg-2) 100%); border: 1px solid var(--vg-line); border-radius: 14px; padding: 38px 34px; overflow: hidden; box-shadow: 0 30px 70px -40px rgba(129,140,248,0.45); }
+.vg-page .vg-price-solo::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--vg-accent), var(--vg-accent-2)); }
+.vg-price-badge { display: inline-block; font-family: var(--vg-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--vg-bg); background: var(--vg-accent); padding: 6px 12px; border-radius: 4px; margin-bottom: 22px; }
+.vg-price-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--vg-line); padding-bottom: 24px; margin-bottom: 24px; }
+.vg-price-name { font-family: var(--vg-serif); font-size: 19px; font-weight: 500; letter-spacing: -0.01em; color: var(--vg-ink); margin-bottom: 14px; max-width: 320px; line-height: 1.2; }
+.vg-price-solo .vg-price-old { text-decoration: line-through; font-family: var(--vg-mono); font-size: 14px; color: var(--vg-muted); margin-bottom: 6px; }
+.vg-price-solo .vg-price-amount { font-family: var(--vg-serif); font-size: 52px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; color: var(--vg-accent); margin-bottom: 8px; }
+.vg-price-per { font-family: var(--vg-mono); font-size: 14px; color: var(--vg-muted); letter-spacing: 0; }
+.vg-price-solo .vg-price-currency { font-family: var(--vg-mono); font-size: 12px; color: var(--vg-ink-2); letter-spacing: 0.04em; }
+.vg-price-save { flex-shrink: 0; width: 84px; height: 84px; border: 1px solid var(--vg-accent); border-radius: 50%; display: grid; place-items: center; text-align: center; background: rgba(129,140,248,0.06); }
+.vg-price-save-num { display: block; font-family: var(--vg-serif); font-size: 24px; font-weight: 600; color: var(--vg-accent); line-height: 1; }
+.vg-price-save-lbl { display: block; font-family: var(--vg-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vg-muted); margin-top: 4px; }
+.vg-price-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin-bottom: 28px; }
+.vg-price-list li { font-size: 13.5px; color: var(--vg-ink-2); display: flex; align-items: flex-start; gap: 9px; line-height: 1.45; }
+.vg-price-list li::before { content: "✓"; color: var(--vg-accent); font-weight: 700; flex-shrink: 0; }
+.vg-page .vg-price-cta { width: 100%; justify-content: center; font-size: 16px; padding: 17px 28px; }
+.vg-price-foot { text-align: center; font-family: var(--vg-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--vg-muted); margin-top: 16px; }
+@media (max-width: 640px) {
+  .vg-page .vg-price-solo { padding: 28px 22px; }
+  .vg-page .vg-price-list { grid-template-columns: 1fr; }
+  .vg-page .vg-price-head { flex-direction: column-reverse; align-items: flex-start; }
+}
+
+/* SCROLL REVEAL (progressive enhancement; no JS, safe fallback) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .vg-page .vg-section,
+    .vg-page .vg-guarantee,
+    .vg-page .vg-cta-final,
+    .vg-page .vg-ticker { animation: vg-reveal linear both; animation-timeline: view(); animation-range: entry 2% cover 22%; }
+  }
+}
+@keyframes vg-reveal { from { opacity: 0; transform: translateY(34px); } to { opacity: 1; transform: translateY(0); } }
 `;
 
 // ============ COMPONENT ============
@@ -640,29 +703,41 @@ export default function TargetKursiPage() {
                   <span>5.0 OQIM · 2026</span>
                 </div>
 
-                <div className="vg-hero-pre">Masofadan turib ishlaydigan, talab yuqori kasb — 2 oyda</div>
+                <div className="vg-hero-pre">Noldan professional targetologgacha — 2 oyda</div>
 
                 <h1 className="vg-hero-headline">
                   Reklama <span className="vg-strike">yoqishni</span> emas, biznesga{" "}
                   <em>natija qilishni</em> o&apos;rganasiz.
                 </h1>
 
+                <div className="vg-hero-meta">
+                  <span className="vg-hero-meta-badge">META</span>
+                  <span>
+                    Meta mutaxassislaridan o&apos;rgangan{" "}
+                    <strong>Performance Marketing</strong> tizimini — Target kursimda o&apos;qing.
+                  </span>
+                </div>
+
                 <p className="vg-hero-sub">
-                  Bozorda &laquo;target o&apos;rgataman&raquo; deguvchilar ko&apos;p. Lekin biznes tugma bosishga emas —{" "}
-                  <strong>keladigan natijaga</strong> pul to&apos;laydi. <strong>$100,000+ byudjetni boshqargan</strong> va Meta mutaxassislari auditidan o&apos;tgan tizim asosida, atigi 2 oyda 0 dan natija keltiradigan{" "}
+                  Gap shundaki: bozorda &laquo;target o&apos;rgataman&raquo; deguvchilar ko&apos;p, lekin biznes tugma bosishga emas —{" "}
+                  <strong>keladigan natijaga</strong> pul to&apos;laydi. <strong>$100,000+ byudjet</strong> boshqargan va Meta mutaxassislari auditidan o&apos;tgan tizim asosida, atigi 2 oyda 0 dan natija keltiradigan{" "}
                   <strong>Performance marketologga</strong> aylanasiz.
                 </p>
 
                 <div className="vg-hero-cta-row">
-                  <a href="#yozilish" className="vg-btn-primary">
-                    5.0 oqimga yozilish
+                  <a href="#yozilish" data-lead-open className="vg-btn-primary">
+                    Joyimni band qilaman
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                       <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
                     </svg>
                   </a>
-                  <a href="#narx" className="vg-btn-secondary">
-                    Narx va tariflar
+                  <a href="#lid-magnit" data-lead-open data-lead-mode="magnit" className="vg-btn-secondary">
+                    Bepul strategiya (PDF)
                   </a>
+                </div>
+
+                <div className="vg-cta-note">
+                  <span className="vg-cta-dot" /> 30 soniya · Majburiyatsiz · Atigi <strong>7 / 15 joy</strong> qoldi
                 </div>
 
                 <div className="vg-trustline">
@@ -716,15 +791,48 @@ export default function TargetKursiPage() {
             </div>
           </section>
 
+          {/* ============ AGITATION ============ */}
+          <section className="vg-section vg-agitate" id="agitatsiya">
+            <div className="vg-container">
+              <div className="vg-section-eyebrow">02 / Ammo esda tuting</div>
+              <h2 className="vg-section-title">
+                Bu shunchaki <em>yo&apos;qotilgan kurs puli</em> emas.
+              </h2>
+              <p className="vg-section-lead">
+                Tasavvur qiling: yana bir yil o&apos;tadi. Texnika o&apos;rgandingiz, lekin tizim yo&apos;qligi uchun hech narsa o&apos;zgarmaydi. Mana, qancha narsa qo&apos;ldan ketadi:
+              </p>
+
+              <div className="vg-agitate-grid">
+                <div className="vg-agitate-card">
+                  <div className="vg-agitate-num">−1 yil</div>
+                  <p>Hozir boshlaganlar mijoz topib, portfolio yig&apos;ayotgan paytda — siz hali ham &laquo;qachon boshlasam&raquo; deb turasiz.</p>
+                </div>
+                <div className="vg-agitate-card">
+                  <div className="vg-agitate-num">−$1000+</div>
+                  <p>Noto&apos;g&apos;ri yoqilgan har bir kampaniya byudjetni yoqadi. Tizimsiz, bu pul shunchaki havoga uchadi.</p>
+                </div>
+                <div className="vg-agitate-card">
+                  <div className="vg-agitate-num">−Ishonch</div>
+                  <p>Bir-ikki biznesga &laquo;natija qilaman&raquo; deb va&apos;da berib, uddasidan chiqolmasangiz — obro&apos;ingiz tushadi.</p>
+                </div>
+              </div>
+
+              <p className="vg-problem-bridge">
+                Lekin bitta yaxshi xabar bor:{" "}
+                <em>buni bir martada, to&apos;g&apos;ri tizim bilan hal qilsa bo&apos;ladi.</em>
+              </p>
+            </div>
+          </section>
+
           {/* ============ MECHANISM ============ */}
           <section className="vg-section" id="mexanizm">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">02 / Nega bu kurs boshqacha</div>
+              <div className="vg-section-eyebrow">03 / Yechim</div>
               <h2 className="vg-section-title">
-                Boshqacha <em>natija</em> uchun boshqacha <em>tizim.</em>
+                Yaxshi xabar shuki — boshqacha <em>tizim</em> bor.
               </h2>
               <p className="vg-section-lead">
-                Bu kurs reklama tugmalarini emas, biznesga real pul keltiradigan to&apos;liq tizimni o&apos;rgatadi. Mana farqi nimada:
+                Bu kurs reklama tugmalarini emas, biznesga real pul keltiradigan to&apos;liq tizimni o&apos;rgatadi. Eng qizig&apos;i esa — mana farqi nimada:
               </p>
 
               <div className="vg-mech-grid">
@@ -738,7 +846,7 @@ export default function TargetKursiPage() {
               </div>
 
               <div className="vg-midcta">
-                <a href="#yozilish" className="vg-btn-primary">
+                <a href="#yozilish" data-lead-open className="vg-btn-primary">
                   Shu tizimni o&apos;rganmoqchiman
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
@@ -751,7 +859,7 @@ export default function TargetKursiPage() {
           {/* ============ AUDIENCE ============ */}
           <section className="vg-section" id="kimga">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">03 / Bu kurs kimga</div>
+              <div className="vg-section-eyebrow">04 / Bu kurs kimga</div>
               <h2 className="vg-section-title">
                 Aniq <em>3 toifa</em> uchun qurilgan.
               </h2>
@@ -774,7 +882,7 @@ export default function TargetKursiPage() {
           {/* ============ FORMAT ============ */}
           <section className="vg-section" id="format">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">04 / Format</div>
+              <div className="vg-section-eyebrow">05 / Format</div>
               <h2 className="vg-section-title">
                 Qanday <em>o&apos;qiysiz?</em>
               </h2>
@@ -799,7 +907,7 @@ export default function TargetKursiPage() {
           {/* ============ CURRICULUM ============ */}
           <section className="vg-section" id="dastur">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">05 / Dastur</div>
+              <div className="vg-section-eyebrow">06 / Dastur</div>
               <h2 className="vg-section-title">
                 2 oy. <em>Ikki bosqich.</em> Bitta tizim.
               </h2>
@@ -827,7 +935,7 @@ export default function TargetKursiPage() {
           {/* ============ INSTRUCTOR ============ */}
           <section className="vg-section" id="ustoz">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">06 / Ustoz</div>
+              <div className="vg-section-eyebrow">07 / Ustoz</div>
               <div className="vg-instructor">
                 <div className="vg-instructor-photo">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -867,7 +975,7 @@ export default function TargetKursiPage() {
           {/* ============ CASES ============ */}
           <section className="vg-section" id="natija">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">07 / Real keyslar</div>
+              <div className="vg-section-eyebrow">08 / Real keyslar</div>
               <h2 className="vg-section-title">
                 Va&apos;da emas — <em>raqamlar.</em>
               </h2>
@@ -890,7 +998,7 @@ export default function TargetKursiPage() {
               </div>
 
               <div className="vg-midcta">
-                <a href="#yozilish" className="vg-btn-primary">
+                <a href="#yozilish" data-lead-open className="vg-btn-primary">
                   Men ham shunday natija xohlayman
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
@@ -903,7 +1011,7 @@ export default function TargetKursiPage() {
           {/* ============ TESTIMONIALS ============ */}
           <section className="vg-section">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">08 / Talabalar</div>
+              <div className="vg-section-eyebrow">09 / Talabalar</div>
               <h2 className="vg-section-title">
                 Bitiruvchilar <em>nima deydi?</em>
               </h2>
@@ -928,7 +1036,7 @@ export default function TargetKursiPage() {
           {/* ============ INCLUDED ============ */}
           <section className="vg-section">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">09 / Tarkibida</div>
+              <div className="vg-section-eyebrow">10 / Tarkibida</div>
               <h2 className="vg-section-title">
                 Kurs ichida <em>nima bor?</em>
               </h2>
@@ -947,45 +1055,90 @@ export default function TargetKursiPage() {
             </div>
           </section>
 
-          {/* ============ PRICING ============ */}
-          {/* <section className="vg-section" id="narx">
+          {/* ============ LEAD MAGNET ============ */}
+          <section className="vg-section vg-magnet" id="lid-magnit">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">10 / Narxlar</div>
+              <div className="vg-magnet-card">
+                <div className="vg-magnet-left">
+                  <div className="vg-section-eyebrow">11 / Hali tayyor emasmisiz?</div>
+                  <h2 className="vg-magnet-title">
+                    Avval <em>bepul</em> boshlang.
+                  </h2>
+                  <p className="vg-magnet-desc">
+                    Yaxshi xabar shuki — bugun yozilishingiz shart emas. Real natija
+                    keltiradigan birinchi qadamni hoziroq bepul oling: &laquo;$1000
+                    byudjetni boshqarish strategiyasi&raquo; PDF&apos;ini telefoningizga
+                    yuboramiz. Ko&apos;rib chiqasiz, sinab ko&apos;rasiz — keyin qaror qilasiz.
+                  </p>
+                  <ul className="vg-magnet-list">
+                    <li>$1000 byudjetni qanday taqsimlash kerak</li>
+                    <li>CPM&apos;ni arzonlashtiruvchi 3 ta texnika</li>
+                    <li>Birinchi kampaniya uchun tayyor struktura</li>
+                  </ul>
+                  <a href="#lid-magnit" data-lead-open data-lead-mode="magnit" className="vg-btn-primary">
+                    Bepul PDF&apos;ni olish
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
+                    </svg>
+                  </a>
+                  <div className="vg-magnet-note">Bepul · 30 soniya · Spam yo&apos;q</div>
+                </div>
+                <div className="vg-magnet-visual" aria-hidden="true">
+                  <div className="vg-magnet-pdf">
+                    <span className="vg-magnet-pdf-tag">PDF</span>
+                    <span className="vg-magnet-pdf-title">$1000 Byudjet Strategiyasi</span>
+                    <span className="vg-magnet-pdf-sub">Vision Group · Bepul qo&apos;llanma</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ============ PRICING ============ */}
+          <section className="vg-section" id="narx">
+            <div className="vg-container">
+              <div className="vg-section-eyebrow">12 / Narx</div>
               <h2 className="vg-section-title">
-                Bitta mijoz — <em>kurs o&apos;zini qoplaydi.</em>
+                2 oylik kurs. <em>Bitta mijoz</em> — narxni qoplaydi.
               </h2>
               <p className="vg-section-lead">
-                1 yillik platforma dostupi va 15 kunlik kafolat bor. Oyma-oy bo&apos;lib to&apos;lash mumkin.
+                Oyma-oy bo&apos;lib to&apos;lash imkoniyati, 1 yillik dostup va 15 kunlik pulni qaytarish kafolati bilan.
               </p>
 
-              <div className="vg-pricing">
-                {tiers.map((tier) => (
-                  <div key={tier.name} className={`vg-tier ${tier.featured ? "vg-featured" : ""}`}>
-                    {tier.featured && <div className="vg-tier-badge">Ko&apos;p tanlanadi</div>}
-                    <h3>{tier.name}</h3>
-                    <div className="vg-tier-tagline">{tier.tagline}</div>
-                    <div className="vg-price-old">{tier.oldPrice}</div>
-                    <div className="vg-price-amount">{tier.price}</div>
-                    <div className="vg-price-currency">{tier.currency}</div>
-                    <ul>
-                      {tier.features.map((f) => (
-                        <li key={f.text} className={f.included ? "" : "vg-no"}>
-                          {f.text}
-                        </li>
-                      ))}
-                    </ul>
-                    <a href="#yozilish" className="vg-btn-primary">
-                      Tanlash
-                    </a>
+              <div className="vg-price-solo">
+                <div className="vg-price-badge">2 OYLIK KURS</div>
+
+                <div className="vg-price-head">
+                  <div>
+                    <div className="vg-price-name">Noldan professional targetologgacha</div>
+                    <div className="vg-price-old">9,600,000 so&apos;m</div>
+                    <div className="vg-price-amount">
+                      3,200,000 <span className="vg-price-per">so&apos;m / oy</span>
+                    </div>
+                    <div className="vg-price-currency">Jami 6,400,000 so&apos;m · 2 oy</div>
                   </div>
-                ))}
-              </div>
+                  <div className="vg-price-save">
+                    <span className="vg-price-save-num">−33%</span>
+                    <span className="vg-price-save-lbl">Chegirma</span>
+                  </div>
+                </div>
 
-              <p className="vg-pricing-note">
-                <strong>15-iyungacha</strong> — early-bird narx. Joylar to&apos;lgach yoki muddat tugagach narx ko&apos;tariladi.
-              </p>
+                <ul className="vg-price-list">
+                  {priceFeatures.map((f) => (
+                    <li key={f}>{f}</li>
+                  ))}
+                </ul>
+
+                <a href="#yozilish" data-lead-open className="vg-btn-primary vg-price-cta">
+                  5.0 oqimga yozilish
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
+                  </svg>
+                </a>
+                <div className="vg-price-foot">Joylar cheklangan · Qabul yopilgach narx ko&apos;tariladi</div>
+              </div>
             </div>
-          </section> */}
+          </section>
 
           {/* ============ GUARANTEE ============ */}
           <section className="vg-guarantee">
@@ -999,11 +1152,11 @@ export default function TargetKursiPage() {
                 </div>
                 <div>
                   <h2>
-                    Birinchi 15 kun ichida ishonmasangiz —{" "}
+                    Darslar sifatiga shubha qilsangiz —{" "}
                     <em>pulingiz to&apos;liq qaytadi.</em>
                   </h2>
                   <p>
-                    Kurs sizga mos kelmasligini his qilsangiz, birinchi 15 kun ichida hech qanday savolsiz to&apos;lovni qaytarib olasiz. Xavf to&apos;liq biznes tomonida — sizda yo&apos;qotadigan narsa yo&apos;q.
+                    Birinchi 14 kun ichida (taxminan 6 ta dars) kursda qolish o&apos;zingizning xohishingiz bo&apos;lishi kerak. Aks holda — to&apos;lovni hech qanday savolsiz qaytarib olasiz. Xavf to&apos;liq biznes tomonida.
                   </p>
                   <div className="vg-guarantee-sign">— Uchqun Turdiyev, Vision Group</div>
                 </div>
@@ -1012,9 +1165,9 @@ export default function TargetKursiPage() {
           </section>
 
           {/* ============ FAQ ============ */}
-          {/* <section className="vg-section" id="faq">
+          <section className="vg-section" id="faq">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">11 / Savol-javob</div>
+              <div className="vg-section-eyebrow">13 / Savol-javob</div>
               <h2 className="vg-section-title">
                 Oxirgi <em>shubhalaringiz</em>
               </h2>
@@ -1028,24 +1181,28 @@ export default function TargetKursiPage() {
                 ))}
               </div>
             </div>
-          </section> */}
+          </section>
 
           {/* ============ CTA FINAL + FORM ============ */}
           <section className="vg-cta-final" id="yozilish">
             <div className="vg-container">
               <div className="vg-cta-final-inner">
                 <div className="vg-section-eyebrow" style={{ justifyContent: "center" }}>
-                  12 / Yozilish
+                  14 / Yozilish
                 </div>
                 <h2>
                   Tugma bosuvchi emas — <em>natija qiluvchi</em> bo&apos;ling.
                 </h2>
-               
+                <p>
+                  Ammo esda tuting: joylar cheklangan va qabul tez yopiladi. Ikki maydonni
+                  to&apos;ldiring — administrator 24 soat ichida bog&apos;lanadi. Hech narsaga
+                  majbur emassiz.
+                </p>
 
                 <div className="vg-cd-eyebrow">
                   Qabul yopilishiga / <strong>early-bird narxga</strong> qoldi:
                 </div>
-                <CountdownTimer target="2026-06-15T00:00:00+05:00" />
+                <CountdownTimer target="2026-06-30T00:00:00+05:00" />
 
                 <div className="vg-cohort-info">
                   {cohort.map((c) => (
@@ -1068,13 +1225,16 @@ export default function TargetKursiPage() {
             <span className="vg-s1">2 oylik kurs · 1 yil dostup</span>
             <span className="vg-s2">3,200,000 so&apos;mdan</span>
           </div>
-          <a href="#yozilish" className="vg-btn-primary">
+          <a href="#yozilish" data-lead-open className="vg-btn-primary">
             Joyni band qilish
           </a>
         </div>
 
         {/* ============ SOCIAL PROOF TOAST ============ */}
         <SocialProofToast count={2} />
+
+        {/* ============ GLOBAL LEAD MODAL ============ */}
+        <LeadModal />
       </div>
     </>
   );
