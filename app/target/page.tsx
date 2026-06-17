@@ -70,7 +70,7 @@ const whyUs = [
 
 export default function TargetPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#071035] via-[#0A1640] to-[#060D2A] text-white">
+    <main className="min-h-screen bg-gradient-to-b from-[#080F28] via-[#0C1633] to-[#060B1E] text-white">
       <PixelTargetPageView />
 
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16 space-y-16">

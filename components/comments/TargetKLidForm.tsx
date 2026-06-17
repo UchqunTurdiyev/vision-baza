@@ -71,13 +71,13 @@ const MONO = "'Geist Mono', ui-monospace, monospace";
 const SANS = "'Geist', -apple-system, BlinkMacSystemFont, sans-serif";
 
 const COLORS = {
-  bg: "#071035",
-  bgCard: "#0C1A4D",
-  bgCard2: "#122563",
+  bg: "#080F28",
+  bgCard: "#1A2B57",
+  bgCard2: "#22366B",
   ink: "#FFFFFF",
-  ink2: "rgba(255,255,255,0.78)",
-  muted: "rgba(255,255,255,0.55)",
-  line: "rgba(130,160,235,0.24)",
+  ink2: "rgba(255,255,255,0.9)",
+  muted: "rgba(255,255,255,0.66)",
+  line: "rgba(160,180,245,0.38)",
   accent: "#818CF8",
   accent2: "#6366F1",
 };
@@ -285,14 +285,14 @@ export function TargetKLidForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className={className}
+      className={`vgk-lead-form ${className ?? ""}`}
       style={{
         maxWidth: "480px",
         width: "100%",
         margin: "0 auto",
         boxSizing: "border-box",
         textAlign: "left",
-        background: COLORS.bgCard,
+        background: "linear-gradient(150deg, #20336A 0%, #14224A 100%)",
         borderWidth: "1px",
         borderStyle: "solid",
         borderColor: COLORS.line,
@@ -300,9 +300,14 @@ export function TargetKLidForm({
         padding: "32px",
         fontFamily: SANS,
         color: COLORS.ink,
-        boxShadow: "0 20px 50px -20px rgba(0,0,0,0.6)",
+        boxShadow: "0 24px 60px -24px rgba(99,102,241,0.5), 0 0 0 1px rgba(160,180,245,0.12) inset",
       }}
     >
+      <style>{`
+        .vgk-lead-form input::placeholder { color: rgba(255,255,255,0.5); opacity: 1; }
+        .vgk-lead-form input:-webkit-autofill { -webkit-text-fill-color: #fff; transition: background-color 9999s ease-in-out 0s; }
+      `}</style>
+
       {/* Eyebrow */}
       <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
         <span style={{ display: "block", height: "1px", width: "32px", background: COLORS.accent }} />
