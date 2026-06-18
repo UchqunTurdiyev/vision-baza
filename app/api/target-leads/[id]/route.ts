@@ -47,6 +47,13 @@ export async function PATCH(req: NextRequest) {
     if (typeof body.flagged === "boolean") update.flagged = body.flagged;
     if (typeof body.note === "string") update.note = body.note;
     if (typeof body.budget === "string") update.budget = body.budget;
+    if (typeof body.email === "string") update.email = body.email.trim();
+    if (typeof body.phone === "string" && body.phone.trim()) update.phone = body.phone.trim();
+    // ✅ Meta/Instagram match maydonlarini operator qo'lda to'g'rilashi/qo'shishi uchun
+    if (typeof body.pageScopedUserId === "string") update.pageScopedUserId = body.pageScopedUserId.trim();
+    if (typeof body.igUsername === "string") update.igUsername = body.igUsername.trim();
+    if (typeof body.fbLoginId === "string") update.fbLoginId = body.fbLoginId.trim();
+    if (typeof body.pageId === "string") update.pageId = body.pageId.trim();
 
     // 2. Bazada yangilash va yangi ma'lumotni olish
     const updated = await TargetLeadModel.findByIdAndUpdate(id, update, { new: true }).lean() as any;

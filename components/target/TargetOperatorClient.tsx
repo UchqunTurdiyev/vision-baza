@@ -45,6 +45,11 @@ type TargetLead = {
   businessType?: string;
   socialPage?: string;
   budget?: string;
+  // 🔹 Meta (Facebook/Instagram) match maydonlari — CAPI Purchase uchun
+  email?: string;
+  pageScopedUserId?: string;
+  igUsername?: string;
+  fbLoginId?: string;
 };
 
 export default function TargetOperatorClient() {
@@ -244,6 +249,67 @@ export default function TargetOperatorClient() {
       console.error(e);
     } finally {
       setFlagLoadingId(null);
+    }
+  }
+
+  // ✏️ Instagram/Meta match maydonlarini qo'lda kiritish (CAPI Purchase uchun)
+  async function editMetaIds(lead: TargetLead) {
+    const id = String(lead._id || lead.id || "");
+    if (!id) return;
+
+    const igUsername = prompt(
+      "Instagram username (ixtiyoriy, faqat ma'lumot uchun):",
+      lead.igUsername || ""
+    );
+    if (igUsername === null) return; // bekor qilindi
+
+    const pageScopedUserId = prompt(
+      "Instagram/Facebook ID (page_scoped_user_id) — Purchase CAPI uchun ishlatiladi:",
+      lead.pageScopedUserId || ""
+    );
+    if (pageScopedUserId === null) return;
+
+    const email = prompt("Email (ixtiyoriy, CAPI match uchun):", lead.email || "");
+    if (email === null) return;
+
+    try {
+      const res = await fetch(`/api/target-leads/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          igUsername: igUsername.trim(),
+          pageScopedUserId: pageScopedUserId.trim(),
+          email: email.trim(),
+        }),
+      });
+
+      if (!res.ok) {
+        alert("Saqlashda xatolik yuz berdi.");
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+      const updated = data?.lead;
+
+      setColumns((prev) => {
+        const next: typeof prev = {};
+        for (const k of Object.keys(prev)) {
+          next[k] = prev[k].map((l) =>
+            String(l._id ?? l.id) === id
+              ? {
+                  ...l,
+                  igUsername: updated?.igUsername ?? igUsername.trim(),
+                  pageScopedUserId: updated?.pageScopedUserId ?? pageScopedUserId.trim(),
+                  email: updated?.email ?? email.trim(),
+                }
+              : l
+          );
+        }
+        return next;
+      });
+    } catch (e) {
+      console.error(e);
+      alert("Saqlashda xatolik yuz berdi.");
     }
   }
 
@@ -485,6 +551,31 @@ export default function TargetOperatorClient() {
                                     tg: {lead.socialPage}
                                     <div className="text-lg text-white/60">
                                       komment: {lead.note}
+                                    </div>
+
+                                    {/* 🔹 Meta/Instagram match holati — Purchase CAPI uchun */}
+                                    <div className="text-xs text-white/50 mt-1">
+                                      IG ID: {lead.pageScopedUserId ? (
+                                        <span className="text-emerald-400">{lead.pageScopedUserId}</span>
+                                      ) : (
+                                        <span className="text-amber-400">yo&apos;q</span>
+                                      )}
+                                      {lead.igUsername ? ` (@${lead.igUsername})` : ""}
+                                    </div>
+
+                                    <div
+                                      className="mt-1"
+                                      onMouseDown={(e) => e.stopPropagation()}
+                                      onPointerDown={(e) => e.stopPropagation()}
+                                      onTouchStart={(e) => e.stopPropagation()}
+                                    >
+                                      <button
+                                        type="button"
+                                        onClick={() => editMetaIds(lead)}
+                                        className="text-[11px] px-2 py-1 rounded-md border border-white/20 hover:bg-white/10 cursor-pointer"
+                                      >
+                                        IG ID / Email tahrirlash
+                                      </button>
                                     </div>
 
                                     <div className="flex items-center justify-between">

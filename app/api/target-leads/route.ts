@@ -20,6 +20,10 @@ type LeadLean = {
   socialPage?: string;
   budget?: string;
   comments?: CommentLean[];
+  email?: string;
+  pageScopedUserId?: string;
+  igUsername?: string;
+  fbLoginId?: string;
 };
 
 function getErrorMessage(e: unknown): string {
@@ -50,6 +54,10 @@ export async function GET() {
         businessType: 1,
         socialPage: 1,
         budget: 1,
+        email: 1,
+        pageScopedUserId: 1,
+        igUsername: 1,
+        fbLoginId: 1,
         comments: { $slice: -1 },
       })
       .lean()) as LeadLean[];
