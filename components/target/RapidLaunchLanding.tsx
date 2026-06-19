@@ -88,12 +88,12 @@ const audience = [
 const format = [
   {
     num: "i.",
-    title: "Video darslar — platformada",
-    desc: "Barcha darslar oldindan yozilgan va platformaga joylangan. Istalgan vaqtda, o'z tempingizda ko'rasiz va qayta ko'rib mustahkamlaysiz.",
+    title: "Haftada 2 video dars",
+    desc: "Oldindan yozilgan (zapis) tarzda platformaga joylanadi. Istalgan vaqtda, o'z tempingizda ko'rasiz va qayta ko'rib mustahkamlaysiz.",
   },
   {
     num: "ii.",
-    title: "Haftada 1 kun jonli Zoom",
+    title: "Haftada 2 jonli dars",
     desc: "Savol-javob, real reklama kabinetlari tahlili va ochiq dars. Sizning kampaniyangizga aniq, jonli fikr.",
   },
   {
@@ -112,7 +112,7 @@ const months = [
   {
     num: "1-OY",
     title: "Texnik Targetolog",
-    desc: "Meta Ads, AI va kontent asoslari. Haftada 4 ta dars Zaps orqali + 2 ta jonli Zoom dars.",
+    desc: "Meta Ads, AI va kontent asoslari. Haftada 2 ta video dars (zapis) + 2 ta jonli Zoom dars.",
     skills: [
       "Meta Ads Pro: algoritm va auditoriya",
       "AI Integration: samaradorlik 3x",
@@ -128,7 +128,7 @@ const months = [
   {
     num: "2-OY",
     title: "Kontent + Strategik Targetolog",
-    desc: "CAPI, funnel va to'liq Performance Marketing tizimi. Haftada 4 ta dars Zaps orqali + 2 ta jonli Zoom dars.",
+    desc: "CAPI, funnel va to'liq Performance Marketing tizimi. Haftada 2 ta video dars (zapis) + 2 ta jonli Zoom dars.",
     skills: [
       "Copywriting texnikasi",
       "AI orqali sayt yasash",
@@ -215,7 +215,7 @@ const testimonials = [
 ];
 
 const includedItems = [
-  { num: "i.", title: "Haftada 4 Zaps + 2 jonli Zoom", desc: "Har hafta 4 ta yozma dars Zaps orqali va 2 ta jonli Zoom dars." },
+  { num: "i.", title: "Haftada 2 video dars + 2 jonli Zoom", desc: "Har hafta 2 ta video dars (zapis) va 2 ta jonli Zoom dars." },
   { num: "ii.", title: "1 yillik guruh dostup", desc: "Guruh va platformaga 1 yil davomida to'liq kirish." },
   { num: "iii.", title: "24/7 Telegram support", desc: "Savollaringizga kun-tun tez va aniq javob." },
   { num: "iv.", title: "AI Integration darslari", desc: "Samaradorlikni 3 baravar oshiruvchi AI ish jarayoni." },
@@ -226,7 +226,7 @@ const includedItems = [
 ];
 
 const priceFeatures = [
-  "Haftada 4 Zaps + 2 jonli Zoom dars",
+  "Haftada 2 video dars + 2 jonli Zoom dars",
   "1 yillik guruh dostup",
   "24/7 Telegram support",
   "AI Integration darslari",
@@ -266,7 +266,7 @@ const faqs = [
 const cohort = [
   { lbl: "Oqim", val: "5.0 · 2026", urgent: false },
   { lbl: "Boshlanishi", val: "30-iyun", urgent: false },
-  { lbl: "Format", val: "Zaps + Zoom", urgent: false },
+  { lbl: "Format", val: "Video + Zoom", urgent: false },
   { lbl: "Qoldi", val: "7 / 15 joy", urgent: true },
 ];
 
@@ -1198,7 +1198,7 @@ export default function TargetKursiPage() {
                     <em>pulingiz to&apos;liq qaytadi.</em>
                   </h2>
                   <p>
-                    Birinchi 14 kun ichida (taxminan 6 ta dars) kursda qolish o&apos;zingizning xohishingiz bo&apos;lishi kerak. Aks holda — to&apos;lovni hech qanday savolsiz qaytarib olasiz. Xavf to&apos;liq biznes tomonida.
+                    Birinchi 14 kun ichida (taxminan 8 ta dars) kursda qolish o&apos;zingizning xohishingiz bo&apos;lishi kerak. Aks holda — to&apos;lovni hech qanday savolsiz qaytarib olasiz. Xavf to&apos;liq biznes tomonida.
                   </p>
                   <div className="vg-guarantee-sign">— Uchqun Turdiyev, Vision Group</div>
                 </div>

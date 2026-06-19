@@ -125,23 +125,38 @@ export async function PATCH(req: NextRequest) {
           if (pageId) user_data.page_id = String(pageId);
         }
 
-        // ✅ Narx (value) — avval lead'dagi haqiqiy budget, bo'lmasa source bo'yicha
-        // taxminiy standart narx. Hech qachon "jim" 1 470 000 ga tushib qolmaydi —
-        // log orqali ko'rinadi, shunda operator buni data sifatini tekshirishi mumkin.
+        // ✅ Narx (value).
+        // MUHIM: "budget" maydoni — Lead bosqichida (forma to'ldirilganda) saqlangan
+        // QISMAN to'lov summasi (3 200 000 — bo'lib to'lashning bir qismi), bu Meta'ga
+        // "Lead" eventi uchun yuboriladi. Lekin "TO'LOV QILDI" bo'lganda — bu mijoz kursni
+        // TO'LIQ sotib oldi, demak Purchase qiymati har doim TO'LIQ kurs narxi bo'lishi kerak:
+        // 6 400 000 so'm (target-kursi, target-k, web, target-capi — barchasi shu kursning
+        // 4 xil sahifasi). Oldin bu yerda 1 470 000 noto'g'ri standart qiymat ishlatilgan edi.
+        const FULL_COURSE_PRICE = 6400000;
         const SOURCE_DEFAULT_VALUE: Record<string, number> = {
-          "target-kursi": 6400000,
+          "target-kursi": FULL_COURSE_PRICE,
           "target-xizmati": 3200000,
           "lid-magnit": 0,
         };
+        // target-kursi (ya'ni /target-kursi, /web, /target-k, /target-capi — barchasi shu
+        // bitta kurs uchun forma) — har doim to'liq narx, budgetdagi qisman summani e'tiborga olmaymiz.
+        const FORCE_FULL_PRICE_SOURCES = new Set(["target-kursi"]);
+        const sourceKey = String(updated.source ?? "");
+
         const parsedBudget = parseFloat(updated.budget);
         const hasValidBudget = !Number.isNaN(parsedBudget) && parsedBudget > 0;
-        const fallbackValue = SOURCE_DEFAULT_VALUE[updated.source as string] ?? 1470000;
-        const purchaseValue = hasValidBudget ? parsedBudget : fallbackValue;
+        const fallbackValue = SOURCE_DEFAULT_VALUE[sourceKey] ?? FULL_COURSE_PRICE;
 
-        if (!hasValidBudget) {
+        const purchaseValue = FORCE_FULL_PRICE_SOURCES.has(sourceKey)
+          ? FULL_COURSE_PRICE
+          : hasValidBudget
+            ? parsedBudget
+            : fallbackValue;
+
+        if (!hasValidBudget && !FORCE_FULL_PRICE_SOURCES.has(sourceKey)) {
           console.warn(
             `⚠️ CAPI: lead ${String(updated._id)} da budget yo'q/noto'g'ri ("${updated.budget}"). ` +
-              `Fallback qiymat ishlatildi: ${fallbackValue} UZS (source: "${updated.source}"). ` +
+              `Fallback qiymat ishlatildi: ${fallbackValue} UZS (source: "${sourceKey}"). ` +
               `Iltimos, CRM da budjetni to'ldirib qo'ying.`
           );
         }

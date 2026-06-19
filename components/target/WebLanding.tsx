@@ -11,7 +11,7 @@ const includes = [
   "To'g'ri target yoqish: auditoriya, algoritm, byudjet",
   "Pixel + CAPI to'liq sozlash (iOS'ga chidamli)",
   "CAPI orqali CRM integratsiyasi — «TO'LOV QILDI» Meta'ga avtomatik",
-  "Haftada 4 Zaps + 2 jonli Zoom dars",
+  "Haftada 2 video dars + 2 jonli Zoom dars",
   "1 yillik dostup + 24/7 Telegram support",
   "Real portfolio + birinchi mijozga yordam",
 ];
