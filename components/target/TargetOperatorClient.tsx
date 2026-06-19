@@ -179,24 +179,10 @@ export default function TargetOperatorClient() {
     const from = source.droppableId;
     const to = destination.droppableId;
 
-    // 🔔 "TO'LOV QILDI" ga o'tkazishdan oldin — Instagram ID (page_scoped_user_id)
-    // hali kiritilmagan bo'lsa, operatorga ogohlantirib, xohlasa shu yerda kiritib qo'yish imkonini beramiz.
-    // Bu CAPI Purchase eventidagi match sifatini va shu orqali ROAS aniqligini oshiradi.
-    if (to === "TO'LOV QILDI") {
-      const movingLead = (columns[from] ?? []).find(
-        (l) => String(l._id ?? l.id) === draggableId
-      );
-      if (movingLead && !movingLead.pageScopedUserId) {
-        const wantsToFill = window.confirm(
-          "Diqqat: bu lidda Instagram/Facebook ID (page_scoped_user_id) hali kiritilmagan.\n\n" +
-            "Bu maydon bo'sh bo'lsa, Meta CAPI Purchase eventi yuborilsa ham, mijoz Instagram orqali kelgan bo'lsa ham match sifati pasayadi.\n\n" +
-            "Hozir kiritib qo'yasizmi? (Bekor qilsangiz, lid baribir \"TO'LOV QILDI\" ga ko'chiriladi.)"
-        );
-        if (wantsToFill) {
-          void editMetaIds(movingLead);
-        }
-      }
-    }
+    // ℹ️ Instagram ID (page_scoped_user_id) operatordan so'ralmaydi — buni qo'lda
+    // topishning imkoni yo'q. "TO'LOV QILDI" bo'lganda backend o'zi bir xil telefon
+    // raqamli boshqa lead'dan (masalan, Instagram DM orqali kelgan) avtomatik
+    // qidirib bog'laydi (qarang: app/api/target-leads/[id]/route.ts).
 
     setColumns((prev) => {
       const next = { ...prev };

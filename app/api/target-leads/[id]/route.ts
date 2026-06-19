@@ -59,6 +59,37 @@ export async function PATCH(req: NextRequest) {
     const updated = await TargetLeadModel.findByIdAndUpdate(id, update, { new: true }).lean() as any;
     if (!updated) return NextResponse.json({ error: "Lead topilmadi" }, { status: 404 });
 
+    // 2.5. Instagram ID avtomatik moslashtirish — agar shu lead'da pageScopedUserId
+    // bo'lmasa, bazadan BIR XIL telefon raqamli boshqa lead'ni (masalan, Instagram DM
+    // orqali kelgan, source: "instagram-dm") qidirib, undagi Meta match maydonlarini
+    // shu lead'ga ko'chiramiz. Operatordan hech narsa so'ralmaydi — bu butunlay avtomatik.
+    let metaMatch = updated;
+    if (body.status === "TO'LOV QILDI" && !updated.pageScopedUserId && updated.phone) {
+      try {
+        const igMatch = await TargetLeadModel.findOne({
+          phone: updated.phone,
+          pageScopedUserId: { $exists: true, $ne: "" },
+          _id: { $ne: updated._id },
+        }).lean() as any;
+
+        if (igMatch) {
+          metaMatch = {
+            ...updated,
+            pageScopedUserId: igMatch.pageScopedUserId,
+            pageId: updated.pageId || igMatch.pageId,
+            fbLoginId: updated.fbLoginId || igMatch.fbLoginId,
+            igUsername: updated.igUsername || igMatch.igUsername,
+          };
+          console.log(
+            `✅ CAPI: lead ${String(updated._id)} uchun Instagram ID avtomatik topildi ` +
+              `(bir xil telefon: ${updated.phone}, manba lead: ${String(igMatch._id)}).`
+          );
+        }
+      } catch (matchErr) {
+        console.error("❌ Instagram avtomatik moslashtirish xato:", matchErr);
+      }
+    }
+
     // 3. Facebook CAPI (Faqat "TO'LOV QILDI" bo'lganda)
     if (body.status === "TO'LOV QILDI") {
       const PIXEL_ID = process.env.FB_PIXEL_ID;
@@ -84,10 +115,11 @@ export async function PATCH(req: NextRequest) {
         if (updated.fbp) user_data.fbp = updated.fbp;
         if (updated.fbc) user_data.fbc = updated.fbc;
 
-        // ✅ Instagram / Facebook id lari (hashlanmaydi)
-        if (updated.fbLoginId) user_data.fb_login_id = String(updated.fbLoginId);
-        const pageScopedUserId = updated.pageScopedUserId || "";
-        const pageId = updated.pageId || process.env.FB_PAGE_ID || "";
+        // ✅ Instagram / Facebook id lari (hashlanmaydi) — metaMatch orqali, ya'ni
+        // shu lead'da bo'lmasa, bir xil telefon raqamli Instagram lead'dan avtomatik olingan
+        if (metaMatch.fbLoginId) user_data.fb_login_id = String(metaMatch.fbLoginId);
+        const pageScopedUserId = metaMatch.pageScopedUserId || "";
+        const pageId = metaMatch.pageId || process.env.FB_PAGE_ID || "";
         if (pageScopedUserId) {
           user_data.page_scoped_user_id = String(pageScopedUserId);
           if (pageId) user_data.page_id = String(pageId);
