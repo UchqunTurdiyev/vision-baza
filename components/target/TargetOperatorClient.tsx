@@ -179,6 +179,25 @@ export default function TargetOperatorClient() {
     const from = source.droppableId;
     const to = destination.droppableId;
 
+    // 🔔 "TO'LOV QILDI" ga o'tkazishdan oldin — Instagram ID (page_scoped_user_id)
+    // hali kiritilmagan bo'lsa, operatorga ogohlantirib, xohlasa shu yerda kiritib qo'yish imkonini beramiz.
+    // Bu CAPI Purchase eventidagi match sifatini va shu orqali ROAS aniqligini oshiradi.
+    if (to === "TO'LOV QILDI") {
+      const movingLead = (columns[from] ?? []).find(
+        (l) => String(l._id ?? l.id) === draggableId
+      );
+      if (movingLead && !movingLead.pageScopedUserId) {
+        const wantsToFill = window.confirm(
+          "Diqqat: bu lidda Instagram/Facebook ID (page_scoped_user_id) hali kiritilmagan.\n\n" +
+            "Bu maydon bo'sh bo'lsa, Meta CAPI Purchase eventi yuborilsa ham, mijoz Instagram orqali kelgan bo'lsa ham match sifati pasayadi.\n\n" +
+            "Hozir kiritib qo'yasizmi? (Bekor qilsangiz, lid baribir \"TO'LOV QILDI\" ga ko'chiriladi.)"
+        );
+        if (wantsToFill) {
+          void editMetaIds(movingLead);
+        }
+      }
+    }
+
     setColumns((prev) => {
       const next = { ...prev };
       const fromArr = Array.from(next[from] ?? []);

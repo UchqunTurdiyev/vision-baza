@@ -93,6 +93,27 @@ export async function PATCH(req: NextRequest) {
           if (pageId) user_data.page_id = String(pageId);
         }
 
+        // ✅ Narx (value) — avval lead'dagi haqiqiy budget, bo'lmasa source bo'yicha
+        // taxminiy standart narx. Hech qachon "jim" 1 470 000 ga tushib qolmaydi —
+        // log orqali ko'rinadi, shunda operator buni data sifatini tekshirishi mumkin.
+        const SOURCE_DEFAULT_VALUE: Record<string, number> = {
+          "target-kursi": 6400000,
+          "target-xizmati": 3200000,
+          "lid-magnit": 0,
+        };
+        const parsedBudget = parseFloat(updated.budget);
+        const hasValidBudget = !Number.isNaN(parsedBudget) && parsedBudget > 0;
+        const fallbackValue = SOURCE_DEFAULT_VALUE[updated.source as string] ?? 1470000;
+        const purchaseValue = hasValidBudget ? parsedBudget : fallbackValue;
+
+        if (!hasValidBudget) {
+          console.warn(
+            `⚠️ CAPI: lead ${String(updated._id)} da budget yo'q/noto'g'ri ("${updated.budget}"). ` +
+              `Fallback qiymat ishlatildi: ${fallbackValue} UZS (source: "${updated.source}"). ` +
+              `Iltimos, CRM da budjetni to'ldirib qo'ying.`
+          );
+        }
+
         const payload = {
           data: [{
             event_name: "Purchase",
@@ -102,7 +123,7 @@ export async function PATCH(req: NextRequest) {
             user_data,
             custom_data: {
               currency: "UZS",
-              value: parseFloat(updated.budget) || 1470000,
+              value: purchaseValue,
             },
           }],
         };
