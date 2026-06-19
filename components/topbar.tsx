@@ -9,9 +9,10 @@ import { Menu, X, ChevronDown } from "lucide-react";
 // "Target kursi" — bir nechta sahifani o'z ichiga olgan dropdown.
 // Default ko'rinish: "Target kursi" (/target-kursi).
 const TARGET_DROPDOWN = [
-  { href: "/web", label: "Veb-sayt" },
-  { href: "/target-k", label: "Target-K" },
   { href: "/target-kursi", label: "Target kursi" },
+  { href: "/web", label: "Target kursi2" },
+  { href: "/target-k", label: "Target kursi3" },
+  { href: "/target-capi", label: "Target kursi4" },
 ];
 const NAV = [
   // { href: "/sotuv", label: "Sotuv Kursi" },
