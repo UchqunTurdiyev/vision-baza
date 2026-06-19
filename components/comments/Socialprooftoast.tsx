@@ -12,7 +12,7 @@ const POOL: Item[] = [
   { name: "Bobur", initials: "B", action: "qiziqish bildirdi", city: "Andijon" },
   { name: "Madina", initials: "M", action: "kursga yozildi", city: "Namangan" },
   { name: "Jasur", initials: "J", action: "qiziqish bildirdi", city: "Farg'ona" },
-  { name: "Nilufar", initials: "N", action: "kursga yozildi", city: "Qarshi" },
+  { name: "Nilufar", initials: "N", action: "kursga yozildi", city: "Toshkent" },
   { name: "Sardor", initials: "S", action: "qiziqish bildirdi", city: "Navoiy" },
   { name: "Gulnoza", initials: "G", action: "kursga yozildi", city: "Toshkent" },
   { name: "Aziz", initials: "A", action: "qiziqish bildirdi", city: "Samarqand" },
