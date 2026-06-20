@@ -107,7 +107,7 @@ export default function WebLanding() {
         {/* URGENCY */}
         <div className="vw-urgency">
           <div className="vw-urgency-in">
-            <span><b style={{ fontWeight: 800 }}>5.0 oqim ochildi</b> — atigi 15 kishi olamiz</span>
+            <span><b style={{ fontWeight: 800 }}>5.0 oqim ochildi</b> — guruh to&apos;lib qolmasidan joyingizni band qiling</span>
             <a href="#ariza">Yozilish</a>
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function WebLanding() {
           <div className="vw-wrap">
             <span className="vw-eyebrow"><i /> Performance Marketing · 5.0 oqim</span>
             <h1 className="vw-h1">
-              Target yoqishni hamma biladi. <em>To&apos;g&apos;ri yoqishni</em> — kam kishi.
+              Qanday qilib Meta sizga <em>&apos;shunchaki qiziquvchilarni&apos;</em> emas, hamyonida puli bor xaridorlarni topib kelishi mumkin?
             </h1>
             <p className="vw-sub">
               2 oyda: to&apos;g&apos;ri target, Pixel + CAPI va CRM integratsiyasini real
@@ -127,7 +127,7 @@ export default function WebLanding() {
               Joyimni band qilaman
               <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.7" /></svg>
             </a>
-            <p className="vw-note">30 soniya · majburiyatsiz · atigi <strong>7 / 15 joy</strong> qoldi</p>
+            <p className="vw-note">Target yoqib natija ololmayapsizmi unda hoziroq konsultatsiyaga yoziling</p>
             <p className="vw-trust">ISFT · JAPAN SCHOOL · ZIYO YOG&apos;DUSI · TURON MED · MED EXPERT</p>
           </div>
         </section>
@@ -174,8 +174,7 @@ export default function WebLanding() {
               </div>
 
               <div className="vw-scarbox">
-                <strong>Ammo esda tuting:</strong> 5.0 oqimga atigi <strong>15 kishi</strong> olamiz va
-                bu narx faqat shu oqim uchun. Joylar to&apos;lgach — narx ko&apos;tariladi.
+                <strong>Ammo esda tuting:</strong> 5.0 oqimga keyingi kursda narxlar oshishi kutilmoqda.
               </div>
 
               <a href="#ariza" className="vw-btn vw-btn-primary">Joyimni band qilaman</a>

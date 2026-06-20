@@ -312,7 +312,7 @@ export function TargetKLidForm({
       <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
         <span style={{ display: "block", height: "1px", width: "32px", background: COLORS.accent }} />
         <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: COLORS.accent }}>
-          {isMagnit ? "Bepul · Hoziroq" : "Ariza · Yozilish"}
+          {isMagnit ? "Bepul · Hoziroq" : "Bepul konsultatsiya uchun"}
         </span>
       </div>
 
@@ -500,7 +500,7 @@ export function TargetKLidForm({
 
       {/* Fineprint */}
       <p style={{ margin: "14px 0 0", textAlign: "center", fontFamily: MONO, fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.muted }}>
-        {isMagnit ? "30 soniya · Spam yo'q" : "Majburiyatsiz · Spam yo'q · 30 soniya"}
+        {isMagnit ? "30 soniya · Spam yo'q" : "Ma'lumotlar himoyalangan"}
       </p>
 
       {/* Messages */}

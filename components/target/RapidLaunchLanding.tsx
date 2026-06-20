@@ -14,13 +14,13 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Performance Marketing 5.0 — Vision Group | Uchqun Turdiyev",
   description:
-    "Reklama tugmasini bosishni emas, biznesga real natija qilishni o'rganasiz. $100,000+ byudjetni boshqargan amaliyotchidan 2 oylik Performance Marketing kursi. Video + jonli Zoom, 1 yillik dostup, 15 kunlik kafolat.",
+    "Reklama tugmasini bosishni emas, biznesga real natija qilishni o'rganasiz. $80.000+ byudjetni boshqargan amaliyotchidan 2 oylik Performance Marketing kursi. Video + jonli Zoom, 1 yillik dostup, 15 kunlik kafolat.",
 };
 
 // ============ DATA ============
 
 const heroStats = [
-  { num: "$100K+", lbl: "Boshqarilgan byudjet" },
+  { num: "$80K+", lbl: "Boshqarilgan byudjet" },
   { num: "82×", lbl: "O'rtacha ROAS" },
   { num: "12+", lbl: "Bizneslar" },
   { num: "4 yil", lbl: "Amaliy tajriba" },
@@ -37,51 +37,51 @@ const tickerItems = [
 
 // Schwartz: prospektning muvaffaqiyatsiz tajribasini aytib, og'riqni jonlantirish
 const problems = [
-  "Kurs tugadi, sertifikat ham bor — lekin birinchi mijozni qayerdan topishni hali bilmaysiz.",
-  "Reklama yoqasiz, pul ketadi, natija esa yo'q. Nima xato ketayotganini tushunmaysiz.",
-  "Sizdan \"target\" so'rashadi, biznes esa \"sotuv qani?\" deydi — ikkisi orasida qolib ketasiz.",
-  "Atrofda \"target o'rgataman\" deguvchilar ko'p, lekin ularning o'zi biror biznesga natija qilmagan.",
+  "Lid kundan-kunga qimmatlashyapti — byudjet o'sadi, natija o'smaydi.",
+  "Kelgan lidlar sifatsiz: \"men qoldirmaganman\", puli yo'q auditoriya.",
+  "Mijoz sizni tajribali sanamay, shartnomani uzaytirmaydi.",
+  "Natija bermagan sayin o'zingizga ishonchingiz so'nadi.",
 ];
 
 // Schwartz: noyob mexanizm (bozor soflligi yuqori — oddiy va'da yetmaydi)
 const mechanism = [
   {
     num: "01",
-    title: "Tugma emas — natija",
-    desc: "Biznes sizga Ads Manager'da tugma bosganingiz uchun emas, keltirgan natijangiz uchun pul to'laydi. Shu sababli kurs tugmadan emas, natija mantig'idan boshlanadi.",
+    title: "Sovuq mijozdan kassagacha",
+    desc: "Har bir qadamni boshqarasiz: qayerda nima qilishni aniq bilasiz. Sotuv tasodif emas.",
   },
   {
     num: "02",
-    title: "Amaliyotchi ustoz",
-    desc: "Men o'rgatadigan narsani har kuni o'zim ishlataman — $100,000+ byudjetda. Tizim Meta mutaxassislari auditidan o'tadi. Bu nazariya emas, dala amaliyoti.",
+    title: "Metaga har kuni to'g'ri signal",
+    desc: "Algoritm xaridoringizni o'zi topadi — lid arzonlaydi, sifati oshadi.",
   },
   {
     num: "03",
-    title: "Bitta tugma emas — butun tizim",
-    desc: "Lid kelganidan to'lov tushgunigacha: funnel, sayt, CRM, CAPI. Ko'pchilik kurslar shuni o'rgatmaydi — aynan shu sizni boshqalardan ajratadi.",
+    title: "Jarayonni raqamlarda o'qish",
+    desc: "Kichik qadamlarni to'g'irlab, mag'lub bo'lmas strategiya qurasiz.",
   },
   {
     num: "04",
-    title: "Diplom emas — portfolio",
-    desc: "Kurs davomida real bizneslarga reklama yoqasiz. Tugaganda qo'lingizda quruq sertifikat emas, ko'rsata oladigan natijalaringiz bo'ladi.",
+    title: "Sifatsiz liddan butkul qutilish",
+    desc: "Mahsulot va Instagram holatiga mos to'g'ri texnika bilan target yoqasiz.",
   },
 ];
 
 const audience = [
   {
     tag: "01",
-    title: "0 dan boshlovchilar",
-    desc: "Talab yuqori, masofadan turib ishlaydigan kasb egallab, o'z daromadini o'zi yaratmoqchi bo'lganlar. Oldindan bilim shart emas.",
+    title: "O'z ustida ishlaydiganlar",
+    desc: "2 oy davomida izchil, o'z ustida ishlay oladiganlar.",
   },
   {
     tag: "02",
-    title: "SMM va dizaynerlar",
-    desc: "Xizmatlar ro'yxatini target bilan kengaytirib, bitta mijozdan oladigan chekni 2–3 barobar oshirmoqchi bo'lganlar.",
+    title: "Sabr bilan o'rganadiganlar",
+    desc: "Sabr-toqat bilan o'qib, amaliyotga tushadiganlar.",
   },
   {
     tag: "03",
-    title: "Biznes egalari",
-    desc: "Reklamasini birovga ishonib byudjetni behuda sarflashni to'xtatib, jarayonni o'z nazoratiga olmoqchi bo'lganlar.",
+    title: "Daromadini oshiruvchilar",
+    desc: "Olgan bilimi bilan daromadini oshirmoqchi bo'lganlar.",
   },
 ];
 
@@ -119,7 +119,7 @@ const months = [
       "Birinchi reklama kampaniyasi",
       "Mijoz auditi va qizil chiziq",
       "Meta mutaxassislari tavsiyasidagi texnikalar",
-      "$1000 byudjet boshqarish strategiyasi",
+      "2026-yil Meta mutaxassislari tavsiyasi",
       "Hook & Offer yaratish",
       "CPM ni to'g'ri texnikalar bilan bir necha barobar arzonlashtirish",
       "Sotadigan kontent va kreativlar",
@@ -147,7 +147,7 @@ const credentials = [
   { yr: "2022", text: '"Shogirdlar 4.0" va Marketing kursi bitiruvchisi' },
   { yr: "2024", text: "Xayot Sharapovdan target mentorship" },
   { yr: "2025", text: "Meta mutaxassislari bilan hamkorlik va oylik audit" },
-  { yr: "2025", text: "$100,000+ ad spend, ROAS 82×, 3,500+ mijoz" },
+  { yr: "2025", text: "$80.000+ ad spend, ROAS 82×, 3,500+ mijoz" },
   { yr: "2026", text: "Vision Group — Performance Marketing 5.0 oqim" },
 ];
 
@@ -180,7 +180,7 @@ const testimonials = [
     initials: "MA",
     name: "Maxmudov Akmal",
     role: "Targetolog · III oqim",
-    quote: "Ustoz erinmasdan ingliz va rus tilida ham ko'rsatib berdi. Bunaqa xarakterli bo'lish hammaning qo'lidan kelmaydi.",
+    quote: "Bugungi darsdan keyin hali hech narsa bilmasligimni angladim.",
   },
   {
     initials: "Sh",
@@ -198,7 +198,7 @@ const testimonials = [
     initials: "S",
     name: "Sora",
     role: "Targetolog · III oqim",
-    quote: "Audit qilib berganingizda ancha xatolarimni bilib oldim. Rahmat!",
+    quote: "Audit qilib berganlaridan so'ng natijalar keskin oshdi.",
   },
   {
     initials: "SM",
@@ -255,7 +255,7 @@ const faqs = [
   },
   {
     q: "Kursdan keyin ish yoki mijoz topa olamanmi?",
-    a: "Kursda real portfolio yig'asiz va ish/mijoz topish texnikalarini o'rganasiz. VIP tarifda esa 3 mijoz topishga amaliy yordam beriladi.",
+    a: "Kursda real portfolio yig'asiz va ish/mijoz topish texnikalarini o'rganasiz.",
   },
   {
     q: "To'lovni bo'lib to'lasa bo'ladimi?",
@@ -265,9 +265,9 @@ const faqs = [
 
 const cohort = [
   { lbl: "Oqim", val: "5.0 · 2026", urgent: false },
-  { lbl: "Boshlanishi", val: "30-iyun", urgent: false },
+  { lbl: "Boshlanishi", val: "12-iyun", urgent: false },
   { lbl: "Format", val: "Video + Zoom", urgent: false },
-  { lbl: "Qoldi", val: "7 / 15 joy", urgent: true },
+  { lbl: "Qoldi", val: "faqat 7 joy", urgent: true },
 ];
 
 // ============ STYLES (scoped under .vg-page) ============
@@ -396,6 +396,20 @@ const styles = `
 .vg-problem-bridge { margin-top: 36px; font-family: var(--vg-serif); font-size: clamp(20px, 2.6vw, 28px); line-height: 1.3; letter-spacing: -0.01em; max-width: 760px; }
 .vg-problem-bridge em { font-style: italic; color: var(--vg-accent); }
 @media (max-width: 800px) { .vg-page .vg-problem-grid { grid-template-columns: 1fr; } }
+
+/* PLAIN LIST (no cards — clean & scannable) */
+.vg-plain-list { max-width: 820px; border-top: 1px solid var(--vg-line); }
+.vg-plain-row { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--vg-line); }
+.vg-plain-mark { flex-shrink: 0; font-family: var(--vg-mono); font-size: 15px; font-weight: 700; line-height: 1.45; }
+.vg-plain-x { color: #F87171; }
+.vg-plain-num { color: var(--vg-accent); }
+.vg-plain-row > p { font-size: 17px; line-height: 1.5; color: var(--vg-ink); }
+.vg-plain-row > div h3 { font-family: var(--vg-serif); font-weight: 500; font-size: 20px; letter-spacing: -0.01em; margin-bottom: 4px; color: var(--vg-ink); }
+.vg-plain-row > div p { font-size: 15px; line-height: 1.55; color: var(--vg-ink-2); }
+@media (max-width: 800px) {
+  .vg-page .vg-plain-row > p { font-size: 16px; }
+  .vg-page .vg-plain-row > div h3 { font-size: 18px; }
+}
 
 /* AGITATION */
 .vg-page .vg-agitate { background: linear-gradient(180deg, var(--vg-bg) 0%, var(--vg-bg-2) 100%); }
@@ -711,7 +725,7 @@ export default function TargetKursiPage() {
           <div className="vg-container vg-urgency-inner">
             <span className="vg-urgency-pulse" aria-hidden="true" />
             <span className="vg-urgency-text">
-              <strong>5.0 oqim ochiq</strong> — atigi <strong>7 / 15 joy</strong> qoldi · early-bird narx tez tugaydi
+              <strong>5.0 oqim ochiq</strong> — atigi <strong>7 joy</strong> qoldi · early-bird narx tez tugaydi
             </span>
             <a href="#yozilish" data-lead-open className="vg-urgency-cta">
               Joyni band qilish
@@ -739,22 +753,21 @@ export default function TargetKursiPage() {
                 <div className="vg-hero-pre">Noldan professional targetologgacha — 2 oyda</div>
 
                 <h1 className="vg-hero-headline">
-                  Reklama <span className="vg-strike">yoqishni</span> emas, biznesga{" "}
-                  <em>natija qilishni</em> o&apos;rganasiz.
+                  Sifatsiz lidlar, natijasiz target kampaniyalar —{" "}
+                  <em>sizda ham shundaymi?</em>
                 </h1>
 
                 <div className="vg-hero-meta">
                   <span className="vg-hero-meta-badge">META</span>
                   <span>
                     Meta mutaxassislaridan o&apos;rgangan{" "}
-                    <strong>Performance Marketing</strong> tizimini — Target kursimda o&apos;qing.
+                    <strong>Performance Marketing</strong> tizimini — Target kursi.
                   </span>
                 </div>
 
                 <p className="vg-hero-sub">
-                  Gap shundaki: bozorda &laquo;target o&apos;rgataman&raquo; deguvchilar ko&apos;p, lekin biznes tugma bosishga emas —{" "}
-                  <strong>keladigan natijaga</strong> pul to&apos;laydi. <strong>$100,000+ byudjet</strong> boshqargan va Meta mutaxassislari auditidan o&apos;tgan tizim asosida, atigi 2 oyda 0 dan natija keltiradigan{" "}
-                  <strong>Performance marketologga</strong> aylanasiz.
+                  Gap shundaki: bir oydan keyin reklamangiz butunlay boshqacha ishlay boshlaydi — xarajat o&apos;sha-o&apos;sha, lekin{" "}
+                  <strong>lidlar sifati keskin oshgan</strong> va <strong>arzonlashgan</strong> holatda.
                 </p>
 
                 <div className="vg-hero-cta-row">
@@ -770,7 +783,7 @@ export default function TargetKursiPage() {
                 </div>
 
                 <div className="vg-cta-note">
-                  <span className="vg-cta-dot" /> 30 soniya · Majburiyatsiz · Atigi <strong>7 / 15 joy</strong> qoldi
+                  <span className="vg-cta-dot" /> 30 soniya · Majburiyatsiz · Atigi <strong>7 joy</strong> qoldi
                 </div>
 
                 <div className="vg-trustline">
@@ -805,21 +818,20 @@ export default function TargetKursiPage() {
             <div className="vg-container">
               <div className="vg-section-eyebrow">01 / Tanish holatmi?</div>
               <h2 className="vg-section-title">
-                Target o&apos;rgangan ko&apos;p. <em>Pul topgani</em> kam. Nega?
+                Lidlar qimmat, bundan ham yomoni — &laquo;men qoldirmadim&raquo;, puli yo&apos;q mijozlar. <em>Sifatsiz lidlar.</em>
               </h2>
 
-              <div className="vg-problem-grid">
+              <div className="vg-plain-list">
                 {problems.map((p, i) => (
-                  <div key={i} className="vg-prob">
-                    <div className="vg-prob-x">✕</div>
+                  <div key={i} className="vg-plain-row">
+                    <span className="vg-plain-mark vg-plain-x">✕</span>
                     <p>{p}</p>
                   </div>
                 ))}
               </div>
 
               <p className="vg-problem-bridge">
-                Muammo sizda emas. Sizga tugma bosish o&apos;rgatilgan —{" "}
-                <em>natija qiladigan tizim emas.</em>
+                Muammo shundaki: oldin qilganimizdek — auditoriya qiziqishlarini tanlab target yoqamiz, lid arzon bo&apos;lsa yaxshi, qimmat bo&apos;lsa o&apos;chirib qaytadan yoqamiz. <em>Bu yechim emas.</em> Biz &laquo;nega ishlamadi?&raquo; degan savolga javob topishimiz kerak.
               </p>
             </div>
           </section>
@@ -829,30 +841,22 @@ export default function TargetKursiPage() {
             <div className="vg-container">
               <div className="vg-section-eyebrow">02 / Ammo esda tuting</div>
               <h2 className="vg-section-title">
-                Bu shunchaki <em>yo&apos;qotilgan kurs puli</em> emas.
+                Bu ketishda pul sarflaysiz — <em>natija esa yo&apos;q.</em>
               </h2>
               <p className="vg-section-lead">
-                Tasavvur qiling: yana bir yil o&apos;tadi. Texnika o&apos;rgandingiz, lekin tizim yo&apos;qligi uchun hech narsa o&apos;zgarmaydi. Mana, qancha narsa qo&apos;ldan ketadi:
+                Oddiy haqiqat:
               </p>
 
-              <div className="vg-agitate-grid">
-                <div className="vg-agitate-card">
-                  <div className="vg-agitate-num">−1 yil</div>
-                  <p>Hozir boshlaganlar mijoz topib, portfolio yig&apos;ayotgan paytda — siz hali ham &laquo;qachon boshlasam&raquo; deb turasiz.</p>
-                </div>
-                <div className="vg-agitate-card">
-                  <div className="vg-agitate-num">−$1000+</div>
-                  <p>Noto&apos;g&apos;ri yoqilgan har bir kampaniya byudjetni yoqadi. Tizimsiz, bu pul shunchaki havoga uchadi.</p>
-                </div>
-                <div className="vg-agitate-card">
-                  <div className="vg-agitate-num">−Ishonch</div>
-                  <p>Bir-ikki biznesga &laquo;natija qilaman&raquo; deb va&apos;da berib, uddasidan chiqolmasangiz — obro&apos;ingiz tushadi.</p>
+              <div className="vg-plain-list">
+                <div className="vg-plain-row">
+                  <span className="vg-plain-mark vg-plain-x">✕</span>
+                  <p>Yuqori qiymatli natija qila oladigan targetolog bo&apos;lmasangiz — bu raqobatda yutqazasiz.</p>
                 </div>
               </div>
 
               <p className="vg-problem-bridge">
-                Lekin bitta yaxshi xabar bor:{" "}
-                <em>buni bir martada, to&apos;g&apos;ri tizim bilan hal qilsa bo&apos;ladi.</em>
+                Lekin yaxshi xabar bor:{" "}
+                <em>buni bitta to&apos;g&apos;ri tizim bilan hal qilsa bo&apos;ladi.</em>
               </p>
             </div>
           </section>
@@ -862,18 +866,20 @@ export default function TargetKursiPage() {
             <div className="vg-container">
               <div className="vg-section-eyebrow">03 / Yechim</div>
               <h2 className="vg-section-title">
-                Yaxshi xabar shuki — boshqacha <em>tizim</em> bor.
+                Yaxshi xabar shuki — boshqacha <em>yechim</em> bor.
               </h2>
               <p className="vg-section-lead">
-                Bu kurs reklama tugmalarini emas, biznesga real pul keltiradigan to&apos;liq tizimni o&apos;rgatadi. Eng qizig&apos;i esa — mana farqi nimada:
+                Sirti oddiy: reklama tugmasini emas, sovuq mijozdan kassagacha bo&apos;lgan har bir qadamni boshqarishni o&apos;rganasiz. Mana farqi:
               </p>
 
-              <div className="vg-mech-grid">
+              <div className="vg-plain-list">
                 {mechanism.map((m) => (
-                  <div key={m.num} className="vg-mech">
-                    <div className="vg-mech-num">{m.num}</div>
-                    <h3>{m.title}</h3>
-                    <p>{m.desc}</p>
+                  <div key={m.num} className="vg-plain-row">
+                    <span className="vg-plain-mark vg-plain-num">{m.num}</span>
+                    <div>
+                      <h3>{m.title}</h3>
+                      <p>{m.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -892,9 +898,9 @@ export default function TargetKursiPage() {
           {/* ============ AUDIENCE ============ */}
           <section className="vg-section" id="kimga">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">04 / Bu kurs kimga</div>
+              <div className="vg-section-eyebrow">04 / Ushbu kursim kimlar uchun</div>
               <h2 className="vg-section-title">
-                Aniq <em>3 toifa</em> uchun qurilgan.
+                Mana shunday <em>odamlar</em> uchun.
               </h2>
 
               <div className="vg-aud-grid">
@@ -974,7 +980,7 @@ export default function TargetKursiPage() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/001.avif" alt="Uchqun Turdiyev" />
                   <div className="vg-badge">
-                    $100,000+
+                    $80.000+
                     <strong>Boshqarilgan reklama byudjeti</strong>
                   </div>
                 </div>
@@ -986,10 +992,10 @@ export default function TargetKursiPage() {
                     Men o&apos;rgatadigan narsani har kuni <strong>o&apos;zim ishlataman</strong>. Bu kurs nazariyani emas, har kuni dalada sinaladigan amaliyotni beradi.
                   </p>
                   <p>
-                    2025-yilda <strong>$100,000+ byudjet</strong> boshqardim. Maktab uchun $4,600 sarflab 250 o&apos;quvchi, institut uchun 3,500 mijoz jalb qildik. Tizim Meta mutaxassislari auditidan o&apos;tadi.
+                    2025-yilda <strong>$80.000+ byudjet</strong> boshqardim. Maktab uchun $4,600 sarflab 250 o&apos;quvchi, institut uchun 3,500 mijoz jalb qildik. Tizim Meta mutaxassislari auditidan o&apos;tgan.
                   </p>
                   <p>
-                    O&apos;rgatadiganini o&apos;zi ishlatmaydigan ustozdan target o&apos;rganib bo&apos;lmaydi. Men aynan shuning aksini taklif qilaman.
+                    Target — Marketing — Dasturlash kombinatsiyasi uyg&apos;unlashgan kurs.
                   </p>
 
                   <ul className="vg-cred-list">
@@ -1005,46 +1011,10 @@ export default function TargetKursiPage() {
             </div>
           </section>
 
-          {/* ============ CASES ============ */}
-          <section className="vg-section" id="natija">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">08 / Real keyslar</div>
-              <h2 className="vg-section-title">
-                Va&apos;da emas — <em>raqamlar.</em>
-              </h2>
-              <p className="vg-section-lead">
-                Quyidagi natijalar — ustozning real mijozlari uchun olib borgan kampaniyalari.
-              </p>
-
-              <div className="vg-cases-grid">
-                {cases.map((c) => (
-                  <div key={c.tag} className="vg-case">
-                    <div className="vg-case-tag">{c.tag}</div>
-                    <div className="vg-case-num">
-                      {c.num}
-                      <small>{c.small}</small>
-                    </div>
-                    <div className="vg-case-desc">{c.desc}</div>
-                    <div className="vg-case-meta">{c.meta}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="vg-midcta">
-                <a href="#yozilish" data-lead-open className="vg-btn-primary">
-                  Men ham shunday natija xohlayman
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </section>
-
           {/* ============ TESTIMONIALS ============ */}
           <section className="vg-section">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">09 / Talabalar</div>
+              <div className="vg-section-eyebrow">08 / Talabalar</div>
               <h2 className="vg-section-title">
                 Bitiruvchilar <em>nima deydi?</em>
               </h2>
@@ -1069,7 +1039,7 @@ export default function TargetKursiPage() {
           {/* ============ INCLUDED ============ */}
           <section className="vg-section">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">10 / Tarkibida</div>
+              <div className="vg-section-eyebrow">09 / Tarkibida</div>
               <h2 className="vg-section-title">
                 Kurs ichida <em>nima bor?</em>
               </h2>
@@ -1093,20 +1063,21 @@ export default function TargetKursiPage() {
             <div className="vg-container">
               <div className="vg-magnet-card">
                 <div className="vg-magnet-left">
-                  <div className="vg-section-eyebrow">11 / Hali tayyor emasmisiz?</div>
+                  <div className="vg-section-eyebrow">10 / Hali tayyor emasmisiz?</div>
                   <h2 className="vg-magnet-title">
                     Avval <em>bepul</em> boshlang.
                   </h2>
                   <p className="vg-magnet-desc">
                     Yaxshi xabar shuki — bugun yozilishingiz shart emas. Real natija
-                    keltiradigan birinchi qadamni hoziroq bepul oling: &laquo;$1000
-                    byudjetni boshqarish strategiyasi&raquo; PDF&apos;ini telefoningizga
+                    keltiradigan birinchi qadamni hoziroq bepul oling: &laquo;2026-yilda
+                    Meta mutaxassislari tavsiyasi&raquo; PDF&apos;ini telefoningizga
                     yuboramiz. Ko&apos;rib chiqasiz, sinab ko&apos;rasiz — keyin qaror qilasiz.
                   </p>
                   <ul className="vg-magnet-list">
-                    <li>$1000 byudjetni qanday taqsimlash kerak</li>
-                    <li>CPM&apos;ni arzonlashtiruvchi 3 ta texnika</li>
-                    <li>Birinchi kampaniya uchun tayyor struktura</li>
+                    <li>Advantage+ Audience</li>
+                    <li>Meta AI auditoriyani qanday topishi</li>
+                    <li>Landing Page View optimizatsiyasi</li>
+                    <li>LAL auditoriya strategiyasi</li>
                   </ul>
                   <a href="#lid-magnit" data-lead-open data-lead-mode="magnit" className="vg-btn-primary">
                     Bepul PDF&apos;ni olish
@@ -1114,12 +1085,12 @@ export default function TargetKursiPage() {
                       <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
                     </svg>
                   </a>
-                  <div className="vg-magnet-note">Bepul · 30 soniya · Spam yo&apos;q</div>
+                  <div className="vg-magnet-note">Bepul · Sizga sovg&apos;a</div>
                 </div>
                 <div className="vg-magnet-visual" aria-hidden="true">
                   <div className="vg-magnet-pdf">
                     <span className="vg-magnet-pdf-tag">PDF</span>
-                    <span className="vg-magnet-pdf-title">$1000 Byudjet Strategiyasi</span>
+                    <span className="vg-magnet-pdf-title">2026-yilda Meta mutaxassislari tavsiyasi</span>
                     <span className="vg-magnet-pdf-sub">Vision Group · Bepul qo&apos;llanma</span>
                   </div>
                 </div>
@@ -1130,7 +1101,7 @@ export default function TargetKursiPage() {
           {/* ============ PRICING ============ */}
           <section className="vg-section" id="narx">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">12 / Narx</div>
+              <div className="vg-section-eyebrow">11 / Narx</div>
               <h2 className="vg-section-title">
                 2 oylik kurs. <em>Bitta mijoz</em> — narxni qoplaydi.
               </h2>
@@ -1141,7 +1112,7 @@ export default function TargetKursiPage() {
               <div className="vg-seats">
                 <div className="vg-seats-top">
                   <span className="vg-seats-label">5.0 oqim to&apos;ldirilmoqda</span>
-                  <span className="vg-seats-count"><strong>8 / 15</strong> band qilindi</span>
+                  <span className="vg-seats-count"><strong>8 ta</strong> joy band qilindi</span>
                 </div>
                 <div className="vg-seats-track"><span className="vg-seats-fill" /></div>
                 <div className="vg-seats-foot">Atigi <strong>7 joy</strong> qoldi — qabul yopilgach narx ko&apos;tariladi</div>
@@ -1209,9 +1180,9 @@ export default function TargetKursiPage() {
           {/* ============ FAQ ============ */}
           <section className="vg-section" id="faq">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">13 / Savol-javob</div>
+              <div className="vg-section-eyebrow">12 / Savol-javob</div>
               <h2 className="vg-section-title">
-                Oxirgi <em>shubhalaringiz</em>
+                Savollarga <em>javoblar</em>
               </h2>
 
               <div className="vg-faq-list">
@@ -1230,15 +1201,14 @@ export default function TargetKursiPage() {
             <div className="vg-container">
               <div className="vg-cta-final-inner">
                 <div className="vg-section-eyebrow" style={{ justifyContent: "center" }}>
-                  14 / Yozilish
+                  13 / Yozilish
                 </div>
                 <h2>
                   Tugma bosuvchi emas — <em>natija qiluvchi</em> bo&apos;ling.
                 </h2>
                 <p>
                   Ammo esda tuting: joylar cheklangan va qabul tez yopiladi. Ikki maydonni
-                  to&apos;ldiring — administrator 24 soat ichida bog&apos;lanadi. Hech narsaga
-                  majbur emassiz.
+                  to&apos;ldiring — administrator 24 soat ichida bog&apos;lanadi.
                 </p>
 
                 <div className="vg-cd-eyebrow">
