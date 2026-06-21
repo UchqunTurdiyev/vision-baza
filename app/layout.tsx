@@ -123,6 +123,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "7Ixx-WvobudWil_tPEn5P3j9XnnWRnD_scgSb-26DAw",
+  },
 };
 
 // ✅ JSON-LD — Google'da "Uchqun Turdiyev", "performance marketing", "Meta", "target"
