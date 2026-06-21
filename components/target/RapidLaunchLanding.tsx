@@ -285,9 +285,9 @@ const styles = `
   --vg-accent-2: #6366F1;
   --vg-accent-ink: #FFFFFF;
 
-  --vg-serif: 'Fraunces', Georgia, serif;
-  --vg-sans: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
-  --vg-mono: 'Geist Mono', ui-monospace, monospace;
+  --vg-serif: var(--font-fraunces), Georgia, serif;
+  --vg-sans: var(--font-geist), -apple-system, BlinkMacSystemFont, sans-serif;
+  --vg-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   font-family: var(--vg-sans);
   background: var(--vg-bg);
@@ -711,12 +711,6 @@ const styles = `
 export default function TargetKursiPage() {
   return (
     <>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       <div className="vg-page">

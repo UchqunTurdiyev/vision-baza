@@ -21,9 +21,9 @@ const styles = `
   --bg: #080F28; --bg2: #0E1A3D; --bg3: #15244F;
   --ink: #fff; --ink2: rgba(255,255,255,0.82); --muted: rgba(255,255,255,0.55);
   --line: rgba(120,150,225,0.18); --acc: #818CF8; --acc2: #6366F1;
-  --serif: 'Fraunces', Georgia, serif;
-  --sans: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
-  --mono: 'Geist Mono', ui-monospace, monospace;
+  --serif: var(--font-fraunces), Georgia, serif;
+  --sans: var(--font-geist), -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: var(--font-geist-mono), ui-monospace, monospace;
   background: var(--bg); color: var(--ink); font-family: var(--sans);
   line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden;
   background-image:
@@ -95,12 +95,6 @@ const styles = `
 export default function WebLanding() {
   return (
     <>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       <div className="vw-page">

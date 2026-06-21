@@ -49,10 +49,12 @@ export default function Otzif({
   items = DEFAULT_TESTIMONIALS,
   title = "O'quvchilarimiz natijalari",
   subtitle = "Real insonlar, real tajribalar va o'sish ko'rsatkichlari.",
+  ctaHref = "/target-kursi#register",
 }: {
   items?: Testimonial[];
   title?: string;
   subtitle?: string;
+  ctaHref?: string;
 }) {
   return (
     <section className="py-16 px-4 max-w-[1100px] mx-auto overflow-hidden">
@@ -135,8 +137,8 @@ export default function Otzif({
       {/* 3. Bottom CTA - "Qizdirish"ni davom ettirish */}
       <div className="mt-16 text-center border-t border-white/5 pt-12">
          <h4 className="text-xl font-bold mb-6">Siz ham ushbu natijalarga erishmoqchimisiz?</h4>
-         <Link 
-            href="/target-kursi#register" 
+         <Link
+            href={ctaHref}
             className="inline-flex items-center justify-center rounded-2xl bg-yellow-300 px-10 py-4 text-lg font-black text-[#050B2B] hover:bg-yellow-200 hover:scale-105 transition-all shadow-xl shadow-yellow-300/20"
          >
             Joyimni band qilish

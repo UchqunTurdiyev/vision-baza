@@ -9,16 +9,14 @@ import { Menu, X, ChevronDown } from "lucide-react";
 // "Target kursi" — bir nechta sahifani o'z ichiga olgan dropdown.
 // Default ko'rinish: "Target kursi" (/target-kursi).
 const TARGET_DROPDOWN = [
+  { href: "/", label: "Performance Marketing" },
   { href: "/target-kursi", label: "Target kursi" },
-  { href: "/web", label: "Target kursi2" },
-  { href: "/target-k", label: "Target kursi3" },
-  { href: "/target-capi", label: "Target kursi4" },
+  { href: "/web", label: "Target kursi (web)" },
 ];
 const NAV = [
   // { href: "/sotuv", label: "Sotuv Kursi" },
   { href: "/target", label: "Target xizmati" },
   { href: "/lid-magnit", label: "Lid magnit" },
-  { href: "/otzif", label: "Otzif" },
 ];
 
 export default function Topbar() {

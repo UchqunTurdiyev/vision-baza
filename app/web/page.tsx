@@ -1,4 +1,5 @@
 import WebLanding from "@/components/target/WebLanding";
+import Otzif from "@/components/Otziflar/otzif";
 import type { Metadata } from "next";
 
 const SITE = "https://vision-group.uz";
@@ -24,6 +25,7 @@ export default function WebPage() {
   return (
     <main className="relative bg-[#080F28] text-white overflow-hidden">
       <WebLanding />
+      <Otzif ctaHref="#ariza" />
     </main>
   );
 }
