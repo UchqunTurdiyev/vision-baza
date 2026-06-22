@@ -228,8 +228,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
 
-        {/* ✅ Meta Pixel base — kontent yuklangach (lazy) ishga tushadi */}
-        <Script id="fb-pixel-base" strategy="lazyOnload">
+        {/* ✅ Meta Pixel base — afterInteractive: PageView erta ishga tushadi,
+            shunda reklamadan kelgan tashrifchilar "Landing page view" sifatida
+            to'g'ri sanaladi (lazyOnload juda kech edi → tashriflar yo'qolardi). */}
+        <Script id="fb-pixel-base" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s){
               if(f.fbq)return;
