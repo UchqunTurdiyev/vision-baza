@@ -53,6 +53,9 @@ const styles = `
 .vw-btn { display: inline-flex; align-items: center; gap: 9px; padding: 16px 30px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all .2s; }
 .vw-btn-primary { background: var(--acc); color: #0A0F2C; box-shadow: 0 16px 36px -12px rgba(129,140,248,0.6); }
 .vw-btn-primary:hover { background: var(--acc2); color: #fff; transform: translateY(-1px); }
+.vw-btn-ghost { background: rgba(129,140,248,0.10); color: var(--ink); border: 1px solid var(--acc); margin-top: 14px; }
+.vw-btn-ghost:hover { background: rgba(129,140,248,0.20); transform: translateY(-1px); }
+.vw-cta-group { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .vw-note { margin-top: 14px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--muted); }
 .vw-note strong { color: var(--acc); }
 .vw-trust { margin-top: 30px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
@@ -117,10 +120,15 @@ export default function WebLanding() {
               2 oyda: to&apos;g&apos;ri target, Pixel + CAPI va CRM integratsiyasini real
               biznesda o&apos;rganasiz. <b>Reklama taxmin bilan emas — aniq signal bilan ishlaydi.</b>
             </p>
-            <a href="#ariza" className="vw-btn vw-btn-primary">
-              Joyimni band qilaman
-              <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.7" /></svg>
-            </a>
+            <div className="vw-cta-group">
+              <a href="#ariza" className="vw-btn vw-btn-primary">
+                Joyimni band qilaman
+                <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.7" /></svg>
+              </a>
+              <a href="/kitob.pdf" download="Meta-Ads-Qollanma-Vision-Group.pdf" className="vw-btn vw-btn-ghost">
+                📥 Bepul «Meta Ads to&apos;liq qo&apos;llanma» (PDF)
+              </a>
+            </div>
             <p className="vw-note">Target yoqib natija ololmayapsizmi unda hoziroq konsultatsiyaga yoziling</p>
             <p className="vw-trust">ISFT · JAPAN SCHOOL · ZIYO YOG&apos;DUSI · TURON MED · MED EXPERT</p>
           </div>
