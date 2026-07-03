@@ -7,6 +7,9 @@ type Props = {
   className?: string;
 };
 
+const TELEGRAM_URL = "https://t.me/Uchqun_Turdiev";
+const REDIRECT_DELAY_MS = 2000;
+
 const businessOptions = [
   { value: "", label: "Tanlang" },
   { value: "private_school", label: "Xususiy maktab" },
@@ -96,8 +99,12 @@ export default function TargetLeadNewPage({ className }: Props) {
         throw new Error(msg);
       }
 
-      setSuccessMsg("Ariza muvaffaqiyatli qabul qilindi ✅");
+      setSuccessMsg("Ariza muvaffaqiyatli qabul qilindi ✅ Telegram kanalga yo'naltirilmoqda...");
       form.reset();
+
+      window.setTimeout(() => {
+        window.location.href = TELEGRAM_URL;
+      }, REDIRECT_DELAY_MS);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Ariza yuborishda xatolik";
       setErrorMsg(msg);
