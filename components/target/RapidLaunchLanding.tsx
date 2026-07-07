@@ -9,6 +9,7 @@ import { TargetKLidForm } from "@/components/comments/TargetKLidForm";
 import { CountdownTimer } from "@/components/comments/Countdowntimer";
 import { SocialProofToast } from "@/components/comments/Socialprooftoast";
 import LeadModal from "@/components/target/LeadModal";
+import ResultsLightbox from "@/components/target/ResultsLightbox";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -888,6 +889,8 @@ export default function TargetKursiPage() {
                   </div>
                 ))}
               </div>
+
+              <ResultsLightbox />
 
               <div className="vg-midcta">
                 <a href="#yozilish" data-lead-open className="vg-btn-primary">

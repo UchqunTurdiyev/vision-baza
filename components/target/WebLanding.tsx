@@ -6,6 +6,7 @@
  */
 
 import { TargetKLidForm } from "@/components/comments/TargetKLidForm";
+import ResultsLightbox from "@/components/target/ResultsLightbox";
 
 const includes = [
   "To'g'ri target yoqish: auditoriya, algoritm, byudjet",
@@ -152,6 +153,8 @@ export default function WebLanding() {
               emas. 2 oyda, Meta mutaxassislari auditidan o&apos;tgan tizim asosida, real biznesda
               o&apos;z qo&apos;lingiz bilan qurib o&apos;rganasiz.
             </p>
+
+            <ResultsLightbox />
           </div>
         </section>
 
