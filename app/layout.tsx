@@ -1,7 +1,7 @@
 // app/layout.tsx  (server component)
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Source_Sans_3, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Topbar from "@/components/topbar";
@@ -9,16 +9,18 @@ import Footer from "@/components/footer";
 
 // ✅ Shriftlar — self-hosted (next/font). Render-bloklovchi tashqi so'rov yo'q,
 // FOUT/CLS kamayadi, mobil/Instagram brauzerda sahifa sezilarli tez ochiladi.
-const fraunces = Fraunces({
+// Sarlavhalar uchun Poppins (jasur, zamonaviy), matn uchun Source Sans 3
+// (o'qilishi oson, ishonchli — kurs sotuv sahifasi uchun tavsiya qilingan juftlik).
+const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-fraunces",
+  weight: ["500", "600", "700"],
+  variable: "--font-heading",
   display: "swap",
 });
-const geist = Geist({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-geist",
+  weight: ["400", "500", "600"],
+  variable: "--font-body",
   display: "swap",
 });
 const geistMono = Geist_Mono({
@@ -194,7 +196,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="uz"
       suppressHydrationWarning
-      className={`${geist.variable} ${fraunces.variable} ${geistMono.variable}`}
+      className={`${sourceSans.variable} ${poppins.variable} ${geistMono.variable}`}
     >
       <head>
         {/* ✅ JSON-LD structured data */}

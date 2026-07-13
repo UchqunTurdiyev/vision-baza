@@ -22,8 +22,8 @@ const styles = `
   --bg: #080F28; --bg2: #0E1A3D; --bg3: #15244F;
   --ink: #fff; --ink2: rgba(255,255,255,0.82); --muted: rgba(255,255,255,0.55);
   --line: rgba(120,150,225,0.18); --acc: #818CF8; --acc2: #6366F1;
-  --serif: var(--font-fraunces), Georgia, serif;
-  --sans: var(--font-geist), -apple-system, BlinkMacSystemFont, sans-serif;
+  --serif: var(--font-heading), -apple-system, sans-serif;
+  --sans: var(--font-body), -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: var(--font-geist-mono), ui-monospace, monospace;
   background: var(--bg); color: var(--ink); font-family: var(--sans);
   line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden;

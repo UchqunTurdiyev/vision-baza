@@ -297,8 +297,8 @@ const styles = `
   --vg-accent-2: #6366F1;
   --vg-accent-ink: #FFFFFF;
 
-  --vg-serif: var(--font-fraunces), Georgia, serif;
-  --vg-sans: var(--font-geist), -apple-system, BlinkMacSystemFont, sans-serif;
+  --vg-serif: var(--font-heading), -apple-system, sans-serif;
+  --vg-sans: var(--font-body), -apple-system, BlinkMacSystemFont, sans-serif;
   --vg-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   font-family: var(--vg-sans);

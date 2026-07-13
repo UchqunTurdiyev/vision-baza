@@ -37,9 +37,9 @@ const COLORS = {
   accent: "#25E085",
 };
 
-const SERIF = "'Fraunces', Georgia, serif";
-const MONO = "'Geist Mono', ui-monospace, monospace";
-const SANS = "'Geist', -apple-system, BlinkMacSystemFont, sans-serif";
+const SERIF = "var(--font-heading), -apple-system, sans-serif";
+const MONO = "var(--font-geist-mono), ui-monospace, monospace";
+const SANS = "var(--font-body), -apple-system, BlinkMacSystemFont, sans-serif";
 
 export function SocialProofToast({
   count = 2,
