@@ -25,9 +25,8 @@ const metrics = [
 
 const whyUs = [
   "Meta ekspertlari auditidan o'tgan reklama kabineti",
-  "3 yillik amaliy tajriba — target va sotuv sohasida",
-  "Dasturchi + targetolog — bitta tizimda ishlaymiz",
-  "Natija bo'lmasa — keyingi oy xizmat tekin",
+  "Maxsulot va xizmat turingizga qarab profile holatiga ko'ra to'g'ri texnika bilan target yoqib beraman",
+  "CAPI orqali sotib olgan mijozlar ma'lumotini metaga yuborib shu va shunga o'xshash insonlarga reklama ko'rsatib lid sifatini bir necha karra yaxshilab beraman",
 ];
 
 export default function TargetPage() {
