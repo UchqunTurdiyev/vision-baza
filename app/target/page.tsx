@@ -85,8 +85,9 @@ export default function TargetPage() {
             <span className="text-indigo-400">professional Target yoqib beraman</span>
           </h1>
           <p className="text-slate-300 md:text-lg leading-relaxed max-w-2xl">
-            Sotuv bo'lmasa -  keyingi oy xizmatim 
-            <strong className="text-white">tekin</strong>.
+            Sotuv bo'lmasa - keyingi oy xizmatim{" "}
+            <strong className="text-white">tekin</strong>. Uning o'rniga CAPI
+            orqali sifatli lidlar oqimini yo'lga qo'yib beraman.
           </p>
           <div className="flex flex-wrap gap-3">
             <a
@@ -172,14 +173,6 @@ export default function TargetPage() {
                     </li>
                   ))}
                 </ul>
-                <div>
-                  <div className="text-xs text-slate-500 line-through">
-                    {pkg.old}
-                  </div>
-                  <div className="text-2xl font-bold text-indigo-400">
-                    {pkg.price}
-                  </div>
-                </div>
                 <a
                   href="#form"
                   className={`inline-flex justify-center items-center h-10 rounded-xl text-sm font-semibold transition ${
@@ -223,10 +216,10 @@ export default function TargetPage() {
             Kafolat
           </h2>
           <p className="text-slate-200 leading-relaxed">
-            30 kun ichida reklama orqali keladigan leadlar{" "}
-            <strong>kamida +30% o'sadi</strong>. Natija bo'lmasa —{" "}
-            <strong>keyingi oy xizmat tekin</strong>. Biznes siz uchun, risk biz
-            uchun.
+            Sotuv bo'lmasa —{" "}
+            <strong>keyingi oy xizmatim tekin</strong>. Uning o'rniga CAPI
+            orqali sifatli lidlar oqimini yo'lga qo'yib beraman. Biznes siz
+            uchun, risk biz uchun.
           </p>
         </section>
 
