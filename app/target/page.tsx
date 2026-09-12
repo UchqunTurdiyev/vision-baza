@@ -9,44 +9,6 @@ export const metadata: Metadata = {
     "Instagram va Facebook orqali barqaror lead oqimini yo'lga qo'yuvchi professional target reklama xizmatlari.",
 };
 
-const packages = [
-  {
-    name: "Start",
-    desc: "Birinchi reklama kampaniyasi uchun",
-    features: ["Target strategiya",  "Sotuv post", "Professional target"],
-    old: "$600",
-    price: "$470",
-    featured: false,
-  },
-  {
-    name: "Standart",
-    desc: "Tizimli o'sish uchun",
-    features: [
-      "Copywriting",
-      "Sayt + Telegram bot",
-      "Capi orqali target",
-      "Sotuv audit"
-    ],
-    old: "$2 000",
-    price: "$970",
-    featured: true,
-  },
-  {
-    name: "Pro",
-    desc: "Katta loyihalar uchun",
-    features: [
-       "Copywriting",
-      "Sayt + Telegram bot",
-      "Capi orqali target",
-      "Sotuv audit",
-      "CRM integratsiyasi - Meta bilan"
-    ],
-    old: "$1 400",
-    price: "$1 200",
-    featured: false,
-  },
-];
-
 const brands = [
   { src: "/jap.png", name: "Japan School" },
   { src: "/ZY", name: "Ziyo Yog'dusi school" },
@@ -131,56 +93,6 @@ export default function TargetPage() {
                 <span className="text-sm md:text-base text-slate-200">
                   {item}
                 </span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── PACKAGES ── */}
-        <section className="space-y-5">
-          <div>
-            <h2 className="text-xl md:text-2xl font-bold">Paketlar</h2>
-            <p className="mt-1 text-sm text-slate-400">
-              Konsultatsiyadan keyin aniq narx belgilanadi.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {packages.map((pkg) => (
-              <div
-                key={pkg.name}
-                className={`rounded-2xl p-5 flex flex-col gap-4 ${
-                  pkg.featured
-                    ? "border-2 border-indigo-500 bg-slate-900/90 shadow-xl shadow-indigo-900/30"
-                    : "border border-slate-800 bg-slate-900/60"
-                }`}
-              >
-                {pkg.featured && (
-                  <span className="inline-block self-start text-[11px] px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
-                    Mashhur
-                  </span>
-                )}
-                <div>
-                  <h3 className="text-lg font-bold">{pkg.name}</h3>
-                  <p className="text-xs text-slate-400 mt-1">{pkg.desc}</p>
-                </div>
-                <ul className="space-y-1.5 flex-1">
-                  {pkg.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-slate-300">
-                      <span className="text-indigo-400 shrink-0">✓</span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#form"
-                  className={`inline-flex justify-center items-center h-10 rounded-xl text-sm font-semibold transition ${
-                    pkg.featured
-                      ? "bg-indigo-500 hover:bg-indigo-400 text-white"
-                      : "border border-slate-600 hover:border-indigo-500 text-slate-200 hover:text-white"
-                  }`}
-                >
-                  Konsultatsiya olish
-                </a>
               </div>
             ))}
           </div>
