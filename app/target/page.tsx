@@ -85,9 +85,7 @@ export default function TargetPage() {
             <span className="text-indigo-400">professional Target yoqib beraman</span>
           </h1>
           <p className="text-slate-300 md:text-lg leading-relaxed max-w-2xl">
-            Sotuv bo'lmasa - keyingi oy xizmatim{" "}
-            <strong className="text-white">tekin</strong>. Uning o'rniga CAPI
-            orqali sifatli lidlar oqimini yo'lga qo'yib beraman.
+            CAPI orqali sifatli lidlar oqimini yo'lga qo'yib beraman.
           </p>
           <div className="flex flex-wrap gap-3">
             <a
@@ -216,9 +214,7 @@ export default function TargetPage() {
             Kafolat
           </h2>
           <p className="text-slate-200 leading-relaxed">
-            Sotuv bo'lmasa —{" "}
-            <strong>keyingi oy xizmatim tekin</strong>. Uning o'rniga CAPI
-            orqali sifatli lidlar oqimini yo'lga qo'yib beraman. Biznes siz
+            CAPI orqali sifatli lidlar oqimini yo'lga qo'yib beraman. Biznes siz
             uchun, risk biz uchun.
           </p>
         </section>
