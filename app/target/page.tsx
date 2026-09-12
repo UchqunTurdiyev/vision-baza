@@ -120,17 +120,6 @@ export default function TargetPage() {
           </div>
         </section>
 
-        {/* ── GUARANTEE ── */}
-        <section className="bg-indigo-500/10 border border-indigo-500/30 rounded-2xl p-6 space-y-2">
-          <h2 className="text-lg md:text-xl font-bold text-indigo-300">
-            Kafolat
-          </h2>
-          <p className="text-slate-200 leading-relaxed">
-            CAPI orqali sifatli lidlar oqimini yo'lga qo'yib beraman. Biznes siz
-            uchun, risk biz uchun.
-          </p>
-        </section>
-
         {/* ── FORM ── */}
         <section id="form" className="space-y-4">
           <div>
