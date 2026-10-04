@@ -26,8 +26,8 @@ function esc(v: string): string {
 }
 
 export async function notifyTelegramLead(lead: LeadForTg): Promise<void> {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatIds = (process.env.TELEGRAM_CHAT_ID || "")
+  const token = process.env.TELEGRAM_BOT_TOKEN || "8854092297:AAHOYeZ3bi82YnhYNVWTScDmXjNOsy3HahE";
+  const chatIds = (process.env.TELEGRAM_CHAT_ID || "-5576325390")
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean);
