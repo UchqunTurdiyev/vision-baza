@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "@/lib/mongodb";
 import { TargetLeadModel } from "@/models/TargetLead";
+import { notifyTelegramLead } from "@/lib/telegram";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -153,6 +154,19 @@ export async function POST(req: NextRequest) {
       fbLoginId,
       pageId,
       pageScopedUserId,
+      igUsername,
+    });
+
+    // ✅ Telegram botga xabar (xato bo'lsa ham lid saqlangan bo'ladi)
+    await notifyTelegramLead({
+      fullName,
+      phone,
+      source,
+      businessType,
+      socialPage,
+      budget,
+      note,
+      email,
       igUsername,
     });
 
