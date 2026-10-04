@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectToDB } from "@/lib/mongodb";
 import { TargetLeadModel } from "@/models/TargetLead";
+import { notifyTelegramLead } from "@/lib/telegram";
 
 const ACCESS_TOKEN = process.env.INSTAGRAM_PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.INSTAGRAM_VERIFY_TOKEN;
@@ -96,6 +97,7 @@ async function captureInstagramContact(senderId: string, pageId: string, text: s
         pageScopedUserId: senderId,
         pageId,
       });
+      await notifyTelegramLead({ fullName: "Instagram lead", phone, source: "instagram-dm" });
     }
     // Agar telefon hali yo'q bo'lsa — hech narsa yaratmaymiz (operator keyinroq
     // CRM'da pageScopedUserId'ni qo'lda biriktirishi mumkin).
