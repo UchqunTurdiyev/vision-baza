@@ -248,6 +248,80 @@ const priceFeatures = [
   "15 kunlik pul qaytarish kafolati",
 ];
 
+type PriceTier = {
+  id: string;
+  badge: string;
+  name: string;
+  tagline: string;
+  old?: string;
+  amount: string;
+  per?: string;
+  total: string;
+  save?: string;
+  value: number;
+  featured?: boolean;
+  features: string[];
+  missing?: string[];
+  cta: string;
+};
+
+const priceTiers: PriceTier[] = [
+  {
+    id: "zapis",
+    badge: "Video kurs",
+    name: "Zapis darslar",
+    tagline: "Barcha darslar yozib olingan va yuklangan — o'z tezligingizda o'rganasiz.",
+    amount: "3,970,000",
+    total: "2 oylik dostup · bir martalik to'lov",
+    value: 3970000,
+    features: [
+      "Barcha dars zapislari yuklangan",
+      "To'lovdan so'ng darhol dostup beriladi",
+      "2 oy davomida to'liq kirish",
+      "O'zingizga qulay vaqtda o'rganish",
+    ],
+    missing: [
+      "Jonli Zoom darslar",
+      "Targeting va strategiya analizi",
+    ],
+    cta: "Zapis tarifni tanlash",
+  },
+  {
+    id: "standart",
+    badge: "2 oylik kurs",
+    name: "Noldan professional targetologgacha",
+    tagline: "Jonli + zapis darslar, support va to'liq analiz bilan.",
+    old: "9,600,000 so'm",
+    amount: "3,200,000",
+    per: "so'm / oy",
+    total: "Jami 6,400,000 so'm · 2 oy",
+    save: "−33%",
+    value: 3200000,
+    featured: true,
+    features: [
+      ...priceFeatures,
+      "Targeting va marketing strategiyangizni to'liq analiz qildirish",
+    ],
+    cta: "5.0 oqimga yozilish",
+  },
+  {
+    id: "individual",
+    badge: "Individual",
+    name: "Individual (1:1) o'qish",
+    tagline: "Shaxsiy yondashuv — dastur sizning maqsadingizga moslashtiriladi.",
+    amount: "11,970,000",
+    total: "1 oy · individual format",
+    value: 11970000,
+    features: [
+      "1 oy davomida individual darslar",
+      "Dastur sizning biznesingizga moslashtiriladi",
+      "Targeting va marketing strategiyangiz to'liq analizi",
+      "Barcha video darslarga dostup",
+    ],
+    cta: "Individual tarifni tanlash",
+  },
+];
+
 const faqs = [
   {
     q: "Targetdan umuman bilmasam, qiyin bo'lmaydimi?",
@@ -573,6 +647,46 @@ const styles = `
   .vg-page .vg-pricing { grid-template-columns: 1fr; }
   .vg-page .vg-tier { border-right: none; border-bottom: 1px solid var(--vg-line); }
   .vg-page .vg-tier:last-child { border-bottom: none; }
+}
+
+/* PRICING — 3 TARIF */
+.vg-tiers { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 18px; align-items: stretch; max-width: 1180px; margin-top: 8px; }
+.vg-page .vg-tier3 { position: relative; display: flex; flex-direction: column; background: var(--vg-bg-2); border: 1px solid var(--vg-line); border-radius: 14px; padding: 32px 26px; overflow: hidden; transition: transform .25s, border-color .25s; }
+.vg-page .vg-tier3:hover { transform: translateY(-4px); border-color: rgba(129,140,248,0.45); }
+.vg-page .vg-tier3-featured { background: linear-gradient(180deg, var(--vg-bg-3) 0%, var(--vg-bg-2) 100%); border-color: var(--vg-accent); box-shadow: 0 30px 70px -40px rgba(129,140,248,0.6); padding-top: 44px; }
+.vg-page .vg-tier3-featured::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--vg-accent), var(--vg-accent-2)); }
+.vg-tier3-ribbon { position: absolute; top: 14px; right: 14px; font-family: var(--vg-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--vg-accent); border: 1px solid var(--vg-accent); border-radius: 999px; padding: 4px 10px; background: rgba(129,140,248,0.08); }
+.vg-tier3 .vg-price-badge { align-self: flex-start; margin-bottom: 18px; }
+.vg-tier3:not(.vg-tier3-featured) .vg-price-badge { background: transparent; color: var(--vg-ink-2); border: 1px solid var(--vg-line); }
+.vg-tier3-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.vg-tier3 .vg-price-name { margin-bottom: 8px; }
+.vg-tier3-save { flex-shrink: 0; font-family: var(--vg-serif); font-size: 20px; font-weight: 600; color: var(--vg-accent); line-height: 1; text-align: right; }
+.vg-tier3-save span { display: block; font-family: var(--vg-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vg-muted); margin-top: 4px; font-weight: 400; }
+.vg-tier3-tagline { font-size: 13px; color: var(--vg-muted); line-height: 1.5; min-height: 40px; margin-bottom: 18px; }
+.vg-tier3-price { border-top: 1px solid var(--vg-line); border-bottom: 1px solid var(--vg-line); padding: 18px 0; margin-bottom: 20px; }
+.vg-tier3 .vg-price-old { font-size: 13px; }
+.vg-price-old-empty { text-decoration: none !important; }
+.vg-tier3-amount { font-family: var(--vg-serif); font-size: 38px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; color: var(--vg-ink); margin-bottom: 8px; white-space: nowrap; }
+.vg-tier3-featured .vg-tier3-amount { color: var(--vg-accent); font-size: 44px; }
+.vg-tier3-amount .vg-price-per { font-size: 12px; }
+.vg-tier3-total { font-family: var(--vg-mono); font-size: 11.5px; color: var(--vg-ink-2); letter-spacing: 0.03em; }
+.vg-tier3-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; flex-grow: 1; }
+.vg-tier3-list li { font-size: 13.5px; color: var(--vg-ink-2); display: flex; align-items: flex-start; gap: 9px; line-height: 1.45; }
+.vg-tier3-list li::before { content: "✓"; color: var(--vg-accent); font-weight: 700; flex-shrink: 0; }
+.vg-tier3-list li.vg-no { color: var(--vg-muted); opacity: 0.55; text-decoration: line-through; }
+.vg-tier3-list li.vg-no::before { content: "—"; color: var(--vg-muted); text-decoration: none; }
+.vg-page .vg-tier3-cta { width: 100%; justify-content: center; font-size: 15px; padding: 15px 22px; }
+.vg-tiers-foot { max-width: 1180px; }
+@media (max-width: 1000px) {
+  .vg-page .vg-tiers { grid-template-columns: 1fr; max-width: 560px; }
+  .vg-page .vg-tier3-featured { order: -1; }
+  .vg-page .vg-tier3-tagline { min-height: 0; }
+}
+@media (max-width: 480px) {
+  .vg-page .vg-tier3 { padding: 26px 20px; }
+  .vg-page .vg-tier3-featured { padding-top: 40px; }
+  .vg-tier3-amount { font-size: 32px; }
+  .vg-tier3-featured .vg-tier3-amount { font-size: 36px; }
 }
 
 /* LEAD MAGNET */
@@ -1111,10 +1225,10 @@ export default function TargetKursiPage() {
             <div className="vg-container">
               <div className="vg-section-eyebrow">11 / Narx</div>
               <h2 className="vg-section-title">
-                2 oylik kurs. <em>Bitta mijoz</em> — narxni qoplaydi.
+                O&apos;zingizga mos tarifni tanlang. <em>Bitta mijoz</em> — narxni qoplaydi.
               </h2>
               <p className="vg-section-lead">
-                Oyma-oy bo&apos;lib to&apos;lash imkoniyati, 1 yillik dostup va 15 kunlik pulni qaytarish kafolati bilan.
+                3 xil format: zapis darslar, to&apos;liq kurs (jonli + zapis) yoki individual o&apos;qish. Asosiy kursda oyma-oy to&apos;lash va 15 kunlik pulni qaytarish kafolati.
               </p>
 
               <div className="vg-seats">
@@ -1126,38 +1240,51 @@ export default function TargetKursiPage() {
                 <div className="vg-seats-foot">Atigi <strong>7 joy</strong> qoldi — qabul yopilgach narx ko&apos;tariladi</div>
               </div>
 
-              <div className="vg-price-solo">
-                <div className="vg-price-badge">2 OYLIK KURS</div>
-
-                <div className="vg-price-head">
-                  <div>
-                    <div className="vg-price-name">Noldan professional targetologgacha</div>
-                    <div className="vg-price-old">9,600,000 so&apos;m</div>
-                    <div className="vg-price-amount">
-                      3,200,000 <span className="vg-price-per">so&apos;m / oy</span>
+              <div className="vg-tiers">
+                {priceTiers.map((t) => (
+                  <div key={t.id} className={`vg-tier3${t.featured ? " vg-tier3-featured" : ""}`}>
+                    {t.featured && <div className="vg-tier3-ribbon">Eng ko&apos;p tanlanadi</div>}
+                    <div className="vg-price-badge">{t.badge}</div>
+                    <div className="vg-tier3-head">
+                      <div className="vg-price-name">{t.name}</div>
+                      {t.save && (
+                        <div className="vg-tier3-save">
+                          {t.save} <span>chegirma</span>
+                        </div>
+                      )}
                     </div>
-                    <div className="vg-price-currency">Jami 6,400,000 so&apos;m · 2 oy</div>
+                    <p className="vg-tier3-tagline">{t.tagline}</p>
+                    <div className="vg-tier3-price">
+                      {t.old ? <div className="vg-price-old">{t.old}</div> : <div className="vg-price-old vg-price-old-empty">&nbsp;</div>}
+                      <div className="vg-tier3-amount">
+                        {t.amount} <span className="vg-price-per">{t.per ?? "so'm"}</span>
+                      </div>
+                      <div className="vg-tier3-total">{t.total}</div>
+                    </div>
+                    <ul className="vg-tier3-list">
+                      {t.features.map((f) => (
+                        <li key={f}>{f}</li>
+                      ))}
+                      {t.missing?.map((f) => (
+                        <li key={f} className="vg-no">{f}</li>
+                      ))}
+                    </ul>
+                    <a
+                      href="#yozilish"
+                      data-lead-open
+                      data-lead-tariff={t.name}
+                      data-lead-value={t.value}
+                      className={`${t.featured ? "vg-btn-primary" : "vg-btn-secondary"} vg-tier3-cta`}
+                    >
+                      {t.cta}
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
+                      </svg>
+                    </a>
                   </div>
-                  <div className="vg-price-save">
-                    <span className="vg-price-save-num">−33%</span>
-                    <span className="vg-price-save-lbl">Chegirma</span>
-                  </div>
-                </div>
-
-                <ul className="vg-price-list">
-                  {priceFeatures.map((f) => (
-                    <li key={f}>{f}</li>
-                  ))}
-                </ul>
-
-                <a href="#yozilish" data-lead-open className="vg-btn-primary vg-price-cta">
-                  5.0 oqimga yozilish
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
-                  </svg>
-                </a>
-                <div className="vg-price-foot">Joylar cheklangan · Qabul yopilgach narx ko&apos;tariladi</div>
+                ))}
               </div>
+              <div className="vg-price-foot vg-tiers-foot">Joylar cheklangan · Qabul yopilgach narx ko&apos;tariladi</div>
             </div>
           </section>
 

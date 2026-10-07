@@ -14,6 +14,8 @@ import { TargetKLidForm } from "@/components/comments/TargetKLidForm";
 export default function LeadModal() {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<"course" | "magnit">("course");
+  const [tariff, setTariff] = useState<string | undefined>(undefined);
+  const [leadValue, setLeadValue] = useState<number>(3200000);
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -24,6 +26,11 @@ export default function LeadModal() {
       e.preventDefault();
       const m = el.getAttribute("data-lead-mode") === "magnit" ? "magnit" : "course";
       setMode(m);
+      // Tarif kartalaridan kelgan ma'lumot (data-lead-tariff / data-lead-value)
+      const t = el.getAttribute("data-lead-tariff") || undefined;
+      const v = Number(el.getAttribute("data-lead-value"));
+      setTariff(t);
+      setLeadValue(Number.isFinite(v) && v > 0 ? v : 3200000);
       setOpen(true);
     }
     function onKey(e: KeyboardEvent) {
@@ -131,7 +138,24 @@ export default function LeadModal() {
           </div>
         )}
 
-        <TargetKLidForm variant={mode} leadValue={isMagnit ? 0 : 3200000} />
+        {!isMagnit && tariff && (
+          <div
+            style={{
+              background: "#0E1A3D",
+              color: "#C7CCF5",
+              fontFamily: "'Geist Mono', ui-monospace, monospace",
+              fontSize: 12,
+              textAlign: "center",
+              padding: "8px 12px",
+              borderLeft: "1px solid rgba(120,150,225,0.3)",
+              borderRight: "1px solid rgba(120,150,225,0.3)",
+            }}
+          >
+            Tanlangan tarif: <strong style={{ color: "#818CF8" }}>{tariff}</strong>
+          </div>
+        )}
+
+        <TargetKLidForm variant={mode} leadValue={isMagnit ? 0 : leadValue} tariff={isMagnit ? undefined : tariff} />
       </div>
     </div>
   );
