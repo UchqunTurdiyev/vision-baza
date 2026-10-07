@@ -9,6 +9,8 @@ type Props = {
   leadValue?: number;
   /** "course" — kursga yozilish; "magnit" — bepul lid magnit. */
   variant?: "course" | "magnit";
+  /** Tanlangan tarif nomi (CRM va Telegram'da ko'rinadi). */
+  tariff?: string;
   /** Sarlavha / tugma matnini majburlab almashtirish (ixtiyoriy). */
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
@@ -154,6 +156,7 @@ export function TargetKLidForm({
   className,
   leadValue = 3200000,
   variant = "course",
+  tariff,
   title,
   subtitle,
   ctaText,
@@ -225,7 +228,9 @@ export function TargetKLidForm({
           {
             value: leadValue,
             currency: "UZS",
-            content_name: isMagnit ? "Lid Magnit — Target audit" : "Performance Marketing 5.0",
+            content_name: isMagnit
+              ? "Lid Magnit — Target audit"
+              : `Performance Marketing 5.0${tariff ? ` — ${tariff}` : ""}`,
             content_category: isMagnit ? "lead-magnet" : "course",
           },
           { eventID: eventId }
@@ -246,7 +251,7 @@ export function TargetKLidForm({
       fbc: fbc || undefined,
       eventId,
       budget: String(leadValue),
-      businessType: isMagnit ? "lead-magnet" : "course",
+      businessType: isMagnit ? "lead-magnet" : tariff ? `course · ${tariff}` : "course",
     };
 
     try {
