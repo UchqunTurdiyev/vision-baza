@@ -10,9 +10,8 @@ export default function Footer() {
         Vision Group 
       </p>
       <p className="mt-1 text-xs text-slate-400 max-w-md">
-        Marketing, target, sotuv va SMM xizmatlari. <br />
-        Biznesingizni to‘liq audit qilamiz. <br />
-        Sotuv bo‘limingizni tizimlashtirib beramiz.
+        Performance Marketing &amp; Target kursi va target xizmatlari. <br />
+        Uchqun Turdiyev jamoasi.
       </p>
     </div>
 

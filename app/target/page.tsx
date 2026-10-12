@@ -46,7 +46,7 @@ export default function TargetPage() {
             <span className="text-indigo-400">professional Target yoqib beraman</span>
           </h1>
           <p className="text-slate-300 md:text-lg leading-relaxed max-w-2xl">
-            CAPI orqali sifatli lidlar oqimini yo'lga qo'yib beraman.
+            CAPI orqali sifatli lidlar oqimini yo&apos;lga qo&apos;yib beraman.
           </p>
           <div className="flex flex-wrap gap-3">
             <a
@@ -63,7 +63,7 @@ export default function TargetPage() {
             </a>
           </div>
           <p className="text-[11px] text-slate-500">
-            ISFT, Japan School, Ziyo Yog'dusi, Turon Med, Med Expert va boshqalar bilan tajriba.
+            ISFT, Japan School, Ziyo Yog&apos;dusi, Turon Med, Med Expert va boshqalar bilan tajriba.
           </p>
         </section>
 
@@ -124,7 +124,7 @@ export default function TargetPage() {
           <div>
             <h2 className="text-xl md:text-2xl font-bold">Ariza qoldiring</h2>
             <p className="mt-1 text-sm text-slate-400">
-              Qisqa vaqt ichida bog'lanamiz va biznesingizga mos yechim taklif
+              Qisqa vaqt ichida bog&apos;lanamiz va biznesingizga mos yechim taklif
               qilamiz.
             </p>
           </div>

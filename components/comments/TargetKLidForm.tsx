@@ -1,20 +1,24 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useId, useState } from "react";
 import { useRouter } from "next/navigation";
+import { PIXEL_ID_TARGET_KOURSE, PIXEL_ID_TARGET_LID_MAGNIT } from "@/lib/pixels";
 
 type Props = {
   className?: string;
   /** Lead qiymati (CAPI value). Default: Standart tarif narxi. */
   leadValue?: number;
-  /** "course" — kursga yozilish; "magnit" — bepul lid magnit. */
-  variant?: "course" | "magnit";
+  /** "course" — kursga yozilish; "info" — qo'shimcha ma'lumot so'rash; "magnit" — bepul lid magnit. */
+  variant?: "course" | "info" | "magnit";
   /** Tanlangan tarif nomi (CRM va Telegram'da ko'rinadi). */
   tariff?: string;
   /** Sarlavha / tugma matnini majburlab almashtirish (ixtiyoriy). */
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   ctaText?: string;
+  /** Sarlavha ustidagi kichik yozuv va tugma ostidagi izoh (ixtiyoriy). */
+  eyebrow?: string;
+  fineprint?: string;
 };
 
 // ============ HELPERS ============
@@ -53,12 +57,7 @@ function generateEventId(): string {
   return `lead_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
 }
 
-type FbqFn = (
-  command: string,
-  event: string,
-  params?: Record<string, unknown>,
-  options?: { eventID?: string }
-) => void;
+type FbqFn = (...args: unknown[]) => void;
 
 function getFbq(): FbqFn | null {
   if (typeof window === "undefined") return null;
@@ -160,9 +159,16 @@ export function TargetKLidForm({
   title,
   subtitle,
   ctaText,
+  eyebrow,
+  fineprint,
 }: Props) {
   const router = useRouter();
   const isMagnit = variant === "magnit";
+  const isInfo = variant === "info";
+  // Modal va sahifadagi forma bir vaqtda turganda id'lar to'qnashmasligi uchun
+  const uid = useId();
+  const nameId = `${uid}-name`;
+  const phoneId = `${uid}-phone`;
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
@@ -188,6 +194,7 @@ export function TargetKLidForm({
 
     const formEl = e.currentTarget;
     const formData = new FormData(formEl);
+    const website = String(formData.get("website") ?? "");
 
     const name = String(formData.get("name") ?? "").trim();
 
@@ -222,15 +229,17 @@ export function TargetKLidForm({
     const fbq = getFbq();
     if (fbq) {
       try {
+        // Faqat shu forma tegishli pixelga — boshqa kampaniyalar optimizatsiyasi buzilmasin
         fbq(
-          "track",
+          "trackSingle",
+          isMagnit ? PIXEL_ID_TARGET_LID_MAGNIT : PIXEL_ID_TARGET_KOURSE,
           "Lead",
           {
             value: leadValue,
             currency: "UZS",
             content_name: isMagnit
               ? "Lid Magnit — Target audit"
-              : `Performance Marketing 5.0${tariff ? ` — ${tariff}` : ""}`,
+              : `Performance Marketing 5.0${tariff ? ` — ${tariff}` : ""}${isInfo ? " — ma'lumot" : ""}`,
             content_category: isMagnit ? "lead-magnet" : "course",
           },
           { eventID: eventId }
@@ -251,7 +260,14 @@ export function TargetKLidForm({
       fbc: fbc || undefined,
       eventId,
       budget: String(leadValue),
-      businessType: isMagnit ? "lead-magnet" : tariff ? `course · ${tariff}` : "course",
+      businessType: isMagnit
+        ? "lead-magnet"
+        : isInfo
+          ? "course · qo'shimcha ma'lumot"
+          : tariff
+            ? `course · ${tariff}`
+            : "course",
+      website, // honeypot — odam uchun doim bo'sh
     };
 
     try {
@@ -274,7 +290,9 @@ export function TargetKLidForm({
       setSuccess(
         isMagnit
           ? "Qabul qilindi! Materialni yuboryapmiz..."
-          : "Arizangiz qabul qilindi! Administrator tez orada bog'lanadi."
+          : isInfo
+            ? "So'rovingiz qabul qilindi! Administrator tez orada bog'lanadi."
+            : "Arizangiz qabul qilindi! Administrator tez orada bog'lanadi."
       );
       formEl.reset();
       setPhoneDigits(""); // controlled input ham tozalanadi
@@ -317,7 +335,7 @@ export function TargetKLidForm({
       <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
         <span style={{ display: "block", height: "1px", width: "32px", background: COLORS.accent }} />
         <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: COLORS.accent }}>
-          {isMagnit ? "Bepul · Hoziroq" : "Bepul konsultatsiya uchun"}
+          {eyebrow ?? (isMagnit ? "Bepul · Hoziroq" : "Bepul konsultatsiya uchun")}
         </span>
       </div>
 
@@ -342,7 +360,7 @@ export function TargetKLidForm({
         {subtitle ?? (
           isMagnit ? (
             <>
-              Telefon raqamingizni qoldiring — &laquo;$1000 byudjetni boshqarish strategiyasi&raquo; PDF&apos;ini{" "}
+              Telefon raqamingizni qoldiring — &laquo;2026-yilda Meta mutaxassislari tavsiyasi&raquo; PDF&apos;ini{" "}
               <strong style={{ color: COLORS.ink, fontWeight: 600 }}>darhol</strong> yuboramiz. Hech narsaga majbur emassiz.
             </>
           ) : (
@@ -363,10 +381,10 @@ export function TargetKLidForm({
 
         {/* 1. Ism */}
         <div>
-          <label htmlFor="name" style={LABEL}>Ismingiz</label>
+          <label htmlFor={nameId} style={LABEL}>Ismingiz</label>
           <div style={BASE_PLAIN_WRAP(focused === "name")}>
             <input
-              id="name"
+              id={nameId}
               name="name"
               required
               autoComplete="name"
@@ -380,7 +398,7 @@ export function TargetKLidForm({
 
         {/* 2. Telefon — +998 qotib qoladi */}
         <div>
-          <label htmlFor="phone" style={LABEL}>Telefon raqamingiz</label>
+          <label htmlFor={phoneId} style={LABEL}>Telefon raqamingiz</label>
           <div style={BASE_FIELD_WRAP(focused === "phone")}>
             {/* Qotib qolgan prefix */}
             <span
@@ -411,7 +429,7 @@ export function TargetKLidForm({
             />
             {/* Faqat 9 ta raqam */}
             <input
-              id="phone"
+              id={phoneId}
               name="phone"
               type="tel"
               inputMode="numeric"
@@ -431,6 +449,14 @@ export function TargetKLidForm({
           </div>
         </div>
 
+      </div>
+
+      {/* Honeypot — odamga ko'rinmaydi, botlar to'ldiradi */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+        <label>
+          Veb-sayt
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
       </div>
 
       {/* Button */}
@@ -505,7 +531,7 @@ export function TargetKLidForm({
 
       {/* Fineprint */}
       <p style={{ margin: "14px 0 0", textAlign: "center", fontFamily: MONO, fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.muted }}>
-        {isMagnit ? "30 soniya · Spam yo'q" : "Ma'lumotlar himoyalangan"}
+        {fineprint ?? (isMagnit ? "30 soniya · Spam yo'q" : "Ma'lumotlar himoyalangan")}
       </p>
 
       {/* Messages */}

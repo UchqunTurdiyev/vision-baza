@@ -1,5 +1,5 @@
 // Yangi lid tushganda Telegram botga xabar yuborish.
-// ENV: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (bir nechta bo'lsa vergul bilan: "123,-100456")
+// ENV: TELEGRAM_BOT_TOKEN (faqat env — kodga yozilmaydi), TELEGRAM_CHAT_ID (bir nechta bo'lsa vergul bilan: "123,-100456")
 // Xato bo'lsa ham lid saqlanishiga hech qanday ta'sir qilmaydi.
 
 type LeadForTg = {
@@ -26,7 +26,7 @@ function esc(v: string): string {
 }
 
 export async function notifyTelegramLead(lead: LeadForTg): Promise<void> {
-  const token = process.env.TELEGRAM_BOT_TOKEN || "8854092297:AAHOYeZ3bi82YnhYNVWTScDmXjNOsy3HahE";
+  const token = process.env.TELEGRAM_BOT_TOKEN || "";
   const chatIds = (process.env.TELEGRAM_CHAT_ID || "-5576325390")
     .split(",")
     .map((s) => s.trim())

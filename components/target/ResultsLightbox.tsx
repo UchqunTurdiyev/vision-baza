@@ -71,8 +71,8 @@ export default function ResultsLightbox() {
         </div>
 
         <p className="vg-res-caption">
-          <strong>CAPI</strong> orqali biz sotuv konversiyasini eng kamida{" "}
-          <strong>21%</strong> dan <strong>50%</strong> gacha ko&apos;rishimiz mumkin.
+          Bizning loyihalarda <strong>CAPI</strong> ulangandan keyin sotuv konversiyasi{" "}
+          <strong>21%</strong> dan <strong>50%</strong> gacha bo&apos;ldi.
         </p>
         <p className="vg-res-note">
           Purchase CVR — bu sotuv konversiyasi, ya&apos;ni tushgan liddan nechtasi

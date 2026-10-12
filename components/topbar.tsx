@@ -10,13 +10,11 @@ import { Menu, X, ChevronDown } from "lucide-react";
 // Default ko'rinish: "Target kursi" (/target-kursi).
 const TARGET_DROPDOWN = [
   { href: "/", label: "Performance Marketing" },
-  { href: "/target-kursi", label: "Target kursi" },
   { href: "/web", label: "Target kursi (web)" },
 ];
 const NAV = [
   // { href: "/sotuv", label: "Sotuv Kursi" },
   { href: "/target", label: "Target xizmati" },
-  { href: "/lid-magnit", label: "Lid magnit" },
 ];
 
 export default function Topbar() {
@@ -30,15 +28,14 @@ export default function Topbar() {
   const targetDropdownLabel =
     TARGET_DROPDOWN.find((i) => i.href === pathname)?.label ?? "Target kursi";
 
-  // Route o‘zgarsa menu yopilsin
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  // Route o‘zgarsa menu yopilsin (render paytida — effect'siz, React tavsiyasi bo'yicha)
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setOpen(false);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDropdownOpen(false);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileDropdownOpen(false);
-  }, [pathname]);
+  }
 
   // Tashqariga bosilganda desktop dropdown yopilsin
   useEffect(() => {

@@ -1,6 +1,7 @@
 
 
 import RapidLanch from "@/components/target/RapidLaunchLanding";
+import Otzif from "@/components/Otziflar/otzif";
 // import RapidLandingPage from "@/components/target/RapidLaunchLanding";
 
 // app/target-kursi/page.tsx
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   // Asosiy so'rov: "target kursi samarqand"
   title: "Performance Marketing va Target kursi. Mijozlaringizga real sotuv olib kelib, natijadan ulush oladigan darajada professional o‘rganing.",
   description:
-    "Samarqandda Target kursi: Ushbu kursda siz kuchli offer va sotuv postlari, performance marketing va target (Meta Ads), veb-sayt va voronka tizimi, kichik biznes uchun CRM, lid magnit hamda ish topish ko‘nikmalarini amaliy кейslar orqali chuqur o‘zlashtirasiz.",
+    "2 oylik Performance Marketing & Target kursi: to'g'ri target, Pixel + CAPI va CRM integratsiyasi. Lid emas — sotuv olib keladigan targetolog bo'ling.",
   keywords: [
     "target kursi samarqand",
     "Uchqun Turdiyev",
@@ -26,8 +27,9 @@ export const metadata: Metadata = {
     "facebook ads kurs",
     "targetolog kursi samarqand",
   ],
+  // Shu landing endi bosh sahifada ham turadi — dublikat kontent bo'lmasligi uchun kanonik manzil "/"
   alternates: {
-    canonical: URL,
+    canonical: SITE,
   },
   robots: {
     index: true,
@@ -49,21 +51,12 @@ export const metadata: Metadata = {
       "Meta Ads o‘rganish, Facebook reklama qanday yoqiladi va xususiy maktab uchun target reklama bo‘yicha amaliy kurs. Samarqand.",
     siteName: "Vision Group",
     locale: "uz_UZ",
-    images: [
-      {
-        url: `${SITE}/og/002.avif`, // agar og rasm bo'lsa
-        width: 1200,
-        height: 630,
-        alt: "Target kursi Samarqand — Meta Ads o‘rganish",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Target kursi Samarqandda — Meta Ads o‘rganish | Vision Group",
     description:
       "Meta Ads o‘rganish + Facebook reklama qanday yoqiladi + xususiy maktab uchun target reklama strategiyasi.",
-    images: [`${SITE}/og/002.avif`],
   },
 };
 
@@ -89,13 +82,13 @@ export default function TargetKursPage() {
   };
 
   return (
-    <main className="relative  bg-[#080F28] text-white overflow-hidden">
+    <div className="relative bg-[#080F28] text-white overflow-hidden">
        <Script
         id="ld-course"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-        <RapidLanch />
-    </main>
+        <RapidLanch socialProof={<Otzif ctaHref="#yozilish" ctaText="Qo'shimcha ma'lumot olish" ctaTitle="Kurs haqida ko'proq bilmoqchimisiz?" leadMode="info" />} />
+    </div>
   );
 }

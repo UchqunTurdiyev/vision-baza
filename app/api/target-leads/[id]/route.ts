@@ -7,6 +7,20 @@ export const dynamic = "force-dynamic";
 
 
 
+// Bazadan kelgan lead hujjati (lean) — CAPI uchun kerakli maydonlar
+type LeadDoc = {
+  _id: unknown;
+  phone?: string;
+  email?: string;
+  fbp?: string;
+  fbc?: string;
+  fbLoginId?: string;
+  pageScopedUserId?: string;
+  pageId?: string;
+  igUsername?: string;
+  [key: string]: unknown;
+};
+
 // GET METHOD
 export async function GET(req: NextRequest) {
   try {
@@ -14,8 +28,8 @@ export async function GET(req: NextRequest) {
     const id = getId(req);
     const lead = await TargetLeadModel.findById(id).lean();
     if (!lead) return NextResponse.json({ error: "Topilmadi" }, { status: 404 });
-    return NextResponse.json({ lead: { ...lead, id: String((lead as any)._id) } });
-  } catch (e) {
+    return NextResponse.json({ lead: { ...lead, id: String((lead as unknown as LeadDoc)._id) } });
+  } catch {
     return NextResponse.json({ error: "Xato" }, { status: 500 });
   }
 }
@@ -42,7 +56,7 @@ export async function PATCH(req: NextRequest) {
     const body = await req.json().catch(() => ({}));
     
     // 1. Yangilash obyektini yaratish
-    const update: any = {};
+    const update: Record<string, unknown> = {};
     if (typeof body.status === "string") update.status = body.status;
     if (typeof body.flagged === "boolean") update.flagged = body.flagged;
     if (typeof body.note === "string") update.note = body.note;
@@ -56,7 +70,7 @@ export async function PATCH(req: NextRequest) {
     if (typeof body.pageId === "string") update.pageId = body.pageId.trim();
 
     // 2. Bazada yangilash va yangi ma'lumotni olish
-    const updated = await TargetLeadModel.findByIdAndUpdate(id, update, { new: true }).lean() as any;
+    const updated = (await TargetLeadModel.findByIdAndUpdate(id, update, { new: true }).lean()) as LeadDoc | null;
     if (!updated) return NextResponse.json({ error: "Lead topilmadi" }, { status: 404 });
 
     // 2.5. Instagram ID avtomatik moslashtirish — agar shu lead'da pageScopedUserId
@@ -66,11 +80,11 @@ export async function PATCH(req: NextRequest) {
     let metaMatch = updated;
     if (body.status === "TO'LOV QILDI" && !updated.pageScopedUserId && updated.phone) {
       try {
-        const igMatch = await TargetLeadModel.findOne({
+        const igMatch = (await TargetLeadModel.findOne({
           phone: updated.phone,
           pageScopedUserId: { $exists: true, $ne: "" },
           _id: { $ne: updated._id },
-        }).lean() as any;
+        }).lean()) as LeadDoc | null;
 
         if (igMatch) {
           metaMatch = {
@@ -143,7 +157,7 @@ export async function PATCH(req: NextRequest) {
         const FORCE_FULL_PRICE_SOURCES = new Set(["target-kursi"]);
         const sourceKey = String(updated.source ?? "");
 
-        const parsedBudget = parseFloat(updated.budget);
+        const parsedBudget = parseFloat(String(updated.budget ?? ""));
         const hasValidBudget = !Number.isNaN(parsedBudget) && parsedBudget > 0;
         const fallbackValue = SOURCE_DEFAULT_VALUE[sourceKey] ?? FULL_COURSE_PRICE;
 
@@ -213,7 +227,7 @@ export async function DELETE(req: NextRequest) {
     }
     await TargetLeadModel.findByIdAndDelete(id);
     return NextResponse.json({ ok: true });
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: "Xato" }, { status: 500 });
   }
 }

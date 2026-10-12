@@ -6,6 +6,13 @@ import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Topbar from "@/components/topbar";
 import Footer from "@/components/footer";
+import {
+  PIXEL_ID_SALES,
+  PIXEL_ID_TARGET,
+  PIXEL_ID_TARGET_KOURSE,
+  PIXEL_ID_TARGET_LID_MAGNIT,
+  PIXEL_ID_TARGET_VISION,
+} from "@/lib/pixels";
 
 // ✅ Shriftlar — self-hosted (next/font). Render-bloklovchi tashqi so'rov yo'q,
 // FOUT/CLS kamayadi, mobil/Instagram brauzerda sahifa sezilarli tez ochiladi.
@@ -30,16 +37,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const PIXEL_ID_SALES =
-  process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_SALES ?? "874895024822350";
-const PIXEL_ID_TARGET =
-  process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_TARGET ?? "2398531020592784";
-const PIXEL_ID_TARGET_KOURSE =
-  process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_TARGET_KOURSE ?? "1499689861130089";
-const PIXEL_ID_TARGET_LID_MAGNIT =
-  process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_TARGET_LID_MAGNIT ?? "1350142093106140";
-const PIXEL_ID_TARGET_VISION =
-  process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_TARGET_VISION ?? "1780132279307506";
+
 
 // ✅ xohlasangiz false qiling (PageView yubormaydi)
 const TRACK_PAGEVIEW = true;

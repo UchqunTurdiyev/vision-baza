@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/", priority: 1.0, freq: "weekly" },
     { path: "/web", priority: 0.9, freq: "weekly" },
     { path: "/target", priority: 0.9, freq: "weekly" },
-    { path: "/target-kursi", priority: 0.8, freq: "weekly" },
     { path: "/lid-magnit", priority: 0.7, freq: "monthly" },
   ];
 

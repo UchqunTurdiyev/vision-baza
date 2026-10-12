@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { TargetKLidForm } from "@/components/comments/TargetKLidForm";
+import { courseFormCopy, infoFormCopy } from "@/components/target/courseFormCopy";
 
 /**
  * Global lid modal.
@@ -11,20 +12,34 @@ import { TargetKLidForm } from "@/components/comments/TargetKLidForm";
  *   data-lead-open data-lead-mode="magnit" -> bepul lid magnit
  * Bu progressive enhancement: JS bo'lmasa CTA'lar #yozilish ga sakraydi.
  */
-export default function LeadModal() {
+type Props = {
+  /** Kurs formasi ustidagi lenta. Faqat real joy soni bo'lsa bering; bo'lmasa ko'rinmaydi. */
+  scarcity?: string;
+};
+
+export default function LeadModal({ scarcity }: Props = {}) {
   const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState<"course" | "magnit">("course");
+  const [mode, setMode] = useState<"course" | "info" | "magnit">("course");
   const [tariff, setTariff] = useState<string | undefined>(undefined);
   const [leadValue, setLeadValue] = useState<number>(3200000);
 
   const close = useCallback(() => setOpen(false), []);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Ochilganda fokus forma ichidagi birinchi maydonga o'tadi (klaviatura va ekran o'quvchilar uchun)
+  useEffect(() => {
+    if (!open) return;
+    const id = window.setTimeout(() => cardRef.current?.querySelector<HTMLInputElement>("input:not([tabindex='-1'])")?.focus(), 50);
+    return () => window.clearTimeout(id);
+  }, [open, mode]);
 
   useEffect(() => {
     function onClick(e: MouseEvent) {
       const el = (e.target as HTMLElement | null)?.closest<HTMLElement>("[data-lead-open]");
       if (!el) return;
       e.preventDefault();
-      const m = el.getAttribute("data-lead-mode") === "magnit" ? "magnit" : "course";
+      const attr = el.getAttribute("data-lead-mode");
+      const m = attr === "magnit" ? "magnit" : attr === "info" ? "info" : "course";
       setMode(m);
       // Tarif kartalaridan kelgan ma'lumot (data-lead-tariff / data-lead-value)
       const t = el.getAttribute("data-lead-tariff") || undefined;
@@ -56,11 +71,13 @@ export default function LeadModal() {
   if (!open) return null;
 
   const isMagnit = mode === "magnit";
+  const isInfo = mode === "info";
 
   return (
     <div
       role="dialog"
       aria-modal="true"
+      aria-label={mode === "info" ? "Qo'shimcha ma'lumot olish" : mode === "magnit" ? "Bepul material olish" : "Kursga yozilish"}
       onClick={close}
       style={{
         position: "fixed",
@@ -83,6 +100,7 @@ export default function LeadModal() {
       `}</style>
 
       <div
+        ref={cardRef}
         onClick={(e) => e.stopPropagation()}
         style={{
           position: "relative",
@@ -119,7 +137,7 @@ export default function LeadModal() {
         </button>
 
         {/* Scarcity strip */}
-        {!isMagnit && (
+        {mode === "course" && scarcity && (
           <div
             style={{
               background: "#818CF8",
@@ -134,11 +152,11 @@ export default function LeadModal() {
               borderRadius: "10px 10px 0 0",
             }}
           >
-            5.0 oqim · Atigi 7 / 15 joy qoldi
+            {scarcity}
           </div>
         )}
 
-        {!isMagnit && tariff && (
+        {mode === "course" && tariff && (
           <div
             style={{
               background: "#0E1A3D",
@@ -155,7 +173,12 @@ export default function LeadModal() {
           </div>
         )}
 
-        <TargetKLidForm variant={mode} leadValue={isMagnit ? 0 : leadValue} tariff={isMagnit ? undefined : tariff} />
+        <TargetKLidForm
+          variant={mode}
+          leadValue={isMagnit ? 0 : leadValue}
+          tariff={mode === "course" ? tariff : undefined}
+          {...(isMagnit ? {} : isInfo ? infoFormCopy : courseFormCopy)}
+        />
       </div>
     </div>
   );

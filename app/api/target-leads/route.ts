@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "@/lib/mongodb";
 import { TargetLeadModel } from "@/models/TargetLead";
 import { notifyTelegramLead } from "@/lib/telegram";
+import { clientIp, isHoneypotFilled, isRateLimited } from "@/lib/spamGuard";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -84,9 +85,21 @@ export async function GET() {
 // POST /api/target-leads  — forma yuborish
 export async function POST(req: NextRequest) {
   try {
-    await connectToDB();
-
     const body = (await req.json().catch(() => ({}))) as Record<string, unknown>;
+
+    // ✅ Spam himoyasi — bazaga ulanishdan oldin
+    if (isHoneypotFilled(body)) {
+      // Botga muvaffaqiyatdek ko'rinadi, lekin hech narsa saqlanmaydi
+      return NextResponse.json({ ok: true }, { status: 201 });
+    }
+    if (isRateLimited(clientIp(req.headers))) {
+      return NextResponse.json(
+        { error: "Juda ko'p urinish. Birozdan keyin qayta urinib ko'ring." },
+        { status: 429 }
+      );
+    }
+
+    await connectToDB();
 
     const fullName =
       typeof body.fullName === "string" ? body.fullName.trim() : "";

@@ -1,6 +1,6 @@
-// app/page.tsx — Bosh sahifa: Performance Marketing / Target landing (WebLanding)
+// app/page.tsx — Bosh sahifa: Performance Marketing 5.0 / Target kursi (RapidLaunchLanding)
 import type { Metadata } from "next";
-import WebLanding from "@/components/target/WebLanding";
+import RapidLaunchLanding from "@/components/target/RapidLaunchLanding";
 import Otzif from "@/components/Otziflar/otzif";
 
 const SITE = "https://vision-group.uz";
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title:
     "Target & Performance Marketing kursi — Meta Pixel + CAPI | Vision Group",
   description:
-    "Uchqun Turdiyev jamoasi — Vision Group. To'g'ri target yoqish, Performance Marketing, Meta (Instagram/Facebook) Ads, Pixel + CAPI va CRM integratsiyasi orqali algoritmga aniq signal bering: CPM tushadi, lid arzonlashadi, ROAS oshadi.",
+    "2 oylik Performance Marketing & Target kursi: to'g'ri target, Pixel + CAPI va CRM integratsiyasi. Lid emas — sotuv olib keladigan targetolog bo'ling.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -53,8 +53,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
       />
-      <WebLanding />
-      <Otzif ctaHref="#ariza" />
+      <RapidLaunchLanding socialProof={<Otzif ctaHref="#yozilish" ctaText="Qo'shimcha ma'lumot olish" ctaTitle="Kurs haqida ko'proq bilmoqchimisiz?" leadMode="info" />} />
     </div>
   );
 }

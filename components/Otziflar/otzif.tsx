@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { Star, MessageSquare, ArrowLeft } from "lucide-react"; // Ikonkalar uchun
+import { Star, MessageSquare } from "lucide-react"; // Ikonkalar uchun
 
 type Testimonial = {
   id: string;
@@ -29,7 +29,7 @@ const DEFAULT_TESTIMONIALS: Testimonial[] = [
     name: "Bek Marketing",
     role: "SMM mutaxassisi",
     avatarUrl: "/otzif.jpeg",
-    text: "Ustoz darslar zo'r bo'lyapti. Man to'g'ri joyda ekanligimni borgan sari yanada aniqroq his qilib boryapman. Bizaga darsni shunchaki target emas, butun marketing tizimini qura oladigan mutaxassis o'tyapti. Katta rahmat ustoz! 👍👍",
+    text: "Ustoz darslar zo'r bo'lyapti. Men to'g'ri joyda ekanligimni borgan sari yanada aniqroq his qilib boryapman. Bizga darsni shunchaki target emas, butun marketing tizimini qura oladigan mutaxassis o'tyapti. Katta rahmat ustoz! 👍👍",
     date: "2026-01-18",
     rating: 5,
   },
@@ -38,7 +38,7 @@ const DEFAULT_TESTIMONIALS: Testimonial[] = [
     name: "G'anisher",
     role: "Targetolog",
     avatarUrl: "/g.jpeg",
-    text: "2 yil tajribam hech narsa emas ekan 😂 Ustoz oldida, Olloh rozi boʻlsin sizdan. Muammoga aniq yechim berdiz. Tajribangiz kottaligi logikangizdan judayam bilinadi.",
+    text: "2 yil tajribam hech narsa emas ekan 😂 Ustoz oldida, Olloh rozi bo'lsin sizdan. Muammoga aniq yechim berdingiz. Tajribangiz kattaligi logikangizdan judayam bilinadi.",
     date: "2026-01-21",
     rating: 5,
   },
@@ -47,14 +47,21 @@ const DEFAULT_TESTIMONIALS: Testimonial[] = [
 
 export default function Otzif({
   items = DEFAULT_TESTIMONIALS,
-  title = "O'quvchilarimiz natijalari",
-  subtitle = "Real insonlar, real tajribalar va o'sish ko'rsatkichlari.",
+  title = "O'quvchilarimiz fikri",
+  subtitle = "Real insonlar va ularning kursdagi tajribasi.",
   ctaHref = "/target-kursi#register",
+  ctaText = "Joyimni band qilish",
+  ctaTitle = "Siz ham ushbu natijalarga erishmoqchimisiz?",
+  leadMode,
 }: {
   items?: Testimonial[];
   title?: string;
   subtitle?: string;
   ctaHref?: string;
+  ctaText?: string;
+  ctaTitle?: string;
+  /** Berilsa, tugma sahifadagi LeadModal'ni shu rejimda ochadi ("course" | "info"). */
+  leadMode?: "course" | "info";
 }) {
   return (
     <section className="py-16 px-4 max-w-[1100px] mx-auto overflow-hidden">
@@ -136,12 +143,13 @@ export default function Otzif({
 
       {/* 3. Bottom CTA - "Qizdirish"ni davom ettirish */}
       <div className="mt-16 text-center border-t border-white/5 pt-12">
-         <h4 className="text-xl font-bold mb-6">Siz ham ushbu natijalarga erishmoqchimisiz?</h4>
+         <h4 className="text-xl font-bold mb-6">{ctaTitle}</h4>
          <Link
             href={ctaHref}
+            {...(leadMode ? { "data-lead-open": "", "data-lead-mode": leadMode } : {})}
             className="inline-flex items-center justify-center rounded-2xl bg-yellow-300 px-10 py-4 text-lg font-black text-[#050B2B] hover:bg-yellow-200 hover:scale-105 transition-all shadow-xl shadow-yellow-300/20"
          >
-            Joyimni band qilish
+            {ctaText}
          </Link>
       </div>
     </section>

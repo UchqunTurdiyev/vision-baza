@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 type Props = {
   /** Maqsadli sana (ISO). Default: 15-iyun 2026, Toshkent vaqti (UTC+5). */
   target?: string;
   className?: string;
+  /** Taymer ustidagi yozuv — muddat tugaganda taymer bilan birga yashiriladi. */
+  label?: ReactNode;
 };
 
 type T = { d: number; h: number; m: number; s: number; done: boolean };
@@ -25,31 +27,28 @@ function diff(target: number): T {
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-export function CountdownTimer({ target = "2026-06-15T00:00:00+05:00", className }: Props) {
-  // Hydration mismatchni oldini olish uchun: mount bo'lguncha hech narsa render qilmaymiz
-  const [mounted, setMounted] = useState(false);
-  const [t, setT] = useState<T>({ d: 0, h: 0, m: 0, s: 0, done: false });
+export function CountdownTimer({ target = "2026-06-15T00:00:00+05:00", className, label }: Props) {
+  // Hydration mismatchni oldini olish uchun: birinchi tikgacha (null) hech narsa render qilmaymiz
+  const [t, setT] = useState<T | null>(null);
 
   useEffect(() => {
     const targetMs = new Date(target).getTime();
-    setMounted(true);
-    setT(diff(targetMs));
-    const id = setInterval(() => setT(diff(targetMs)), 1000);
-    return () => clearInterval(id);
+    const tick = () => setT(diff(targetMs));
+    const first = setTimeout(tick, 0);
+    const id = setInterval(tick, 1000);
+    return () => {
+      clearTimeout(first);
+      clearInterval(id);
+    };
   }, [target]);
 
-  if (!mounted) {
+  if (!t) {
     // Server va birinchi render uchun bo'sh, barqaror placeholder
     return <div className={`vg-countdown ${className ?? ""}`} aria-hidden style={{ visibility: "hidden" }} />;
   }
 
-  if (t.done) {
-    return (
-      <div className={`vg-countdown ${className ?? ""}`}>
-        <span className="vg-cd-live">Qabul yopildi — keyingi oqimni kuting</span>
-      </div>
-    );
-  }
+  // Muddat o'tgan bo'lsa hech narsa ko'rsatmaymiz — sahifadagi «ariza qabul qilinmoqda» bilan ziddiyat bo'lmasin
+  if (t.done) return null;
 
   const cells: { v: string; l: string }[] = [
     { v: pad(t.d), l: "KUN" },
@@ -59,6 +58,8 @@ export function CountdownTimer({ target = "2026-06-15T00:00:00+05:00", className
   ];
 
   return (
+    <>
+    {label && <div className="vg-cd-eyebrow">{label}</div>}
     <div className={`vg-countdown ${className ?? ""}`}>
       {cells.map((c, i) => (
         <div className="vg-cd-cell" key={i}>
@@ -67,5 +68,6 @@ export function CountdownTimer({ target = "2026-06-15T00:00:00+05:00", className
         </div>
       ))}
     </div>
+    </>
   );
 }
