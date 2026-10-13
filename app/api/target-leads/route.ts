@@ -171,7 +171,7 @@ export async function POST(req: NextRequest) {
     });
 
     // ✅ Telegram botga xabar (xato bo'lsa ham lid saqlangan bo'ladi)
-    await notifyTelegramLead({
+    const telegram = await notifyTelegramLead({
       fullName,
       phone,
       source,
@@ -193,6 +193,7 @@ export async function POST(req: NextRequest) {
           ...createdObj,
           id: String(createdObj._id),
         },
+        telegram, // "sent" | "no-token" | "failed" — tekshirish uchun
       },
       { status: 201 }
     );

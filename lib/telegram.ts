@@ -25,14 +25,20 @@ function esc(v: string): string {
   return v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-export async function notifyTelegramLead(lead: LeadForTg): Promise<void> {
+/** Natija: "sent" — kamida bitta chatga ketdi; "no-token" — env sozlanmagan; "failed" — Telegram rad etdi. */
+export type TelegramStatus = "sent" | "no-token" | "failed";
+
+export async function notifyTelegramLead(lead: LeadForTg): Promise<TelegramStatus> {
   const token = process.env.TELEGRAM_BOT_TOKEN || "";
   const chatIds = (process.env.TELEGRAM_CHAT_ID || "-5576325390")
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean);
 
-  if (!token || chatIds.length === 0) return;
+  if (!token || chatIds.length === 0) {
+    console.error("Telegram: TELEGRAM_BOT_TOKEN yoki TELEGRAM_CHAT_ID sozlanmagan — bildirgi yuborilmadi");
+    return "no-token";
+  }
 
   const source = lead.source || "";
   const lines: string[] = [
@@ -55,8 +61,8 @@ export async function notifyTelegramLead(lead: LeadForTg): Promise<void> {
 
   const text = lines.join("\n");
 
-  await Promise.all(
-    chatIds.map(async (chatId) => {
+  const results = await Promise.all(
+    chatIds.map(async (chatId): Promise<boolean> => {
       try {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 5000);
@@ -74,10 +80,14 @@ export async function notifyTelegramLead(lead: LeadForTg): Promise<void> {
         clearTimeout(timer);
         if (!res.ok) {
           console.error("Telegram sendMessage xato:", res.status, await res.text());
+          return false;
         }
+        return true;
       } catch (e) {
         console.error("Telegram notify xato:", e);
+        return false;
       }
     })
   );
+  return results.some(Boolean) ? "sent" : "failed";
 }
