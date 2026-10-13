@@ -283,7 +283,9 @@ export function TargetKLidForm({
         : await res.text().catch(() => "");
 
       if (!res.ok) {
-        const msg = extractErrorMessage(data) ?? `Server xatosi: ${res.status}`;
+        const msg =
+          extractErrorMessage(data) ??
+          "Arizani yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring yoki +998 99 627 77 27 raqamiga qo'ng'iroq qiling.";
         throw new Error(msg);
       }
 
@@ -298,7 +300,13 @@ export function TargetKLidForm({
       setPhoneDigits(""); // controlled input ham tozalanadi
       router.push(isMagnit ? "/lid-magnit/thanks" : "/target-kursi/thanks");
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Xatolik yuz berdi";
+      // Internet uzilishi (TypeError: Failed to fetch) — inglizcha texnik matn ko'rsatilmasin
+      const msg =
+        err instanceof TypeError
+          ? "Internet aloqasi yo'q yoki uzildi. Iltimos, qayta urinib ko'ring."
+          : err instanceof Error
+            ? err.message
+            : "";
       setError(msg || "Yuborishda xatolik. Iltimos, qaytadan urinib ko'ring.");
     } finally {
       setLoading(false);

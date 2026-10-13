@@ -200,6 +200,13 @@ export async function POST(req: NextRequest) {
   } catch (e: unknown) {
      
     console.error("POST /api/target-leads error:", e);
-    return NextResponse.json({ error: getErrorMessage(e) }, { status: 500 });
+    // Mijozga texnik xato matni ko'rsatilmaydi; lokal dasturchiga esa sababi aytiladi
+    const detail = getErrorMessage(e);
+    const isDev = process.env.NODE_ENV !== "production";
+    const message =
+      isDev && detail.includes("MONGODB_URI")
+        ? "Lokal server bazaga ulanmagan: .env.local faylida MONGODB_URI yo'q."
+        : "Arizani yuborishda xatolik yuz berdi. Iltimos, birozdan keyin qayta urinib ko'ring yoki +998 99 627 77 27 raqamiga qo'ng'iroq qiling.";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
