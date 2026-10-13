@@ -82,20 +82,19 @@ export async function GET() {
   }
 }
 
-// Lokal dasturlash: bazaga ulanish sozlanmagan bo'lsa (MONGODB_URI yo'q), ariza ishlab turgan
-// serverga uzatiladi — lid baribir CRM va Telegramga tushadi. Productionda hech qachon ishlamaydi.
+// Lokal dasturlash: baza (MONGODB_URI) yoki Telegram (TELEGRAM_BOT_TOKEN) sozlanmagan bo'lsa, ariza
+// ishlab turgan serverga uzatiladi — lid baribir CRM va Telegramga tushadi. Productionda hech qachon ishlamaydi.
 const DEV_LEAD_FALLBACK = process.env.LEAD_API_FALLBACK || "https://vision-baza.vercel.app/api/target-leads";
 
 function shouldForwardInDev(): boolean {
   return (
     process.env.NODE_ENV !== "production" &&
-    !process.env.MONGODB_URI &&
-    !process.env.MONGODB_URL
+    ((!process.env.MONGODB_URI && !process.env.MONGODB_URL) || !process.env.TELEGRAM_BOT_TOKEN)
   );
 }
 
 async function forwardLeadInDev(body: Record<string, unknown>): Promise<NextResponse> {
-  console.warn(`[dev] MONGODB_URI yo'q — ariza ${DEV_LEAD_FALLBACK} ga uzatilmoqda`);
+  console.warn(`[dev] MONGODB_URI yoki TELEGRAM_BOT_TOKEN yo'q — ariza ${DEV_LEAD_FALLBACK} ga uzatilmoqda`);
   const res = await fetch(DEV_LEAD_FALLBACK, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
