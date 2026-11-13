@@ -1,9 +1,12 @@
-// proxy.ts — CRM va lidlar API'sini parol bilan himoyalash (HTTP Basic Auth).
+// proxy.ts — CRM va lidlar API'sini himoyalash.
+// Kirish: /login sahifasi → imzolangan cookie (lib/adminSession.ts).
+// Zaxira: HTTP Basic Auth (skriptlar/curl uchun) ham qabul qilinadi.
 // ENV: ADMIN_USER (ixtiyoriy, default "admin"), ADMIN_PASSWORD (majburiy).
 // ADMIN_PASSWORD o'rnatilmagan bo'lsa — himoyalangan yo'llar umuman ochilmaydi (fail-closed).
 //
 // Ochiq qoladi: POST /api/target-leads (saytdagi formalar), /api/webhook (Meta), qolgan sahifalar.
 import { NextResponse, type NextRequest } from "next/server";
+import { SESSION_COOKIE, adminCreds, safeEqual, verifySessionToken } from "@/lib/adminSession";
 
 function isProtected(req: NextRequest): boolean {
   const { pathname } = req.nextUrl;
@@ -12,36 +15,36 @@ function isProtected(req: NextRequest): boolean {
   return pathname.startsWith("/api/target-leads/");
 }
 
-function safeEqual(a: string, b: string): boolean {
-  if (a.length !== b.length) return false;
-  let diff = 0;
-  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  return diff === 0;
+function basicAuthOk(req: NextRequest): boolean {
+  const { user, password } = adminCreds();
+  const header = req.headers.get("authorization") ?? "";
+  if (!header.startsWith("Basic ")) return false;
+  try {
+    const [u, ...rest] = atob(header.slice(6)).split(":");
+    return safeEqual(u, user) && safeEqual(rest.join(":"), password);
+  } catch {
+    return false;
+  }
 }
 
-export function proxy(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   if (!isProtected(req)) return NextResponse.next();
 
-  const password = process.env.ADMIN_PASSWORD ?? "";
-  const user = process.env.ADMIN_USER || "admin";
-  if (!password) {
+  if (!adminCreds().password) {
     return new NextResponse("ADMIN_PASSWORD sozlanmagan — CRM yopiq.", { status: 503 });
   }
 
-  const header = req.headers.get("authorization") ?? "";
-  if (header.startsWith("Basic ")) {
-    try {
-      const [u, ...rest] = atob(header.slice(6)).split(":");
-      if (safeEqual(u, user) && safeEqual(rest.join(":"), password)) return NextResponse.next();
-    } catch {
-      // noto'g'ri base64 — pastda 401
-    }
+  if (await verifySessionToken(req.cookies.get(SESSION_COOKIE)?.value)) return NextResponse.next();
+  if (basicAuthOk(req)) return NextResponse.next();
+
+  if (req.nextUrl.pathname.startsWith("/api/")) {
+    return NextResponse.json({ error: "Avtorizatsiya kerak" }, { status: 401 });
   }
 
-  return new NextResponse("Kirish uchun login va parol kerak.", {
-    status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Vision Group CRM", charset="UTF-8"' },
-  });
+  const url = req.nextUrl.clone();
+  url.pathname = "/login";
+  url.search = `?next=${encodeURIComponent(req.nextUrl.pathname)}`;
+  return NextResponse.redirect(url);
 }
 
 export const config = {
