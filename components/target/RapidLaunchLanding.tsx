@@ -962,9 +962,28 @@ export default function TargetKursiPage({ socialProof }: Props = {}) {
                 Sifatsiz lidlar, natijasiz target kampaniyalar — <em>sizda ham shundaymi?</em>
               </h2>
               <p className="vg-section-lead">
-                Gap shundaki… target yoqishni deyarli hamma biladi. Lekin algoritmga{" "}
-                <strong>&laquo;kim sotib oldi&raquo;</strong> degan aniq signal berilmasa, reklama ko&apos;r ishlaydi — byudjet behuda yonadi.
+                Gap shundaki… target yoqishni deyarli hamma biladi. Lekin natija bo&apos;lmasa, lidlar sifatsiz
+                va qimmat bo&apos;lsa, bundan ham yomoni — muammo qayerdaligini va qanday yechim qilishni
+                bilmasangiz, <strong>unda bu kurs aynan siz uchun.</strong>
               </p>
+
+              <p className="vg-section-lead" style={{ marginTop: 32 }}>
+                Ushbu kursda men sizga quyidagilarni o&apos;rgataman:
+              </p>
+              <div className="vg-plain-list">
+                {[
+                  "Performance marketing aslida qanday ishlashi kerakligini",
+                  "Sovuq mijozdan kassagacha bo'lgan butun jarayonni tizimga solishni",
+                  "AI agentlarni ishlab chiqish, ulardan foydalanish va ularni boshqarishni",
+                  "Katta loyihalar bilan ishlash ko'nikmasini",
+                  "Shunchaki lid emas, sifatli va sotib olishga tayyor mijozlarni jalb qilishni",
+                ].map((item, i) => (
+                  <div className="vg-plain-row" key={i}>
+                    <span className="vg-plain-mark vg-plain-num">{String(i + 1).padStart(2, "0")}</span>
+                    <p>{item}</p>
+                  </div>
+                ))}
+              </div>
 
             </div>
           </section>

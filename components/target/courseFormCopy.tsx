@@ -7,14 +7,12 @@ export const courseFormCopy = {
   eyebrow: "Kursga yozilish · 30 soniya",
   title: (
     <>
-      Shogirdlik kursiga <span style={ACCENT}>yoziling</span>
+      Performance Marketing Target kursiga <span style={ACCENT}>yoziling</span>
     </>
   ),
   subtitle: (
     <>
-      Ism va telefon — boshqa hech narsa kerak emas. Administrator{" "}
-      <strong style={STRONG}>24 soat ichida</strong> qo&apos;ng&apos;iroq qilib,
-      tarif va sanani tasdiqlaydi.
+      Eplamachi emas, <strong style={STRONG}>haqiqiy mutaxassis</strong> bo&apos;ling.
     </>
   ),
   ctaText: "Kursga yozilish",

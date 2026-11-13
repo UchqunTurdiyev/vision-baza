@@ -375,9 +375,9 @@ export function TargetKLidForm({
             </>
           ) : (
             <>
-              Ism va telefon — boshqa hech narsa kerak emas. Administrator{" "}
-              <strong style={{ color: COLORS.ink, fontWeight: 600 }}>24 soat ichida</strong>{" "}
-              bog&apos;lanadi.
+              Eplamachi emas,{" "}
+              <strong style={{ color: COLORS.ink, fontWeight: 600 }}>haqiqiy mutaxassis</strong>{" "}
+              bo&apos;ling.
             </>
           )
         )}
