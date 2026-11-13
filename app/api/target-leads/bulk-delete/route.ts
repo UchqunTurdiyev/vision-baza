@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { connectToDB } from "@/lib/mongodb";
 import { TargetLeadModel } from "@/models/TargetLead";
+import { deletePasswordOk } from "@/lib/adminSession";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -12,12 +13,7 @@ export async function POST(req: Request) {
     const ids: string[] = Array.isArray(body?.ids) ? body.ids : [];
     const password: string = typeof body?.password === "string" ? body.password : "";
 
-    const serverPassword = process.env.TARGET_DELETE_PASSWORD ?? "";
-    if (!serverPassword) {
-      return NextResponse.json({ error: "Server paroli sozlanmagan" }, { status: 500 });
-    }
-
-    if (!password || password !== serverPassword) {
+    if (!deletePasswordOk(password)) {
       return NextResponse.json({ error: "Parol noto‘g‘ri" }, { status: 401 });
     }
 
