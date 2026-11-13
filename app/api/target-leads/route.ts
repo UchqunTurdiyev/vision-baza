@@ -56,6 +56,7 @@ export async function GET() {
         businessType: 1,
         socialPage: 1,
         budget: 1,
+        experience: 1,
         email: 1,
         pageScopedUserId: 1,
         igUsername: 1,
@@ -141,6 +142,13 @@ export async function POST(req: NextRequest) {
 
     const budget = typeof body.budget === "string" ? body.budget.trim() : "";
 
+    // "Hozir targetda tajribangiz bormi?" — faqat ruxsat etilgan qiymatlar
+    const EXPERIENCE_VALUES = ["Yo'q", "Boshlang'ich", "1 yildan ortiq"];
+    const experience =
+      typeof body.experience === "string" && EXPERIENCE_VALUES.includes(body.experience)
+        ? body.experience
+        : "";
+
     // ✅ Meta (Facebook/Instagram) match maydonlari — CAPI uchun saqlaymiz
     const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
     const fbp = str(body.fbp);
@@ -184,6 +192,7 @@ export async function POST(req: NextRequest) {
       businessType,
       socialPage,
       budget,
+      experience,
       // ✅ Meta match maydonlari (TO'LOV QILDI bo'lganda CAPI orqali yuboriladi)
       email,
       fbp,
@@ -202,6 +211,7 @@ export async function POST(req: NextRequest) {
       businessType,
       socialPage,
       budget,
+      experience,
       note,
       email,
       igUsername,

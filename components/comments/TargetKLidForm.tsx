@@ -151,6 +151,8 @@ const LABEL: React.CSSProperties = {
   textAlign: "left",
 };
 
+const EXPERIENCE_OPTIONS = ["Yo'q", "Boshlang'ich", "1 yildan ortiq"] as const;
+
 // ============ COMPONENT ============
 
 export function TargetKLidForm({
@@ -179,6 +181,7 @@ export function TargetKLidForm({
 
   // Telefon: faqat +998 dan keyingi 9 ta raqam controlled state
   const [phoneDigits, setPhoneDigits] = useState("");
+  const [experience, setExperience] = useState("");
 
   function handlePhoneChange(e: React.ChangeEvent<HTMLInputElement>) {
     // Faqat raqamlarni qoldirish, max 9 ta
@@ -216,6 +219,12 @@ export function TargetKLidForm({
 
     if (phoneDigits.length !== 9) {
       setError("Telefon raqamni to'liq kiriting (9 ta raqam, +998 dan keyin).");
+      setLoading(false);
+      return;
+    }
+
+    if (!isMagnit && !experience) {
+      setError("Targetdagi tajribangizni tanlang.");
       setLoading(false);
       return;
     }
@@ -269,6 +278,7 @@ export function TargetKLidForm({
           : tariff
             ? `course · ${tariff}`
             : "course",
+      experience: isMagnit ? undefined : experience,
       website, // honeypot — odam uchun doim bo'sh
     };
 
@@ -458,6 +468,42 @@ export function TargetKLidForm({
             />
           </div>
         </div>
+
+        {/* 3. Target tajribasi (faqat kurs formasi) */}
+        {!isMagnit && (
+          <div role="radiogroup" aria-labelledby={`${nameId}-exp`}>
+            <span id={`${nameId}-exp`} style={LABEL}>Hozir targetda tajribangiz bormi?</span>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px" }}>
+              {EXPERIENCE_OPTIONS.map((opt) => {
+                const active = experience === opt;
+                return (
+                  <button
+                    key={opt}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    onClick={() => setExperience(opt)}
+                    style={{
+                      padding: "12px 6px",
+                      borderRadius: "10px",
+                      border: `1.5px solid ${active ? COLORS.accent : COLORS.line}`,
+                      background: active ? "rgba(34,197,94,0.14)" : "rgba(255,255,255,0.03)",
+                      color: active ? COLORS.ink : COLORS.ink2,
+                      fontFamily: SANS,
+                      fontSize: "14px",
+                      fontWeight: active ? 600 : 500,
+                      cursor: "pointer",
+                      transition: "all .15s",
+                      lineHeight: 1.25,
+                    }}
+                  >
+                    {opt}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
       </div>
 

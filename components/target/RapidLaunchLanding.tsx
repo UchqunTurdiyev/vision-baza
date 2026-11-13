@@ -444,6 +444,8 @@ const styles = `
 .vg-hero-sub strong { font-weight: 600; color: var(--vg-ink); }
 .vg-hero-skills { margin: 12px 0 14px; padding-left: 1.4em; display: grid; gap: 6px; }
 .vg-hero-skills li::marker { color: var(--vg-accent); font-weight: 700; }
+.vg-hero-note { font-family: var(--vg-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--vg-muted); margin: 0; }
+.vg-section-lead strong { color: var(--vg-ink); font-weight: 600; }
 .vg-hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
 
 .vg-btn-primary { background: #22C55E; color: var(--vg-bg); padding: 16px 28px; border-radius: 6px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all .2s; font-family: var(--vg-sans); box-shadow: 0 12px 30px -12px rgba(34,197,94,0.5); }
@@ -913,21 +915,17 @@ export default function TargetKursiPage({ socialProof }: Props = {}) {
             <div className="vg-hero-glow" aria-hidden="true" />
             <div className="vg-container">
               <div className="vg-hero-inner">
-                <div className="vg-hero-pre">2027-yilda shaxsiy AI agentingiz bilan eng ko&apos;p daromad oladigan targetologlardan biriga aylaning</div>
-
                 <h1 className="vg-hero-headline vg-hero-headline-q">
-                  Qanday qilib Meta mijozlaringizga &laquo;shunchaki qiziquvchilarni&raquo; emas,{" "}
-                  <em>hamyonida puli bor xaridorlarni</em> topib kelishi mumkin?
+                  2027-yilda shaxsiy AI agentingiz bilan{" "}
+                  <em>eng ko&apos;p daromad oladigan targetologlar</em> qatoriga qo&apos;shiling
                 </h1>
 
                 <div className="vg-hero-sub">
-                  <p>Yuqori daromadli targetolog bo&apos;lish uchun uchta ko&apos;nikmani mukammal egallashimiz kerak:</p>
-                  <ol className="vg-hero-skills">
-                    <li>Sun&apos;iy intellektni <strong>shaxsiy agentimiz</strong> sifatida to&apos;g&apos;ri ishlata olish.</li>
-                    <li>Bozordagilardan ajralib turadigan <strong>kuchli taklif</strong> ishlab chiqa bilish.</li>
-                    <li>Meta&apos;ga mijozimiz kimligini va <strong>qaysi mijoz bizga qancha daromad keltirayotganini</strong> doimiy ravishda yetkazib turish.</li>
-                  </ol>
-                  <p>Bunday ko&apos;nikmalar sizni <strong>1 raqamli targetologlar</strong> qatorida katta bizneslarga target yoqishingizga zamin yaratadi.</p>
+                  <p>
+                    Meta&apos;ga mijozlaringiz uchun shunchaki qiziquvchilarni emas,{" "}
+                    <strong>hamyonida puli bor xaridorlarni</strong> topib kelishni o&apos;rgatish mumkin.
+                    Bu kursda aynan shu tizimni o&apos;rganasiz.
+                  </p>
                 </div>
 
                 <div className="vg-hero-cta-row">
@@ -938,6 +936,7 @@ export default function TargetKursiPage({ socialProof }: Props = {}) {
                     </svg>
                   </a>
                 </div>
+                <p className="vg-hero-note">Joylar soni cheklangan · Keyingi qabul — 2027-yilda</p>
 
               </div>
             </div>
@@ -953,6 +952,30 @@ export default function TargetKursiPage({ socialProof }: Props = {}) {
               ))}
             </div>
           </div>
+
+          {/* ============ 3 KO'NIKMA ============ */}
+          <section className="vg-section vg-skills" id="konikmalar">
+            <div className="vg-container">
+              <h2 className="vg-section-title">
+                2027-yilda <em>yuqori daromadli targetolog</em> bo&apos;lish uchun uchta ko&apos;nikmani mukammal egallashimiz kerak:
+              </h2>
+              <div className="vg-plain-list">
+                {[
+                  <>Sun&apos;iy intellektni <strong>shaxsiy agentimiz</strong> sifatida to&apos;g&apos;ri ishlata olish.</>,
+                  <>Bozordagilardan ajralib turadigan <strong>kuchli taklif</strong> ishlab chiqish.</>,
+                  <>Meta&apos;ga mijozimiz kimligini va <strong>qaysi mijoz bizga qancha daromad keltirayotganini</strong> doimiy ravishda yetkazib turish.</>,
+                ].map((item, i) => (
+                  <div className="vg-plain-row" key={i}>
+                    <span className="vg-plain-mark vg-plain-num">{String(i + 1).padStart(2, "0")}</span>
+                    <p>{item}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="vg-section-lead" style={{ marginTop: 32, marginBottom: 0 }}>
+                Bunday ko&apos;nikmalar sizni <strong>1 raqamli targetologlar</strong> qatorida katta bizneslarga target yoqishingizga zamin yaratadi.
+              </p>
+            </div>
+          </section>
 
           {/* ============ PROBLEM ============ */}
           <section className="vg-section vg-problem" id="muammo">

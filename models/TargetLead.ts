@@ -12,6 +12,7 @@ export interface ITargetLead extends Document {
   businessType?: string;
   socialPage?: string;
   budget?: string;
+  experience?: string;       // "Hozir targetda tajribangiz bormi?" javobi
   email?: string;
   // Meta (Facebook/Instagram) match identifikatorlari — CAPI uchun
   fbp?: string;              // _fbp cookie (browser id)
@@ -41,6 +42,7 @@ const TargetLeadSchema = new Schema<ITargetLead>(
     businessType: { type: String, default: "" },
     socialPage: { type: String, default: "" },
     budget: { type: String, default: "" },
+    experience: { type: String, default: "" },
     email: { type: String, default: "" },
     fbp: { type: String, default: "" },
     fbc: { type: String, default: "" },

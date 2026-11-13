@@ -9,6 +9,7 @@ type LeadForTg = {
   businessType?: string;
   socialPage?: string;
   budget?: string;
+  experience?: string;
   note?: string;
   email?: string;
   igUsername?: string;
@@ -51,6 +52,7 @@ export async function notifyTelegramLead(lead: LeadForTg): Promise<TelegramStatu
   if (lead.businessType) lines.push(`🏢 <b>Biznes turi:</b> ${esc(lead.businessType)}`);
   if (lead.socialPage) lines.push(`🌐 <b>Sahifa:</b> ${esc(lead.socialPage)}`);
   if (lead.budget) lines.push(`💰 <b>Byudjet:</b> ${esc(lead.budget)}`);
+  if (lead.experience) lines.push(`🎯 <b>Target tajribasi:</b> ${esc(lead.experience)}`);
   if (lead.email) lines.push(`✉️ <b>Email:</b> ${esc(lead.email)}`);
   if (lead.igUsername) lines.push(`📸 <b>Instagram:</b> ${esc(lead.igUsername)}`);
   if (lead.note) lines.push(`📝 <b>Izoh:</b> ${esc(lead.note)}`);

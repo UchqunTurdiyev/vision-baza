@@ -45,6 +45,7 @@ type TargetLead = {
   businessType?: string;
   socialPage?: string;
   budget?: string;
+  experience?: string;
   // 🔹 Meta (Facebook/Instagram) match maydonlari — CAPI Purchase uchun
   email?: string;
   pageScopedUserId?: string;
@@ -552,6 +553,11 @@ export default function TargetOperatorClient() {
                                     <div className="text-lg text-white/60">
                                       budjeti: {lead.budget}
                                     </div>
+                                    {lead.experience && (
+                                      <div className="text-lg text-green-400/90">
+                                        Target tajribasi: {lead.experience}
+                                      </div>
+                                    )}
 
                                     tg: {lead.socialPage}
                                     <div className="text-lg text-white/60">
