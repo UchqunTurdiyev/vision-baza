@@ -1,5 +1,5 @@
 // Target kursi sahifasidagi formalar matni — sahifa va modal bir xil gapirishi uchun.
-const ACCENT = { fontStyle: "italic" as const, fontWeight: 500, color: "#818CF8" };
+const ACCENT = { fontStyle: "italic" as const, fontWeight: 500, color: "#22C55E" };
 const STRONG = { color: "#FFFFFF", fontWeight: 600 };
 
 // «Kursga yozilish» / «Joyimni band qilish» tugmalari

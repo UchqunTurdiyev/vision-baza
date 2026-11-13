@@ -79,8 +79,10 @@ const COLORS = {
   ink2: "rgba(255,255,255,0.9)",
   muted: "rgba(255,255,255,0.66)",
   line: "rgba(160,180,245,0.38)",
-  accent: "#818CF8",
-  accent2: "#6366F1",
+  accent: "#22C55E",
+  accent2: "#16A34A",
+  btn: "#22C55E",
+  btn2: "#16A34A",
 };
 
 // Tashqi wrapper uchun base — border/shadow qayta ishlatiladi
@@ -93,7 +95,7 @@ const BASE_FIELD_WRAP = (focused: boolean): React.CSSProperties => ({
   borderColor: focused ? COLORS.accent : COLORS.line,
   borderRadius: "8px",
   background: focused ? COLORS.bg : COLORS.bgCard2,
-  boxShadow: focused ? `0 0 0 3px rgba(129,140,248,0.18)` : "none",
+  boxShadow: focused ? `0 0 0 3px rgba(34,197,94,0.18)` : "none",
   transition: "border-color 0.2s, box-shadow 0.2s, background 0.2s",
   overflow: "hidden",
 });
@@ -120,7 +122,7 @@ const BASE_PLAIN_WRAP = (focused: boolean): React.CSSProperties => ({
   borderColor: focused ? COLORS.accent : COLORS.line,
   borderRadius: "8px",
   background: focused ? COLORS.bg : COLORS.bgCard2,
-  boxShadow: focused ? `0 0 0 3px rgba(129,140,248,0.18)` : "none",
+  boxShadow: focused ? `0 0 0 3px rgba(34,197,94,0.18)` : "none",
   transition: "border-color 0.2s, box-shadow 0.2s, background 0.2s",
   overflow: "hidden",
 });
@@ -331,7 +333,7 @@ export function TargetKLidForm({
         padding: "32px",
         fontFamily: SANS,
         color: COLORS.ink,
-        boxShadow: "0 24px 60px -24px rgba(99,102,241,0.5), 0 0 0 1px rgba(160,180,245,0.12) inset",
+        boxShadow: "0 24px 60px -24px rgba(22,163,74,0.5), 0 0 0 1px rgba(160,180,245,0.12) inset",
       }}
     >
       <style>{`
@@ -479,7 +481,7 @@ export function TargetKLidForm({
           alignItems: "center",
           justifyContent: "center",
           gap: "10px",
-          background: COLORS.accent,
+          background: COLORS.btn,
           color: COLORS.bg,
           borderWidth: "0",
           borderStyle: "solid",
@@ -492,20 +494,20 @@ export function TargetKLidForm({
           cursor: loading ? "not-allowed" : "pointer",
           opacity: loading ? 0.6 : 1,
           transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
-          boxShadow: "0 12px 30px -10px rgba(129,140,248,0.45)",
+          boxShadow: "0 12px 30px -10px rgba(34,197,94,0.45)",
         }}
         onMouseEnter={(e) => {
           if (!loading) {
-            e.currentTarget.style.background = COLORS.accent2;
+            e.currentTarget.style.background = COLORS.btn2;
             e.currentTarget.style.transform = "translateY(-1px)";
-            e.currentTarget.style.boxShadow = "0 16px 34px -10px rgba(129,140,248,0.55)";
+            e.currentTarget.style.boxShadow = "0 16px 34px -10px rgba(34,197,94,0.55)";
           }
         }}
         onMouseLeave={(e) => {
           if (!loading) {
-            e.currentTarget.style.background = COLORS.accent;
+            e.currentTarget.style.background = COLORS.btn;
             e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.boxShadow = "0 12px 30px -10px rgba(129,140,248,0.45)";
+            e.currentTarget.style.boxShadow = "0 12px 30px -10px rgba(34,197,94,0.45)";
           }
         }}
       >
@@ -548,7 +550,7 @@ export function TargetKLidForm({
           style={{
             marginTop: "18px",
             padding: "12px 16px",
-            background: "rgba(129,140,248,0.14)",
+            background: "rgba(34,197,94,0.14)",
             borderLeftWidth: "2px",
             borderLeftStyle: "solid",
             borderLeftColor: COLORS.accent,

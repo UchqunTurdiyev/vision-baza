@@ -38,12 +38,12 @@ const heroStats = [
 ];
 
 const tickerItems = [
-  "VIDEO DARSLAR + JONLI ZOOM",
-  "1 YILLIK KIRISH HUQUQI (STANDART TARIF)",
-  "15 KUNLIK PULNI QAYTARISH KAFOLATI",
-  "CRM + CAPI AMALIYOTI",
-  "REAL PORTFOLIO",
-  "SOVUQ MIJOZDAN KASSAGACHA TIZIM",
+  "ISFT INSTITUTI SAMARQAND FILIALI",
+  "ZIYO YOG'DUSI MAKTABI",
+  "KELAJAK UMIDI",
+  "PIFAGOR SCHOOL",
+  "HARVARD LITTLE SCHOOL",
+  "MED EXPERT VA BOSHQA BIZNESLAR BILAN TAJRIBA",
 ];
 
 // Stavkalar: eski usulda qolishning narxi
@@ -353,39 +353,8 @@ const faqs = [
     a: "Har hafta jonli Zoom darsida savol-javob va real kabinet tahlili bo'ladi. Darslar orasida esa Telegram orqali savol berib, yordam olasiz.",
   },
   {
-    q: "Pul rostdan qaytadimi?",
-    a: "Ha. Standart tarifda birinchi 15 kun ichida (taxminan 8 ta dars) kurs sizga mos kelmasa — to'lovni hech qanday savolsiz to'liq qaytarib olasiz. Xavf to'liq biznes tomonida.",
-  },
-  {
-    q: "Qachon boshlanadi?",
-    a: COHORT.startLabel
-      ? `${COHORT.name} ${COHORT.startLabel} kuni boshlanadi. Ariza qoldirsangiz, administrator joyingizni tasdiqlaydi.`
-      : "Aniq sanani administrator ariza qoldirganingizdan keyin 24 soat ichida tasdiqlaydi. Zapis tarifida esa to'lovdan so'ng darhol boshlaysiz.",
-  },
-  {
     q: "Telefondan o'qisa bo'ladimi?",
-    a: "Video darslar va jonli Zoom darslarni telefondan ko'rish mumkin. Reklama kabinetini sozlash va amaliy topshiriqlar uchun esa kompyuter tavsiya qilinadi.",
-  },
-  {
-    q: "Boshqa target kurslaridan farqi nima?",
-    a: "Ko'p kurslar reklama kabinetida tugma bosishni o'rgatadi. Bu kursda reklamadan keyingi qism ham bor: sayt, Telegram bot, CRM, Pixel + CAPI va sotuv. Ya'ni lid uchun emas, sotuv uchun javob berishni o'rganasiz.",
-  },
-  {
-    // Bitiruvchilarning real raqamli natijalari yig'ilgach, shu javobga 1–2 ta misol qo'shing.
-    q: "Kursdan keyin qancha daromad qilish real?",
-    a: "Aniq summa va'da qilmaymiz — daromad mijozlaringiz soni va ularga keltirgan natijangizga bog'liq. Kursda real biznes uchun portfolio yig'asiz va mijoz bilan natijadan ulush asosida ishlash modelini o'rganasiz.",
-  },
-  {
-    q: "Narxni qoplay olamanmi?",
-    a: "Bu mijozlaringiz to'laydigan summaga bog'liq. Kursda portfolio yig'asiz va natijadan ulush asosida ishlashni o'rganasiz — maqsad kurs narxini birinchi mijozlaringiz bilan qoplash.",
-  },
-  {
-    q: "Kursdan keyin ish yoki mijoz topa olamanmi?",
-    a: "Kursda real biznes uchun portfolio yig'asiz, taklif yozish va mijoz bilan natijadan ulush asosida kelishishni o'rganasiz. Birinchi mijozni topishda amaliy yordam beramiz.",
-  },
-  {
-    q: "To'lovni bo'lib to'lasa bo'ladimi?",
-    a: "Ha, oyma-oy bo'lib to'lash imkoniyati mavjud. Batafsil administratordan so'rang.",
+    a: "Video darslar va jonli Zoom darslarni telefondan ko'rish mumkin. Reklama kabinetini sozlash va amaliy topshiriqlar uchun esa kompyuter kerak bo'ladi.",
   },
 ];
 
@@ -412,8 +381,8 @@ const styles = `
   --vg-ink-2: rgba(255,255,255,0.76);
   --vg-muted: rgba(255,255,255,0.5);
   --vg-line: rgba(120,150,225,0.16);
-  --vg-accent: #818CF8;
-  --vg-accent-2: #6366F1;
+  --vg-accent: #22C55E;
+  --vg-accent-2: #16A34A;
   --vg-accent-ink: #FFFFFF;
 
   --vg-serif: var(--font-heading), -apple-system, sans-serif;
@@ -428,7 +397,7 @@ const styles = `
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   background-image:
-    radial-gradient(900px 460px at 50% -16%, rgba(99,102,241,0.12), transparent 60%),
+    radial-gradient(900px 460px at 50% -16%, rgba(22,163,74,0.12), transparent 60%),
     radial-gradient(circle at 1px 1px, rgba(150,180,255,0.035) 1px, transparent 0);
   background-size: 100% 720px, 22px 22px;
   background-repeat: no-repeat, repeat;
@@ -461,7 +430,7 @@ const styles = `
 
 /* HERO */
 .vg-page .vg-hero { padding: 60px 0 70px; border-bottom: 1px solid var(--vg-line); position: relative; overflow: hidden; }
-.vg-hero-glow { position: absolute; top: -120px; right: -120px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(129,140,248,0.14), rgba(129,140,248,0) 70%); pointer-events: none; animation: vg-glow 6s ease-in-out infinite; }
+.vg-hero-glow { position: absolute; top: -120px; right: -120px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(34,197,94,0.14), rgba(34,197,94,0) 70%); pointer-events: none; animation: vg-glow 6s ease-in-out infinite; }
 .vg-hero-inner { position: relative; z-index: 1; }
 .vg-hero-pre { font-family: var(--vg-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--vg-accent); margin-bottom: 14px; }
 .vg-hero-eyebrow { display: flex; align-items: center; gap: 12px; font-family: var(--vg-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--vg-muted); margin-bottom: 28px; flex-wrap: wrap; }
@@ -473,10 +442,12 @@ const styles = `
 .vg-hero-headline .vg-strike::after { content: ""; position: absolute; left: -2%; right: -2%; top: 52%; height: 4px; background: var(--vg-accent); transform: rotate(-3deg) scaleX(0); transform-origin: left center; animation: vg-strike .5s ease-out 1.1s forwards; }
 .vg-hero-sub { font-size: 19px; line-height: 1.6; color: var(--vg-ink-2); max-width: 660px; margin-bottom: 36px; }
 .vg-hero-sub strong { font-weight: 600; color: var(--vg-ink); }
+.vg-hero-skills { margin: 12px 0 14px; padding-left: 1.4em; display: grid; gap: 6px; }
+.vg-hero-skills li::marker { color: var(--vg-accent); font-weight: 700; }
 .vg-hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
 
-.vg-btn-primary { background: var(--vg-accent); color: var(--vg-bg); padding: 16px 28px; border-radius: 6px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all .2s; font-family: var(--vg-sans); box-shadow: 0 12px 30px -12px rgba(129,140,248,0.5); }
-.vg-btn-primary:hover { background: var(--vg-accent-2); transform: translateY(-1px); box-shadow: 0 16px 34px -12px rgba(129,140,248,0.6); }
+.vg-btn-primary { background: #22C55E; color: var(--vg-bg); padding: 16px 28px; border-radius: 6px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all .2s; font-family: var(--vg-sans); box-shadow: 0 12px 30px -12px rgba(34,197,94,0.5); }
+.vg-btn-primary:hover { background: #16A34A; transform: translateY(-1px); box-shadow: 0 16px 34px -12px rgba(34,197,94,0.6); }
 .vg-btn-primary svg { transition: transform .2s; animation: vg-arrow 1.7s ease-in-out infinite; }
 .vg-btn-primary:hover svg { transform: translateX(4px); animation: none; }
 .vg-btn-secondary { padding: 16px 28px; border: 1px solid var(--vg-line); border-radius: 6px; font-size: 15px; font-weight: 500; background: transparent; color: var(--vg-ink); cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; gap: 8px; font-family: var(--vg-sans); }
@@ -485,15 +456,15 @@ const styles = `
 .vg-trustline { font-family: var(--vg-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--vg-muted); margin-bottom: 40px; }
 
 /* HERO META CREDENTIAL LINE */
-.vg-hero-meta { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 26px; padding: 10px 16px 10px 10px; border: 1px solid var(--vg-line); border-radius: 999px; background: rgba(129,140,248,0.05); font-size: 16px; color: var(--vg-ink-2); max-width: 620px; line-height: 1.4; }
+.vg-hero-meta { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 26px; padding: 10px 16px 10px 10px; border: 1px solid var(--vg-line); border-radius: 999px; background: rgba(34,197,94,0.05); font-size: 16px; color: var(--vg-ink-2); max-width: 620px; line-height: 1.4; }
 .vg-hero-meta strong { color: var(--vg-accent); font-weight: 600; }
 .vg-hero-meta-badge { flex-shrink: 0; font-family: var(--vg-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--vg-bg); background: var(--vg-accent); padding: 5px 10px; border-radius: 999px; }
 
 /* CTA REASSURANCE + SCARCITY NOTE */
 .vg-cta-note { display: flex; align-items: center; gap: 9px; font-family: var(--vg-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--vg-ink-2); margin-bottom: 34px; }
 .vg-cta-note strong { color: var(--vg-accent); }
-.vg-cta-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--vg-accent); box-shadow: 0 0 0 0 rgba(129,140,248,0.6); animation: vg-pulse 1.8s ease-out infinite; flex-shrink: 0; }
-@keyframes vg-pulse { 0% { box-shadow: 0 0 0 0 rgba(129,140,248,0.55); } 70% { box-shadow: 0 0 0 8px rgba(129,140,248,0); } 100% { box-shadow: 0 0 0 0 rgba(129,140,248,0); } }
+.vg-cta-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--vg-accent); box-shadow: 0 0 0 0 rgba(34,197,94,0.6); animation: vg-pulse 1.8s ease-out infinite; flex-shrink: 0; }
+@keyframes vg-pulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); } 70% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
 
 .vg-hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--vg-line); border-bottom: 1px solid var(--vg-line); }
 .vg-hero-stats > div { padding: 22px 22px 22px 0; border-right: 1px solid var(--vg-line); }
@@ -652,7 +623,7 @@ const styles = `
 .vg-ba-cell::before { flex-shrink: 0; font-family: var(--vg-mono); font-weight: 700; }
 .vg-ba-before { color: var(--vg-ink-2); background: var(--vg-bg-2); }
 .vg-ba-before::before { content: "✕"; color: #F87171; }
-.vg-ba-after { color: var(--vg-ink); background: rgba(129,140,248,0.07); border-left: 1px solid var(--vg-line); }
+.vg-ba-after { color: var(--vg-ink); background: rgba(34,197,94,0.07); border-left: 1px solid var(--vg-line); }
 .vg-ba-after::before { content: "✓"; color: var(--vg-accent); }
 .vg-ba-head .vg-ba-cell { font-family: var(--vg-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 14px 22px; }
 .vg-ba-head .vg-ba-cell::before { content: none; }
@@ -735,10 +706,10 @@ const styles = `
 /* PRICING — 3 TARIF */
 .vg-tiers { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 18px; align-items: stretch; max-width: 1180px; margin-top: 8px; }
 .vg-page .vg-tier3 { position: relative; display: flex; flex-direction: column; background: var(--vg-bg-2); border: 1px solid var(--vg-line); border-radius: 14px; padding: 32px 26px; overflow: hidden; transition: transform .25s, border-color .25s; }
-.vg-page .vg-tier3:hover { transform: translateY(-4px); border-color: rgba(129,140,248,0.45); }
-.vg-page .vg-tier3-featured { background: linear-gradient(180deg, var(--vg-bg-3) 0%, var(--vg-bg-2) 100%); border-color: var(--vg-accent); box-shadow: 0 30px 70px -40px rgba(129,140,248,0.6); padding-top: 44px; }
+.vg-page .vg-tier3:hover { transform: translateY(-4px); border-color: rgba(34,197,94,0.45); }
+.vg-page .vg-tier3-featured { background: linear-gradient(180deg, var(--vg-bg-3) 0%, var(--vg-bg-2) 100%); border-color: var(--vg-accent); box-shadow: 0 30px 70px -40px rgba(34,197,94,0.6); padding-top: 44px; }
 .vg-page .vg-tier3-featured::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--vg-accent), var(--vg-accent-2)); }
-.vg-tier3-ribbon { position: absolute; top: 14px; right: 14px; font-family: var(--vg-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--vg-accent); border: 1px solid var(--vg-accent); border-radius: 999px; padding: 4px 10px; background: rgba(129,140,248,0.08); }
+.vg-tier3-ribbon { position: absolute; top: 14px; right: 14px; font-family: var(--vg-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--vg-accent); border: 1px solid var(--vg-accent); border-radius: 999px; padding: 4px 10px; background: rgba(34,197,94,0.08); }
 .vg-tier3 .vg-price-badge { align-self: flex-start; margin-bottom: 18px; }
 .vg-tier3:not(.vg-tier3-featured) .vg-price-badge { background: transparent; color: var(--vg-ink-2); border: 1px solid var(--vg-line); }
 .vg-tier3-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
@@ -892,13 +863,13 @@ const styles = `
 .vg-seats-count { font-size: 13px; color: var(--vg-ink-2); }
 .vg-seats-count strong { color: var(--vg-accent); font-weight: 700; }
 .vg-seats-track { height: 8px; border-radius: 999px; background: var(--vg-bg-3); overflow: hidden; border: 1px solid var(--vg-line); }
-.vg-seats-fill { display: block; height: 100%; width: 53%; border-radius: 999px; background: linear-gradient(90deg, var(--vg-accent-2), var(--vg-accent)); box-shadow: 0 0 14px rgba(129,140,248,0.55); animation: vg-seatfill 1.4s cubic-bezier(.2,.7,.3,1) both; }
+.vg-seats-fill { display: block; height: 100%; width: 53%; border-radius: 999px; background: linear-gradient(90deg, var(--vg-accent-2), var(--vg-accent)); box-shadow: 0 0 14px rgba(34,197,94,0.55); animation: vg-seatfill 1.4s cubic-bezier(.2,.7,.3,1) both; }
 @keyframes vg-seatfill { from { width: 0; } to { width: 53%; } }
 .vg-seats-foot { margin-top: 9px; font-size: 12.5px; color: var(--vg-ink-2); }
 .vg-seats-foot strong { color: var(--vg-accent); }
 
 /* PRICING — SOLO CARD */
-.vg-page .vg-price-solo { position: relative; max-width: 640px; background: linear-gradient(180deg, var(--vg-bg-3) 0%, var(--vg-bg-2) 100%); border: 1px solid var(--vg-line); border-radius: 14px; padding: 38px 34px; overflow: hidden; box-shadow: 0 30px 70px -40px rgba(129,140,248,0.45); }
+.vg-page .vg-price-solo { position: relative; max-width: 640px; background: linear-gradient(180deg, var(--vg-bg-3) 0%, var(--vg-bg-2) 100%); border: 1px solid var(--vg-line); border-radius: 14px; padding: 38px 34px; overflow: hidden; box-shadow: 0 30px 70px -40px rgba(34,197,94,0.45); }
 .vg-page .vg-price-solo::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--vg-accent), var(--vg-accent-2)); }
 .vg-price-badge { display: inline-block; font-family: var(--vg-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--vg-bg); background: var(--vg-accent); padding: 6px 12px; border-radius: 4px; margin-bottom: 22px; }
 .vg-price-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--vg-line); padding-bottom: 24px; margin-bottom: 24px; }
@@ -907,7 +878,7 @@ const styles = `
 .vg-price-solo .vg-price-amount { font-family: var(--vg-serif); font-size: 52px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; color: var(--vg-accent); margin-bottom: 8px; }
 .vg-price-per { font-family: var(--vg-mono); font-size: 14px; color: var(--vg-muted); letter-spacing: 0; }
 .vg-price-solo .vg-price-currency { font-family: var(--vg-mono); font-size: 12px; color: var(--vg-ink-2); letter-spacing: 0.04em; }
-.vg-price-save { flex-shrink: 0; width: 84px; height: 84px; border: 1px solid var(--vg-accent); border-radius: 50%; display: grid; place-items: center; text-align: center; background: rgba(129,140,248,0.06); }
+.vg-price-save { flex-shrink: 0; width: 84px; height: 84px; border: 1px solid var(--vg-accent); border-radius: 50%; display: grid; place-items: center; text-align: center; background: rgba(34,197,94,0.06); }
 .vg-price-save-num { display: block; font-family: var(--vg-serif); font-size: 24px; font-weight: 600; color: var(--vg-accent); line-height: 1; }
 .vg-price-save-lbl { display: block; font-family: var(--vg-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vg-muted); margin-top: 4px; }
 .vg-price-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin-bottom: 28px; }
@@ -936,51 +907,27 @@ export default function TargetKursiPage({ socialProof }: Props = {}) {
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       <div className="vg-page">
-        {/* ============ URGENCY BAR ============ */}
-        <div className="vg-urgency">
-          <div className="vg-container vg-urgency-inner">
-            <span className="vg-urgency-pulse" aria-hidden="true" />
-            <span className="vg-urgency-text">
-              <strong>Performance Marketing &amp; Target kursiga yoziling</strong>
-              {COHORT.seatsLeft !== null && (
-                <> — atigi <strong>{COHORT.seatsLeft} joy</strong> qoldi</>
-              )}
-            </span>
-          </div>
-        </div>
-
         <div>
           {/* ============ HERO ============ */}
           <section className="vg-hero">
             <div className="vg-hero-glow" aria-hidden="true" />
             <div className="vg-container">
               <div className="vg-hero-inner">
-                <div className="vg-hero-eyebrow">
-                  <span>VISION GROUP</span>
-                  <span style={{ opacity: 0.4 }}>/</span>
-                  <span>PERFORMANCE MARKETING</span>
-                  <span style={{ opacity: 0.4 }}>/</span>
-                  <span>{COHORT.name.toUpperCase()} · {COHORT.year}</span>
-                </div>
-
-                <div className="vg-hero-pre">Targetologlar va endi boshlayotganlar uchun · Performance Marketing &amp; Target — 2 oylik shogirdlik kursi</div>
+                <div className="vg-hero-pre">2027-yilda shaxsiy AI agentingiz bilan eng ko&apos;p daromad oladigan targetologlardan biriga aylaning</div>
 
                 <h1 className="vg-hero-headline vg-hero-headline-q">
                   Qanday qilib Meta mijozlaringizga &laquo;shunchaki qiziquvchilarni&raquo; emas,{" "}
                   <em>hamyonida puli bor xaridorlarni</em> topib kelishi mumkin?
                 </h1>
 
-                <p className="vg-hero-sub">
-                  2 oyda: <strong>to&apos;g&apos;ri target, Pixel + CAPI va CRM integratsiyasini</strong> real biznesda o&apos;rganasiz.
-                  Reklama taxmin bilan emas — <strong>aniq signal</strong> bilan ishlaydi.
-                </p>
-
-                <div className="vg-hero-meta">
-                  <span className="vg-hero-meta-badge">CAPI</span>
-                  <span>
-                    Real reklama kabinetlarida sinalgan{" "}
-                    <strong>Pixel + CAPI + CRM</strong> tizimi — natijadan ulush olish uchun.
-                  </span>
+                <div className="vg-hero-sub">
+                  <p>Yuqori daromadli targetolog bo&apos;lish uchun uchta ko&apos;nikmani mukammal egallashimiz kerak:</p>
+                  <ol className="vg-hero-skills">
+                    <li>Sun&apos;iy intellektni <strong>shaxsiy agentimiz</strong> sifatida to&apos;g&apos;ri ishlata olish.</li>
+                    <li>Bozordagilardan ajralib turadigan <strong>kuchli taklif</strong> ishlab chiqa bilish.</li>
+                    <li>Meta&apos;ga mijozimiz kimligini va <strong>qaysi mijoz bizga qancha daromad keltirayotganini</strong> doimiy ravishda yetkazib turish.</li>
+                  </ol>
+                  <p>Bunday ko&apos;nikmalar sizni <strong>1 raqamli targetologlar</strong> qatorida katta bizneslarga target yoqishingizga zamin yaratadi.</p>
                 </div>
 
                 <div className="vg-hero-cta-row">
@@ -992,25 +939,6 @@ export default function TargetKursiPage({ socialProof }: Props = {}) {
                   </a>
                 </div>
 
-                <div className="vg-cta-note">
-                  <span className="vg-cta-dot" /> 30 soniya · Majburiyatsiz · Administrator 24 soatda bog&apos;lanadi
-                  {COHORT.seatsLeft !== null && (
-                    <> · Atigi <strong>{COHORT.seatsLeft} joy</strong> qoldi</>
-                  )}
-                </div>
-
-                <div className="vg-trustline">
-                  ISFT INSTITUTI SAMARQAND FILIALI · ZIYO YOG&apos;DUSI MAKTABI · KELAJAK UMIDI · PIFAGOR SCHOOL · HARVARD LITTLE SCHOOL · MED EXPERT VA BOSHQA BIZNESLAR BILAN TAJRIBA
-                </div>
-
-                <div className="vg-hero-stats">
-                  {heroStats.map((s) => (
-                    <div key={s.lbl}>
-                      <div className="vg-num">{s.num}</div>
-                      <div className="vg-lbl">{s.lbl}</div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </section>
@@ -1038,444 +966,13 @@ export default function TargetKursiPage({ socialProof }: Props = {}) {
                 <strong>&laquo;kim sotib oldi&raquo;</strong> degan aniq signal berilmasa, reklama ko&apos;r ishlaydi — byudjet behuda yonadi.
               </p>
 
-              <div className="vg-plain-list">
-                {symptoms.map((p, i) => (
-                  <div key={i} className="vg-plain-row">
-                    <span className="vg-plain-mark vg-plain-x">✕</span>
-                    <p>{p}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </section>
 
-          {/* ============ STAKES ============ */}
-          <section className="vg-section vg-agitate" id="agitatsiya">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">02 / Eski usulning narxi</div>
-              <h2 className="vg-section-title">
-                Har oy shu usulda ishlash — <em>qimmatga tushadi.</em>
-              </h2>
-
-              <div className="vg-plain-list">
-                {stakes.map((s, i) => (
-                  <div key={i} className="vg-plain-row">
-                    <span className="vg-plain-mark vg-plain-x">✕</span>
-                    <p>{s}</p>
-                  </div>
-                ))}
-              </div>
-
-              <p className="vg-problem-bridge">
-                Bularning hammasi bitta sababga borib taqaladi —{" "}
-                <em>tizim yo&apos;qligiga. Tizimni esa o&apos;rgansa bo&apos;ladi.</em>
-              </p>
-            </div>
-          </section>
-
-          {/* ============ MECHANISM ============ */}
-          <section className="vg-section" id="mexanizm">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">03 / Yechim</div>
-              <h2 className="vg-section-title">
-                <em>Sovuq mijozdan kassagacha</em> tizim.
-              </h2>
-              <p className="vg-section-lead">
-                Eng qizig&apos;i esa… <strong>Pixel + CAPI</strong> server-eventlari (saytdan Meta&apos;ga to&apos;g&apos;ridan-to&apos;g&apos;ri boradigan ma&apos;lumot) va{" "}
-                <strong>CRM integratsiyasi</strong> algoritmga aniq aytadi: &laquo;mana bu odam pul to&apos;ladi&raquo;. Shundan keyin Meta xuddi shunday
-                xaridorlarni o&apos;zi qidirib topadi — CPM (ko&apos;rsatish narxi) tushadi, ROAS (reklama qaytimi) oshadi.
-              </p>
-              <p className="vg-section-lead">
-                Yaxshi xabar shuki… buni o&apos;zingiz yillab izlanib o&apos;rganishingiz shart emas. 2 oyda real biznesda o&apos;z qo&apos;lingiz bilan
-                qurib o&apos;rganasiz.
-              </p>
-
-              <ResultsLightbox />
-
-              <p className="vg-section-lead" style={{ marginTop: 48 }}>
-                Reklama tugmasini emas, sovuq mijozdan kassagacha bo&apos;lgan har bir qadamni boshqarishni o&apos;rganasiz. Mana farqi:
-              </p>
-
-              <div className="vg-plain-list">
-                {mechanism.map((m) => (
-                  <div key={m.num} className="vg-plain-row">
-                    <span className="vg-plain-mark vg-plain-num">{m.num}</span>
-                    <div>
-                      <h3>{m.title}</h3>
-                      <p>{m.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="vg-midcta">
-                <a href="#yozilish" data-lead-open data-lead-mode="info" className="vg-btn-primary">
-                  Qo&apos;shimcha ma&apos;lumot olish
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </section>
-
-          {/* ============ SUCCESS: BEFORE / AFTER ============ */}
-          <section className="vg-section" id="kursdan-keyin">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">04 / Kursdan keyin</div>
-              <h2 className="vg-section-title">
-                2 oydan keyin ishingiz <em>qanday o&apos;zgaradi?</em>
-              </h2>
-
-              <div className="vg-ba">
-                <div className="vg-ba-row vg-ba-head">
-                  <div className="vg-ba-cell vg-ba-before">Hozir</div>
-                  <div className="vg-ba-cell vg-ba-after">2 oydan keyin</div>
-                </div>
-                {beforeAfter.map((r) => (
-                  <div key={r.before} className="vg-ba-row">
-                    <div className="vg-ba-cell vg-ba-before">{r.before}</div>
-                    <div className="vg-ba-cell vg-ba-after">{r.after}</div>
-                  </div>
-                ))}
-              </div>
-
-              <p className="vg-ba-identity">
-                Siz endi &laquo;target yoqib beradigan odam&raquo; emas — <em>biznes sotuvi uchun javob beradigan mutaxassissiz.</em>
-              </p>
-            </div>
-          </section>
-
-          {/* ============ RESULTS: CASES + TESTIMONIALS ============ */}
-          <section className="vg-section" id="natijalar">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">05 / Natijalar</div>
-              <h2 className="vg-section-title">
-                Raqamlar va <em>bitiruvchilar fikri.</em>
-              </h2>
-
-              <div className="vg-cases-grid">
-                {cases.map((c) => (
-                  <div key={c.tag} className="vg-case">
-                    <div className="vg-case-tag">{c.tag}</div>
-                    <div className="vg-case-num">
-                      {c.num}
-                      <small>{c.small}</small>
-                    </div>
-                    <div className="vg-case-desc">{c.desc}</div>
-                    <div className="vg-case-meta">{c.meta}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="vg-testimonials" style={{ marginTop: 48 }}>
-                {testimonials.map((t) => (
-                  <div key={t.name} className="vg-testimonial">
-                    <div className="vg-testimonial-quote">{t.quote}</div>
-                    <div className="vg-testimonial-author">
-                      <div className="vg-testimonial-avatar">{t.initials}</div>
-                      <div className="vg-testimonial-meta">
-                        <strong>{t.name}</strong>
-                        <span>{t.role}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {socialProof}
-          </section>
-
-          {/* ============ INSTRUCTOR ============ */}
-          <section className="vg-section" id="ustoz">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">06 / Ustoz</div>
-              <div className="vg-instructor">
-                <div className="vg-instructor-photo">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/001.avif" alt="Uchqun Turdiyev" />
-                </div>
-                <div>
-                  <h2>
-                    Uchqun Turdiyev — <em>Marketolog, Targetolog, Dasturchi.</em>
-                  </h2>
-                  <p>
-                    2022-yilda men ham xuddi shu yerdan boshlaganman: qiziqish tanlab target yoqardim, lid sifatsiz kelsa sababini topolmasdim, mijoz &laquo;sotuv yo&apos;q&raquo; desa — javob berolmasdim. Keyin reklamani faqat lid bilan emas, <strong>sotuvgacha</strong> — sayt, CRM va CAPI bilan birga o&apos;lchashni o&apos;rgandim. Bu kursda aynan shu yo&apos;lni sizga qisqartirib beraman.
-                  </p>
-                  <p>
-                    Men o&apos;rgatadigan narsani har kuni <strong>o&apos;zim ishlataman</strong>. Shu paytgacha 12+ biznes uchun <strong>$120.000+ reklama byudjeti</strong> boshqardim — natijalari yuqoridagi keyslarda.
-                  </p>
-                  <p>
-                    Kursda target, marketing va dasturlash bitta tizimga birlashgan.
-                  </p>
-
-                  <ul className="vg-cred-list">
-                    {credentials.map((c, i) => (
-                      <li key={i}>
-                        <span className="vg-yr">{c.yr}</span>
-                        <span>{c.text}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* ============ AUDIENCE ============ */}
-          <section className="vg-section" id="kimga">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">07 / Kimlar uchun</div>
-              <h2 className="vg-section-title">
-                Bu kurs sizga mos, <em>agar siz…</em>
-              </h2>
-
-              <div className="vg-aud-grid">
-                {audience.map((a) => (
-                  <div key={a.tag} className="vg-aud">
-                    <div className="vg-aud-tag">{a.tag}</div>
-                    <h3>{a.title}</h3>
-                    <p>{a.desc}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="vg-aud-note">
-                Kimga mos emas: bir kechada, mehnatsiz boyish formulasini qidirayotganlarga.
-              </p>
-            </div>
-          </section>
-
-          {/* ============ FORMAT ============ */}
-          <section className="vg-section" id="format">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">08 / Format</div>
-              <h2 className="vg-section-title">
-                Qanday <em>o&apos;qiysiz?</em>
-              </h2>
-              <p className="vg-section-lead">
-                Video darslar erkinlik beradi, jonli Zoom esa amaliyot va aniq fikr beradi — ikkalasi birga.
-              </p>
-
-              <div className="vg-format-grid">
-                {format.map((f) => (
-                  <div key={f.title} className="vg-fmt">
-                    <div className="vg-fmt-num">{f.num}</div>
-                    <div>
-                      <h3>{f.title}</h3>
-                      <p>{f.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ============ CURRICULUM ============ */}
-          <section className="vg-section" id="dastur">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">09 / Dastur</div>
-              <h2 className="vg-section-title">
-                2 oy. <em>Ikki bosqich.</em> Bitta tizim.
-              </h2>
-              <p className="vg-section-lead">
-                Ikkinchi oy birinchisining ustiga quriladi: texnik fundament → strategik performance tizim.
-              </p>
-
-              <div className="vg-curriculum-list">
-                {months.map((month) => (
-                  <div key={month.num} className="vg-month">
-                    <div className="vg-month-num">{month.num}</div>
-                    <h3 className="vg-month-title">{month.title}</h3>
-                    <p className="vg-month-desc">{month.desc}</p>
-                    <ul className="vg-month-skills">
-                      {month.skills.map((skill) => (
-                        <li key={skill}>{skill}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ============ INCLUDED ============ */}
-          <section className="vg-section">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">10 / Kurs tarkibi</div>
-              <h2 className="vg-section-title">
-                Kurs ichida <em>nima bor?</em>
-              </h2>
-              <p className="vg-section-lead">
-                Quyidagilarning barchasi Standart tarifga kiradi. Zapis va Individual tariflar tarkibi narx bo&apos;limida.
-              </p>
-
-              <div className="vg-included-grid">
-                {includedItems.map((item) => (
-                  <div key={item.title} className="vg-inc">
-                    <div className="vg-inc-num">{item.num}</div>
-                    <div>
-                      <h3>{item.title}</h3>
-                      <p>{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ============ PRICING ============ */}
-          <section className="vg-section" id="narx">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">11 / Narx</div>
-              <h2 className="vg-section-title">
-                O&apos;zingizga mos <em>tarifni tanlang.</em>
-              </h2>
-              <p className="vg-section-lead">
-                3 xil format: zapis darslar, to&apos;liq kurs (jonli + zapis) yoki individual o&apos;qish. Standart tarifda oyma-oy to&apos;lash, 1 yillik kirish huquqi va 15 kunlik pulni qaytarish kafolati. Maqsad — mijozlaringiz bilan natijadan ulush asosida ishlay oladigan darajaga chiqish.
-              </p>
-
-              {COHORT.seatsLeft !== null && (
-                <div className="vg-seats">
-                  <div className="vg-seats-foot">
-                    {COHORT.name}da atigi <strong>{COHORT.seatsLeft} joy</strong> qoldi
-                  </div>
-                </div>
-              )}
-
-              <div className="vg-tiers">
-                {priceTiers.map((t) => (
-                  <div key={t.id} className={`vg-tier3${t.featured ? " vg-tier3-featured" : ""}`}>
-                    {t.featured && <div className="vg-tier3-ribbon">Eng ko&apos;p tanlanadi</div>}
-                    <div className="vg-price-badge">{t.badge}</div>
-                    <div className="vg-tier3-head">
-                      <div className="vg-price-name">{t.name}</div>
-                      {t.save && (
-                        <div className="vg-tier3-save">
-                          {t.save} <span>chegirma</span>
-                        </div>
-                      )}
-                    </div>
-                    <p className="vg-tier3-tagline">{t.tagline}</p>
-                    <div className="vg-tier3-price">
-                      {t.old ? <div className="vg-price-old">{t.old}</div> : <div className="vg-price-old vg-price-old-empty">&nbsp;</div>}
-                      <div className="vg-tier3-amount">
-                        {t.amount} <span className="vg-price-per">{t.per ?? "so'm"}</span>
-                      </div>
-                      <div className="vg-tier3-total">{t.total}</div>
-                    </div>
-                    <ul className="vg-tier3-list">
-                      {t.features.map((f) => (
-                        <li key={f}>{f}</li>
-                      ))}
-                      {t.missing?.map((f) => (
-                        <li key={f} className="vg-no">{f}</li>
-                      ))}
-                    </ul>
-                    <a
-                      href="#yozilish"
-                      data-lead-open
-                      data-lead-tariff={t.name}
-                      data-lead-value={t.value}
-                      className={`${t.featured ? "vg-btn-primary" : "vg-btn-secondary"} vg-tier3-cta`}
-                    >
-                      {t.cta}
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
-                      </svg>
-                    </a>
-                  </div>
-                ))}
-              </div>
-              <div className="vg-price-foot vg-tiers-foot">Oyma-oy to&apos;lash mumkin · 15 kunlik pulni qaytarish kafolati faqat Standart tarifga tegishli</div>
-            </div>
-          </section>
-
-          {/* ============ GUARANTEE ============ */}
-          <section className="vg-guarantee">
-            <div className="vg-container">
-              <div className="vg-guarantee-inner">
-                <div className="vg-guarantee-seal">
-                  <div>
-                    <strong>15</strong>
-                    <span>Kunlik kafolat</span>
-                  </div>
-                </div>
-                <div>
-                  <h2>
-                    Kurs sizga mos kelmasa —{" "}
-                    <em>pulingiz to&apos;liq qaytadi.</em>
-                  </h2>
-                  <p>
-                    Standart tarifda birinchi 15 kun ichida (taxminan 8 ta dars) kurs sizga mos kelmasa — to&apos;lovni hech qanday savolsiz to&apos;liq qaytarib olasiz. Xavf to&apos;liq biznes tomonida.
-                  </p>
-                  <div className="vg-guarantee-sign">— Uchqun Turdiyev, Vision Group</div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* ============ PLAN: 3 STEPS ============ */}
-          <section className="vg-section" id="reja">
-            <div className="vg-container">
-              <div className="vg-section-eyebrow">12 / 3 qadam</div>
-              <h2 className="vg-section-title">
-                3 qadam — <em>natija qiluvchi</em> targetologgacha.
-              </h2>
-
-              <div className="vg-plain-list">
-                {planSteps.map((s) => (
-                  <div key={s.num} className="vg-plain-row">
-                    <span className="vg-plain-mark vg-plain-num">{s.num}</span>
-                    <div>
-                      <h3>{s.title}</h3>
-                      <p>{s.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="vg-plan-cta">
-                <a href="#yozilish" data-lead-open className="vg-btn-primary">
-                  Kursga yozilish
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.6" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </section>
-
-          {/* ============ CTA FINAL + FORM ============ */}
+          {/* ============ FORM ============ */}
           <section className="vg-cta-final" id="yozilish">
             <div className="vg-container">
               <div className="vg-cta-final-inner">
-                <div className="vg-section-eyebrow" style={{ justifyContent: "center" }}>
-                  13 / Yozilish
-                </div>
-                <h2>
-                  Tugma bosuvchi emas — <em>natija qiluvchi</em> bo&apos;ling.
-                </h2>
-                <p>
-                  Ikki maydonni to&apos;ldiring. Administrator 24 soat ichida qo&apos;ng&apos;iroq qilib,
-                  tarif va boshlanish sanasini tasdiqlaydi.
-                </p>
-
-                {showDeadline && COHORT.deadline && (
-                  <CountdownTimer
-                    target={COHORT.deadline}
-                    label={<>Qabul yopilishiga <strong>qoldi:</strong></>}
-                  />
-                )}
-
-                <div className="vg-cohort-info">
-                  {cohort.map((c) => (
-                    <div key={c.lbl} className="vg-cohort-cell">
-                      <span className="vg-lbl">{c.lbl}</span>
-                      <span className={`vg-val ${c.urgent ? "vg-urgent" : ""}`}>{c.val}</span>
-                    </div>
-                  ))}
-                </div>
-
                 <TargetKLidForm leadValue={3200000} {...courseFormCopy} />
               </div>
             </div>
@@ -1483,7 +980,7 @@ export default function TargetKursiPage({ socialProof }: Props = {}) {
           {/* ============ FAQ ============ */}
           <section className="vg-section" id="faq">
             <div className="vg-container">
-              <div className="vg-section-eyebrow">14 / Savol-javob</div>
+              <div className="vg-section-eyebrow">02 / Savol-javob</div>
               <h2 className="vg-section-title">
                 Savollarga <em>javoblar</em>
               </h2>

@@ -140,7 +140,7 @@ export default function LeadModal({ scarcity }: Props = {}) {
         {mode === "course" && scarcity && (
           <div
             style={{
-              background: "#818CF8",
+              background: "#22C55E",
               color: "#0A0F2C",
               fontFamily: "'Geist Mono', ui-monospace, monospace",
               fontSize: 11,
@@ -169,7 +169,7 @@ export default function LeadModal({ scarcity }: Props = {}) {
               borderRight: "1px solid rgba(120,150,225,0.3)",
             }}
           >
-            Tanlangan tarif: <strong style={{ color: "#818CF8" }}>{tariff}</strong>
+            Tanlangan tarif: <strong style={{ color: "#22C55E" }}>{tariff}</strong>
           </div>
         )}
 
